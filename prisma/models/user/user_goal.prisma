@@ -1,0 +1,29 @@
+model UserGoal {
+  id      String @id @default(uuid())
+  user_id String
+
+  target_weight_kg Float?
+  target_bmi       Float?
+  target_body_fat  Float?
+
+  user                 User                         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  created_at           DateTime                     @default(now())
+  updated_at           DateTime                     @updatedAt
+  initial_measurements UserGoalInitialMeasurements?
+  // progress_log  UserGoalProgressStep[]
+}
+
+model UserGoalInitialMeasurements {
+  id String @id @default(uuid())
+
+  weight_kg Float?
+  height_cm Float?
+  age       Int?
+  body_fat  Float?
+  bmi       Float?
+
+  goal_id    String   @unique
+  goal       UserGoal @relation(fields: [goal_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

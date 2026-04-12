@@ -1,0 +1,99 @@
+model User {
+  id String @id @default(uuid())
+
+  name        String?
+  second_name String?
+  lastname    String?
+  email       String    @unique
+  phone       String?   @unique
+  birthday    DateTime?
+
+  role     RoleEnum     @default(USER)
+  gender   GenderEnum?
+  language LanguageEnum @default(RU)
+
+  disabled    Boolean   @default(false)
+  disabled_at DateTime?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  credentials   UserCredentials?
+  subscription  UserSubscription?
+  goals         UserGoal[]
+  diet_plan     UserDietPlan?
+  recipes       UserRecipe[]
+  products      UserProduct[]
+  measurements  UserMeasurements[]
+  trainer_links ClientAssignment[]
+}
+
+model UserCredentials {
+  id      String @id @default(uuid())
+  user_id String @unique
+
+  email    String @unique
+  password String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model UserSubscription {
+  id              String @id @default(uuid())
+  user_id         String @unique
+  subscription_id String
+
+  start DateTime
+  end   DateTime
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user         User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  subscription UserPlan @relation(fields: [subscription_id], references: [id])
+}
+
+model UserDietPlan {
+  id      String @id @default(uuid())
+  user_id String @unique
+
+  target_calories Int?
+  target_protein  Int?
+  target_fat      Int?
+  target_carbs    Int?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model UserMeasurements {
+  id      String @id @default(uuid())
+  user_id String
+
+  weight_kg Float?
+  body_fat  Float?
+  height_cm Float?
+  bmi       Float?
+
+  created_at DateTime @default(now())
+
+  user              User                   @relation(fields: [user_id], references: [id])
+  photo UserMeasurementsPhoto?
+
+  @@index([user_id, created_at])
+}
+
+model UserMeasurementsPhoto {
+  id             String @id @default(uuid())
+  measurement_id String @unique
+  url            String
+
+  created_at DateTime @default(now())
+
+  measurement UserMeasurements @relation(fields: [measurement_id], references: [id])
+}

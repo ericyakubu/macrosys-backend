@@ -1,0 +1,4 @@
+{
+  "vsicons.presets.nestjs": true,
+  "typescript.preferences.preferTypeOnlyAutoImports": true
+}

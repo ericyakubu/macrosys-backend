@@ -1,0 +1,25 @@
+model Admin {
+  id          String            @id @default(cuid())
+  name        String
+  second_name String?
+  lastname    String?
+  email       String? @unique
+  phone       String?
+  disabled    Boolean           @default(false)
+  language    LanguageEnum      @default(RU)
+  role        RoleEnum          @default(ADMIN)
+  created_at  DateTime          @default(now())
+  updated_at  DateTime          @updatedAt
+  credentials AdminCredentials?
+  gender      GenderEnum?
+}
+
+model AdminCredentials {
+  id         String   @id @default(uuid())
+  admin_id   String   @unique
+  admin      Admin    @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+  login      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}

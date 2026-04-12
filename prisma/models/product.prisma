@@ -1,0 +1,52 @@
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  barcode     String?
+  description String?
+  rating      Decimal?
+  // rating_id   String?
+
+  calories      Decimal?
+  carbohydrates Decimal?
+  fat           Decimal?
+  protein       Decimal?
+  fiber         Decimal?
+  sugar         Decimal?
+
+  // rating Rating?        @relation(fields: [rating_id], references: [id])
+  // macros ProductMacros?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  recipe_product      RecipeProduct[]
+  user_recipe_product UserRecipeProduct[]
+  photo               ProductPhoto?
+}
+
+// model ProductMacros {
+//   id            String   @id @default(uuid())
+//   product_id    String   @unique
+//   calories      Decimal?
+//   carbohydrates Decimal?
+//   fat           Decimal?
+//   protein       Decimal?
+//   fiber         Decimal?
+//   sugar         Decimal?
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
+
+//   product Product @relation(fields: [product_id], references: [id])
+// }
+
+model ProductPhoto {
+  id         String @id @default(uuid())
+  product_id String @unique
+  url        String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  product Product @relation(fields: [product_id], references: [id])
+}

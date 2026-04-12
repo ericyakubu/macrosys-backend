@@ -1,0 +1,68 @@
+model Trainer {
+  id String @id @default(uuid())
+
+  name        String
+  second_name String
+  lastname    String
+  email       String   @unique
+  phone       String   @unique
+  birthday    DateTime
+
+  role     RoleEnum     @default(TRAINER)
+  gender   GenderEnum?
+  language LanguageEnum @default(RU)
+
+  disabled    Boolean   @default(false)
+  disabled_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  subscription TrainerSubscription?
+  credentials  TrainerCredentials?
+  client_links ClientAssignment[]
+  diets        Diet[]
+}
+
+model ClientAssignment {
+  id String @id @default(uuid())
+
+  trainer_id String
+  user_id    String
+
+  status TrainerClientStatusEnum @default(ACTIVE)
+
+  started_at DateTime  @default(now())
+  ended_at   DateTime?
+
+  trainer Trainer @relation(fields: [trainer_id], references: [id])
+  user    User    @relation(fields: [user_id], references: [id])
+
+  @@unique([trainer_id, user_id])
+  @@index([trainer_id])
+  @@index([user_id])
+}
+
+model TrainerCredentials {
+  id         String @id @default(uuid())
+  trainer_id String @unique
+
+  email    String @unique
+  password String
+
+  trainer Trainer @relation(fields: [trainer_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model TrainerSubscription {
+  id              String @id @default(uuid())
+  trainer_id      String @unique
+  subscription_id String
+
+  start DateTime
+  end   DateTime
+
+  user         Trainer     @relation(fields: [trainer_id], references: [id])
+  subscription TrainerPlan @relation(fields: [subscription_id], references: [id])
+}

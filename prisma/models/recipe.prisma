@@ -1,0 +1,36 @@
+model Recipe {
+  id        String @id @default(uuid())
+  name      String
+  cook_time Int?
+
+  description  String?
+  instructions String? @db.Text
+  prep_time    Int?
+  servings     Int?
+
+  total_calories      Decimal?
+  total_carbohydrates Decimal?
+  total_fat           Decimal?
+  total_protein       Decimal?
+  total_fiber         Decimal?
+  total_sugar         Decimal?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  diets    Diet[]
+  products RecipeProduct[]
+}
+
+model RecipeProduct {
+  id         String @id @default(uuid())
+  recipe_id  String
+  product_id String
+  quantity   Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  recipe  Recipe  @relation(fields: [recipe_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+}
