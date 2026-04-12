@@ -1,0 +1,7 @@
+# pnpm test
+
+# npx lint-staged
+
+# Optional: run TypeScript build check to catch broken files
+
+# pnpm build -- --noEmit
