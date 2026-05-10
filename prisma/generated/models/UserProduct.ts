@@ -61,7 +61,6 @@ export type UserProductMinAggregateOutputType = {
   sugar: runtime.Decimal | null
   created_at: Date | null
   updated_at: Date | null
-  dietId: string | null
 }
 
 export type UserProductMaxAggregateOutputType = {
@@ -79,7 +78,6 @@ export type UserProductMaxAggregateOutputType = {
   sugar: runtime.Decimal | null
   created_at: Date | null
   updated_at: Date | null
-  dietId: string | null
 }
 
 export type UserProductCountAggregateOutputType = {
@@ -97,7 +95,6 @@ export type UserProductCountAggregateOutputType = {
   sugar: number
   created_at: number
   updated_at: number
-  dietId: number
   _all: number
 }
 
@@ -137,7 +134,6 @@ export type UserProductMinAggregateInputType = {
   sugar?: true
   created_at?: true
   updated_at?: true
-  dietId?: true
 }
 
 export type UserProductMaxAggregateInputType = {
@@ -155,7 +151,6 @@ export type UserProductMaxAggregateInputType = {
   sugar?: true
   created_at?: true
   updated_at?: true
-  dietId?: true
 }
 
 export type UserProductCountAggregateInputType = {
@@ -173,7 +168,6 @@ export type UserProductCountAggregateInputType = {
   sugar?: true
   created_at?: true
   updated_at?: true
-  dietId?: true
   _all?: true
 }
 
@@ -278,7 +272,6 @@ export type UserProductGroupByOutputType = {
   sugar: runtime.Decimal | null
   created_at: Date
   updated_at: Date
-  dietId: string | null
   _count: UserProductCountAggregateOutputType | null
   _avg: UserProductAvgAggregateOutputType | null
   _sum: UserProductSumAggregateOutputType | null
@@ -319,11 +312,10 @@ export type UserProductWhereInput = {
   sugar?: Prisma.DecimalNullableFilter<"UserProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
-  dietId?: Prisma.StringNullableFilter<"UserProduct"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   photo?: Prisma.XOR<Prisma.UserProductPhotoNullableScalarRelationFilter, Prisma.UserProductPhotoWhereInput> | null
   user_recipe_product?: Prisma.UserRecipeProductListRelationFilter
-  diet?: Prisma.XOR<Prisma.DietNullableScalarRelationFilter, Prisma.DietWhereInput> | null
+  diet?: Prisma.DietListRelationFilter
 }
 
 export type UserProductOrderByWithRelationInput = {
@@ -341,11 +333,10 @@ export type UserProductOrderByWithRelationInput = {
   sugar?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  dietId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   photo?: Prisma.UserProductPhotoOrderByWithRelationInput
   user_recipe_product?: Prisma.UserRecipeProductOrderByRelationAggregateInput
-  diet?: Prisma.DietOrderByWithRelationInput
+  diet?: Prisma.DietOrderByRelationAggregateInput
 }
 
 export type UserProductWhereUniqueInput = Prisma.AtLeast<{
@@ -366,11 +357,10 @@ export type UserProductWhereUniqueInput = Prisma.AtLeast<{
   sugar?: Prisma.DecimalNullableFilter<"UserProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
-  dietId?: Prisma.StringNullableFilter<"UserProduct"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   photo?: Prisma.XOR<Prisma.UserProductPhotoNullableScalarRelationFilter, Prisma.UserProductPhotoWhereInput> | null
   user_recipe_product?: Prisma.UserRecipeProductListRelationFilter
-  diet?: Prisma.XOR<Prisma.DietNullableScalarRelationFilter, Prisma.DietWhereInput> | null
+  diet?: Prisma.DietListRelationFilter
 }, "id">
 
 export type UserProductOrderByWithAggregationInput = {
@@ -388,7 +378,6 @@ export type UserProductOrderByWithAggregationInput = {
   sugar?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  dietId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserProductCountOrderByAggregateInput
   _avg?: Prisma.UserProductAvgOrderByAggregateInput
   _max?: Prisma.UserProductMaxOrderByAggregateInput
@@ -414,7 +403,6 @@ export type UserProductScalarWhereWithAggregatesInput = {
   sugar?: Prisma.DecimalNullableWithAggregatesFilter<"UserProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"UserProduct"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"UserProduct"> | Date | string
-  dietId?: Prisma.StringNullableWithAggregatesFilter<"UserProduct"> | string | null
 }
 
 export type UserProductCreateInput = {
@@ -434,7 +422,7 @@ export type UserProductCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutProductsInput
   photo?: Prisma.UserProductPhotoCreateNestedOneWithoutProductInput
   user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutUser_productInput
-  diet?: Prisma.DietCreateNestedOneWithoutProductsInput
+  diet?: Prisma.DietCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductUncheckedCreateInput = {
@@ -452,9 +440,9 @@ export type UserProductUncheckedCreateInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
   photo?: Prisma.UserProductPhotoUncheckedCreateNestedOneWithoutProductInput
   user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutUser_productInput
+  diet?: Prisma.DietUncheckedCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductUpdateInput = {
@@ -474,7 +462,7 @@ export type UserProductUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutProductsNestedInput
   photo?: Prisma.UserProductPhotoUpdateOneWithoutProductNestedInput
   user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutUser_productNestedInput
-  diet?: Prisma.DietUpdateOneWithoutProductsNestedInput
+  diet?: Prisma.DietUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductUncheckedUpdateInput = {
@@ -492,9 +480,9 @@ export type UserProductUncheckedUpdateInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photo?: Prisma.UserProductPhotoUncheckedUpdateOneWithoutProductNestedInput
   user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutUser_productNestedInput
+  diet?: Prisma.DietUncheckedUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductCreateManyInput = {
@@ -512,7 +500,6 @@ export type UserProductCreateManyInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
 }
 
 export type UserProductUpdateManyMutationInput = {
@@ -546,7 +533,6 @@ export type UserProductUncheckedUpdateManyInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserProductListRelationFilter = {
@@ -574,7 +560,6 @@ export type UserProductCountOrderByAggregateInput = {
   sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  dietId?: Prisma.SortOrder
 }
 
 export type UserProductAvgOrderByAggregateInput = {
@@ -602,7 +587,6 @@ export type UserProductMaxOrderByAggregateInput = {
   sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  dietId?: Prisma.SortOrder
 }
 
 export type UserProductMinOrderByAggregateInput = {
@@ -620,7 +604,6 @@ export type UserProductMinOrderByAggregateInput = {
   sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  dietId?: Prisma.SortOrder
 }
 
 export type UserProductSumOrderByAggregateInput = {
@@ -711,14 +694,12 @@ export type UserProductUpdateOneRequiredWithoutUser_recipe_productNestedInput = 
 export type UserProductCreateNestedManyWithoutDietInput = {
   create?: Prisma.XOR<Prisma.UserProductCreateWithoutDietInput, Prisma.UserProductUncheckedCreateWithoutDietInput> | Prisma.UserProductCreateWithoutDietInput[] | Prisma.UserProductUncheckedCreateWithoutDietInput[]
   connectOrCreate?: Prisma.UserProductCreateOrConnectWithoutDietInput | Prisma.UserProductCreateOrConnectWithoutDietInput[]
-  createMany?: Prisma.UserProductCreateManyDietInputEnvelope
   connect?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
 }
 
 export type UserProductUncheckedCreateNestedManyWithoutDietInput = {
   create?: Prisma.XOR<Prisma.UserProductCreateWithoutDietInput, Prisma.UserProductUncheckedCreateWithoutDietInput> | Prisma.UserProductCreateWithoutDietInput[] | Prisma.UserProductUncheckedCreateWithoutDietInput[]
   connectOrCreate?: Prisma.UserProductCreateOrConnectWithoutDietInput | Prisma.UserProductCreateOrConnectWithoutDietInput[]
-  createMany?: Prisma.UserProductCreateManyDietInputEnvelope
   connect?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
 }
 
@@ -726,7 +707,6 @@ export type UserProductUpdateManyWithoutDietNestedInput = {
   create?: Prisma.XOR<Prisma.UserProductCreateWithoutDietInput, Prisma.UserProductUncheckedCreateWithoutDietInput> | Prisma.UserProductCreateWithoutDietInput[] | Prisma.UserProductUncheckedCreateWithoutDietInput[]
   connectOrCreate?: Prisma.UserProductCreateOrConnectWithoutDietInput | Prisma.UserProductCreateOrConnectWithoutDietInput[]
   upsert?: Prisma.UserProductUpsertWithWhereUniqueWithoutDietInput | Prisma.UserProductUpsertWithWhereUniqueWithoutDietInput[]
-  createMany?: Prisma.UserProductCreateManyDietInputEnvelope
   set?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
   disconnect?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
   delete?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
@@ -740,7 +720,6 @@ export type UserProductUncheckedUpdateManyWithoutDietNestedInput = {
   create?: Prisma.XOR<Prisma.UserProductCreateWithoutDietInput, Prisma.UserProductUncheckedCreateWithoutDietInput> | Prisma.UserProductCreateWithoutDietInput[] | Prisma.UserProductUncheckedCreateWithoutDietInput[]
   connectOrCreate?: Prisma.UserProductCreateOrConnectWithoutDietInput | Prisma.UserProductCreateOrConnectWithoutDietInput[]
   upsert?: Prisma.UserProductUpsertWithWhereUniqueWithoutDietInput | Prisma.UserProductUpsertWithWhereUniqueWithoutDietInput[]
-  createMany?: Prisma.UserProductCreateManyDietInputEnvelope
   set?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
   disconnect?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
   delete?: Prisma.UserProductWhereUniqueInput | Prisma.UserProductWhereUniqueInput[]
@@ -766,7 +745,7 @@ export type UserProductCreateWithoutUserInput = {
   updated_at?: Date | string
   photo?: Prisma.UserProductPhotoCreateNestedOneWithoutProductInput
   user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutUser_productInput
-  diet?: Prisma.DietCreateNestedOneWithoutProductsInput
+  diet?: Prisma.DietCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductUncheckedCreateWithoutUserInput = {
@@ -783,9 +762,9 @@ export type UserProductUncheckedCreateWithoutUserInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
   photo?: Prisma.UserProductPhotoUncheckedCreateNestedOneWithoutProductInput
   user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutUser_productInput
+  diet?: Prisma.DietUncheckedCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductCreateOrConnectWithoutUserInput = {
@@ -832,7 +811,6 @@ export type UserProductScalarWhereInput = {
   sugar?: Prisma.DecimalNullableFilter<"UserProduct"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserProduct"> | Date | string
-  dietId?: Prisma.StringNullableFilter<"UserProduct"> | string | null
 }
 
 export type UserProductCreateWithoutPhotoInput = {
@@ -851,7 +829,7 @@ export type UserProductCreateWithoutPhotoInput = {
   updated_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProductsInput
   user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutUser_productInput
-  diet?: Prisma.DietCreateNestedOneWithoutProductsInput
+  diet?: Prisma.DietCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductUncheckedCreateWithoutPhotoInput = {
@@ -869,8 +847,8 @@ export type UserProductUncheckedCreateWithoutPhotoInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
   user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutUser_productInput
+  diet?: Prisma.DietUncheckedCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductCreateOrConnectWithoutPhotoInput = {
@@ -905,7 +883,7 @@ export type UserProductUpdateWithoutPhotoInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProductsNestedInput
   user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutUser_productNestedInput
-  diet?: Prisma.DietUpdateOneWithoutProductsNestedInput
+  diet?: Prisma.DietUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductUncheckedUpdateWithoutPhotoInput = {
@@ -923,8 +901,8 @@ export type UserProductUncheckedUpdateWithoutPhotoInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutUser_productNestedInput
+  diet?: Prisma.DietUncheckedUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductCreateWithoutUser_recipe_productInput = {
@@ -943,7 +921,7 @@ export type UserProductCreateWithoutUser_recipe_productInput = {
   updated_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProductsInput
   photo?: Prisma.UserProductPhotoCreateNestedOneWithoutProductInput
-  diet?: Prisma.DietCreateNestedOneWithoutProductsInput
+  diet?: Prisma.DietCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductUncheckedCreateWithoutUser_recipe_productInput = {
@@ -961,8 +939,8 @@ export type UserProductUncheckedCreateWithoutUser_recipe_productInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
   photo?: Prisma.UserProductPhotoUncheckedCreateNestedOneWithoutProductInput
+  diet?: Prisma.DietUncheckedCreateNestedManyWithoutUser_productsInput
 }
 
 export type UserProductCreateOrConnectWithoutUser_recipe_productInput = {
@@ -997,7 +975,7 @@ export type UserProductUpdateWithoutUser_recipe_productInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProductsNestedInput
   photo?: Prisma.UserProductPhotoUpdateOneWithoutProductNestedInput
-  diet?: Prisma.DietUpdateOneWithoutProductsNestedInput
+  diet?: Prisma.DietUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductUncheckedUpdateWithoutUser_recipe_productInput = {
@@ -1015,8 +993,8 @@ export type UserProductUncheckedUpdateWithoutUser_recipe_productInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photo?: Prisma.UserProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+  diet?: Prisma.DietUncheckedUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductCreateWithoutDietInput = {
@@ -1062,11 +1040,6 @@ export type UserProductCreateOrConnectWithoutDietInput = {
   create: Prisma.XOR<Prisma.UserProductCreateWithoutDietInput, Prisma.UserProductUncheckedCreateWithoutDietInput>
 }
 
-export type UserProductCreateManyDietInputEnvelope = {
-  data: Prisma.UserProductCreateManyDietInput | Prisma.UserProductCreateManyDietInput[]
-  skipDuplicates?: boolean
-}
-
 export type UserProductUpsertWithWhereUniqueWithoutDietInput = {
   where: Prisma.UserProductWhereUniqueInput
   update: Prisma.XOR<Prisma.UserProductUpdateWithoutDietInput, Prisma.UserProductUncheckedUpdateWithoutDietInput>
@@ -1097,7 +1070,6 @@ export type UserProductCreateManyUserInput = {
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  dietId?: string | null
 }
 
 export type UserProductUpdateWithoutUserInput = {
@@ -1116,7 +1088,7 @@ export type UserProductUpdateWithoutUserInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   photo?: Prisma.UserProductPhotoUpdateOneWithoutProductNestedInput
   user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutUser_productNestedInput
-  diet?: Prisma.DietUpdateOneWithoutProductsNestedInput
+  diet?: Prisma.DietUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductUncheckedUpdateWithoutUserInput = {
@@ -1133,9 +1105,9 @@ export type UserProductUncheckedUpdateWithoutUserInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photo?: Prisma.UserProductPhotoUncheckedUpdateOneWithoutProductNestedInput
   user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutUser_productNestedInput
+  diet?: Prisma.DietUncheckedUpdateManyWithoutUser_productsNestedInput
 }
 
 export type UserProductUncheckedUpdateManyWithoutUserInput = {
@@ -1152,24 +1124,6 @@ export type UserProductUncheckedUpdateManyWithoutUserInput = {
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  dietId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type UserProductCreateManyDietInput = {
-  id?: string
-  user_id: string
-  name: string
-  barcode?: string | null
-  description?: string | null
-  rating?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
 }
 
 export type UserProductUpdateWithoutDietInput = {
@@ -1234,10 +1188,12 @@ export type UserProductUncheckedUpdateManyWithoutDietInput = {
 
 export type UserProductCountOutputType = {
   user_recipe_product: number
+  diet: number
 }
 
 export type UserProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user_recipe_product?: boolean | UserProductCountOutputTypeCountUser_recipe_productArgs
+  diet?: boolean | UserProductCountOutputTypeCountDietArgs
 }
 
 /**
@@ -1257,6 +1213,13 @@ export type UserProductCountOutputTypeCountUser_recipe_productArgs<ExtArgs exten
   where?: Prisma.UserRecipeProductWhereInput
 }
 
+/**
+ * UserProductCountOutputType without action
+ */
+export type UserProductCountOutputTypeCountDietArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DietWhereInput
+}
+
 
 export type UserProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1273,7 +1236,6 @@ export type UserProductSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
-  dietId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   photo?: boolean | Prisma.UserProduct$photoArgs<ExtArgs>
   user_recipe_product?: boolean | Prisma.UserProduct$user_recipe_productArgs<ExtArgs>
@@ -1296,9 +1258,7 @@ export type UserProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
-  dietId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  diet?: boolean | Prisma.UserProduct$dietArgs<ExtArgs>
 }, ExtArgs["result"]["userProduct"]>
 
 export type UserProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1316,9 +1276,7 @@ export type UserProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
-  dietId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  diet?: boolean | Prisma.UserProduct$dietArgs<ExtArgs>
 }, ExtArgs["result"]["userProduct"]>
 
 export type UserProductSelectScalar = {
@@ -1336,10 +1294,9 @@ export type UserProductSelectScalar = {
   sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
-  dietId?: boolean
 }
 
-export type UserProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "name" | "barcode" | "description" | "rating" | "calories" | "carbohydrates" | "fat" | "protein" | "fiber" | "sugar" | "created_at" | "updated_at" | "dietId", ExtArgs["result"]["userProduct"]>
+export type UserProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "name" | "barcode" | "description" | "rating" | "calories" | "carbohydrates" | "fat" | "protein" | "fiber" | "sugar" | "created_at" | "updated_at", ExtArgs["result"]["userProduct"]>
 export type UserProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   photo?: boolean | Prisma.UserProduct$photoArgs<ExtArgs>
@@ -1349,11 +1306,9 @@ export type UserProductInclude<ExtArgs extends runtime.Types.Extensions.Internal
 }
 export type UserProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  diet?: boolean | Prisma.UserProduct$dietArgs<ExtArgs>
 }
 export type UserProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  diet?: boolean | Prisma.UserProduct$dietArgs<ExtArgs>
 }
 
 export type $UserProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1362,7 +1317,7 @@ export type $UserProductPayload<ExtArgs extends runtime.Types.Extensions.Interna
     user: Prisma.$UserPayload<ExtArgs>
     photo: Prisma.$UserProductPhotoPayload<ExtArgs> | null
     user_recipe_product: Prisma.$UserRecipeProductPayload<ExtArgs>[]
-    diet: Prisma.$DietPayload<ExtArgs> | null
+    diet: Prisma.$DietPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1379,7 +1334,6 @@ export type $UserProductPayload<ExtArgs extends runtime.Types.Extensions.Interna
     sugar: runtime.Decimal | null
     created_at: Date
     updated_at: Date
-    dietId: string | null
   }, ExtArgs["result"]["userProduct"]>
   composites: {}
 }
@@ -1777,7 +1731,7 @@ export interface Prisma__UserProductClient<T, Null = never, ExtArgs extends runt
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   photo<T extends Prisma.UserProduct$photoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserProduct$photoArgs<ExtArgs>>): Prisma.Prisma__UserProductPhotoClient<runtime.Types.Result.GetResult<Prisma.$UserProductPhotoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user_recipe_product<T extends Prisma.UserProduct$user_recipe_productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserProduct$user_recipe_productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipeProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  diet<T extends Prisma.UserProduct$dietArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserProduct$dietArgs<ExtArgs>>): Prisma.Prisma__DietClient<runtime.Types.Result.GetResult<Prisma.$DietPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  diet<T extends Prisma.UserProduct$dietArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserProduct$dietArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1821,7 +1775,6 @@ export interface UserProductFieldRefs {
   readonly sugar: Prisma.FieldRef<"UserProduct", 'Decimal'>
   readonly created_at: Prisma.FieldRef<"UserProduct", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"UserProduct", 'DateTime'>
-  readonly dietId: Prisma.FieldRef<"UserProduct", 'String'>
 }
     
 
@@ -2282,6 +2235,11 @@ export type UserProduct$dietArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.DietInclude<ExtArgs> | null
   where?: Prisma.DietWhereInput
+  orderBy?: Prisma.DietOrderByWithRelationInput | Prisma.DietOrderByWithRelationInput[]
+  cursor?: Prisma.DietWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DietScalarFieldEnum | Prisma.DietScalarFieldEnum[]
 }
 
 /**

@@ -4,15 +4,15 @@ import { type Response } from 'express';
 import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
 import { Cookies } from '@/shared/utils';
 import { AccessToken, RefreshToken } from '@/shared/constants';
-import { LoginUserResDto, LoginUserReqDto } from '../dto/login-user.dto';
-import { SignupUserReqDto, SignupUserResDto } from '../dto/signup-user.dto';
+import { LoginUserReqDto, SignupUserReqDto } from '../dto/auth-user.dto';
+import { UserDto } from '@/infrastructure/dto';
 
-@Controller('auth')
+@Controller('user/auth')
 export class UserAuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login/user')
-  @ApiOkResponse({ type: LoginUserResDto })
+  @ApiOkResponse({ type: UserDto })
   @ApiBody({ type: LoginUserReqDto })
   @HttpCode(HttpStatus.OK)
   async loginUser(@Body() body: LoginUserReqDto, @Res() res: Response) {
@@ -27,7 +27,7 @@ export class UserAuthController {
   }
 
   @Post('signup/user')
-  @ApiOkResponse({ type: SignupUserResDto })
+  @ApiOkResponse({ type: UserDto })
   @ApiBody({ type: SignupUserReqDto })
   @HttpCode(HttpStatus.OK)
   async signupUser(@Body() body: SignupUserReqDto, @Res() res: Response) {

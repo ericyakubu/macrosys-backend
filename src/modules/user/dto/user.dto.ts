@@ -1,4 +1,4 @@
-import { ProductBaseDto, UserDto } from '@/infrastructure/dtos';
+import { ProductBaseDto, UserDto } from '@/infrastructure/dto';
 import { GenderEnum, LanguageEnum, User } from '@/prisma/client';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsDate, IsEmail, IsOptional, IsPhoneNumber, IsString, MaxDate } from 'class-validator';

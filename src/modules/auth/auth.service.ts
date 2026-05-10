@@ -12,11 +12,12 @@ import bcrypt from 'bcrypt';
 import type { ReturnWithTokens } from '@/shared/types';
 import { AccessToken, AuthErrors, BCRYPT_SALT_ROUNDS, RefreshToken } from '@/shared/constants';
 import { JwtSecrets } from '@/infrastructure/jwt/jwt.secrets';
-import type { LoginAdminReqDto, LoginAdminResDto } from './dto/login-admin.dto';
-import type { LoginUserReqDto, LoginUserResDto } from './dto/login-user.dto';
-import type { SignupUserReqDto, SignupUserResDto } from './dto/signup-user.dto';
-import type { SignupAdminReqDto, SignupAdminResDto } from './dto/signup-admin.dto';
-import { Prisma, type Admin, type User } from '@/prisma/client';
+import type { LoginAdminReqDto, SignupAdminReqDto } from './dto/auth-admin.dto';
+import type { LoginUserReqDto, SignupUserReqDto } from './dto/auth-user.dto';
+// import { Prisma, type Admin, type User } from '@/prisma/client';
+import { Prisma, type Admin } from '@/prisma/client';
+import type { AdminDto } from '@/infrastructure/dto/admin.dto';
+import type { UserDto } from '@/infrastructure/dto';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async loginUser(body: LoginUserReqDto): Promise<ReturnWithTokens<LoginUserResDto>> {
+  async loginUser(body: LoginUserReqDto): Promise<ReturnWithTokens<UserDto>> {
     const { email, password } = body;
 
     const credentials = await this.prisma.userCredentials.findUnique({
@@ -33,8 +34,16 @@ export class AuthService {
         email,
       },
 
-      include: {
-        user: true,
+      select: {
+        password: true,
+        user: {
+          omit: {
+            created_at: true,
+            disabled_at: true,
+            updated_at: true,
+            disabled: true,
+          },
+        },
       },
     });
 
@@ -48,7 +57,7 @@ export class AuthService {
     return this.returnTokens(user);
   }
 
-  async loginAdmin(body: LoginAdminReqDto): Promise<ReturnWithTokens<LoginAdminResDto>> {
+  async loginAdmin(body: LoginAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
     const { login, password } = body;
 
     const credentials = await this.prisma.adminCredentials.findUnique({
@@ -71,7 +80,7 @@ export class AuthService {
     return this.returnTokens(admin);
   }
 
-  async signupUser(body: SignupUserReqDto): Promise<ReturnWithTokens<SignupUserResDto>> {
+  async signupUser(body: SignupUserReqDto): Promise<ReturnWithTokens<UserDto>> {
     const hashedPassword = await bcrypt.hash(body.password, BCRYPT_SALT_ROUNDS);
 
     try {
@@ -85,6 +94,12 @@ export class AuthService {
             },
           },
         },
+        omit: {
+          created_at: true,
+          disabled_at: true,
+          updated_at: true,
+          disabled: true,
+        },
       });
 
       return this.returnTokens(user);
@@ -97,7 +112,7 @@ export class AuthService {
     }
   }
 
-  async signupAdmin(body: SignupAdminReqDto): Promise<ReturnWithTokens<SignupAdminResDto>> {
+  async signupAdmin(body: SignupAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
     const hashedPassword = await bcrypt.hash(body.password, BCRYPT_SALT_ROUNDS);
 
     const admin = await this.prisma.admin
@@ -142,7 +157,7 @@ export class AuthService {
     if (admin) return this.returnTokens(admin);
   }
 
-  private returnTokens<T extends User | Admin>(user: T): ReturnWithTokens<T> {
+  private returnTokens<T extends UserDto | Admin>(user: T): ReturnWithTokens<T> {
     const tokenPayload = { id: user.id, role: user.role };
     const accessToken = this.jwtService.sign(tokenPayload, {
       expiresIn: AccessToken.expiresIn,

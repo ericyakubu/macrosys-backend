@@ -104,7 +104,7 @@ model Diet {
   created_by String?
 
   is_active Boolean @default(true)
-  is_system Boolean @default(false)
+  is_system Boolean @default(false) //! TODO delete?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -112,13 +112,15 @@ model Diet {
   trainer Trainer? @relation(fields: [trainer_id], references: [id])
 
   user_recipes UserRecipe[]
-  products     UserProduct[]
-  recipe       Recipe?       @relation(fields: [recipeId], references: [id])
-  recipeId     String?
+  user_products     UserProduct[]
+  products     Product[]
+  recipe       Recipe?       @relation(fields: [recipe_id], references: [id])
+  recipe_id     String?
 
   @@unique([trainer_id, name])
   @@index([source])
 }
+
 
 model UserPlan {
   id               String    @id @default(uuid())

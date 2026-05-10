@@ -21,8 +21,9 @@ model UserProduct {
   user                User                @relation(fields: [user_id], references: [id], onDelete: Cascade)
   photo               UserProductPhoto?
   user_recipe_product UserRecipeProduct[]
-  diet                Diet?               @relation(fields: [dietId], references: [id])
-  dietId              String?
+  // diet                Diet?               @relation(fields: [diet_id], references: [id])
+  // diet_id              String?
+  diet                Diet[]
 }
 
 model UserProductPhoto {

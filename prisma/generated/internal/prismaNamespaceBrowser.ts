@@ -367,8 +367,7 @@ export const UserProductScalarFieldEnum = {
   fiber: 'fiber',
   sugar: 'sugar',
   created_at: 'created_at',
-  updated_at: 'updated_at',
-  dietId: 'dietId'
+  updated_at: 'updated_at'
 } as const
 
 export type UserProductScalarFieldEnum = (typeof UserProductScalarFieldEnum)[keyof typeof UserProductScalarFieldEnum]
@@ -442,7 +441,7 @@ export const DietScalarFieldEnum = {
   is_system: 'is_system',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  recipeId: 'recipeId'
+  recipe_id: 'recipe_id'
 } as const
 
 export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]

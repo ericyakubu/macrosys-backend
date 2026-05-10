@@ -12,13 +12,7 @@ export interface ReturnWithTokens<T> {
   refreshToken: string;
 }
 
-export const OrderByEnum = {
-  email: 'email',
-  name: 'name',
-  phone: 'phone',
-} as const;
-
 export enum SortOrderEnum {
-  asc = 'asc',
-  desc = 'desc',
+  ASC = 'asc',
+  DESC = 'desc',
 }

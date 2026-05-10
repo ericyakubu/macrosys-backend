@@ -35,7 +35,7 @@ export type DietMinAggregateOutputType = {
   is_system: boolean | null
   created_at: Date | null
   updated_at: Date | null
-  recipeId: string | null
+  recipe_id: string | null
 }
 
 export type DietMaxAggregateOutputType = {
@@ -49,7 +49,7 @@ export type DietMaxAggregateOutputType = {
   is_system: boolean | null
   created_at: Date | null
   updated_at: Date | null
-  recipeId: string | null
+  recipe_id: string | null
 }
 
 export type DietCountAggregateOutputType = {
@@ -63,7 +63,7 @@ export type DietCountAggregateOutputType = {
   is_system: number
   created_at: number
   updated_at: number
-  recipeId: number
+  recipe_id: number
   _all: number
 }
 
@@ -79,7 +79,7 @@ export type DietMinAggregateInputType = {
   is_system?: true
   created_at?: true
   updated_at?: true
-  recipeId?: true
+  recipe_id?: true
 }
 
 export type DietMaxAggregateInputType = {
@@ -93,7 +93,7 @@ export type DietMaxAggregateInputType = {
   is_system?: true
   created_at?: true
   updated_at?: true
-  recipeId?: true
+  recipe_id?: true
 }
 
 export type DietCountAggregateInputType = {
@@ -107,7 +107,7 @@ export type DietCountAggregateInputType = {
   is_system?: true
   created_at?: true
   updated_at?: true
-  recipeId?: true
+  recipe_id?: true
   _all?: true
 }
 
@@ -194,7 +194,7 @@ export type DietGroupByOutputType = {
   is_system: boolean
   created_at: Date
   updated_at: Date
-  recipeId: string | null
+  recipe_id: string | null
   _count: DietCountAggregateOutputType | null
   _min: DietMinAggregateOutputType | null
   _max: DietMaxAggregateOutputType | null
@@ -229,10 +229,11 @@ export type DietWhereInput = {
   is_system?: Prisma.BoolFilter<"Diet"> | boolean
   created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
-  recipeId?: Prisma.StringNullableFilter<"Diet"> | string | null
+  recipe_id?: Prisma.StringNullableFilter<"Diet"> | string | null
   trainer?: Prisma.XOR<Prisma.TrainerNullableScalarRelationFilter, Prisma.TrainerWhereInput> | null
   user_recipes?: Prisma.UserRecipeListRelationFilter
-  products?: Prisma.UserProductListRelationFilter
+  user_products?: Prisma.UserProductListRelationFilter
+  products?: Prisma.ProductListRelationFilter
   recipe?: Prisma.XOR<Prisma.RecipeNullableScalarRelationFilter, Prisma.RecipeWhereInput> | null
 }
 
@@ -247,10 +248,11 @@ export type DietOrderByWithRelationInput = {
   is_system?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  recipe_id?: Prisma.SortOrderInput | Prisma.SortOrder
   trainer?: Prisma.TrainerOrderByWithRelationInput
   user_recipes?: Prisma.UserRecipeOrderByRelationAggregateInput
-  products?: Prisma.UserProductOrderByRelationAggregateInput
+  user_products?: Prisma.UserProductOrderByRelationAggregateInput
+  products?: Prisma.ProductOrderByRelationAggregateInput
   recipe?: Prisma.RecipeOrderByWithRelationInput
 }
 
@@ -269,10 +271,11 @@ export type DietWhereUniqueInput = Prisma.AtLeast<{
   is_system?: Prisma.BoolFilter<"Diet"> | boolean
   created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
-  recipeId?: Prisma.StringNullableFilter<"Diet"> | string | null
+  recipe_id?: Prisma.StringNullableFilter<"Diet"> | string | null
   trainer?: Prisma.XOR<Prisma.TrainerNullableScalarRelationFilter, Prisma.TrainerWhereInput> | null
   user_recipes?: Prisma.UserRecipeListRelationFilter
-  products?: Prisma.UserProductListRelationFilter
+  user_products?: Prisma.UserProductListRelationFilter
+  products?: Prisma.ProductListRelationFilter
   recipe?: Prisma.XOR<Prisma.RecipeNullableScalarRelationFilter, Prisma.RecipeWhereInput> | null
 }, "id" | "trainer_id_name">
 
@@ -287,7 +290,7 @@ export type DietOrderByWithAggregationInput = {
   is_system?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  recipe_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DietCountOrderByAggregateInput
   _max?: Prisma.DietMaxOrderByAggregateInput
   _min?: Prisma.DietMinOrderByAggregateInput
@@ -307,7 +310,7 @@ export type DietScalarWhereWithAggregatesInput = {
   is_system?: Prisma.BoolWithAggregatesFilter<"Diet"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Diet"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Diet"> | Date | string
-  recipeId?: Prisma.StringNullableWithAggregatesFilter<"Diet"> | string | null
+  recipe_id?: Prisma.StringNullableWithAggregatesFilter<"Diet"> | string | null
 }
 
 export type DietCreateInput = {
@@ -322,7 +325,8 @@ export type DietCreateInput = {
   updated_at?: Date | string
   trainer?: Prisma.TrainerCreateNestedOneWithoutDietsInput
   user_recipes?: Prisma.UserRecipeCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductCreateNestedManyWithoutDietInput
   recipe?: Prisma.RecipeCreateNestedOneWithoutDietsInput
 }
 
@@ -337,9 +341,10 @@ export type DietUncheckedCreateInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
+  recipe_id?: string | null
   user_recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietInput
 }
 
 export type DietUpdateInput = {
@@ -354,7 +359,8 @@ export type DietUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
   user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUpdateManyWithoutDietNestedInput
   recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
 }
 
@@ -369,9 +375,10 @@ export type DietUncheckedUpdateInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutDietNestedInput
 }
 
 export type DietCreateManyInput = {
@@ -385,7 +392,7 @@ export type DietCreateManyInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
+  recipe_id?: string | null
 }
 
 export type DietUpdateManyMutationInput = {
@@ -411,7 +418,7 @@ export type DietUncheckedUpdateManyInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DietListRelationFilter = {
@@ -422,11 +429,6 @@ export type DietListRelationFilter = {
 
 export type DietOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type DietNullableScalarRelationFilter = {
-  is?: Prisma.DietWhereInput | null
-  isNot?: Prisma.DietWhereInput | null
 }
 
 export type DietTrainer_idNameCompoundUniqueInput = {
@@ -445,7 +447,7 @@ export type DietCountOrderByAggregateInput = {
   is_system?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipeId?: Prisma.SortOrder
+  recipe_id?: Prisma.SortOrder
 }
 
 export type DietMaxOrderByAggregateInput = {
@@ -459,7 +461,7 @@ export type DietMaxOrderByAggregateInput = {
   is_system?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipeId?: Prisma.SortOrder
+  recipe_id?: Prisma.SortOrder
 }
 
 export type DietMinOrderByAggregateInput = {
@@ -473,7 +475,45 @@ export type DietMinOrderByAggregateInput = {
   is_system?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipeId?: Prisma.SortOrder
+  recipe_id?: Prisma.SortOrder
+}
+
+export type DietCreateNestedManyWithoutProductsInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput> | Prisma.DietCreateWithoutProductsInput[] | Prisma.DietUncheckedCreateWithoutProductsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput | Prisma.DietCreateOrConnectWithoutProductsInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+}
+
+export type DietUncheckedCreateNestedManyWithoutProductsInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput> | Prisma.DietCreateWithoutProductsInput[] | Prisma.DietUncheckedCreateWithoutProductsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput | Prisma.DietCreateOrConnectWithoutProductsInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+}
+
+export type DietUpdateManyWithoutProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput> | Prisma.DietCreateWithoutProductsInput[] | Prisma.DietUncheckedCreateWithoutProductsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput | Prisma.DietCreateOrConnectWithoutProductsInput[]
+  upsert?: Prisma.DietUpsertWithWhereUniqueWithoutProductsInput | Prisma.DietUpsertWithWhereUniqueWithoutProductsInput[]
+  set?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  disconnect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  delete?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  update?: Prisma.DietUpdateWithWhereUniqueWithoutProductsInput | Prisma.DietUpdateWithWhereUniqueWithoutProductsInput[]
+  updateMany?: Prisma.DietUpdateManyWithWhereWithoutProductsInput | Prisma.DietUpdateManyWithWhereWithoutProductsInput[]
+  deleteMany?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
+}
+
+export type DietUncheckedUpdateManyWithoutProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput> | Prisma.DietCreateWithoutProductsInput[] | Prisma.DietUncheckedCreateWithoutProductsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput | Prisma.DietCreateOrConnectWithoutProductsInput[]
+  upsert?: Prisma.DietUpsertWithWhereUniqueWithoutProductsInput | Prisma.DietUpsertWithWhereUniqueWithoutProductsInput[]
+  set?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  disconnect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  delete?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  update?: Prisma.DietUpdateWithWhereUniqueWithoutProductsInput | Prisma.DietUpdateWithWhereUniqueWithoutProductsInput[]
+  updateMany?: Prisma.DietUpdateManyWithWhereWithoutProductsInput | Prisma.DietUpdateManyWithWhereWithoutProductsInput[]
+  deleteMany?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
 }
 
 export type DietCreateNestedManyWithoutRecipeInput = {
@@ -560,20 +600,42 @@ export type DietUncheckedUpdateManyWithoutTrainerNestedInput = {
   deleteMany?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
 }
 
-export type DietCreateNestedOneWithoutProductsInput = {
-  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput
-  connect?: Prisma.DietWhereUniqueInput
+export type DietCreateNestedManyWithoutUser_productsInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput> | Prisma.DietCreateWithoutUser_productsInput[] | Prisma.DietUncheckedCreateWithoutUser_productsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutUser_productsInput | Prisma.DietCreateOrConnectWithoutUser_productsInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
 }
 
-export type DietUpdateOneWithoutProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.DietCreateOrConnectWithoutProductsInput
-  upsert?: Prisma.DietUpsertWithoutProductsInput
-  disconnect?: Prisma.DietWhereInput | boolean
-  delete?: Prisma.DietWhereInput | boolean
-  connect?: Prisma.DietWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DietUpdateToOneWithWhereWithoutProductsInput, Prisma.DietUpdateWithoutProductsInput>, Prisma.DietUncheckedUpdateWithoutProductsInput>
+export type DietUncheckedCreateNestedManyWithoutUser_productsInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput> | Prisma.DietCreateWithoutUser_productsInput[] | Prisma.DietUncheckedCreateWithoutUser_productsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutUser_productsInput | Prisma.DietCreateOrConnectWithoutUser_productsInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+}
+
+export type DietUpdateManyWithoutUser_productsNestedInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput> | Prisma.DietCreateWithoutUser_productsInput[] | Prisma.DietUncheckedCreateWithoutUser_productsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutUser_productsInput | Prisma.DietCreateOrConnectWithoutUser_productsInput[]
+  upsert?: Prisma.DietUpsertWithWhereUniqueWithoutUser_productsInput | Prisma.DietUpsertWithWhereUniqueWithoutUser_productsInput[]
+  set?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  disconnect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  delete?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  update?: Prisma.DietUpdateWithWhereUniqueWithoutUser_productsInput | Prisma.DietUpdateWithWhereUniqueWithoutUser_productsInput[]
+  updateMany?: Prisma.DietUpdateManyWithWhereWithoutUser_productsInput | Prisma.DietUpdateManyWithWhereWithoutUser_productsInput[]
+  deleteMany?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
+}
+
+export type DietUncheckedUpdateManyWithoutUser_productsNestedInput = {
+  create?: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput> | Prisma.DietCreateWithoutUser_productsInput[] | Prisma.DietUncheckedCreateWithoutUser_productsInput[]
+  connectOrCreate?: Prisma.DietCreateOrConnectWithoutUser_productsInput | Prisma.DietCreateOrConnectWithoutUser_productsInput[]
+  upsert?: Prisma.DietUpsertWithWhereUniqueWithoutUser_productsInput | Prisma.DietUpsertWithWhereUniqueWithoutUser_productsInput[]
+  set?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  disconnect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  delete?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  connect?: Prisma.DietWhereUniqueInput | Prisma.DietWhereUniqueInput[]
+  update?: Prisma.DietUpdateWithWhereUniqueWithoutUser_productsInput | Prisma.DietUpdateWithWhereUniqueWithoutUser_productsInput[]
+  updateMany?: Prisma.DietUpdateManyWithWhereWithoutUser_productsInput | Prisma.DietUpdateManyWithWhereWithoutUser_productsInput[]
+  deleteMany?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
 }
 
 export type DietCreateNestedManyWithoutUser_recipesInput = {
@@ -618,6 +680,76 @@ export type EnumDietSourceEnumFieldUpdateOperationsInput = {
   set?: $Enums.DietSourceEnum
 }
 
+export type DietCreateWithoutProductsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  source?: $Enums.DietSourceEnum
+  created_by?: string | null
+  is_active?: boolean
+  is_system?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  trainer?: Prisma.TrainerCreateNestedOneWithoutDietsInput
+  user_recipes?: Prisma.UserRecipeCreateNestedManyWithoutDietsInput
+  user_products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  recipe?: Prisma.RecipeCreateNestedOneWithoutDietsInput
+}
+
+export type DietUncheckedCreateWithoutProductsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  source?: $Enums.DietSourceEnum
+  trainer_id?: string | null
+  created_by?: string | null
+  is_active?: boolean
+  is_system?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  recipe_id?: string | null
+  user_recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutDietsInput
+  user_products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+}
+
+export type DietCreateOrConnectWithoutProductsInput = {
+  where: Prisma.DietWhereUniqueInput
+  create: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
+}
+
+export type DietUpsertWithWhereUniqueWithoutProductsInput = {
+  where: Prisma.DietWhereUniqueInput
+  update: Prisma.XOR<Prisma.DietUpdateWithoutProductsInput, Prisma.DietUncheckedUpdateWithoutProductsInput>
+  create: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
+}
+
+export type DietUpdateWithWhereUniqueWithoutProductsInput = {
+  where: Prisma.DietWhereUniqueInput
+  data: Prisma.XOR<Prisma.DietUpdateWithoutProductsInput, Prisma.DietUncheckedUpdateWithoutProductsInput>
+}
+
+export type DietUpdateManyWithWhereWithoutProductsInput = {
+  where: Prisma.DietScalarWhereInput
+  data: Prisma.XOR<Prisma.DietUpdateManyMutationInput, Prisma.DietUncheckedUpdateManyWithoutProductsInput>
+}
+
+export type DietScalarWhereInput = {
+  AND?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
+  OR?: Prisma.DietScalarWhereInput[]
+  NOT?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
+  id?: Prisma.StringFilter<"Diet"> | string
+  name?: Prisma.StringFilter<"Diet"> | string
+  description?: Prisma.StringNullableFilter<"Diet"> | string | null
+  source?: Prisma.EnumDietSourceEnumFilter<"Diet"> | $Enums.DietSourceEnum
+  trainer_id?: Prisma.StringNullableFilter<"Diet"> | string | null
+  created_by?: Prisma.StringNullableFilter<"Diet"> | string | null
+  is_active?: Prisma.BoolFilter<"Diet"> | boolean
+  is_system?: Prisma.BoolFilter<"Diet"> | boolean
+  created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
+  recipe_id?: Prisma.StringNullableFilter<"Diet"> | string | null
+}
+
 export type DietCreateWithoutRecipeInput = {
   id?: string
   name: string
@@ -630,7 +762,8 @@ export type DietCreateWithoutRecipeInput = {
   updated_at?: Date | string
   trainer?: Prisma.TrainerCreateNestedOneWithoutDietsInput
   user_recipes?: Prisma.UserRecipeCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductCreateNestedManyWithoutDietInput
 }
 
 export type DietUncheckedCreateWithoutRecipeInput = {
@@ -645,7 +778,8 @@ export type DietUncheckedCreateWithoutRecipeInput = {
   created_at?: Date | string
   updated_at?: Date | string
   user_recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietInput
 }
 
 export type DietCreateOrConnectWithoutRecipeInput = {
@@ -674,23 +808,6 @@ export type DietUpdateManyWithWhereWithoutRecipeInput = {
   data: Prisma.XOR<Prisma.DietUpdateManyMutationInput, Prisma.DietUncheckedUpdateManyWithoutRecipeInput>
 }
 
-export type DietScalarWhereInput = {
-  AND?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
-  OR?: Prisma.DietScalarWhereInput[]
-  NOT?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
-  id?: Prisma.StringFilter<"Diet"> | string
-  name?: Prisma.StringFilter<"Diet"> | string
-  description?: Prisma.StringNullableFilter<"Diet"> | string | null
-  source?: Prisma.EnumDietSourceEnumFilter<"Diet"> | $Enums.DietSourceEnum
-  trainer_id?: Prisma.StringNullableFilter<"Diet"> | string | null
-  created_by?: Prisma.StringNullableFilter<"Diet"> | string | null
-  is_active?: Prisma.BoolFilter<"Diet"> | boolean
-  is_system?: Prisma.BoolFilter<"Diet"> | boolean
-  created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
-  recipeId?: Prisma.StringNullableFilter<"Diet"> | string | null
-}
-
 export type DietCreateWithoutTrainerInput = {
   id?: string
   name: string
@@ -702,7 +819,8 @@ export type DietCreateWithoutTrainerInput = {
   created_at?: Date | string
   updated_at?: Date | string
   user_recipes?: Prisma.UserRecipeCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductCreateNestedManyWithoutDietInput
   recipe?: Prisma.RecipeCreateNestedOneWithoutDietsInput
 }
 
@@ -716,9 +834,10 @@ export type DietUncheckedCreateWithoutTrainerInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
+  recipe_id?: string | null
   user_recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutDietsInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietInput
 }
 
 export type DietCreateOrConnectWithoutTrainerInput = {
@@ -747,7 +866,7 @@ export type DietUpdateManyWithWhereWithoutTrainerInput = {
   data: Prisma.XOR<Prisma.DietUpdateManyMutationInput, Prisma.DietUncheckedUpdateManyWithoutTrainerInput>
 }
 
-export type DietCreateWithoutProductsInput = {
+export type DietCreateWithoutUser_productsInput = {
   id?: string
   name: string
   description?: string | null
@@ -759,10 +878,11 @@ export type DietCreateWithoutProductsInput = {
   updated_at?: Date | string
   trainer?: Prisma.TrainerCreateNestedOneWithoutDietsInput
   user_recipes?: Prisma.UserRecipeCreateNestedManyWithoutDietsInput
+  products?: Prisma.ProductCreateNestedManyWithoutDietInput
   recipe?: Prisma.RecipeCreateNestedOneWithoutDietsInput
 }
 
-export type DietUncheckedCreateWithoutProductsInput = {
+export type DietUncheckedCreateWithoutUser_productsInput = {
   id?: string
   name: string
   description?: string | null
@@ -773,54 +893,30 @@ export type DietUncheckedCreateWithoutProductsInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
+  recipe_id?: string | null
   user_recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutDietsInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietInput
 }
 
-export type DietCreateOrConnectWithoutProductsInput = {
+export type DietCreateOrConnectWithoutUser_productsInput = {
   where: Prisma.DietWhereUniqueInput
-  create: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
+  create: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput>
 }
 
-export type DietUpsertWithoutProductsInput = {
-  update: Prisma.XOR<Prisma.DietUpdateWithoutProductsInput, Prisma.DietUncheckedUpdateWithoutProductsInput>
-  create: Prisma.XOR<Prisma.DietCreateWithoutProductsInput, Prisma.DietUncheckedCreateWithoutProductsInput>
-  where?: Prisma.DietWhereInput
+export type DietUpsertWithWhereUniqueWithoutUser_productsInput = {
+  where: Prisma.DietWhereUniqueInput
+  update: Prisma.XOR<Prisma.DietUpdateWithoutUser_productsInput, Prisma.DietUncheckedUpdateWithoutUser_productsInput>
+  create: Prisma.XOR<Prisma.DietCreateWithoutUser_productsInput, Prisma.DietUncheckedCreateWithoutUser_productsInput>
 }
 
-export type DietUpdateToOneWithWhereWithoutProductsInput = {
-  where?: Prisma.DietWhereInput
-  data: Prisma.XOR<Prisma.DietUpdateWithoutProductsInput, Prisma.DietUncheckedUpdateWithoutProductsInput>
+export type DietUpdateWithWhereUniqueWithoutUser_productsInput = {
+  where: Prisma.DietWhereUniqueInput
+  data: Prisma.XOR<Prisma.DietUpdateWithoutUser_productsInput, Prisma.DietUncheckedUpdateWithoutUser_productsInput>
 }
 
-export type DietUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
-  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
-  user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
-  recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
-}
-
-export type DietUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
-  trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
+export type DietUpdateManyWithWhereWithoutUser_productsInput = {
+  where: Prisma.DietScalarWhereInput
+  data: Prisma.XOR<Prisma.DietUpdateManyMutationInput, Prisma.DietUncheckedUpdateManyWithoutUser_productsInput>
 }
 
 export type DietCreateWithoutUser_recipesInput = {
@@ -834,7 +930,8 @@ export type DietCreateWithoutUser_recipesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   trainer?: Prisma.TrainerCreateNestedOneWithoutDietsInput
-  products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  user_products?: Prisma.UserProductCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductCreateNestedManyWithoutDietInput
   recipe?: Prisma.RecipeCreateNestedOneWithoutDietsInput
 }
 
@@ -849,8 +946,9 @@ export type DietUncheckedCreateWithoutUser_recipesInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  recipe_id?: string | null
+  user_products?: Prisma.UserProductUncheckedCreateNestedManyWithoutDietInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietInput
 }
 
 export type DietCreateOrConnectWithoutUser_recipesInput = {
@@ -872,6 +970,52 @@ export type DietUpdateWithWhereUniqueWithoutUser_recipesInput = {
 export type DietUpdateManyWithWhereWithoutUser_recipesInput = {
   where: Prisma.DietScalarWhereInput
   data: Prisma.XOR<Prisma.DietUpdateManyMutationInput, Prisma.DietUncheckedUpdateManyWithoutUser_recipesInput>
+}
+
+export type DietUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
+  user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
+  user_products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
+}
+
+export type DietUncheckedUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
+  user_products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+}
+
+export type DietUncheckedUpdateManyWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DietCreateManyRecipeInput = {
@@ -899,7 +1043,8 @@ export type DietUpdateWithoutRecipeInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
   user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUpdateManyWithoutDietNestedInput
 }
 
 export type DietUncheckedUpdateWithoutRecipeInput = {
@@ -914,7 +1059,8 @@ export type DietUncheckedUpdateWithoutRecipeInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutDietNestedInput
 }
 
 export type DietUncheckedUpdateManyWithoutRecipeInput = {
@@ -940,7 +1086,7 @@ export type DietCreateManyTrainerInput = {
   is_system?: boolean
   created_at?: Date | string
   updated_at?: Date | string
-  recipeId?: string | null
+  recipe_id?: string | null
 }
 
 export type DietUpdateWithoutTrainerInput = {
@@ -954,7 +1100,8 @@ export type DietUpdateWithoutTrainerInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUpdateManyWithoutDietNestedInput
   recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
 }
 
@@ -968,9 +1115,10 @@ export type DietUncheckedUpdateWithoutTrainerInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutDietNestedInput
 }
 
 export type DietUncheckedUpdateManyWithoutTrainerInput = {
@@ -983,7 +1131,53 @@ export type DietUncheckedUpdateManyWithoutTrainerInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type DietUpdateWithoutUser_productsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
+  user_recipes?: Prisma.UserRecipeUpdateManyWithoutDietsNestedInput
+  products?: Prisma.ProductUpdateManyWithoutDietNestedInput
+  recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
+}
+
+export type DietUncheckedUpdateWithoutUser_productsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutDietsNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutDietNestedInput
+}
+
+export type DietUncheckedUpdateManyWithoutUser_productsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.EnumDietSourceEnumFieldUpdateOperationsInput | $Enums.DietSourceEnum
+  trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type DietUpdateWithoutUser_recipesInput = {
@@ -997,7 +1191,8 @@ export type DietUpdateWithoutUser_recipesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.TrainerUpdateOneWithoutDietsNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  user_products?: Prisma.UserProductUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUpdateManyWithoutDietNestedInput
   recipe?: Prisma.RecipeUpdateOneWithoutDietsNestedInput
 }
 
@@ -1012,8 +1207,9 @@ export type DietUncheckedUpdateWithoutUser_recipesInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_products?: Prisma.UserProductUncheckedUpdateManyWithoutDietNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutDietNestedInput
 }
 
 export type DietUncheckedUpdateManyWithoutUser_recipesInput = {
@@ -1027,7 +1223,7 @@ export type DietUncheckedUpdateManyWithoutUser_recipesInput = {
   is_system?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recipe_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1037,11 +1233,13 @@ export type DietUncheckedUpdateManyWithoutUser_recipesInput = {
 
 export type DietCountOutputType = {
   user_recipes: number
+  user_products: number
   products: number
 }
 
 export type DietCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user_recipes?: boolean | DietCountOutputTypeCountUser_recipesArgs
+  user_products?: boolean | DietCountOutputTypeCountUser_productsArgs
   products?: boolean | DietCountOutputTypeCountProductsArgs
 }
 
@@ -1065,8 +1263,15 @@ export type DietCountOutputTypeCountUser_recipesArgs<ExtArgs extends runtime.Typ
 /**
  * DietCountOutputType without action
  */
-export type DietCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type DietCountOutputTypeCountUser_productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserProductWhereInput
+}
+
+/**
+ * DietCountOutputType without action
+ */
+export type DietCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
 }
 
 
@@ -1081,9 +1286,10 @@ export type DietSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   is_system?: boolean
   created_at?: boolean
   updated_at?: boolean
-  recipeId?: boolean
+  recipe_id?: boolean
   trainer?: boolean | Prisma.Diet$trainerArgs<ExtArgs>
   user_recipes?: boolean | Prisma.Diet$user_recipesArgs<ExtArgs>
+  user_products?: boolean | Prisma.Diet$user_productsArgs<ExtArgs>
   products?: boolean | Prisma.Diet$productsArgs<ExtArgs>
   recipe?: boolean | Prisma.Diet$recipeArgs<ExtArgs>
   _count?: boolean | Prisma.DietCountOutputTypeDefaultArgs<ExtArgs>
@@ -1100,7 +1306,7 @@ export type DietSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   is_system?: boolean
   created_at?: boolean
   updated_at?: boolean
-  recipeId?: boolean
+  recipe_id?: boolean
   trainer?: boolean | Prisma.Diet$trainerArgs<ExtArgs>
   recipe?: boolean | Prisma.Diet$recipeArgs<ExtArgs>
 }, ExtArgs["result"]["diet"]>
@@ -1116,7 +1322,7 @@ export type DietSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   is_system?: boolean
   created_at?: boolean
   updated_at?: boolean
-  recipeId?: boolean
+  recipe_id?: boolean
   trainer?: boolean | Prisma.Diet$trainerArgs<ExtArgs>
   recipe?: boolean | Prisma.Diet$recipeArgs<ExtArgs>
 }, ExtArgs["result"]["diet"]>
@@ -1132,13 +1338,14 @@ export type DietSelectScalar = {
   is_system?: boolean
   created_at?: boolean
   updated_at?: boolean
-  recipeId?: boolean
+  recipe_id?: boolean
 }
 
-export type DietOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "source" | "trainer_id" | "created_by" | "is_active" | "is_system" | "created_at" | "updated_at" | "recipeId", ExtArgs["result"]["diet"]>
+export type DietOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "source" | "trainer_id" | "created_by" | "is_active" | "is_system" | "created_at" | "updated_at" | "recipe_id", ExtArgs["result"]["diet"]>
 export type DietInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   trainer?: boolean | Prisma.Diet$trainerArgs<ExtArgs>
   user_recipes?: boolean | Prisma.Diet$user_recipesArgs<ExtArgs>
+  user_products?: boolean | Prisma.Diet$user_productsArgs<ExtArgs>
   products?: boolean | Prisma.Diet$productsArgs<ExtArgs>
   recipe?: boolean | Prisma.Diet$recipeArgs<ExtArgs>
   _count?: boolean | Prisma.DietCountOutputTypeDefaultArgs<ExtArgs>
@@ -1157,7 +1364,8 @@ export type $DietPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     trainer: Prisma.$TrainerPayload<ExtArgs> | null
     user_recipes: Prisma.$UserRecipePayload<ExtArgs>[]
-    products: Prisma.$UserProductPayload<ExtArgs>[]
+    user_products: Prisma.$UserProductPayload<ExtArgs>[]
+    products: Prisma.$ProductPayload<ExtArgs>[]
     recipe: Prisma.$RecipePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1171,7 +1379,7 @@ export type $DietPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     is_system: boolean
     created_at: Date
     updated_at: Date
-    recipeId: string | null
+    recipe_id: string | null
   }, ExtArgs["result"]["diet"]>
   composites: {}
 }
@@ -1568,7 +1776,8 @@ export interface Prisma__DietClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   trainer<T extends Prisma.Diet$trainerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$trainerArgs<ExtArgs>>): Prisma.Prisma__TrainerClient<runtime.Types.Result.GetResult<Prisma.$TrainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   user_recipes<T extends Prisma.Diet$user_recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$user_recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  products<T extends Prisma.Diet$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user_products<T extends Prisma.Diet$user_productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$user_productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  products<T extends Prisma.Diet$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recipe<T extends Prisma.Diet$recipeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Diet$recipeArgs<ExtArgs>>): Prisma.Prisma__RecipeClient<runtime.Types.Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1609,7 +1818,7 @@ export interface DietFieldRefs {
   readonly is_system: Prisma.FieldRef<"Diet", 'Boolean'>
   readonly created_at: Prisma.FieldRef<"Diet", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Diet", 'DateTime'>
-  readonly recipeId: Prisma.FieldRef<"Diet", 'String'>
+  readonly recipe_id: Prisma.FieldRef<"Diet", 'String'>
 }
     
 
@@ -2054,9 +2263,9 @@ export type Diet$user_recipesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Diet.products
+ * Diet.user_products
  */
-export type Diet$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Diet$user_productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the UserProduct
    */
@@ -2075,6 +2284,30 @@ export type Diet$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.UserProductScalarFieldEnum | Prisma.UserProductScalarFieldEnum[]
+}
+
+/**
+ * Diet.products
+ */
+export type Diet$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
 }
 
 /**

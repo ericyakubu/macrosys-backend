@@ -9,6 +9,9 @@ export const Roles = (...roles: RoleEnum[]) => SetMetadata('roles', roles);
 export function AdminOnly() {
   return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.ADMIN));
 }
+export function TrainerOnly() {
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.TRAINER));
+}
 export function ModeratorOnly() {
   return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.MODERATOR));
 }

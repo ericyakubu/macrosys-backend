@@ -20,7 +20,7 @@ async function bootstrap() {
   const instance = app.getHttpAdapter().getInstance();
 
   instance.use((req, res, next) => {
-    console.log(req.url);
+    // console.log(req.url);
 
     next();
   });
