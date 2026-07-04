@@ -1,7 +1,7 @@
-import { IsValidPassword } from '@/infrastructure/decorators';
-import { type AdminCredentials } from '@/prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { type AdminCredentials } from '@/prisma/client';
+import { IsValidPassword } from '@/shared/decorators';
 
 export class LoginAdminReqDto implements Partial<AdminCredentials> {
   @ApiProperty({ type: String, required: true, example: 'monkey_on_the_bar' })

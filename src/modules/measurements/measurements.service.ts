@@ -1,4 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { CloudinaryService } from '@/infrastructure/cloudinary/cloudinary.service';
+import { PrismaService } from '@/prisma.service';
+import type { SortOrderEnum } from '@/shared/types';
 import type {
   CreateUserMeasurementsReqDto,
   CreateUserMeasurementsResDto,
@@ -6,12 +9,6 @@ import type {
   MeasurementSortByEnum,
   UpdateUserMeasurementsReqDto,
 } from './dto/measurements.dto';
-import { PrismaService } from '@/prisma.service';
-import type { SortOrderEnum } from '@/shared/types';
-import { CloudinaryService } from '@/infrastructure/cloudinary/cloudinary.service';
-import { Express } from 'express';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Multer } from 'multer';
 
 @Injectable()
 export class MeasurementsService {
@@ -78,35 +75,6 @@ export class MeasurementsService {
     };
     return measurement;
   }
-
-  // async getAllMeasurements({
-  //   user_id,
-  //   sort_order,
-  // }: {
-  //   user_id: string;
-  //   sort_order?: SortOrderEnum;
-  // }): Promise<MeasurementDto[]> {
-  //   const fromDB = await this.prismaService.userMeasurements.findMany({
-  //     where: { user: { id: user_id } },
-  //     select: {
-  //       id: true,
-  //       bmi: true,
-  //       body_fat: true,
-  //       created_at: true,
-  //       height_cm: true,
-  //       weight_kg: true,
-  //       photo: true,
-  //     },
-  //     ...(sort_order && { orderBy: { created_at: sort_order } }),
-  //   });
-
-  //   const measurements = fromDB.map((measurement) => ({
-  //     ...measurement,
-  //     photo: measurement.photo.url,
-  //   }));
-
-  //   return measurements;
-  // }
 
   async getAllMeasurements({
     user_id,

@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RoleEnum {
+  USER
+  ADMIN
+  MODERATOR
+  TRAINER
+}
+
+enum GenderEnum {
+  MALE
+  FEMALE
+}
+
+enum GoalStatus {
+  ACTIVE
+  INACTIVE
+  COMPLETED
+  FAILED
+}
+
+enum DietEnum {
+  vegan //Excludes all animal products; focuses on fruits, vegetables, grains, legumes.
+  vegetarian //Excludes meat, may include dairy and eggs.
+  mediterranean //Rich in vegetables, fruits, whole grains, olive oil, fish, and moderate wine.
+  ketogenic //High-fat, very low-carb diet that puts the body into ketosis.
+  intermittent_fasting //Eating within specific time windows (e.g., 16:8, 5:2) rather than restricting specific foods.
+  carnivore //Extremely low-carb, animal-based; meat, fish, and sometimes eggs and dairy only.
+  volumetrics //Focuses on eating low-calorie-dense foods to feel full on fewer calories.
+  slim_fast //Pre-packaged shakes or bars replace meals to control calories.
+  dash //Dietary Approaches to Stop Hypertension (DASH) Designed to lower blood pressure; emphasizes veggies, fruits, lean proteins, and low sodium.
+  flexitarian //Mostly plant-based but allows occasional meat and animal products.
+  mind //A hybrid of Mediterranean and DASH, focused on brain health.
+  atkins //Low-carb diet with stages; starts very low-carb and gradually adds carbs.
+  paleo //Based on what early humans might have eaten: meats, nuts, fruits, no grains or dairy.
+  omad //One Meal a Day (OMAD) is a low-carb diet that restricts meals to one per day.
+}
+
+enum LanguageEnum {
+  EN // English
+  ZH // Chinese
+  HI // Hindi
+  ES // Spanish
+  FR // French
+  AR // Arabic
+  RU // Russian
+  PT // Portuguese
+  DE // German
+  JA // Japanese
+  TR // Turkish
+  KO // Korean (corrected code)
+  IT // Italian
+  NL // Dutch
+  PL // Polish
+}
+
+enum TrainerClientStatusEnum {
+  PENDING
+  ACTIVE
+  PAUSED
+  ENDED
+  BLOCKED
+}
+
+enum DietSourceEnum {
+  SYSTEM
+  TRAINER
+  STAFF
+}
+
+model Diet {
+  id String @id @default(uuid())
+
+  name        String
+  description String?
+
+  source DietSourceEnum @default(SYSTEM)
+
+  trainer_id String?
+  created_by String?
+
+  is_active Boolean @default(true)
+  is_system Boolean @default(false) //! TODO delete?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  trainer Trainer? @relation(fields: [trainer_id], references: [id])
+
+  user_recipes UserRecipe[]
+  user_products     UserProduct[]
+  products     Product[]
+  recipe       Recipe?       @relation(fields: [recipe_id], references: [id])
+  recipe_id     String?
+
+  @@unique([trainer_id, name])
+  @@index([source])
+}
+
+
+model UserPlan {
+  id               String    @id @default(uuid())
+  name             String
+  price            Decimal
+  discount_price   Decimal?
+  discount_percent Decimal?
+  sale_start       DateTime?
+  sale_end         DateTime?
+  available        Boolean   @default(true)
+  description      String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  users UserSubscription[]
+}
+
+model TrainerPlan {
+  id    String  @id @default(uuid())
+  name  String
+  price Decimal
+
+  max_clients      Int?
+  advanced_reports Boolean @default(false)
+  description      String?
+
+  discount_price   Decimal?
+  discount_percent Decimal?
+  sale_start       DateTime?
+  sale_end         DateTime?
+
+  available Boolean @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  trainers TrainerSubscription[]
+}

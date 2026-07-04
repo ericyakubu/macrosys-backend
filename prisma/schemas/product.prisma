@@ -1,0 +1,33 @@
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  barcode     String?
+  description String?
+  rating      Float?
+
+  calories      Decimal? @db.Decimal(8,2)
+  carbohydrates Decimal? @db.Decimal(6,2)
+  fat           Decimal? @db.Decimal(6,2)
+  fiber         Decimal? @db.Decimal(6,2)
+  protein       Decimal? @db.Decimal(6,2)
+  sugar         Decimal? @db.Decimal(6,2)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  recipe_product      RecipeProduct[]
+  user_recipe_product UserRecipeProduct[]
+  photo               ProductPhoto?
+  diets                Diet[] //just to see which diets this product fits
+}
+
+model ProductPhoto {
+  id         String @id @default(uuid())
+  product_id String @unique
+  url        String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  product Product @relation(fields: [product_id], references: [id])
+}

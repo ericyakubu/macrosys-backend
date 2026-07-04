@@ -323,6 +323,16 @@ export type UserSubscriptionUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UserSubscriptionListRelationFilter = {
+  every?: Prisma.UserSubscriptionWhereInput
+  some?: Prisma.UserSubscriptionWhereInput
+  none?: Prisma.UserSubscriptionWhereInput
+}
+
+export type UserSubscriptionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type UserSubscriptionNullableScalarRelationFilter = {
   is?: Prisma.UserSubscriptionWhereInput | null
   isNot?: Prisma.UserSubscriptionWhereInput | null
@@ -356,48 +366,6 @@ export type UserSubscriptionMinOrderByAggregateInput = {
   end?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-}
-
-export type UserSubscriptionListRelationFilter = {
-  every?: Prisma.UserSubscriptionWhereInput
-  some?: Prisma.UserSubscriptionWhereInput
-  none?: Prisma.UserSubscriptionWhereInput
-}
-
-export type UserSubscriptionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type UserSubscriptionCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.UserSubscriptionWhereUniqueInput
-}
-
-export type UserSubscriptionUncheckedCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.UserSubscriptionWhereUniqueInput
-}
-
-export type UserSubscriptionUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.UserSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.UserSubscriptionWhereInput | boolean
-  delete?: Prisma.UserSubscriptionWhereInput | boolean
-  connect?: Prisma.UserSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.UserSubscriptionUpdateWithoutUserInput>, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
-}
-
-export type UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.UserSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.UserSubscriptionWhereInput | boolean
-  delete?: Prisma.UserSubscriptionWhereInput | boolean
-  connect?: Prisma.UserSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.UserSubscriptionUpdateWithoutUserInput>, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
 export type UserSubscriptionCreateNestedManyWithoutSubscriptionInput = {
@@ -442,56 +410,36 @@ export type UserSubscriptionUncheckedUpdateManyWithoutSubscriptionNestedInput = 
   deleteMany?: Prisma.UserSubscriptionScalarWhereInput | Prisma.UserSubscriptionScalarWhereInput[]
 }
 
-export type UserSubscriptionCreateWithoutUserInput = {
-  id?: string
-  start: Date | string
-  end: Date | string
-  created_at?: Date | string
-  updated_at?: Date | string
-  subscription: Prisma.UserPlanCreateNestedOneWithoutUsersInput
+export type UserSubscriptionCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
+  connect?: Prisma.UserSubscriptionWhereUniqueInput
 }
 
-export type UserSubscriptionUncheckedCreateWithoutUserInput = {
-  id?: string
-  subscription_id: string
-  start: Date | string
-  end: Date | string
-  created_at?: Date | string
-  updated_at?: Date | string
+export type UserSubscriptionUncheckedCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
+  connect?: Prisma.UserSubscriptionWhereUniqueInput
 }
 
-export type UserSubscriptionCreateOrConnectWithoutUserInput = {
-  where: Prisma.UserSubscriptionWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+export type UserSubscriptionUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
+  upsert?: Prisma.UserSubscriptionUpsertWithoutUserInput
+  disconnect?: Prisma.UserSubscriptionWhereInput | boolean
+  delete?: Prisma.UserSubscriptionWhereInput | boolean
+  connect?: Prisma.UserSubscriptionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.UserSubscriptionUpdateWithoutUserInput>, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
-export type UserSubscriptionUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.UserSubscriptionUpdateWithoutUserInput, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
-  where?: Prisma.UserSubscriptionWhereInput
-}
-
-export type UserSubscriptionUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.UserSubscriptionWhereInput
-  data: Prisma.XOR<Prisma.UserSubscriptionUpdateWithoutUserInput, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
-}
-
-export type UserSubscriptionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.UserPlanUpdateOneRequiredWithoutUsersNestedInput
-}
-
-export type UserSubscriptionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.UserSubscriptionCreateOrConnectWithoutUserInput
+  upsert?: Prisma.UserSubscriptionUpsertWithoutUserInput
+  disconnect?: Prisma.UserSubscriptionWhereInput | boolean
+  delete?: Prisma.UserSubscriptionWhereInput | boolean
+  connect?: Prisma.UserSubscriptionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.UserSubscriptionUpdateWithoutUserInput>, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
 export type UserSubscriptionCreateWithoutSubscriptionInput = {
@@ -549,6 +497,58 @@ export type UserSubscriptionScalarWhereInput = {
   end?: Prisma.DateTimeFilter<"UserSubscription"> | Date | string
   created_at?: Prisma.DateTimeFilter<"UserSubscription"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserSubscription"> | Date | string
+}
+
+export type UserSubscriptionCreateWithoutUserInput = {
+  id?: string
+  start: Date | string
+  end: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscription: Prisma.UserPlanCreateNestedOneWithoutUsersInput
+}
+
+export type UserSubscriptionUncheckedCreateWithoutUserInput = {
+  id?: string
+  subscription_id: string
+  start: Date | string
+  end: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type UserSubscriptionCreateOrConnectWithoutUserInput = {
+  where: Prisma.UserSubscriptionWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+}
+
+export type UserSubscriptionUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.UserSubscriptionUpdateWithoutUserInput, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.UserSubscriptionCreateWithoutUserInput, Prisma.UserSubscriptionUncheckedCreateWithoutUserInput>
+  where?: Prisma.UserSubscriptionWhereInput
+}
+
+export type UserSubscriptionUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.UserSubscriptionWhereInput
+  data: Prisma.XOR<Prisma.UserSubscriptionUpdateWithoutUserInput, Prisma.UserSubscriptionUncheckedUpdateWithoutUserInput>
+}
+
+export type UserSubscriptionUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscription?: Prisma.UserPlanUpdateOneRequiredWithoutUsersNestedInput
+}
+
+export type UserSubscriptionUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
+  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserSubscriptionCreateManySubscriptionInput = {

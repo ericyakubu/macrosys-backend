@@ -30,24 +30,24 @@ export type RecipeAvgAggregateOutputType = {
   cook_time: number | null
   prep_time: number | null
   servings: number | null
-  total_calories: runtime.Decimal | null
-  total_carbohydrates: runtime.Decimal | null
-  total_fat: runtime.Decimal | null
-  total_protein: runtime.Decimal | null
-  total_fiber: runtime.Decimal | null
-  total_sugar: runtime.Decimal | null
+  calories: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  fiber: runtime.Decimal | null
+  protein: runtime.Decimal | null
+  sugar: runtime.Decimal | null
 }
 
 export type RecipeSumAggregateOutputType = {
   cook_time: number | null
   prep_time: number | null
   servings: number | null
-  total_calories: runtime.Decimal | null
-  total_carbohydrates: runtime.Decimal | null
-  total_fat: runtime.Decimal | null
-  total_protein: runtime.Decimal | null
-  total_fiber: runtime.Decimal | null
-  total_sugar: runtime.Decimal | null
+  calories: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  fiber: runtime.Decimal | null
+  protein: runtime.Decimal | null
+  sugar: runtime.Decimal | null
 }
 
 export type RecipeMinAggregateOutputType = {
@@ -58,12 +58,12 @@ export type RecipeMinAggregateOutputType = {
   instructions: string | null
   prep_time: number | null
   servings: number | null
-  total_calories: runtime.Decimal | null
-  total_carbohydrates: runtime.Decimal | null
-  total_fat: runtime.Decimal | null
-  total_protein: runtime.Decimal | null
-  total_fiber: runtime.Decimal | null
-  total_sugar: runtime.Decimal | null
+  calories: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  fiber: runtime.Decimal | null
+  protein: runtime.Decimal | null
+  sugar: runtime.Decimal | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -76,12 +76,12 @@ export type RecipeMaxAggregateOutputType = {
   instructions: string | null
   prep_time: number | null
   servings: number | null
-  total_calories: runtime.Decimal | null
-  total_carbohydrates: runtime.Decimal | null
-  total_fat: runtime.Decimal | null
-  total_protein: runtime.Decimal | null
-  total_fiber: runtime.Decimal | null
-  total_sugar: runtime.Decimal | null
+  calories: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  fiber: runtime.Decimal | null
+  protein: runtime.Decimal | null
+  sugar: runtime.Decimal | null
   created_at: Date | null
   updated_at: Date | null
 }
@@ -94,12 +94,12 @@ export type RecipeCountAggregateOutputType = {
   instructions: number
   prep_time: number
   servings: number
-  total_calories: number
-  total_carbohydrates: number
-  total_fat: number
-  total_protein: number
-  total_fiber: number
-  total_sugar: number
+  calories: number
+  carbohydrates: number
+  fat: number
+  fiber: number
+  protein: number
+  sugar: number
   created_at: number
   updated_at: number
   _all: number
@@ -110,24 +110,24 @@ export type RecipeAvgAggregateInputType = {
   cook_time?: true
   prep_time?: true
   servings?: true
-  total_calories?: true
-  total_carbohydrates?: true
-  total_fat?: true
-  total_protein?: true
-  total_fiber?: true
-  total_sugar?: true
+  calories?: true
+  carbohydrates?: true
+  fat?: true
+  fiber?: true
+  protein?: true
+  sugar?: true
 }
 
 export type RecipeSumAggregateInputType = {
   cook_time?: true
   prep_time?: true
   servings?: true
-  total_calories?: true
-  total_carbohydrates?: true
-  total_fat?: true
-  total_protein?: true
-  total_fiber?: true
-  total_sugar?: true
+  calories?: true
+  carbohydrates?: true
+  fat?: true
+  fiber?: true
+  protein?: true
+  sugar?: true
 }
 
 export type RecipeMinAggregateInputType = {
@@ -138,12 +138,12 @@ export type RecipeMinAggregateInputType = {
   instructions?: true
   prep_time?: true
   servings?: true
-  total_calories?: true
-  total_carbohydrates?: true
-  total_fat?: true
-  total_protein?: true
-  total_fiber?: true
-  total_sugar?: true
+  calories?: true
+  carbohydrates?: true
+  fat?: true
+  fiber?: true
+  protein?: true
+  sugar?: true
   created_at?: true
   updated_at?: true
 }
@@ -156,12 +156,12 @@ export type RecipeMaxAggregateInputType = {
   instructions?: true
   prep_time?: true
   servings?: true
-  total_calories?: true
-  total_carbohydrates?: true
-  total_fat?: true
-  total_protein?: true
-  total_fiber?: true
-  total_sugar?: true
+  calories?: true
+  carbohydrates?: true
+  fat?: true
+  fiber?: true
+  protein?: true
+  sugar?: true
   created_at?: true
   updated_at?: true
 }
@@ -174,12 +174,12 @@ export type RecipeCountAggregateInputType = {
   instructions?: true
   prep_time?: true
   servings?: true
-  total_calories?: true
-  total_carbohydrates?: true
-  total_fat?: true
-  total_protein?: true
-  total_fiber?: true
-  total_sugar?: true
+  calories?: true
+  carbohydrates?: true
+  fat?: true
+  fiber?: true
+  protein?: true
+  sugar?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -279,12 +279,12 @@ export type RecipeGroupByOutputType = {
   instructions: string | null
   prep_time: number | null
   servings: number | null
-  total_calories: runtime.Decimal | null
-  total_carbohydrates: runtime.Decimal | null
-  total_fat: runtime.Decimal | null
-  total_protein: runtime.Decimal | null
-  total_fiber: runtime.Decimal | null
-  total_sugar: runtime.Decimal | null
+  calories: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  fiber: runtime.Decimal | null
+  protein: runtime.Decimal | null
+  sugar: runtime.Decimal | null
   created_at: Date
   updated_at: Date
   _count: RecipeCountAggregateOutputType | null
@@ -320,12 +320,12 @@ export type RecipeWhereInput = {
   instructions?: Prisma.StringNullableFilter<"Recipe"> | string | null
   prep_time?: Prisma.IntNullableFilter<"Recipe"> | number | null
   servings?: Prisma.IntNullableFilter<"Recipe"> | number | null
-  total_calories?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFilter<"Recipe"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Recipe"> | Date | string
   diets?: Prisma.DietListRelationFilter
@@ -340,12 +340,12 @@ export type RecipeOrderByWithRelationInput = {
   instructions?: Prisma.SortOrderInput | Prisma.SortOrder
   prep_time?: Prisma.SortOrderInput | Prisma.SortOrder
   servings?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_calories?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_fat?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_protein?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_fiber?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_sugar?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrderInput | Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
+  fat?: Prisma.SortOrderInput | Prisma.SortOrder
+  fiber?: Prisma.SortOrderInput | Prisma.SortOrder
+  protein?: Prisma.SortOrderInput | Prisma.SortOrder
+  sugar?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   diets?: Prisma.DietOrderByRelationAggregateInput
@@ -363,12 +363,12 @@ export type RecipeWhereUniqueInput = Prisma.AtLeast<{
   instructions?: Prisma.StringNullableFilter<"Recipe"> | string | null
   prep_time?: Prisma.IntNullableFilter<"Recipe"> | number | null
   servings?: Prisma.IntNullableFilter<"Recipe"> | number | null
-  total_calories?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.DecimalNullableFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFilter<"Recipe"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Recipe"> | Date | string
   diets?: Prisma.DietListRelationFilter
@@ -383,12 +383,12 @@ export type RecipeOrderByWithAggregationInput = {
   instructions?: Prisma.SortOrderInput | Prisma.SortOrder
   prep_time?: Prisma.SortOrderInput | Prisma.SortOrder
   servings?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_calories?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_fat?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_protein?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_fiber?: Prisma.SortOrderInput | Prisma.SortOrder
-  total_sugar?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrderInput | Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
+  fat?: Prisma.SortOrderInput | Prisma.SortOrder
+  fiber?: Prisma.SortOrderInput | Prisma.SortOrder
+  protein?: Prisma.SortOrderInput | Prisma.SortOrder
+  sugar?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.RecipeCountOrderByAggregateInput
@@ -409,12 +409,12 @@ export type RecipeScalarWhereWithAggregatesInput = {
   instructions?: Prisma.StringNullableWithAggregatesFilter<"Recipe"> | string | null
   prep_time?: Prisma.IntNullableWithAggregatesFilter<"Recipe"> | number | null
   servings?: Prisma.IntNullableWithAggregatesFilter<"Recipe"> | number | null
-  total_calories?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.DecimalNullableWithAggregatesFilter<"Recipe"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Recipe"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Recipe"> | Date | string
 }
@@ -427,12 +427,12 @@ export type RecipeCreateInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   diets?: Prisma.DietCreateNestedManyWithoutRecipeInput
@@ -447,12 +447,12 @@ export type RecipeUncheckedCreateInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   diets?: Prisma.DietUncheckedCreateNestedManyWithoutRecipeInput
@@ -467,12 +467,12 @@ export type RecipeUpdateInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diets?: Prisma.DietUpdateManyWithoutRecipeNestedInput
@@ -487,12 +487,12 @@ export type RecipeUncheckedUpdateInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diets?: Prisma.DietUncheckedUpdateManyWithoutRecipeNestedInput
@@ -507,12 +507,12 @@ export type RecipeCreateManyInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -525,12 +525,12 @@ export type RecipeUpdateManyMutationInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -543,12 +543,12 @@ export type RecipeUncheckedUpdateManyInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -561,12 +561,12 @@ export type RecipeCountOrderByAggregateInput = {
   instructions?: Prisma.SortOrder
   prep_time?: Prisma.SortOrder
   servings?: Prisma.SortOrder
-  total_calories?: Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrder
-  total_fat?: Prisma.SortOrder
-  total_protein?: Prisma.SortOrder
-  total_fiber?: Prisma.SortOrder
-  total_sugar?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -575,12 +575,12 @@ export type RecipeAvgOrderByAggregateInput = {
   cook_time?: Prisma.SortOrder
   prep_time?: Prisma.SortOrder
   servings?: Prisma.SortOrder
-  total_calories?: Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrder
-  total_fat?: Prisma.SortOrder
-  total_protein?: Prisma.SortOrder
-  total_fiber?: Prisma.SortOrder
-  total_sugar?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
 }
 
 export type RecipeMaxOrderByAggregateInput = {
@@ -591,12 +591,12 @@ export type RecipeMaxOrderByAggregateInput = {
   instructions?: Prisma.SortOrder
   prep_time?: Prisma.SortOrder
   servings?: Prisma.SortOrder
-  total_calories?: Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrder
-  total_fat?: Prisma.SortOrder
-  total_protein?: Prisma.SortOrder
-  total_fiber?: Prisma.SortOrder
-  total_sugar?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -609,12 +609,12 @@ export type RecipeMinOrderByAggregateInput = {
   instructions?: Prisma.SortOrder
   prep_time?: Prisma.SortOrder
   servings?: Prisma.SortOrder
-  total_calories?: Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrder
-  total_fat?: Prisma.SortOrder
-  total_protein?: Prisma.SortOrder
-  total_fiber?: Prisma.SortOrder
-  total_sugar?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
 }
@@ -623,12 +623,12 @@ export type RecipeSumOrderByAggregateInput = {
   cook_time?: Prisma.SortOrder
   prep_time?: Prisma.SortOrder
   servings?: Prisma.SortOrder
-  total_calories?: Prisma.SortOrder
-  total_carbohydrates?: Prisma.SortOrder
-  total_fat?: Prisma.SortOrder
-  total_protein?: Prisma.SortOrder
-  total_fiber?: Prisma.SortOrder
-  total_sugar?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
 }
 
 export type RecipeScalarRelationFilter = {
@@ -687,12 +687,12 @@ export type RecipeCreateWithoutProductsInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   diets?: Prisma.DietCreateNestedManyWithoutRecipeInput
@@ -706,12 +706,12 @@ export type RecipeUncheckedCreateWithoutProductsInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   diets?: Prisma.DietUncheckedCreateNestedManyWithoutRecipeInput
@@ -741,12 +741,12 @@ export type RecipeUpdateWithoutProductsInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diets?: Prisma.DietUpdateManyWithoutRecipeNestedInput
@@ -760,12 +760,12 @@ export type RecipeUncheckedUpdateWithoutProductsInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diets?: Prisma.DietUncheckedUpdateManyWithoutRecipeNestedInput
@@ -779,12 +779,12 @@ export type RecipeCreateWithoutDietsInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.RecipeProductCreateNestedManyWithoutRecipeInput
@@ -798,12 +798,12 @@ export type RecipeUncheckedCreateWithoutDietsInput = {
   instructions?: string | null
   prep_time?: number | null
   servings?: number | null
-  total_calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Date | string
   updated_at?: Date | string
   products?: Prisma.RecipeProductUncheckedCreateNestedManyWithoutRecipeInput
@@ -833,12 +833,12 @@ export type RecipeUpdateWithoutDietsInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.RecipeProductUpdateManyWithoutRecipeNestedInput
@@ -852,12 +852,12 @@ export type RecipeUncheckedUpdateWithoutDietsInput = {
   instructions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   prep_time?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   servings?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  total_calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  total_sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.RecipeProductUncheckedUpdateManyWithoutRecipeNestedInput
@@ -911,12 +911,12 @@ export type RecipeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   instructions?: boolean
   prep_time?: boolean
   servings?: boolean
-  total_calories?: boolean
-  total_carbohydrates?: boolean
-  total_fat?: boolean
-  total_protein?: boolean
-  total_fiber?: boolean
-  total_sugar?: boolean
+  calories?: boolean
+  carbohydrates?: boolean
+  fat?: boolean
+  fiber?: boolean
+  protein?: boolean
+  sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
   diets?: boolean | Prisma.Recipe$dietsArgs<ExtArgs>
@@ -932,12 +932,12 @@ export type RecipeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   instructions?: boolean
   prep_time?: boolean
   servings?: boolean
-  total_calories?: boolean
-  total_carbohydrates?: boolean
-  total_fat?: boolean
-  total_protein?: boolean
-  total_fiber?: boolean
-  total_sugar?: boolean
+  calories?: boolean
+  carbohydrates?: boolean
+  fat?: boolean
+  fiber?: boolean
+  protein?: boolean
+  sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["recipe"]>
@@ -950,12 +950,12 @@ export type RecipeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   instructions?: boolean
   prep_time?: boolean
   servings?: boolean
-  total_calories?: boolean
-  total_carbohydrates?: boolean
-  total_fat?: boolean
-  total_protein?: boolean
-  total_fiber?: boolean
-  total_sugar?: boolean
+  calories?: boolean
+  carbohydrates?: boolean
+  fat?: boolean
+  fiber?: boolean
+  protein?: boolean
+  sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
 }, ExtArgs["result"]["recipe"]>
@@ -968,17 +968,17 @@ export type RecipeSelectScalar = {
   instructions?: boolean
   prep_time?: boolean
   servings?: boolean
-  total_calories?: boolean
-  total_carbohydrates?: boolean
-  total_fat?: boolean
-  total_protein?: boolean
-  total_fiber?: boolean
-  total_sugar?: boolean
+  calories?: boolean
+  carbohydrates?: boolean
+  fat?: boolean
+  fiber?: boolean
+  protein?: boolean
+  sugar?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type RecipeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "cook_time" | "description" | "instructions" | "prep_time" | "servings" | "total_calories" | "total_carbohydrates" | "total_fat" | "total_protein" | "total_fiber" | "total_sugar" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
+export type RecipeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "cook_time" | "description" | "instructions" | "prep_time" | "servings" | "calories" | "carbohydrates" | "fat" | "fiber" | "protein" | "sugar" | "created_at" | "updated_at", ExtArgs["result"]["recipe"]>
 export type RecipeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   diets?: boolean | Prisma.Recipe$dietsArgs<ExtArgs>
   products?: boolean | Prisma.Recipe$productsArgs<ExtArgs>
@@ -1001,12 +1001,12 @@ export type $RecipePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     instructions: string | null
     prep_time: number | null
     servings: number | null
-    total_calories: runtime.Decimal | null
-    total_carbohydrates: runtime.Decimal | null
-    total_fat: runtime.Decimal | null
-    total_protein: runtime.Decimal | null
-    total_fiber: runtime.Decimal | null
-    total_sugar: runtime.Decimal | null
+    calories: runtime.Decimal | null
+    carbohydrates: runtime.Decimal | null
+    fat: runtime.Decimal | null
+    fiber: runtime.Decimal | null
+    protein: runtime.Decimal | null
+    sugar: runtime.Decimal | null
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["recipe"]>
@@ -1441,12 +1441,12 @@ export interface RecipeFieldRefs {
   readonly instructions: Prisma.FieldRef<"Recipe", 'String'>
   readonly prep_time: Prisma.FieldRef<"Recipe", 'Int'>
   readonly servings: Prisma.FieldRef<"Recipe", 'Int'>
-  readonly total_calories: Prisma.FieldRef<"Recipe", 'Decimal'>
-  readonly total_carbohydrates: Prisma.FieldRef<"Recipe", 'Decimal'>
-  readonly total_fat: Prisma.FieldRef<"Recipe", 'Decimal'>
-  readonly total_protein: Prisma.FieldRef<"Recipe", 'Decimal'>
-  readonly total_fiber: Prisma.FieldRef<"Recipe", 'Decimal'>
-  readonly total_sugar: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly calories: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly carbohydrates: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly fat: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly fiber: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly protein: Prisma.FieldRef<"Recipe", 'Decimal'>
+  readonly sugar: Prisma.FieldRef<"Recipe", 'Decimal'>
   readonly created_at: Prisma.FieldRef<"Recipe", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Recipe", 'DateTime'>
 }

@@ -1,5 +1,5 @@
-// cloudinary.provider.ts
 import { v2 as Cloudinary } from 'cloudinary';
+
 // import { CloudinaryService } from './cloudinary.service';
 
 export const CloudinaryProvider = {

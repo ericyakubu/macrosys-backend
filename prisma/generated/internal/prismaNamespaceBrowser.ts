@@ -57,6 +57,9 @@ export const ModelName = {
   ProductPhoto: 'ProductPhoto',
   Recipe: 'Recipe',
   RecipeProduct: 'RecipeProduct',
+  Diet: 'Diet',
+  UserPlan: 'UserPlan',
+  TrainerPlan: 'TrainerPlan',
   Trainer: 'Trainer',
   ClientAssignment: 'ClientAssignment',
   TrainerCredentials: 'TrainerCredentials',
@@ -73,10 +76,7 @@ export const ModelName = {
   UserProductPhoto: 'UserProductPhoto',
   UserRecipe: 'UserRecipe',
   UserRecipePhoto: 'UserRecipePhoto',
-  UserRecipeProduct: 'UserRecipeProduct',
-  Diet: 'Diet',
-  UserPlan: 'UserPlan',
-  TrainerPlan: 'TrainerPlan'
+  UserRecipeProduct: 'UserRecipeProduct'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -134,8 +134,8 @@ export const ProductScalarFieldEnum = {
   calories: 'calories',
   carbohydrates: 'carbohydrates',
   fat: 'fat',
-  protein: 'protein',
   fiber: 'fiber',
+  protein: 'protein',
   sugar: 'sugar',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -163,12 +163,12 @@ export const RecipeScalarFieldEnum = {
   instructions: 'instructions',
   prep_time: 'prep_time',
   servings: 'servings',
-  total_calories: 'total_calories',
-  total_carbohydrates: 'total_carbohydrates',
-  total_fat: 'total_fat',
-  total_protein: 'total_protein',
-  total_fiber: 'total_fiber',
-  total_sugar: 'total_sugar',
+  calories: 'calories',
+  carbohydrates: 'carbohydrates',
+  fat: 'fat',
+  fiber: 'fiber',
+  protein: 'protein',
+  sugar: 'sugar',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -186,6 +186,59 @@ export const RecipeProductScalarFieldEnum = {
 } as const
 
 export type RecipeProductScalarFieldEnum = (typeof RecipeProductScalarFieldEnum)[keyof typeof RecipeProductScalarFieldEnum]
+
+
+export const DietScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  source: 'source',
+  trainer_id: 'trainer_id',
+  created_by: 'created_by',
+  is_active: 'is_active',
+  is_system: 'is_system',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  recipe_id: 'recipe_id'
+} as const
+
+export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]
+
+
+export const UserPlanScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  discount_price: 'discount_price',
+  discount_percent: 'discount_percent',
+  sale_start: 'sale_start',
+  sale_end: 'sale_end',
+  available: 'available',
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type UserPlanScalarFieldEnum = (typeof UserPlanScalarFieldEnum)[keyof typeof UserPlanScalarFieldEnum]
+
+
+export const TrainerPlanScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  max_clients: 'max_clients',
+  advanced_reports: 'advanced_reports',
+  description: 'description',
+  discount_price: 'discount_price',
+  discount_percent: 'discount_percent',
+  sale_start: 'sale_start',
+  sale_end: 'sale_end',
+  available: 'available',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type TrainerPlanScalarFieldEnum = (typeof TrainerPlanScalarFieldEnum)[keyof typeof TrainerPlanScalarFieldEnum]
 
 
 export const TrainerScalarFieldEnum = {
@@ -363,8 +416,8 @@ export const UserProductScalarFieldEnum = {
   calories: 'calories',
   carbohydrates: 'carbohydrates',
   fat: 'fat',
-  protein: 'protein',
   fiber: 'fiber',
+  protein: 'protein',
   sugar: 'sugar',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -393,12 +446,12 @@ export const UserRecipeScalarFieldEnum = {
   instructions: 'instructions',
   prep_time: 'prep_time',
   servings: 'servings',
-  total_calories: 'total_calories',
-  total_carbohydrates: 'total_carbohydrates',
-  total_fat: 'total_fat',
-  total_protein: 'total_protein',
-  total_fiber: 'total_fiber',
-  total_sugar: 'total_sugar',
+  calories: 'calories',
+  carbohydrates: 'carbohydrates',
+  fat: 'fat',
+  fiber: 'fiber',
+  protein: 'protein',
+  sugar: 'sugar',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -428,59 +481,6 @@ export const UserRecipeProductScalarFieldEnum = {
 } as const
 
 export type UserRecipeProductScalarFieldEnum = (typeof UserRecipeProductScalarFieldEnum)[keyof typeof UserRecipeProductScalarFieldEnum]
-
-
-export const DietScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  source: 'source',
-  trainer_id: 'trainer_id',
-  created_by: 'created_by',
-  is_active: 'is_active',
-  is_system: 'is_system',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  recipe_id: 'recipe_id'
-} as const
-
-export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]
-
-
-export const UserPlanScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  price: 'price',
-  discount_price: 'discount_price',
-  discount_percent: 'discount_percent',
-  sale_start: 'sale_start',
-  sale_end: 'sale_end',
-  available: 'available',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserPlanScalarFieldEnum = (typeof UserPlanScalarFieldEnum)[keyof typeof UserPlanScalarFieldEnum]
-
-
-export const TrainerPlanScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  price: 'price',
-  max_clients: 'max_clients',
-  advanced_reports: 'advanced_reports',
-  description: 'description',
-  discount_price: 'discount_price',
-  discount_percent: 'discount_percent',
-  sale_start: 'sale_start',
-  sale_end: 'sale_end',
-  available: 'available',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type TrainerPlanScalarFieldEnum = (typeof TrainerPlanScalarFieldEnum)[keyof typeof TrainerPlanScalarFieldEnum]
 
 
 export const SortOrder = {

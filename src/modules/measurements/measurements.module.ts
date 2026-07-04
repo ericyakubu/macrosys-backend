@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { MeasurementsService } from './measurements.service';
-import { MeasurementsController } from './measurements.controller';
-import { CloudinaryService } from '@/infrastructure/cloudinary/cloudinary.service';
 import { CloudinaryProvider } from '@/infrastructure/cloudinary/cloudinary.provider';
+import { CloudinaryService } from '@/infrastructure/cloudinary/cloudinary.service';
+import { MeasurementsController } from './measurements.controller';
+import { MeasurementsService } from './measurements.service';
 
 @Module({
   controllers: [MeasurementsController],

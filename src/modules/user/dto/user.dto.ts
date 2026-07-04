@@ -1,7 +1,7 @@
-import { ProductBaseDto, UserDto } from '@/infrastructure/dto';
-import { GenderEnum, LanguageEnum, User } from '@/prisma/client';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsDate, IsEmail, IsOptional, IsPhoneNumber, IsString, MaxDate } from 'class-validator';
+import { GenderEnum, LanguageEnum, User } from '@/prisma/client';
+import { ProductBaseDto, UserDto } from '@/shared/dto';
 
 const minBirthDate = new Date();
 minBirthDate.setFullYear(minBirthDate.getFullYear() - 12);

@@ -1,18 +1,24 @@
 import { Controller, Post, Body, Res, HttpCode, HttpStatus } from '@nestjs/common';
-import { AuthService } from '../auth.service';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { type Response } from 'express';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
-import { Cookies } from '@/shared/utils';
 import { AccessToken, RefreshToken } from '@/shared/constants';
+import { UserDto } from '@/shared/dto';
+import { Cookies } from '@/shared/utils';
+import { AuthService } from '../auth.service';
 import { LoginUserReqDto, SignupUserReqDto } from '../dto/auth-user.dto';
-import { UserDto } from '@/infrastructure/dto';
 
-@Controller('user/auth')
+@ApiTags('Auth - User')
+@Controller('auth/user')
 export class UserAuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login/user')
+  @Post('login')
   @ApiOkResponse({ type: UserDto })
+  @ApiOperation({
+    summary: 'User login',
+    description:
+      'Authenticates a user using email and password and returns user information. Access and refresh tokens are set as HTTP-only cookies.',
+  })
   @ApiBody({ type: LoginUserReqDto })
   @HttpCode(HttpStatus.OK)
   async loginUser(@Body() body: LoginUserReqDto, @Res() res: Response) {
@@ -26,7 +32,7 @@ export class UserAuthController {
     return res.send(user);
   }
 
-  @Post('signup/user')
+  @Post('signup')
   @ApiOkResponse({ type: UserDto })
   @ApiBody({ type: SignupUserReqDto })
   @HttpCode(HttpStatus.OK)

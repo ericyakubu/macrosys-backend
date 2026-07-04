@@ -1,10 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { DietService } from '../diet.service';
-import { CreateDietReqDto, DietDto, UpdateDietReqDto } from '../dto/diet.dto';
-import { AdminOnly, User } from '@/infrastructure/decorators';
+import { Controller, Get, Post, Body, Param, Query, Patch } from '@nestjs/common';
+import { ApiBody, ApiExtraModels, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AdminOnly, User } from '@/shared/decorators';
 import type { UserFromRequest } from '@/shared/types';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { DietService } from '../diet.service';
+import {
+  CreateDietReqDto,
+  DietDto,
+  AdminGetAllDietsQueryDto,
+  type UpdateDietReqDto,
+} from '../dto/diet.dto';
 
+@ApiTags('Diet - Admin')
 @Controller('admin/diet')
 export class AdminDietController {
   constructor(private readonly dietService: DietService) {}
@@ -13,31 +19,42 @@ export class AdminDietController {
   @AdminOnly()
   @ApiBody({ type: CreateDietReqDto })
   @ApiOkResponse({ type: DietDto })
-  create(@Body() createDietDto: CreateDietReqDto, @User() user: UserFromRequest) {
+  @ApiOperation({
+    summary: 'Create a Diet',
+    description:
+      'Accessible by admin only. After creating a diet, it will be available for all users. Created diet will have source set to STAFF.',
+  })
+  async create(@Body() createDietDto: CreateDietReqDto, @User() user: UserFromRequest) {
     return this.dietService.adminCreateDiet(createDietDto, user);
   }
 
-  @Get()
+  @Patch('update/:id')
   @AdminOnly()
-  findAll() {
-    return this.dietService.adminFindAll();
+  @ApiBody({ type: CreateDietReqDto })
+  @ApiOkResponse({ type: DietDto })
+  async update(@Param('id') id: string, @Body() updateDietDto: UpdateDietReqDto) {
+    return this.dietService.adminUpdateDiet(id, updateDietDto);
   }
 
-  @Get(':id')
+  @Get('get-all')
   @AdminOnly()
-  findOne(@Param('id') id: string) {
-    return this.dietService.adminFindOne(+id);
+  @ApiExtraModels(AdminGetAllDietsQueryDto)
+  @ApiOkResponse({ type: [DietDto] })
+  async getAll(@Query() queries: AdminGetAllDietsQueryDto) {
+    const { limit, offset } = queries;
+    const limitNumber = limit ? +limit : undefined;
+    const offsetNumber = offset ? +offset : undefined;
+    return this.dietService.adminGetAllDiets({
+      ...queries,
+      limit: limitNumber,
+      offset: offsetNumber,
+    });
   }
 
-  @Patch(':id')
+  @Get('get-one/:id')
   @AdminOnly()
-  update(@Param('id') id: string, @Body() updateDietDto: UpdateDietReqDto) {
-    return this.dietService.adminUpdate(+id, updateDietDto);
-  }
-
-  @Delete(':id')
-  @AdminOnly()
-  remove(@Param('id') id: string) {
-    return this.dietService.adminDelete(id);
+  @ApiOkResponse({ type: DietDto })
+  async getOne(@Param('id') id: string) {
+    return this.dietService.adminGetOneDiet(id);
   }
 }

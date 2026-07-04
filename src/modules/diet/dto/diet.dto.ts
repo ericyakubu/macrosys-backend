@@ -1,8 +1,14 @@
-import { Diet, DietSourceEnum } from '@/prisma/client';
-import { SortOrderEnum } from '@/shared/types';
 import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
-import { Transform, Type } from 'class-transformer';
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Diet, DietSourceEnum } from '@/prisma/client';
+import { OptionalNumber } from '@/shared/decorators';
+import { SortOrderEnum } from '@/shared/types';
+
+export enum DietsSortByEnum {
+  NAME = 'name',
+  CREATED_AT = 'created_at',
+}
 
 export class DietDto implements Partial<Diet> {
   @ApiProperty({ type: String, example: '4820001234567' })
@@ -31,11 +37,11 @@ export class CreateDietReqDto implements Partial<Diet> {
   description?: string;
 }
 
-export class UpdateDietReqDto extends PartialType(CreateDietReqDto) {}
-
-export enum DietsSortByEnum {
-  NAME = 'name',
-  CREATED_AT = 'created_at',
+export class UpdateDietReqDto extends PartialType(CreateDietReqDto) {
+  @ApiProperty({ type: Boolean, example: true })
+  @IsBoolean()
+  @IsOptional()
+  is_active: boolean;
 }
 
 export class GetAllDietsQueryDto {
@@ -48,22 +54,10 @@ export class GetAllDietsQueryDto {
   @IsBoolean()
   is_active?: boolean;
 
-  @ApiPropertyOptional({
-    description: 'limit results to this number of diets per page',
-    example: 25,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
+  @OptionalNumber('limit results to this number of diets per page', 25)
   limit?: number;
 
-  @ApiPropertyOptional({
-    description: 'offset results by this number of diets per page',
-    example: 25,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
+  @OptionalNumber('offset results by this number of diets per page', 25)
   offset?: number;
 
   @ApiPropertyOptional({
@@ -104,31 +98,10 @@ export class AdminGetAllDietsQueryDto {
   @IsEnum(DietSourceEnum)
   source?: DietSourceEnum;
 
-  @ApiPropertyOptional({
-    description: 'offset results by this number of diets per page',
-    example: 25,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  created_by?: string;
-
-  @ApiPropertyOptional({
-    description: 'limit results to this number of diets per page',
-    example: 25,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
+  @OptionalNumber('limit results to this number of diets per page', 25)
   limit?: number;
 
-  @ApiPropertyOptional({
-    description: 'offset results by this number of diets per page',
-    example: 25,
-  })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
+  @OptionalNumber('offset results by this number of diets per page', 25)
   offset?: number;
 
   @ApiPropertyOptional({

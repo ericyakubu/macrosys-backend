@@ -1,23 +1,21 @@
-import { PrismaService } from '@/prisma.service';
 import {
   BadRequestException,
   ConflictException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
-  // UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcrypt';
-import type { ReturnWithTokens } from '@/shared/types';
+import { Prisma, type Admin } from '@/prisma/client';
+import { PrismaService } from '@/prisma.service';
 import { AccessToken, AuthErrors, BCRYPT_SALT_ROUNDS, RefreshToken } from '@/shared/constants';
-import { JwtSecrets } from '@/infrastructure/jwt/jwt.secrets';
+import type { UserDto } from '@/shared/dto';
+import type { AdminDto } from '@/shared/dto/admin.dto';
+import { JwtSecrets } from '@/shared/jwt/jwt.secrets';
+import type { ReturnWithTokens } from '@/shared/types';
 import type { LoginAdminReqDto, SignupAdminReqDto } from './dto/auth-admin.dto';
 import type { LoginUserReqDto, SignupUserReqDto } from './dto/auth-user.dto';
-// import { Prisma, type Admin, type User } from '@/prisma/client';
-import { Prisma, type Admin } from '@/prisma/client';
-import type { AdminDto } from '@/infrastructure/dto/admin.dto';
-import type { UserDto } from '@/infrastructure/dto';
 
 @Injectable()
 export class AuthService {
@@ -81,15 +79,17 @@ export class AuthService {
   }
 
   async signupUser(body: SignupUserReqDto): Promise<ReturnWithTokens<UserDto>> {
-    const hashedPassword = await bcrypt.hash(body.password, BCRYPT_SALT_ROUNDS);
+    const { password, email, ...data } = body;
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
     try {
       const user = await this.prisma.user.create({
         data: {
-          email: body.email,
+          email,
+          ...data,
           credentials: {
             create: {
-              email: body.email,
+              email,
               password: hashedPassword,
             },
           },
@@ -131,10 +131,6 @@ export class AuthService {
         },
       })
       .catch((error) => {
-        // if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-        //   throw new ConflictException('Admin with this login already exists');
-        // }
-
         if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
           const target = error.meta?.target;
 

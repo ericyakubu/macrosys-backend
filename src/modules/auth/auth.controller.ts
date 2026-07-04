@@ -1,10 +1,10 @@
 import { Controller, Post, Res, HttpCode, HttpStatus } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { type Response } from 'express';
 import { ApiAcceptedResponse } from '@nestjs/swagger';
-import { Cookies } from '@/shared/utils';
+import { type Response } from 'express';
 import { AccessToken, RefreshToken } from '@/shared/constants';
-import { Authenticated } from '@/infrastructure/decorators';
+import { Authenticated } from '@/shared/decorators';
+import { Cookies } from '@/shared/utils';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {

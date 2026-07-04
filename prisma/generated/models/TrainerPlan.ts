@@ -488,11 +488,6 @@ export type TrainerPlanUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TrainerPlanScalarRelationFilter = {
-  is?: Prisma.TrainerPlanWhereInput
-  isNot?: Prisma.TrainerPlanWhereInput
-}
-
 export type TrainerPlanCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -553,6 +548,11 @@ export type TrainerPlanSumOrderByAggregateInput = {
   max_clients?: Prisma.SortOrder
   discount_price?: Prisma.SortOrder
   discount_percent?: Prisma.SortOrder
+}
+
+export type TrainerPlanScalarRelationFilter = {
+  is?: Prisma.TrainerPlanWhereInput
+  isNot?: Prisma.TrainerPlanWhereInput
 }
 
 export type TrainerPlanCreateNestedOneWithoutTrainersInput = {

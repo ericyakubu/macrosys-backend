@@ -480,6 +480,11 @@ export type TrainerUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type TrainerNullableScalarRelationFilter = {
+  is?: Prisma.TrainerWhereInput | null
+  isNot?: Prisma.TrainerWhereInput | null
+}
+
 export type TrainerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -536,13 +541,20 @@ export type TrainerScalarRelationFilter = {
   isNot?: Prisma.TrainerWhereInput
 }
 
-export type TrainerNullableScalarRelationFilter = {
-  is?: Prisma.TrainerWhereInput | null
-  isNot?: Prisma.TrainerWhereInput | null
+export type TrainerCreateNestedOneWithoutDietsInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
+  connect?: Prisma.TrainerWhereUniqueInput
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
+export type TrainerUpdateOneWithoutDietsNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
+  upsert?: Prisma.TrainerUpsertWithoutDietsInput
+  disconnect?: Prisma.TrainerWhereInput | boolean
+  delete?: Prisma.TrainerWhereInput | boolean
+  connect?: Prisma.TrainerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutDietsInput, Prisma.TrainerUpdateWithoutDietsInput>, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
 }
 
 export type TrainerCreateNestedOneWithoutClient_linksInput = {
@@ -587,20 +599,100 @@ export type TrainerUpdateOneRequiredWithoutSubscriptionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.TrainerUpdateWithoutSubscriptionInput>, Prisma.TrainerUncheckedUpdateWithoutSubscriptionInput>
 }
 
-export type TrainerCreateNestedOneWithoutDietsInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
-  connect?: Prisma.TrainerWhereUniqueInput
+export type TrainerCreateWithoutDietsInput = {
+  id?: string
+  name: string
+  second_name: string
+  lastname: string
+  email: string
+  phone: string
+  birthday: Date | string
+  role?: $Enums.RoleEnum
+  gender?: $Enums.GenderEnum | null
+  language?: $Enums.LanguageEnum
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
+  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
+  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
 }
 
-export type TrainerUpdateOneWithoutDietsNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
-  upsert?: Prisma.TrainerUpsertWithoutDietsInput
-  disconnect?: Prisma.TrainerWhereInput | boolean
-  delete?: Prisma.TrainerWhereInput | boolean
-  connect?: Prisma.TrainerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutDietsInput, Prisma.TrainerUpdateWithoutDietsInput>, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
+export type TrainerUncheckedCreateWithoutDietsInput = {
+  id?: string
+  name: string
+  second_name: string
+  lastname: string
+  email: string
+  phone: string
+  birthday: Date | string
+  role?: $Enums.RoleEnum
+  gender?: $Enums.GenderEnum | null
+  language?: $Enums.LanguageEnum
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
+  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
+  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
+}
+
+export type TrainerCreateOrConnectWithoutDietsInput = {
+  where: Prisma.TrainerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+}
+
+export type TrainerUpsertWithoutDietsInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+  where?: Prisma.TrainerWhereInput
+}
+
+export type TrainerUpdateToOneWithWhereWithoutDietsInput = {
+  where?: Prisma.TrainerWhereInput
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
+}
+
+export type TrainerUpdateWithoutDietsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.StringFieldUpdateOperationsInput | string
+  lastname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
+  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
+  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
+}
+
+export type TrainerUncheckedUpdateWithoutDietsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.StringFieldUpdateOperationsInput | string
+  lastname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
+  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
 export type TrainerCreateWithoutClient_linksInput = {
@@ -889,102 +981,6 @@ export type TrainerUncheckedUpdateWithoutSubscriptionInput = {
   credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
   diets?: Prisma.DietUncheckedUpdateManyWithoutTrainerNestedInput
-}
-
-export type TrainerCreateWithoutDietsInput = {
-  id?: string
-  name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
-  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
-}
-
-export type TrainerUncheckedCreateWithoutDietsInput = {
-  id?: string
-  name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
-  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
-}
-
-export type TrainerCreateOrConnectWithoutDietsInput = {
-  where: Prisma.TrainerWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-}
-
-export type TrainerUpsertWithoutDietsInput = {
-  update: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-  where?: Prisma.TrainerWhereInput
-}
-
-export type TrainerUpdateToOneWithWhereWithoutDietsInput = {
-  where?: Prisma.TrainerWhereInput
-  data: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
-}
-
-export type TrainerUpdateWithoutDietsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
-  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
-}
-
-export type TrainerUncheckedUpdateWithoutDietsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
-  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
 

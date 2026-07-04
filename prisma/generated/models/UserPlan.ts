@@ -446,11 +446,6 @@ export type UserPlanUncheckedUpdateManyInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type UserPlanScalarRelationFilter = {
-  is?: Prisma.UserPlanWhereInput
-  isNot?: Prisma.UserPlanWhereInput
-}
-
 export type UserPlanCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -505,6 +500,23 @@ export type UserPlanSumOrderByAggregateInput = {
   discount_percent?: Prisma.SortOrder
 }
 
+export type UserPlanScalarRelationFilter = {
+  is?: Prisma.UserPlanWhereInput
+  isNot?: Prisma.UserPlanWhereInput
+}
+
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type UserPlanCreateNestedOneWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.UserPlanCreateWithoutUsersInput, Prisma.UserPlanUncheckedCreateWithoutUsersInput>
   connectOrCreate?: Prisma.UserPlanCreateOrConnectWithoutUsersInput
@@ -517,14 +529,6 @@ export type UserPlanUpdateOneRequiredWithoutUsersNestedInput = {
   upsert?: Prisma.UserPlanUpsertWithoutUsersInput
   connect?: Prisma.UserPlanWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserPlanUpdateToOneWithWhereWithoutUsersInput, Prisma.UserPlanUpdateWithoutUsersInput>, Prisma.UserPlanUncheckedUpdateWithoutUsersInput>
-}
-
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type UserPlanCreateWithoutUsersInput = {

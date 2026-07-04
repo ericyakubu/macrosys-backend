@@ -1,8 +1,8 @@
-import type { UserMeasurements } from '@/prisma/client';
-import { SortOrderEnum } from '@/shared/types';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import { IsBoolean, IsDateString, IsEnum, IsNumber, IsOptional } from 'class-validator';
+import type { UserMeasurements } from '@/prisma/client';
+import { SortOrderEnum } from '@/shared/types';
 
 export class CreateUserMeasurementsReqDto implements Partial<UserMeasurements> {
   @IsOptional()

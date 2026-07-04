@@ -5,17 +5,21 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'unused-imports'],
+  plugins: ['@typescript-eslint/eslint-plugin', 'unused-imports', 'import'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
+
   root: true,
   env: {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['dist/',
+    'node_modules/',
+    'coverage/',
+    'prisma/migrations/', '.eslintrc.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -39,6 +43,41 @@ module.exports = {
       {
         prefer: 'type-imports',
         fixStyle: 'separate-type-imports', // or 'inline-type-imports'
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '../**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: './**',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+
+        pathGroupsExcludedImportTypes: ['builtin'],
+
+        'newlines-between': 'never',
+        alphabetize: { order: 'asc', caseInsensitive: true },
       },
     ],
   },

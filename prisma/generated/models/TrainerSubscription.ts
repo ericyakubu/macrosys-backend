@@ -285,6 +285,16 @@ export type TrainerSubscriptionUncheckedUpdateManyInput = {
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type TrainerSubscriptionListRelationFilter = {
+  every?: Prisma.TrainerSubscriptionWhereInput
+  some?: Prisma.TrainerSubscriptionWhereInput
+  none?: Prisma.TrainerSubscriptionWhereInput
+}
+
+export type TrainerSubscriptionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type TrainerSubscriptionNullableScalarRelationFilter = {
   is?: Prisma.TrainerSubscriptionWhereInput | null
   isNot?: Prisma.TrainerSubscriptionWhereInput | null
@@ -312,48 +322,6 @@ export type TrainerSubscriptionMinOrderByAggregateInput = {
   subscription_id?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
-}
-
-export type TrainerSubscriptionListRelationFilter = {
-  every?: Prisma.TrainerSubscriptionWhereInput
-  some?: Prisma.TrainerSubscriptionWhereInput
-  none?: Prisma.TrainerSubscriptionWhereInput
-}
-
-export type TrainerSubscriptionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type TrainerSubscriptionCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-}
-
-export type TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-}
-
-export type TrainerSubscriptionUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
-  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
-}
-
-export type TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
-  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
 export type TrainerSubscriptionCreateNestedManyWithoutSubscriptionInput = {
@@ -398,48 +366,36 @@ export type TrainerSubscriptionUncheckedUpdateManyWithoutSubscriptionNestedInput
   deleteMany?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
 }
 
-export type TrainerSubscriptionCreateWithoutUserInput = {
-  id?: string
-  start: Date | string
-  end: Date | string
-  subscription: Prisma.TrainerPlanCreateNestedOneWithoutTrainersInput
+export type TrainerSubscriptionCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
 }
 
-export type TrainerSubscriptionUncheckedCreateWithoutUserInput = {
-  id?: string
-  subscription_id: string
-  start: Date | string
-  end: Date | string
+export type TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
 }
 
-export type TrainerSubscriptionCreateOrConnectWithoutUserInput = {
-  where: Prisma.TrainerSubscriptionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+export type TrainerSubscriptionUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
+  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
+  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
+  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
-export type TrainerSubscriptionUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  where?: Prisma.TrainerSubscriptionWhereInput
-}
-
-export type TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.TrainerSubscriptionWhereInput
-  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
-}
-
-export type TrainerSubscriptionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerPlanUpdateOneRequiredWithoutTrainersNestedInput
-}
-
-export type TrainerSubscriptionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
+  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
+  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
+  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
 }
 
 export type TrainerSubscriptionCreateWithoutSubscriptionInput = {
@@ -491,6 +447,50 @@ export type TrainerSubscriptionScalarWhereInput = {
   subscription_id?: Prisma.StringFilter<"TrainerSubscription"> | string
   start?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
   end?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+}
+
+export type TrainerSubscriptionCreateWithoutUserInput = {
+  id?: string
+  start: Date | string
+  end: Date | string
+  subscription: Prisma.TrainerPlanCreateNestedOneWithoutTrainersInput
+}
+
+export type TrainerSubscriptionUncheckedCreateWithoutUserInput = {
+  id?: string
+  subscription_id: string
+  start: Date | string
+  end: Date | string
+}
+
+export type TrainerSubscriptionCreateOrConnectWithoutUserInput = {
+  where: Prisma.TrainerSubscriptionWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+}
+
+export type TrainerSubscriptionUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
+  where?: Prisma.TrainerSubscriptionWhereInput
+}
+
+export type TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.TrainerSubscriptionWhereInput
+  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
+}
+
+export type TrainerSubscriptionUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscription?: Prisma.TrainerPlanUpdateOneRequiredWithoutTrainersNestedInput
+}
+
+export type TrainerSubscriptionUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
+  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TrainerSubscriptionCreateManySubscriptionInput = {

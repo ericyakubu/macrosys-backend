@@ -48,6 +48,21 @@ export type Recipe = Prisma.RecipeModel
  */
 export type RecipeProduct = Prisma.RecipeProductModel
 /**
+ * Model Diet
+ * 
+ */
+export type Diet = Prisma.DietModel
+/**
+ * Model UserPlan
+ * 
+ */
+export type UserPlan = Prisma.UserPlanModel
+/**
+ * Model TrainerPlan
+ * 
+ */
+export type TrainerPlan = Prisma.TrainerPlanModel
+/**
  * Model Trainer
  * 
  */
@@ -132,18 +147,3 @@ export type UserRecipePhoto = Prisma.UserRecipePhotoModel
  * 
  */
 export type UserRecipeProduct = Prisma.UserRecipeProductModel
-/**
- * Model Diet
- * 
- */
-export type Diet = Prisma.DietModel
-/**
- * Model UserPlan
- * 
- */
-export type UserPlan = Prisma.UserPlanModel
-/**
- * Model TrainerPlan
- * 
- */
-export type TrainerPlan = Prisma.TrainerPlanModel

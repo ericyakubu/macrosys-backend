@@ -1,10 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { DietService } from '../diet.service';
-import { CreateDietReqDto, DietDto, UpdateDietReqDto } from '../dto/diet.dto';
-import { TrainerOnly, User } from '@/infrastructure/decorators';
+import { Controller, Get, Post, Body, Param, Query, Patch } from '@nestjs/common';
+import { ApiBody, ApiExtraModels, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AdminOnly, TrainerOnly, User } from '@/shared/decorators';
 import type { UserFromRequest } from '@/shared/types';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { DietService } from '../diet.service';
+import {
+  CreateDietReqDto,
+  DietDto,
+  GetAllDietsQueryDto,
+  type UpdateDietReqDto,
+} from '../dto/diet.dto';
 
+@ApiTags('Diet - Trainer')
 @Controller('trainer/diet')
 export class TrainerDietController {
   constructor(private readonly dietService: DietService) {}
@@ -13,28 +19,49 @@ export class TrainerDietController {
   @TrainerOnly()
   @ApiBody({ type: CreateDietReqDto })
   @ApiOkResponse({ type: DietDto })
-  create(@Body() createDietDto: CreateDietReqDto, @User() user: UserFromRequest) {
-    return this.dietService.trainerCreateDiet(createDietDto, user);
+  @ApiOperation({
+    summary: 'Create a Diet',
+    description:
+      'Accessible by admin only. After creating a diet, it will be available for all users. Created diet will have source set to STAFF.',
+  })
+  async create(@Body() createDietDto: CreateDietReqDto, @User() user: UserFromRequest) {
+    return this.dietService.adminCreateDiet(createDietDto, user);
+  }
+
+  @Patch('update/:id')
+  @AdminOnly()
+  @ApiBody({ type: CreateDietReqDto })
+  @ApiOkResponse({ type: DietDto })
+  async update(
+    @User() user: UserFromRequest,
+    @Param('id') id: string,
+    @Body() updateDietDto: UpdateDietReqDto,
+  ) {
+    return this.dietService.trainerUpdateDiet(id, updateDietDto, user);
   }
 
   @Get('get-all')
   @TrainerOnly()
-  findAll() {
-    return this.dietService.trainerFindAll();
+  @ApiExtraModels(GetAllDietsQueryDto)
+  @ApiOkResponse({ type: [DietDto] })
+  async getAll(@User() user: UserFromRequest, @Query() queries: GetAllDietsQueryDto) {
+    const { limit, offset } = queries;
+    const limitNumber = limit ? +limit : undefined;
+    const offsetNumber = offset ? +offset : undefined;
+    return this.dietService.trainerGetAllDiets(
+      {
+        ...queries,
+        limit: limitNumber,
+        offset: offsetNumber,
+      },
+      user,
+    );
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.dietService.trainerFindOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDietDto: UpdateDietReqDto) {
-    return this.dietService.trainerUpdate(+id, updateDietDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.dietService.trainerDelete(id);
+  @Get('get-one/:id')
+  @TrainerOnly()
+  @ApiOkResponse({ type: DietDto })
+  async getOne(@User() user: UserFromRequest, @Param('id') id: string) {
+    return this.dietService.trainerGetOneDiet(id, user);
   }
 }

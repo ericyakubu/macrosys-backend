@@ -477,14 +477,6 @@ export type UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.UserMeasurementsScalarWhereInput | Prisma.UserMeasurementsScalarWhereInput[]
 }
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type UserMeasurementsCreateNestedOneWithoutPhotoInput = {
   create?: Prisma.XOR<Prisma.UserMeasurementsCreateWithoutPhotoInput, Prisma.UserMeasurementsUncheckedCreateWithoutPhotoInput>
   connectOrCreate?: Prisma.UserMeasurementsCreateOrConnectWithoutPhotoInput

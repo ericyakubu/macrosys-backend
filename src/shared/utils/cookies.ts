@@ -1,5 +1,5 @@
-import type { Cookie } from '@/shared/types';
 import type { Response } from 'express';
+import type { Cookie } from '@/shared/types';
 
 interface SetCookie {
   cookie: Cookie;

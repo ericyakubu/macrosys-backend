@@ -17,10 +17,16 @@ import {
   MaxFileSizeValidator,
   FileTypeValidator,
 } from '@nestjs/common';
-import { MeasurementsService } from './measurements.service';
-import { UserOnly, User, AdminOnly } from '@/infrastructure/decorators';
-import { type UserFromRequest } from '@/shared/types';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiExtraModels, ApiOkResponse, ApiParam } from '@nestjs/swagger';
+import { type Response } from 'express';
+import { Express } from 'express';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Multer } from 'multer';
+import { RoleEnum } from '@/prisma/client';
+import { UserOnly, User, AdminOnly } from '@/shared/decorators';
+import { HeadersInterceptor } from '@/shared/interceptors/headers.interceptor';
+import { type UserFromRequest } from '@/shared/types';
 import {
   CreateUserMeasurementsReqDto,
   CreateUserMeasurementsResDto,
@@ -29,13 +35,7 @@ import {
   UpdateUserMeasurementsReqDto,
   UpdateUserMeasurementsResDto,
 } from './dto/measurements.dto';
-import { type Response } from 'express';
-import { RoleEnum } from '@/prisma/client';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Multer } from 'multer';
-import { HeadersInterceptor } from '@/infrastructure/interceptors/headers.interceptor';
+import { MeasurementsService } from './measurements.service';
 
 @Controller('measurements')
 export class MeasurementsController {
@@ -75,10 +75,8 @@ export class MeasurementsController {
   @Get('get-all')
   @UserOnly()
   @ApiOkResponse({ type: [MeasurementDto] })
-  // @ApiQuery({ name: 'sort_order', required: false, enum: SortOrderEnum })
   async getAllMeasurements(
     @User() user: UserFromRequest,
-    // @Query('sort_order') sort_order?: SortOrderEnum,
     @Query() query: GetAllMeasurementsQueryDto,
   ): Promise<MeasurementDto[]> {
     if (user.role !== RoleEnum.USER) throw new BadRequestException('not allowed');

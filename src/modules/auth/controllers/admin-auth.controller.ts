@@ -1,17 +1,18 @@
 import { Controller, Post, Body, Res, HttpCode, HttpStatus } from '@nestjs/common';
-import { AuthService } from '../auth.service';
+import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { type Response } from 'express';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
-import { Cookies } from '@/shared/utils';
 import { AccessToken, RefreshToken } from '@/shared/constants';
+import { AdminDto } from '@/shared/dto/admin.dto';
+import { Cookies } from '@/shared/utils';
+import { AuthService } from '../auth.service';
 import { LoginAdminReqDto, SignupAdminReqDto } from '../dto/auth-admin.dto';
-import { AdminDto } from '@/infrastructure/dto/admin.dto';
 
-@Controller('admin/auth')
+@ApiTags('Auth - Admin')
+@Controller('auth/admin')
 export class AdminAuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login/admin')
+  @Post('login')
   @ApiBody({ type: LoginAdminReqDto })
   @ApiOkResponse({ type: AdminDto })
   @HttpCode(HttpStatus.OK)
@@ -27,7 +28,7 @@ export class AdminAuthController {
     return res.send(user);
   }
 
-  @Post('signup/admin')
+  @Post('signup')
   @ApiOkResponse({ type: AdminDto })
   @ApiBody({ type: SignupAdminReqDto })
   @HttpCode(HttpStatus.OK)
