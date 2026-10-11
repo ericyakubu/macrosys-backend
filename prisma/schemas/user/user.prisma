@@ -26,6 +26,7 @@ model User {
   products      UserProduct[]
   measurements  UserMeasurements[]
   trainer_links ClientAssignment[]
+  recipe_tags   UserRecipeTag[]
 }
 
 model UserCredentials {

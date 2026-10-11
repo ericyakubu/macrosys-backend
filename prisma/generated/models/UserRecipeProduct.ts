@@ -194,8 +194,8 @@ export type UserRecipeProductGroupByArgs<ExtArgs extends runtime.Types.Extension
 export type UserRecipeProductGroupByOutputType = {
   id: string
   recipe_id: string
-  user_product_id: string
-  product_id: string
+  user_product_id: string | null
+  product_id: string | null
   quantity: number
   created_at: Date
   updated_at: Date
@@ -227,8 +227,8 @@ export type UserRecipeProductWhereInput = {
   NOT?: Prisma.UserRecipeProductWhereInput | Prisma.UserRecipeProductWhereInput[]
   id?: Prisma.StringFilter<"UserRecipeProduct"> | string
   recipe_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  user_product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
+  user_product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
+  product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
   quantity?: Prisma.IntFilter<"UserRecipeProduct"> | number
   created_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
@@ -240,8 +240,8 @@ export type UserRecipeProductWhereInput = {
 export type UserRecipeProductOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   recipe_id?: Prisma.SortOrder
-  user_product_id?: Prisma.SortOrder
-  product_id?: Prisma.SortOrder
+  user_product_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  product_id?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -256,8 +256,8 @@ export type UserRecipeProductWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserRecipeProductWhereInput[]
   NOT?: Prisma.UserRecipeProductWhereInput | Prisma.UserRecipeProductWhereInput[]
   recipe_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  user_product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
+  user_product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
+  product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
   quantity?: Prisma.IntFilter<"UserRecipeProduct"> | number
   created_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
@@ -269,8 +269,8 @@ export type UserRecipeProductWhereUniqueInput = Prisma.AtLeast<{
 export type UserRecipeProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   recipe_id?: Prisma.SortOrder
-  user_product_id?: Prisma.SortOrder
-  product_id?: Prisma.SortOrder
+  user_product_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  product_id?: Prisma.SortOrderInput | Prisma.SortOrder
   quantity?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -287,8 +287,8 @@ export type UserRecipeProductScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserRecipeProductScalarWhereWithAggregatesInput | Prisma.UserRecipeProductScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"UserRecipeProduct"> | string
   recipe_id?: Prisma.StringWithAggregatesFilter<"UserRecipeProduct"> | string
-  user_product_id?: Prisma.StringWithAggregatesFilter<"UserRecipeProduct"> | string
-  product_id?: Prisma.StringWithAggregatesFilter<"UserRecipeProduct"> | string
+  user_product_id?: Prisma.StringNullableWithAggregatesFilter<"UserRecipeProduct"> | string | null
+  product_id?: Prisma.StringNullableWithAggregatesFilter<"UserRecipeProduct"> | string | null
   quantity?: Prisma.IntWithAggregatesFilter<"UserRecipeProduct"> | number
   created_at?: Prisma.DateTimeWithAggregatesFilter<"UserRecipeProduct"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"UserRecipeProduct"> | Date | string
@@ -307,8 +307,8 @@ export type UserRecipeProductCreateInput = {
 export type UserRecipeProductUncheckedCreateInput = {
   id?: string
   recipe_id: string
-  user_product_id: string
-  product_id: string
+  user_product_id?: string | null
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -327,8 +327,8 @@ export type UserRecipeProductUpdateInput = {
 export type UserRecipeProductUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -337,8 +337,8 @@ export type UserRecipeProductUncheckedUpdateInput = {
 export type UserRecipeProductCreateManyInput = {
   id?: string
   recipe_id: string
-  user_product_id: string
-  product_id: string
+  user_product_id?: string | null
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -354,8 +354,8 @@ export type UserRecipeProductUpdateManyMutationInput = {
 export type UserRecipeProductUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -547,7 +547,7 @@ export type UserRecipeProductCreateWithoutProductInput = {
 export type UserRecipeProductUncheckedCreateWithoutProductInput = {
   id?: string
   recipe_id: string
-  user_product_id: string
+  user_product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -585,8 +585,8 @@ export type UserRecipeProductScalarWhereInput = {
   NOT?: Prisma.UserRecipeProductScalarWhereInput | Prisma.UserRecipeProductScalarWhereInput[]
   id?: Prisma.StringFilter<"UserRecipeProduct"> | string
   recipe_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  user_product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
-  product_id?: Prisma.StringFilter<"UserRecipeProduct"> | string
+  user_product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
+  product_id?: Prisma.StringNullableFilter<"UserRecipeProduct"> | string | null
   quantity?: Prisma.IntFilter<"UserRecipeProduct"> | number
   created_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"UserRecipeProduct"> | Date | string
@@ -604,7 +604,7 @@ export type UserRecipeProductCreateWithoutUser_productInput = {
 export type UserRecipeProductUncheckedCreateWithoutUser_productInput = {
   id?: string
   recipe_id: string
-  product_id: string
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -647,8 +647,8 @@ export type UserRecipeProductCreateWithoutRecipeInput = {
 
 export type UserRecipeProductUncheckedCreateWithoutRecipeInput = {
   id?: string
-  user_product_id: string
-  product_id: string
+  user_product_id?: string | null
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -683,7 +683,7 @@ export type UserRecipeProductUpdateManyWithWhereWithoutRecipeInput = {
 export type UserRecipeProductCreateManyProductInput = {
   id?: string
   recipe_id: string
-  user_product_id: string
+  user_product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -701,7 +701,7 @@ export type UserRecipeProductUpdateWithoutProductInput = {
 export type UserRecipeProductUncheckedUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -710,7 +710,7 @@ export type UserRecipeProductUncheckedUpdateWithoutProductInput = {
 export type UserRecipeProductUncheckedUpdateManyWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -719,7 +719,7 @@ export type UserRecipeProductUncheckedUpdateManyWithoutProductInput = {
 export type UserRecipeProductCreateManyUser_productInput = {
   id?: string
   recipe_id: string
-  product_id: string
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -737,7 +737,7 @@ export type UserRecipeProductUpdateWithoutUser_productInput = {
 export type UserRecipeProductUncheckedUpdateWithoutUser_productInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -746,7 +746,7 @@ export type UserRecipeProductUncheckedUpdateWithoutUser_productInput = {
 export type UserRecipeProductUncheckedUpdateManyWithoutUser_productInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   recipe_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -754,8 +754,8 @@ export type UserRecipeProductUncheckedUpdateManyWithoutUser_productInput = {
 
 export type UserRecipeProductCreateManyRecipeInput = {
   id?: string
-  user_product_id: string
-  product_id: string
+  user_product_id?: string | null
+  product_id?: string | null
   quantity: number
   created_at?: Date | string
   updated_at?: Date | string
@@ -772,8 +772,8 @@ export type UserRecipeProductUpdateWithoutRecipeInput = {
 
 export type UserRecipeProductUncheckedUpdateWithoutRecipeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,8 +781,8 @@ export type UserRecipeProductUncheckedUpdateWithoutRecipeInput = {
 
 export type UserRecipeProductUncheckedUpdateManyWithoutRecipeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  product_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -866,8 +866,8 @@ export type $UserRecipeProductPayload<ExtArgs extends runtime.Types.Extensions.I
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     recipe_id: string
-    user_product_id: string
-    product_id: string
+    user_product_id: string | null
+    product_id: string | null
     quantity: number
     created_at: Date
     updated_at: Date

@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { Prisma } from '@/prisma/client';
 import { PrismaService } from '@/prisma.service';
 import type { UserFromRequest } from '@/shared/types';
-import { formatMacrosAndRating } from '@/shared/utils';
+import { Formatters } from '@/shared/utils';
 import type { GetAllProductsDto } from './dto/get-product.dto';
 import type {
   CreateProductReqDto,
@@ -40,7 +40,7 @@ export class ProductService {
 
     return {
       ...product,
-      ...formatMacrosAndRating(product),
+      ...Formatters.macrosAndRating(product),
       photo: product.photo?.url,
       diets: product.diets.map((d) => ({
         id: d.id,
@@ -101,7 +101,7 @@ export class ProductService {
 
     const products = found.map((product) => ({
       ...product,
-      ...formatMacrosAndRating(product),
+      ...Formatters.macrosAndRating(product),
       photo: product.photo?.url,
       diets: product.diets.map((d) => ({
         id: d.id,
@@ -129,7 +129,7 @@ export class ProductService {
 
       return {
         ...product,
-        ...formatMacrosAndRating(product),
+        ...Formatters.macrosAndRating(product),
       };
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025')
@@ -156,7 +156,7 @@ export class ProductService {
 
     return {
       ...product,
-      ...formatMacrosAndRating(product),
+      ...Formatters.macrosAndRating(product),
     };
   }
 

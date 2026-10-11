@@ -262,6 +262,7 @@ export type UserWhereInput = {
   products?: Prisma.UserProductListRelationFilter
   measurements?: Prisma.UserMeasurementsListRelationFilter
   trainer_links?: Prisma.ClientAssignmentListRelationFilter
+  recipe_tags?: Prisma.UserRecipeTagListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -287,6 +288,7 @@ export type UserOrderByWithRelationInput = {
   products?: Prisma.UserProductOrderByRelationAggregateInput
   measurements?: Prisma.UserMeasurementsOrderByRelationAggregateInput
   trainer_links?: Prisma.ClientAssignmentOrderByRelationAggregateInput
+  recipe_tags?: Prisma.UserRecipeTagOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -315,6 +317,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   products?: Prisma.UserProductListRelationFilter
   measurements?: Prisma.UserMeasurementsListRelationFilter
   trainer_links?: Prisma.ClientAssignmentListRelationFilter
+  recipe_tags?: Prisma.UserRecipeTagListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -380,6 +383,7 @@ export type UserCreateInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -405,6 +409,7 @@ export type UserUncheckedCreateInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -430,6 +435,7 @@ export type UserUpdateInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -455,6 +461,7 @@ export type UserUncheckedUpdateInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -676,6 +683,20 @@ export type UserUpdateOneRequiredWithoutRecipesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecipesInput, Prisma.UserUpdateWithoutRecipesInput>, Prisma.UserUncheckedUpdateWithoutRecipesInput>
 }
 
+export type UserCreateNestedOneWithoutRecipe_tagsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipe_tagsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRecipe_tagsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipe_tagsInput
+  upsert?: Prisma.UserUpsertWithoutRecipe_tagsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecipe_tagsInput, Prisma.UserUpdateWithoutRecipe_tagsInput>, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
+}
+
 export type UserCreateWithoutTrainer_linksInput = {
   id?: string
   name?: string | null
@@ -698,6 +719,7 @@ export type UserCreateWithoutTrainer_linksInput = {
   recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTrainer_linksInput = {
@@ -722,6 +744,7 @@ export type UserUncheckedCreateWithoutTrainer_linksInput = {
   recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTrainer_linksInput = {
@@ -762,6 +785,7 @@ export type UserUpdateWithoutTrainer_linksInput = {
   recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTrainer_linksInput = {
@@ -786,6 +810,7 @@ export type UserUncheckedUpdateWithoutTrainer_linksInput = {
   recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCredentialsInput = {
@@ -810,6 +835,7 @@ export type UserCreateWithoutCredentialsInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCredentialsInput = {
@@ -834,6 +860,7 @@ export type UserUncheckedCreateWithoutCredentialsInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCredentialsInput = {
@@ -874,6 +901,7 @@ export type UserUpdateWithoutCredentialsInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCredentialsInput = {
@@ -898,6 +926,7 @@ export type UserUncheckedUpdateWithoutCredentialsInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSubscriptionInput = {
@@ -922,6 +951,7 @@ export type UserCreateWithoutSubscriptionInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSubscriptionInput = {
@@ -946,6 +976,7 @@ export type UserUncheckedCreateWithoutSubscriptionInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSubscriptionInput = {
@@ -986,6 +1017,7 @@ export type UserUpdateWithoutSubscriptionInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSubscriptionInput = {
@@ -1010,6 +1042,7 @@ export type UserUncheckedUpdateWithoutSubscriptionInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDiet_planInput = {
@@ -1034,6 +1067,7 @@ export type UserCreateWithoutDiet_planInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDiet_planInput = {
@@ -1058,6 +1092,7 @@ export type UserUncheckedCreateWithoutDiet_planInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDiet_planInput = {
@@ -1098,6 +1133,7 @@ export type UserUpdateWithoutDiet_planInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDiet_planInput = {
@@ -1122,6 +1158,7 @@ export type UserUncheckedUpdateWithoutDiet_planInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMeasurementsInput = {
@@ -1146,6 +1183,7 @@ export type UserCreateWithoutMeasurementsInput = {
   recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMeasurementsInput = {
@@ -1170,6 +1208,7 @@ export type UserUncheckedCreateWithoutMeasurementsInput = {
   recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMeasurementsInput = {
@@ -1210,6 +1249,7 @@ export type UserUpdateWithoutMeasurementsInput = {
   recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMeasurementsInput = {
@@ -1234,6 +1274,7 @@ export type UserUncheckedUpdateWithoutMeasurementsInput = {
   recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutGoalsInput = {
@@ -1258,6 +1299,7 @@ export type UserCreateWithoutGoalsInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGoalsInput = {
@@ -1282,6 +1324,7 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGoalsInput = {
@@ -1322,6 +1365,7 @@ export type UserUpdateWithoutGoalsInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGoalsInput = {
@@ -1346,6 +1390,7 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProductsInput = {
@@ -1370,6 +1415,7 @@ export type UserCreateWithoutProductsInput = {
   recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProductsInput = {
@@ -1394,6 +1440,7 @@ export type UserUncheckedCreateWithoutProductsInput = {
   recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProductsInput = {
@@ -1434,6 +1481,7 @@ export type UserUpdateWithoutProductsInput = {
   recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProductsInput = {
@@ -1458,6 +1506,7 @@ export type UserUncheckedUpdateWithoutProductsInput = {
   recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRecipesInput = {
@@ -1482,6 +1531,7 @@ export type UserCreateWithoutRecipesInput = {
   products?: Prisma.UserProductCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecipesInput = {
@@ -1506,6 +1556,7 @@ export type UserUncheckedCreateWithoutRecipesInput = {
   products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
   measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecipesInput = {
@@ -1546,6 +1597,7 @@ export type UserUpdateWithoutRecipesInput = {
   products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecipesInput = {
@@ -1570,6 +1622,123 @@ export type UserUncheckedUpdateWithoutRecipesInput = {
   products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
   measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutRecipe_tagsInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  email: string
+  phone?: string | null
+  birthday?: Date | string | null
+  role?: $Enums.RoleEnum
+  gender?: $Enums.GenderEnum | null
+  language?: $Enums.LanguageEnum
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
+  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
+  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
+  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
+  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
+  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
+  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutRecipe_tagsInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  email: string
+  phone?: string | null
+  birthday?: Date | string | null
+  role?: $Enums.RoleEnum
+  gender?: $Enums.GenderEnum | null
+  language?: $Enums.LanguageEnum
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
+  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
+  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
+  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
+  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutRecipe_tagsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+}
+
+export type UserUpsertWithoutRecipe_tagsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRecipe_tagsInput, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRecipe_tagsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRecipe_tagsInput, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
+}
+
+export type UserUpdateWithoutRecipe_tagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
+  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
+  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
+  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
+  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
+  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRecipe_tagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
+  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
+  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
+  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
+  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1583,6 +1752,7 @@ export type UserCountOutputType = {
   products: number
   measurements: number
   trainer_links: number
+  recipe_tags: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1591,6 +1761,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   products?: boolean | UserCountOutputTypeCountProductsArgs
   measurements?: boolean | UserCountOutputTypeCountMeasurementsArgs
   trainer_links?: boolean | UserCountOutputTypeCountTrainer_linksArgs
+  recipe_tags?: boolean | UserCountOutputTypeCountRecipe_tagsArgs
 }
 
 /**
@@ -1638,6 +1809,13 @@ export type UserCountOutputTypeCountTrainer_linksArgs<ExtArgs extends runtime.Ty
   where?: Prisma.ClientAssignmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecipe_tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserRecipeTagWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1662,6 +1840,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   products?: boolean | Prisma.User$productsArgs<ExtArgs>
   measurements?: boolean | Prisma.User$measurementsArgs<ExtArgs>
   trainer_links?: boolean | Prisma.User$trainer_linksArgs<ExtArgs>
+  recipe_tags?: boolean | Prisma.User$recipe_tagsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1726,6 +1905,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   products?: boolean | Prisma.User$productsArgs<ExtArgs>
   measurements?: boolean | Prisma.User$measurementsArgs<ExtArgs>
   trainer_links?: boolean | Prisma.User$trainer_linksArgs<ExtArgs>
+  recipe_tags?: boolean | Prisma.User$recipe_tagsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1742,6 +1922,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     products: Prisma.$UserProductPayload<ExtArgs>[]
     measurements: Prisma.$UserMeasurementsPayload<ExtArgs>[]
     trainer_links: Prisma.$ClientAssignmentPayload<ExtArgs>[]
+    recipe_tags: Prisma.$UserRecipeTagPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2160,6 +2341,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   products<T extends Prisma.User$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   measurements<T extends Prisma.User$measurementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$measurementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserMeasurementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trainer_links<T extends Prisma.User$trainer_linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainer_linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recipe_tags<T extends Prisma.User$recipe_tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recipe_tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipeTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2770,6 +2952,30 @@ export type User$trainer_linksArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ClientAssignmentScalarFieldEnum | Prisma.ClientAssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.recipe_tags
+ */
+export type User$recipe_tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserRecipeTag
+   */
+  select?: Prisma.UserRecipeTagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserRecipeTag
+   */
+  omit?: Prisma.UserRecipeTagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserRecipeTagInclude<ExtArgs> | null
+  where?: Prisma.UserRecipeTagWhereInput
+  orderBy?: Prisma.UserRecipeTagOrderByWithRelationInput | Prisma.UserRecipeTagOrderByWithRelationInput[]
+  cursor?: Prisma.UserRecipeTagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserRecipeTagScalarFieldEnum | Prisma.UserRecipeTagScalarFieldEnum[]
 }
 
 /**

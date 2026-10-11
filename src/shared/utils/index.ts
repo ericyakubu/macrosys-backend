@@ -1,7 +1,19 @@
+import type { Decimal } from '@prisma/client/runtime/client';
+
 export * from './cookies';
 
-export const formatMacrosAndRating = (product) => {
-  return {
+interface ProductToFormat {
+  rating?: number | Decimal;
+  calories?: number | Decimal;
+  carbohydrates?: number | Decimal;
+  fat?: number | Decimal;
+  fiber?: number | Decimal;
+  protein?: number | Decimal;
+  sugar?: number | Decimal;
+}
+
+export class Formatters {
+  static macrosAndRating = (product: ProductToFormat) => ({
     calories: +product.calories,
     carbohydrates: +product.carbohydrates,
     fat: +product.fat,
@@ -9,5 +21,5 @@ export const formatMacrosAndRating = (product) => {
     protein: +product.protein,
     rating: +product.rating,
     sugar: +product.sugar,
-  };
-};
+  });
+}

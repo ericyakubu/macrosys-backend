@@ -169,3 +169,8 @@ export type UserRecipePhoto = Prisma.UserRecipePhotoModel
  * 
  */
 export type UserRecipeProduct = Prisma.UserRecipeProductModel
+/**
+ * Model UserRecipeTag
+ * 
+ */
+export type UserRecipeTag = Prisma.UserRecipeTagModel

@@ -20,6 +20,7 @@ model Recipe {
 
   diets    Diet[]
   products RecipeProduct[]
+
 }
 
 model RecipeProduct {
@@ -34,3 +35,5 @@ model RecipeProduct {
   recipe  Recipe  @relation(fields: [recipe_id], references: [id])
   product Product @relation(fields: [product_id], references: [id])
 }
+
+

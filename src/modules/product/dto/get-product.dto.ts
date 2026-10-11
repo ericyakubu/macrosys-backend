@@ -18,9 +18,9 @@ export enum DietsSortByEnum {
 }
 
 export class GetAllProductsDto extends MacrosFilterReqDto {
-  @OptionalNumber('rating less than', 25)
+  @OptionalNumber({ description: 'rating less than', example: 25 })
   rating_lte?: number;
-  @OptionalNumber('rating higher than', 25)
+  @OptionalNumber({ description: 'rating higher than', example: 25 })
   rating_gte?: number;
 
   @ApiPropertyOptional({

@@ -28,6 +28,19 @@ export class AdminDietController {
     return this.dietService.adminCreateDiet(createDietDto, user);
   }
 
+  @Post('create-multiple')
+  @AdminOnly()
+  @ApiBody({ type: [CreateDietReqDto] })
+  @ApiOkResponse({ type: [DietDto] })
+  @ApiOperation({
+    summary: 'Create multiple Diets',
+    description:
+      'Accessible by admin only. After creating a diet, it will be available for all users. Created diet will have source set to STAFF.',
+  })
+  async createMultiple(@Body() createDietDto: CreateDietReqDto[], @User() user: UserFromRequest) {
+    return this.dietService.adminCreateDietMultiple(createDietDto, user);
+  }
+
   @Patch('update/:id')
   @AdminOnly()
   @ApiBody({ type: CreateDietReqDto })

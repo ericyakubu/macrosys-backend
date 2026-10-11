@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { DietSourceEnum, RoleEnum } from '@/prisma/client';
 import { PrismaService } from '@/prisma.service';
 import type { UserFromRequest } from '@/shared/types';
 import type {
@@ -24,6 +25,23 @@ export class DietService {
   constructor(private readonly prismaService: PrismaService) {}
   async adminCreateDiet(createDietDto: CreateDietReqDto, user: UserFromRequest): Promise<DietDto> {
     return this.createDiet(createDietDto, user);
+  }
+
+  async adminCreateDietMultiple(
+    body: CreateDietReqDto[],
+    user: UserFromRequest,
+  ): Promise<DietDto[]> {
+    const diets = body.map((d) => ({
+      ...d,
+      created_by: user.id,
+      source: DietSourceEnum.STAFF,
+    }));
+
+    return await this.prismaService.diet.createManyAndReturn({
+      data: diets,
+      skipDuplicates: true,
+      select,
+    });
   }
 
   async adminGetAllDiets(queries: AdminGetAllDietsQueryDto): Promise<DietDto[]> {
@@ -89,14 +107,14 @@ export class DietService {
     createDietDto: CreateDietReqDto,
     user: UserFromRequest,
   ): Promise<DietDto> {
-    const isStaff = user.role === 'ADMIN' || user.role === 'MODERATOR';
+    const isStaff = user.role === RoleEnum.ADMIN || user.role === RoleEnum.MODERATOR;
 
     return await this.prismaService.diet.create({
       data: {
         ...createDietDto,
         created_by: user.id,
-        source: isStaff ? 'STAFF' : 'TRAINER',
-        ...(isStaff && {
+        source: isStaff ? DietSourceEnum.STAFF : DietSourceEnum.TRAINER,
+        ...(!isStaff && {
           trainer: {
             connect: {
               id: user.id,

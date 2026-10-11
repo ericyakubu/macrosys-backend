@@ -13,13 +13,17 @@ export class ProductResDiet {
 }
 
 export class CreateProductReqDto extends MacrosReqDto {
-  @OptionalString('Product barcode', '4820001234567', 64)
+  @OptionalString({ description: 'Product barcode', example: '4820001234567', minLength: 64 })
   barcode?: string;
 
-  @OptionalString('Product name', 'Greek Yogurt', 255)
+  @OptionalString({ description: 'Product name', example: 'Greek Yogurt', minLength: 255 })
   name: string;
 
-  @OptionalString('Product description', 'High-protein natural yogurt', 1000)
+  @OptionalString({
+    description: 'Product description',
+    example: 'High-protein natural yogurt',
+    minLength: 1000,
+  })
   description?: string;
 
   @ApiPropertyOptional({

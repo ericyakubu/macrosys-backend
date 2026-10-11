@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
-import { UserRecipeController } from './controllers/user-recipe.controller';
-import { RecipeController } from './recipe.controller';
-import { RecipeService } from './recipe.service';
+// import { RecipeService } from './recipe.service';
+// import { SystemRecipeModule } from './system-recipe/system-recipe.module';
+// import { TrainerRecipeModule } from './trainer-recipe/trainer-recipe.module';
+import { UserRecipeModule } from './user-recipe/user-recipe.module';
 
 @Module({
-  controllers: [RecipeController, UserRecipeController],
-  providers: [RecipeService],
+  imports: [
+    UserRecipeModule,
+    // TrainerRecipeModule, SystemRecipeModule
+  ],
+  // providers: [RecipeService],
 })
 export class RecipeModule {}

@@ -76,7 +76,8 @@ export const ModelName = {
   UserProductPhoto: 'UserProductPhoto',
   UserRecipe: 'UserRecipe',
   UserRecipePhoto: 'UserRecipePhoto',
-  UserRecipeProduct: 'UserRecipeProduct'
+  UserRecipeProduct: 'UserRecipeProduct',
+  UserRecipeTag: 'UserRecipeTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -446,6 +447,7 @@ export const UserRecipeScalarFieldEnum = {
   instructions: 'instructions',
   prep_time: 'prep_time',
   servings: 'servings',
+  rating: 'rating',
   calories: 'calories',
   carbohydrates: 'carbohydrates',
   fat: 'fat',
@@ -481,6 +483,18 @@ export const UserRecipeProductScalarFieldEnum = {
 } as const
 
 export type UserRecipeProductScalarFieldEnum = (typeof UserRecipeProductScalarFieldEnum)[keyof typeof UserRecipeProductScalarFieldEnum]
+
+
+export const UserRecipeTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  user_id: 'user_id',
+  description: 'description',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type UserRecipeTagScalarFieldEnum = (typeof UserRecipeTagScalarFieldEnum)[keyof typeof UserRecipeTagScalarFieldEnum]
 
 
 export const SortOrder = {

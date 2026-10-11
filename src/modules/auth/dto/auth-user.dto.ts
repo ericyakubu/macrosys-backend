@@ -30,19 +30,34 @@ export class SignupUserReqDto implements Partial<UserCredentials> {
   password: string;
 
   //
-  @OptionalString('Users name', 'Julia', 255, 3)
+  @OptionalString({ description: 'Users name', example: 'Julia', maxLength: 255, minLength: 3 })
   name?: string;
 
-  @OptionalString('Users second name (patronymic)', 'Francis', 255, 3)
+  @OptionalString({
+    description: 'Users second name (patronymic)',
+    example: 'Francis',
+    maxLength: 255,
+    minLength: 3,
+  })
   second_name?: string;
 
-  @OptionalString('Users last name (family name)', 'Smith', 255, 3)
+  @OptionalString({
+    description: 'Users last name (family name)',
+    example: 'Smith',
+    maxLength: 255,
+    minLength: 3,
+  })
   lastname?: string;
 
-  @OptionalDate('User birthday', '2000-01-01')
+  @OptionalDate({ description: 'User birthday', example: '2000-01-01' })
   birthday?: Date;
 
-  @OptionalString('Users phone number', '+380501234567', 15, 10)
+  @OptionalString({
+    description: 'Users phone number',
+    example: '+380501234567',
+    maxLength: 15,
+    minLength: 10,
+  })
   phone?: string;
 
   @ApiProperty({ enum: GenderEnum, nullable: true, example: GenderEnum.FEMALE })

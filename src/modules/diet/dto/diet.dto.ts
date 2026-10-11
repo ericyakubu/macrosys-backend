@@ -54,10 +54,10 @@ export class GetAllDietsQueryDto {
   @IsBoolean()
   is_active?: boolean;
 
-  @OptionalNumber('limit results to this number of diets per page', 25)
+  @OptionalNumber({ description: 'limit results to this number of diets per page', example: 25 })
   limit?: number;
 
-  @OptionalNumber('offset results by this number of diets per page', 25)
+  @OptionalNumber({ description: 'offset results by this number of diets per page', example: 25 })
   offset?: number;
 
   @ApiPropertyOptional({
@@ -98,10 +98,10 @@ export class AdminGetAllDietsQueryDto {
   @IsEnum(DietSourceEnum)
   source?: DietSourceEnum;
 
-  @OptionalNumber('limit results to this number of diets per page', 25)
+  @OptionalNumber({ description: 'limit results to this number of diets per page', example: 25 })
   limit?: number;
 
-  @OptionalNumber('offset results by this number of diets per page', 25)
+  @OptionalNumber({ description: 'offset results by this number of diets per page', example: 25 })
   offset?: number;
 
   @ApiPropertyOptional({

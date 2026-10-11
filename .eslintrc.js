@@ -45,40 +45,40 @@ module.exports = {
         fixStyle: 'separate-type-imports', // or 'inline-type-imports'
       },
     ],
-    'import/order': [
-      'error',
-      {
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
-        pathGroups: [
-          {
-            pattern: '@/**',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '../**',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: './**',
-            group: 'internal',
-            position: 'after',
-          },
-        ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: [
+    //       'builtin',
+    //       'external',
+    //       'internal',
+    //       'parent',
+    //       'sibling',
+    //       'index',
+    //     ],
+    //     pathGroups: [
+    //       {
+    //         pattern: '@/**',
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //       {
+    //         pattern: '../**',
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //       {
+    //         pattern: './**',
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //     ],
 
-        pathGroupsExcludedImportTypes: ['builtin'],
+    //     pathGroupsExcludedImportTypes: ['builtin'],
 
-        'newlines-between': 'never',
-        alphabetize: { order: 'asc', caseInsensitive: true },
-      },
-    ],
+    //     'newlines-between': 'never',
+    //     alphabetize: { order: 'asc', caseInsensitive: true },
+    //   },
+    // ],
   },
 }
