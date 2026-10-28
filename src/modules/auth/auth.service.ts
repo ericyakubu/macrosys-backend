@@ -1,21 +1,25 @@
+import { Injectable } from '@nestjs/common';
 import {
-  BadRequestException,
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import bcrypt from 'bcrypt';
-import { Prisma, type Admin } from '@/prisma/client';
+  CreateTrainerAccountReqDto,
+  CreateUserAccountReqDto,
+  CreateTrainerAccountResDto,
+  CreateUserAccountResDto,
+  type CreatedUser,
+  type CreatedTrainer,
+} from './dto/create-account.dto';
 import { PrismaService } from '@/prisma.service';
-import { AccessToken, AuthErrors, BCRYPT_SALT_ROUNDS, RefreshToken } from '@/shared/constants';
-import type { UserDto } from '@/shared/dto';
-import type { AdminDto } from '@/shared/dto/admin.dto';
+import { JwtService } from '@nestjs/jwt';
+import type { AuthUser, ReturnWithTokens } from '@/shared/types';
+import { AccessToken, BCRYPT_SALT_ROUNDS, RefreshToken } from '@/shared/constants';
 import { JwtSecrets } from '@/shared/jwt/jwt.secrets';
-import type { ReturnWithTokens } from '@/shared/types';
-import type { LoginAdminReqDto, SignupAdminReqDto } from './dto/auth-admin.dto';
-import type { LoginUserReqDto, SignupUserReqDto } from './dto/auth-user.dto';
+import bcrypt from 'bcrypt';
+import { Prisma } from '@/prisma/client';
+import { AuthError } from './auth.errors';
+import { HttpStatus } from '@nestjs/common';
+import { AppException } from '@/shared/errors/app.exception';
+import { uniqueFields } from '@/shared/prisma/unique-fields';
+import type { LoginReqDto, LoginResDto } from './dto/login.dto';
+import { TRAINER_SELECT, USER_SELECT } from './auth.selects';
 
 @Injectable()
 export class AuthService {
@@ -24,136 +28,109 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async loginUser(body: LoginUserReqDto): Promise<ReturnWithTokens<UserDto>> {
-    const { email, password } = body;
-
-    const credentials = await this.prisma.userCredentials.findUnique({
-      where: {
-        email,
-      },
-
-      select: {
-        password: true,
-        user: {
-          omit: {
-            created_at: true,
-            disabled_at: true,
-            updated_at: true,
-            disabled: true,
-          },
-        },
-      },
-    });
-
-    if (!credentials) throw new NotFoundException(AuthErrors.userNotFound);
-
-    const isPasswordValid = await bcrypt.compare(password, credentials.password);
-    if (!isPasswordValid) throw new BadRequestException(AuthErrors.invalidCredentials);
-
-    const { user } = credentials;
-
-    return this.returnTokens(user);
-  }
-
-  async loginAdmin(body: LoginAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
-    const { login, password } = body;
-
-    const credentials = await this.prisma.adminCredentials.findUnique({
-      where: {
-        login,
-      },
-
-      include: {
-        admin: true,
-      },
-    });
-
-    if (!credentials) throw new NotFoundException(AuthErrors.userNotFound);
-
-    const isPasswordValid = await bcrypt.compare(password, credentials.password);
-    if (!isPasswordValid) throw new BadRequestException(AuthErrors.invalidCredentials);
-
-    const { admin } = credentials;
-
-    return this.returnTokens(admin);
-  }
-
-  async signupUser(body: SignupUserReqDto): Promise<ReturnWithTokens<UserDto>> {
-    const { password, email, ...data } = body;
-    const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
+  async createUser(
+    body: CreateUserAccountReqDto,
+  ): Promise<ReturnWithTokens<CreateUserAccountResDto>> {
+    const { email, password, ...profile } = body;
+    const hash = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
     try {
       const user = await this.prisma.user.create({
         data: {
-          email,
-          ...data,
-          credentials: {
-            create: {
-              email,
-              password: hashedPassword,
-            },
-          },
+          ...profile,
+          account: { create: { email, password: hash } },
         },
-        omit: {
-          created_at: true,
-          disabled_at: true,
-          updated_at: true,
-          disabled: true,
+        select: {
+          ...USER_SELECT,
+          account: { select: { email: true } },
         },
       });
 
-      return this.returnTokens(user);
+      return this.returnTokens({ ...user, email: user.account.email });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-        throw new ConflictException('User with this email already exists');
-      }
-
-      throw new InternalServerErrorException('Failed to create user');
+      throw this.mapCreateError(error);
     }
   }
 
-  async signupAdmin(body: SignupAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
-    const hashedPassword = await bcrypt.hash(body.password, BCRYPT_SALT_ROUNDS);
+  async createTrainer(
+    body: CreateTrainerAccountReqDto,
+  ): Promise<ReturnWithTokens<CreateTrainerAccountResDto>> {
+    const { email, password, ...profile } = body;
+    const hash = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
-    const admin = await this.prisma.admin
-      .create({
+    try {
+      const trainer = await this.prisma.trainer.create({
         data: {
-          email: body.email,
-          name: body.name,
-          lastname: body.lastname,
-
-          credentials: {
-            create: {
-              login: body.login,
-              password: hashedPassword,
-            },
-          },
+          ...profile,
+          account: { create: { email, password: hash } },
         },
-      })
-      .catch((error) => {
-        if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-          const target = error.meta?.target;
-
-          console.log(error);
-
-          if (Array.isArray(target)) {
-            if (target.includes('email')) {
-              throw new ConflictException('Admin with this email already exists');
-            }
-
-            if (target.includes('login')) {
-              throw new ConflictException('Admin with this login already exists');
-            }
-          }
-
-          throw new ConflictException('Unique field already exists');
-        }
+        select: {
+          ...TRAINER_SELECT,
+          account: { select: { email: true } },
+        },
       });
 
-    if (admin) return this.returnTokens(admin);
+      return this.returnTokens({ ...trainer, email });
+    } catch (error) {
+      throw this.mapCreateError(error);
+    }
   }
 
-  private returnTokens<T extends UserDto | Admin>(user: T): ReturnWithTokens<T> {
+  async loginUser(body: LoginReqDto): Promise<ReturnWithTokens<LoginResDto>> {
+    const account = await this.prisma.account.findUnique({
+      where: { email: body.email },
+      select: {
+        email: true,
+        password: true,
+        user: { select: { ...USER_SELECT, disabled: true } },
+      },
+    });
+
+    if (!account || !(await bcrypt.compare(body.password, account.password))) {
+      throw new AppException(AuthError.INVALID_CREDENTIALS, HttpStatus.UNAUTHORIZED);
+    }
+    if (!account.user) {
+      throw new AppException(AuthError.PROFILE_MISSING, HttpStatus.FORBIDDEN);
+    }
+    const { disabled, ...user } = account.user;
+
+    if (disabled) {
+      throw new AppException(AuthError.PROFILE_DISABLED, HttpStatus.FORBIDDEN);
+    }
+    return this.returnTokens({ ...user, account: { email: account.email } });
+  }
+
+  async loginTrainer(body: LoginReqDto): Promise<ReturnWithTokens<LoginResDto>> {
+    const account = await this.prisma.account.findUnique({
+      where: { email: body.email },
+      select: {
+        email: true,
+        password: true,
+        trainer: { select: { ...TRAINER_SELECT, disabled: true } },
+      },
+    });
+
+    if (!account || !(await bcrypt.compare(body.password, account.password))) {
+      throw new AppException(AuthError.INVALID_CREDENTIALS, HttpStatus.UNAUTHORIZED);
+    }
+    if (!account.trainer) {
+      throw new AppException(AuthError.PROFILE_MISSING, HttpStatus.FORBIDDEN);
+    }
+    const { disabled, ...trainer } = account.trainer;
+
+    if (disabled) {
+      throw new AppException(AuthError.PROFILE_DISABLED, HttpStatus.FORBIDDEN);
+    }
+    return this.returnTokens({ ...trainer, account: { email: account.email } });
+  }
+
+  async updateTokens(user: AuthUser): Promise<{ accessToken: string; refreshToken: string }> {
+    const role = user.role;
+
+    const exists = await this.prisma[role].findUnique({ where: { id: user.id } });
+
+    if (!exists) throw new AppException(AuthError.PROFILE_MISSING, HttpStatus.FORBIDDEN);
+
     const tokenPayload = { id: user.id, role: user.role };
     const accessToken = this.jwtService.sign(tokenPayload, {
       expiresIn: AccessToken.expiresIn,
@@ -163,8 +140,37 @@ export class AuthService {
       expiresIn: RefreshToken.expiresIn,
       secret: JwtSecrets.refresh,
     });
-    const transformed = { ...user };
+    return { accessToken, refreshToken };
+  }
 
-    return { user: transformed, accessToken, refreshToken };
+  private returnTokens<T extends CreatedTrainer | CreatedUser>(
+    user: T,
+  ): ReturnWithTokens<Omit<T, 'account'> & { email: string }> {
+    const { account, ...profile } = user;
+
+    const tokenPayload = { id: user.id, role: user.role };
+    const accessToken = this.jwtService.sign(tokenPayload, {
+      expiresIn: AccessToken.expiresIn,
+      secret: JwtSecrets.access,
+    });
+    const refreshToken = this.jwtService.sign(tokenPayload, {
+      expiresIn: RefreshToken.expiresIn,
+      secret: JwtSecrets.refresh,
+    });
+
+    return { user: { ...profile, email: account.email }, accessToken, refreshToken };
+  }
+
+  private mapCreateError(error: unknown): unknown {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      const fields = uniqueFields(error).join(',');
+      if (fields.includes('phone')) {
+        return new AppException(AuthError.PHONE_TAKEN, HttpStatus.CONFLICT);
+      }
+      if (fields.includes('email')) {
+        return new AppException(AuthError.EMAIL_TAKEN, HttpStatus.CONFLICT);
+      }
+    }
+    return error; // unknown errors go to the filter: logged, answered as INTERNAL_ERROR
   }
 }

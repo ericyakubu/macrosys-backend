@@ -27,25 +27,34 @@ export type AggregateTrainerSubscription = {
 export type TrainerSubscriptionMinAggregateOutputType = {
   id: string | null
   trainer_id: string | null
-  subscription_id: string | null
-  start: Date | null
-  end: Date | null
+  plan_id: string | null
+  status: $Enums.SubscriptionStatusEnum | null
+  starts_at: Date | null
+  ends_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type TrainerSubscriptionMaxAggregateOutputType = {
   id: string | null
   trainer_id: string | null
-  subscription_id: string | null
-  start: Date | null
-  end: Date | null
+  plan_id: string | null
+  status: $Enums.SubscriptionStatusEnum | null
+  starts_at: Date | null
+  ends_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type TrainerSubscriptionCountAggregateOutputType = {
   id: number
   trainer_id: number
-  subscription_id: number
-  start: number
-  end: number
+  plan_id: number
+  status: number
+  starts_at: number
+  ends_at: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
@@ -53,25 +62,34 @@ export type TrainerSubscriptionCountAggregateOutputType = {
 export type TrainerSubscriptionMinAggregateInputType = {
   id?: true
   trainer_id?: true
-  subscription_id?: true
-  start?: true
-  end?: true
+  plan_id?: true
+  status?: true
+  starts_at?: true
+  ends_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type TrainerSubscriptionMaxAggregateInputType = {
   id?: true
   trainer_id?: true
-  subscription_id?: true
-  start?: true
-  end?: true
+  plan_id?: true
+  status?: true
+  starts_at?: true
+  ends_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type TrainerSubscriptionCountAggregateInputType = {
   id?: true
   trainer_id?: true
-  subscription_id?: true
-  start?: true
-  end?: true
+  plan_id?: true
+  status?: true
+  starts_at?: true
+  ends_at?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -150,9 +168,12 @@ export type TrainerSubscriptionGroupByArgs<ExtArgs extends runtime.Types.Extensi
 export type TrainerSubscriptionGroupByOutputType = {
   id: string
   trainer_id: string
-  subscription_id: string
-  start: Date
-  end: Date
+  plan_id: string
+  status: $Enums.SubscriptionStatusEnum
+  starts_at: Date
+  ends_at: Date
+  created_at: Date
+  updated_at: Date
   _count: TrainerSubscriptionCountAggregateOutputType | null
   _min: TrainerSubscriptionMinAggregateOutputType | null
   _max: TrainerSubscriptionMaxAggregateOutputType | null
@@ -179,42 +200,54 @@ export type TrainerSubscriptionWhereInput = {
   NOT?: Prisma.TrainerSubscriptionWhereInput | Prisma.TrainerSubscriptionWhereInput[]
   id?: Prisma.StringFilter<"TrainerSubscription"> | string
   trainer_id?: Prisma.StringFilter<"TrainerSubscription"> | string
-  subscription_id?: Prisma.StringFilter<"TrainerSubscription"> | string
-  start?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
-  end?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
-  user?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
-  subscription?: Prisma.XOR<Prisma.TrainerPlanScalarRelationFilter, Prisma.TrainerPlanWhereInput>
+  plan_id?: Prisma.StringFilter<"TrainerSubscription"> | string
+  status?: Prisma.EnumSubscriptionStatusEnumFilter<"TrainerSubscription"> | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  ends_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  trainer?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
+  plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
 }
 
 export type TrainerSubscriptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   trainer_id?: Prisma.SortOrder
-  subscription_id?: Prisma.SortOrder
-  start?: Prisma.SortOrder
-  end?: Prisma.SortOrder
-  user?: Prisma.TrainerOrderByWithRelationInput
-  subscription?: Prisma.TrainerPlanOrderByWithRelationInput
+  plan_id?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  starts_at?: Prisma.SortOrder
+  ends_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  trainer?: Prisma.TrainerOrderByWithRelationInput
+  plan?: Prisma.PlanOrderByWithRelationInput
 }
 
 export type TrainerSubscriptionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  trainer_id?: string
   AND?: Prisma.TrainerSubscriptionWhereInput | Prisma.TrainerSubscriptionWhereInput[]
   OR?: Prisma.TrainerSubscriptionWhereInput[]
   NOT?: Prisma.TrainerSubscriptionWhereInput | Prisma.TrainerSubscriptionWhereInput[]
-  subscription_id?: Prisma.StringFilter<"TrainerSubscription"> | string
-  start?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
-  end?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
-  user?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
-  subscription?: Prisma.XOR<Prisma.TrainerPlanScalarRelationFilter, Prisma.TrainerPlanWhereInput>
-}, "id" | "trainer_id">
+  trainer_id?: Prisma.StringFilter<"TrainerSubscription"> | string
+  plan_id?: Prisma.StringFilter<"TrainerSubscription"> | string
+  status?: Prisma.EnumSubscriptionStatusEnumFilter<"TrainerSubscription"> | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  ends_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  trainer?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
+  plan?: Prisma.XOR<Prisma.PlanScalarRelationFilter, Prisma.PlanWhereInput>
+}, "id">
 
 export type TrainerSubscriptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   trainer_id?: Prisma.SortOrder
-  subscription_id?: Prisma.SortOrder
-  start?: Prisma.SortOrder
-  end?: Prisma.SortOrder
+  plan_id?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  starts_at?: Prisma.SortOrder
+  ends_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.TrainerSubscriptionCountOrderByAggregateInput
   _max?: Prisma.TrainerSubscriptionMaxOrderByAggregateInput
   _min?: Prisma.TrainerSubscriptionMinOrderByAggregateInput
@@ -226,63 +259,87 @@ export type TrainerSubscriptionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TrainerSubscriptionScalarWhereWithAggregatesInput | Prisma.TrainerSubscriptionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"TrainerSubscription"> | string
   trainer_id?: Prisma.StringWithAggregatesFilter<"TrainerSubscription"> | string
-  subscription_id?: Prisma.StringWithAggregatesFilter<"TrainerSubscription"> | string
-  start?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
-  end?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
+  plan_id?: Prisma.StringWithAggregatesFilter<"TrainerSubscription"> | string
+  status?: Prisma.EnumSubscriptionStatusEnumWithAggregatesFilter<"TrainerSubscription"> | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
+  ends_at?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"TrainerSubscription"> | Date | string
 }
 
 export type TrainerSubscriptionCreateInput = {
   id?: string
-  start: Date | string
-  end: Date | string
-  user: Prisma.TrainerCreateNestedOneWithoutSubscriptionInput
-  subscription: Prisma.TrainerPlanCreateNestedOneWithoutTrainersInput
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  trainer: Prisma.TrainerCreateNestedOneWithoutSubscriptionsInput
+  plan: Prisma.PlanCreateNestedOneWithoutTrainer_subscriptionsInput
 }
 
 export type TrainerSubscriptionUncheckedCreateInput = {
   id?: string
   trainer_id: string
-  subscription_id: string
-  start: Date | string
-  end: Date | string
+  plan_id: string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type TrainerSubscriptionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.TrainerUpdateOneRequiredWithoutSubscriptionNestedInput
-  subscription?: Prisma.TrainerPlanUpdateOneRequiredWithoutTrainersNestedInput
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trainer?: Prisma.TrainerUpdateOneRequiredWithoutSubscriptionsNestedInput
+  plan?: Prisma.PlanUpdateOneRequiredWithoutTrainer_subscriptionsNestedInput
 }
 
 export type TrainerSubscriptionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TrainerSubscriptionCreateManyInput = {
   id?: string
   trainer_id: string
-  subscription_id: string
-  start: Date | string
-  end: Date | string
+  plan_id: string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type TrainerSubscriptionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TrainerSubscriptionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TrainerSubscriptionListRelationFilter = {
@@ -295,147 +352,167 @@ export type TrainerSubscriptionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type TrainerSubscriptionNullableScalarRelationFilter = {
-  is?: Prisma.TrainerSubscriptionWhereInput | null
-  isNot?: Prisma.TrainerSubscriptionWhereInput | null
-}
-
 export type TrainerSubscriptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   trainer_id?: Prisma.SortOrder
-  subscription_id?: Prisma.SortOrder
-  start?: Prisma.SortOrder
-  end?: Prisma.SortOrder
+  plan_id?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  starts_at?: Prisma.SortOrder
+  ends_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type TrainerSubscriptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   trainer_id?: Prisma.SortOrder
-  subscription_id?: Prisma.SortOrder
-  start?: Prisma.SortOrder
-  end?: Prisma.SortOrder
+  plan_id?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  starts_at?: Prisma.SortOrder
+  ends_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type TrainerSubscriptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   trainer_id?: Prisma.SortOrder
-  subscription_id?: Prisma.SortOrder
-  start?: Prisma.SortOrder
-  end?: Prisma.SortOrder
+  plan_id?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  starts_at?: Prisma.SortOrder
+  ends_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
-export type TrainerSubscriptionCreateNestedManyWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput> | Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput[]
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput[]
-  createMany?: Prisma.TrainerSubscriptionCreateManySubscriptionInputEnvelope
+export type TrainerSubscriptionCreateNestedManyWithoutTrainerInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput> | Prisma.TrainerSubscriptionCreateWithoutTrainerInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyTrainerInputEnvelope
   connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
 }
 
-export type TrainerSubscriptionUncheckedCreateNestedManyWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput> | Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput[]
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput[]
-  createMany?: Prisma.TrainerSubscriptionCreateManySubscriptionInputEnvelope
+export type TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput> | Prisma.TrainerSubscriptionCreateWithoutTrainerInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyTrainerInputEnvelope
   connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
 }
 
-export type TrainerSubscriptionUpdateManyWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput> | Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput[]
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput[]
-  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutSubscriptionInput[]
-  createMany?: Prisma.TrainerSubscriptionCreateManySubscriptionInputEnvelope
+export type TrainerSubscriptionUpdateManyWithoutTrainerNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput> | Prisma.TrainerSubscriptionCreateWithoutTrainerInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput[]
+  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutTrainerInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutTrainerInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyTrainerInputEnvelope
   set?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   disconnect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   delete?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
-  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutSubscriptionInput[]
-  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutSubscriptionInput[]
+  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutTrainerInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutTrainerInput[]
+  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutTrainerInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutTrainerInput[]
   deleteMany?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
 }
 
-export type TrainerSubscriptionUncheckedUpdateManyWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput> | Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput[]
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput[]
-  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutSubscriptionInput[]
-  createMany?: Prisma.TrainerSubscriptionCreateManySubscriptionInputEnvelope
+export type TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput> | Prisma.TrainerSubscriptionCreateWithoutTrainerInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutTrainerInput[]
+  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutTrainerInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutTrainerInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyTrainerInputEnvelope
   set?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   disconnect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   delete?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
   connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
-  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutSubscriptionInput[]
-  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutSubscriptionInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutSubscriptionInput[]
+  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutTrainerInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutTrainerInput[]
+  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutTrainerInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutTrainerInput[]
   deleteMany?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
 }
 
-export type TrainerSubscriptionCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
+export type TrainerSubscriptionCreateNestedManyWithoutPlanInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput> | Prisma.TrainerSubscriptionCreateWithoutPlanInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyPlanInputEnvelope
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
 }
 
-export type TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
+export type TrainerSubscriptionUncheckedCreateNestedManyWithoutPlanInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput> | Prisma.TrainerSubscriptionCreateWithoutPlanInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyPlanInputEnvelope
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
 }
 
-export type TrainerSubscriptionUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
-  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
+export type TrainerSubscriptionUpdateManyWithoutPlanNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput> | Prisma.TrainerSubscriptionCreateWithoutPlanInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput[]
+  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutPlanInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutPlanInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyPlanInputEnvelope
+  set?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  disconnect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  delete?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutPlanInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutPlanInput[]
+  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutPlanInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutPlanInput[]
+  deleteMany?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
 }
 
-export type TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutUserInput
-  upsert?: Prisma.TrainerSubscriptionUpsertWithoutUserInput
-  disconnect?: Prisma.TrainerSubscriptionWhereInput | boolean
-  delete?: Prisma.TrainerSubscriptionWhereInput | boolean
-  connect?: Prisma.TrainerSubscriptionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput, Prisma.TrainerSubscriptionUpdateWithoutUserInput>, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
+export type TrainerSubscriptionUncheckedUpdateManyWithoutPlanNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput> | Prisma.TrainerSubscriptionCreateWithoutPlanInput[] | Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput[]
+  connectOrCreate?: Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput | Prisma.TrainerSubscriptionCreateOrConnectWithoutPlanInput[]
+  upsert?: Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutPlanInput | Prisma.TrainerSubscriptionUpsertWithWhereUniqueWithoutPlanInput[]
+  createMany?: Prisma.TrainerSubscriptionCreateManyPlanInputEnvelope
+  set?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  disconnect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  delete?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  connect?: Prisma.TrainerSubscriptionWhereUniqueInput | Prisma.TrainerSubscriptionWhereUniqueInput[]
+  update?: Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutPlanInput | Prisma.TrainerSubscriptionUpdateWithWhereUniqueWithoutPlanInput[]
+  updateMany?: Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutPlanInput | Prisma.TrainerSubscriptionUpdateManyWithWhereWithoutPlanInput[]
+  deleteMany?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
 }
 
-export type TrainerSubscriptionCreateWithoutSubscriptionInput = {
+export type TrainerSubscriptionCreateWithoutTrainerInput = {
   id?: string
-  start: Date | string
-  end: Date | string
-  user: Prisma.TrainerCreateNestedOneWithoutSubscriptionInput
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  plan: Prisma.PlanCreateNestedOneWithoutTrainer_subscriptionsInput
 }
 
-export type TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput = {
+export type TrainerSubscriptionUncheckedCreateWithoutTrainerInput = {
   id?: string
-  trainer_id: string
-  start: Date | string
-  end: Date | string
+  plan_id: string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
-export type TrainerSubscriptionCreateOrConnectWithoutSubscriptionInput = {
+export type TrainerSubscriptionCreateOrConnectWithoutTrainerInput = {
   where: Prisma.TrainerSubscriptionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput>
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput>
 }
 
-export type TrainerSubscriptionCreateManySubscriptionInputEnvelope = {
-  data: Prisma.TrainerSubscriptionCreateManySubscriptionInput | Prisma.TrainerSubscriptionCreateManySubscriptionInput[]
+export type TrainerSubscriptionCreateManyTrainerInputEnvelope = {
+  data: Prisma.TrainerSubscriptionCreateManyTrainerInput | Prisma.TrainerSubscriptionCreateManyTrainerInput[]
   skipDuplicates?: boolean
 }
 
-export type TrainerSubscriptionUpsertWithWhereUniqueWithoutSubscriptionInput = {
+export type TrainerSubscriptionUpsertWithWhereUniqueWithoutTrainerInput = {
   where: Prisma.TrainerSubscriptionWhereUniqueInput
-  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutSubscriptionInput>
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutSubscriptionInput>
+  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutTrainerInput>
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutTrainerInput>
 }
 
-export type TrainerSubscriptionUpdateWithWhereUniqueWithoutSubscriptionInput = {
+export type TrainerSubscriptionUpdateWithWhereUniqueWithoutTrainerInput = {
   where: Prisma.TrainerSubscriptionWhereUniqueInput
-  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutSubscriptionInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutSubscriptionInput>
+  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutTrainerInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutTrainerInput>
 }
 
-export type TrainerSubscriptionUpdateManyWithWhereWithoutSubscriptionInput = {
+export type TrainerSubscriptionUpdateManyWithWhereWithoutTrainerInput = {
   where: Prisma.TrainerSubscriptionScalarWhereInput
-  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateManyMutationInput, Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutSubscriptionInput>
+  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateManyMutationInput, Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerInput>
 }
 
 export type TrainerSubscriptionScalarWhereInput = {
@@ -444,81 +521,138 @@ export type TrainerSubscriptionScalarWhereInput = {
   NOT?: Prisma.TrainerSubscriptionScalarWhereInput | Prisma.TrainerSubscriptionScalarWhereInput[]
   id?: Prisma.StringFilter<"TrainerSubscription"> | string
   trainer_id?: Prisma.StringFilter<"TrainerSubscription"> | string
-  subscription_id?: Prisma.StringFilter<"TrainerSubscription"> | string
-  start?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
-  end?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  plan_id?: Prisma.StringFilter<"TrainerSubscription"> | string
+  status?: Prisma.EnumSubscriptionStatusEnumFilter<"TrainerSubscription"> | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  ends_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"TrainerSubscription"> | Date | string
 }
 
-export type TrainerSubscriptionCreateWithoutUserInput = {
+export type TrainerSubscriptionCreateWithoutPlanInput = {
   id?: string
-  start: Date | string
-  end: Date | string
-  subscription: Prisma.TrainerPlanCreateNestedOneWithoutTrainersInput
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  trainer: Prisma.TrainerCreateNestedOneWithoutSubscriptionsInput
 }
 
-export type TrainerSubscriptionUncheckedCreateWithoutUserInput = {
-  id?: string
-  subscription_id: string
-  start: Date | string
-  end: Date | string
-}
-
-export type TrainerSubscriptionCreateOrConnectWithoutUserInput = {
-  where: Prisma.TrainerSubscriptionWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-}
-
-export type TrainerSubscriptionUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutUserInput>
-  where?: Prisma.TrainerSubscriptionWhereInput
-}
-
-export type TrainerSubscriptionUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.TrainerSubscriptionWhereInput
-  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutUserInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutUserInput>
-}
-
-export type TrainerSubscriptionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerPlanUpdateOneRequiredWithoutTrainersNestedInput
-}
-
-export type TrainerSubscriptionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  subscription_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type TrainerSubscriptionCreateManySubscriptionInput = {
+export type TrainerSubscriptionUncheckedCreateWithoutPlanInput = {
   id?: string
   trainer_id: string
-  start: Date | string
-  end: Date | string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
-export type TrainerSubscriptionUpdateWithoutSubscriptionInput = {
+export type TrainerSubscriptionCreateOrConnectWithoutPlanInput = {
+  where: Prisma.TrainerSubscriptionWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput>
+}
+
+export type TrainerSubscriptionCreateManyPlanInputEnvelope = {
+  data: Prisma.TrainerSubscriptionCreateManyPlanInput | Prisma.TrainerSubscriptionCreateManyPlanInput[]
+  skipDuplicates?: boolean
+}
+
+export type TrainerSubscriptionUpsertWithWhereUniqueWithoutPlanInput = {
+  where: Prisma.TrainerSubscriptionWhereUniqueInput
+  update: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutPlanInput>
+  create: Prisma.XOR<Prisma.TrainerSubscriptionCreateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedCreateWithoutPlanInput>
+}
+
+export type TrainerSubscriptionUpdateWithWhereUniqueWithoutPlanInput = {
+  where: Prisma.TrainerSubscriptionWhereUniqueInput
+  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateWithoutPlanInput, Prisma.TrainerSubscriptionUncheckedUpdateWithoutPlanInput>
+}
+
+export type TrainerSubscriptionUpdateManyWithWhereWithoutPlanInput = {
+  where: Prisma.TrainerSubscriptionScalarWhereInput
+  data: Prisma.XOR<Prisma.TrainerSubscriptionUpdateManyMutationInput, Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutPlanInput>
+}
+
+export type TrainerSubscriptionCreateManyTrainerInput = {
+  id?: string
+  plan_id: string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type TrainerSubscriptionUpdateWithoutTrainerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.TrainerUpdateOneRequiredWithoutSubscriptionNestedInput
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan?: Prisma.PlanUpdateOneRequiredWithoutTrainer_subscriptionsNestedInput
 }
 
-export type TrainerSubscriptionUncheckedUpdateWithoutSubscriptionInput = {
+export type TrainerSubscriptionUncheckedUpdateWithoutTrainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TrainerSubscriptionUncheckedUpdateManyWithoutTrainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TrainerSubscriptionCreateManyPlanInput = {
+  id?: string
+  trainer_id: string
+  status?: $Enums.SubscriptionStatusEnum
+  starts_at: Date | string
+  ends_at: Date | string
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type TrainerSubscriptionUpdateWithoutPlanInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trainer?: Prisma.TrainerUpdateOneRequiredWithoutSubscriptionsNestedInput
+}
+
+export type TrainerSubscriptionUncheckedUpdateWithoutPlanInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type TrainerSubscriptionUncheckedUpdateManyWithoutSubscriptionInput = {
+export type TrainerSubscriptionUncheckedUpdateManyWithoutPlanInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumSubscriptionStatusEnumFieldUpdateOperationsInput | $Enums.SubscriptionStatusEnum
+  starts_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ends_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -526,67 +660,82 @@ export type TrainerSubscriptionUncheckedUpdateManyWithoutSubscriptionInput = {
 export type TrainerSubscriptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   trainer_id?: boolean
-  subscription_id?: boolean
-  start?: boolean
-  end?: boolean
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  plan_id?: boolean
+  status?: boolean
+  starts_at?: boolean
+  ends_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainerSubscription"]>
 
 export type TrainerSubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   trainer_id?: boolean
-  subscription_id?: boolean
-  start?: boolean
-  end?: boolean
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  plan_id?: boolean
+  status?: boolean
+  starts_at?: boolean
+  ends_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainerSubscription"]>
 
 export type TrainerSubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   trainer_id?: boolean
-  subscription_id?: boolean
-  start?: boolean
-  end?: boolean
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  plan_id?: boolean
+  status?: boolean
+  starts_at?: boolean
+  ends_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainerSubscription"]>
 
 export type TrainerSubscriptionSelectScalar = {
   id?: boolean
   trainer_id?: boolean
-  subscription_id?: boolean
-  start?: boolean
-  end?: boolean
+  plan_id?: boolean
+  status?: boolean
+  starts_at?: boolean
+  ends_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type TrainerSubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainer_id" | "subscription_id" | "start" | "end", ExtArgs["result"]["trainerSubscription"]>
+export type TrainerSubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainer_id" | "plan_id" | "status" | "starts_at" | "ends_at" | "created_at" | "updated_at", ExtArgs["result"]["trainerSubscription"]>
 export type TrainerSubscriptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }
 export type TrainerSubscriptionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }
 export type TrainerSubscriptionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.TrainerPlanDefaultArgs<ExtArgs>
+  trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
+  plan?: boolean | Prisma.PlanDefaultArgs<ExtArgs>
 }
 
 export type $TrainerSubscriptionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TrainerSubscription"
   objects: {
-    user: Prisma.$TrainerPayload<ExtArgs>
-    subscription: Prisma.$TrainerPlanPayload<ExtArgs>
+    trainer: Prisma.$TrainerPayload<ExtArgs>
+    plan: Prisma.$PlanPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     trainer_id: string
-    subscription_id: string
-    start: Date
-    end: Date
+    plan_id: string
+    status: $Enums.SubscriptionStatusEnum
+    starts_at: Date
+    ends_at: Date
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["trainerSubscription"]>
   composites: {}
 }
@@ -981,8 +1130,8 @@ readonly fields: TrainerSubscriptionFieldRefs;
  */
 export interface Prisma__TrainerSubscriptionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.TrainerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TrainerDefaultArgs<ExtArgs>>): Prisma.Prisma__TrainerClient<runtime.Types.Result.GetResult<Prisma.$TrainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subscription<T extends Prisma.TrainerPlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TrainerPlanDefaultArgs<ExtArgs>>): Prisma.Prisma__TrainerPlanClient<runtime.Types.Result.GetResult<Prisma.$TrainerPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  trainer<T extends Prisma.TrainerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TrainerDefaultArgs<ExtArgs>>): Prisma.Prisma__TrainerClient<runtime.Types.Result.GetResult<Prisma.$TrainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  plan<T extends Prisma.PlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanDefaultArgs<ExtArgs>>): Prisma.Prisma__PlanClient<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1014,9 +1163,12 @@ export interface Prisma__TrainerSubscriptionClient<T, Null = never, ExtArgs exte
 export interface TrainerSubscriptionFieldRefs {
   readonly id: Prisma.FieldRef<"TrainerSubscription", 'String'>
   readonly trainer_id: Prisma.FieldRef<"TrainerSubscription", 'String'>
-  readonly subscription_id: Prisma.FieldRef<"TrainerSubscription", 'String'>
-  readonly start: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
-  readonly end: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
+  readonly plan_id: Prisma.FieldRef<"TrainerSubscription", 'String'>
+  readonly status: Prisma.FieldRef<"TrainerSubscription", 'SubscriptionStatusEnum'>
+  readonly starts_at: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
+  readonly ends_at: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
+  readonly created_at: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"TrainerSubscription", 'DateTime'>
 }
     
 

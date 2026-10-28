@@ -12,6 +12,8 @@ export const Rate_Limit_Time: number = 1000 * 60 * 60; // 1 hour
 
 export const Rate_Limit_Message_Name: string = 'rateLimitMessage';
 
+export const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
+
 export const AccessToken: Cookie = {
   name: 'access_token',
   expiresIn: '6h',
@@ -35,3 +37,12 @@ export const AuthErrors = {
   //
   extractingUser: 'Error occurred while extracting user from db',
 } as const;
+
+export const MACRO_FIELDS = [
+  'calories',
+  'protein',
+  'fat',
+  'carbohydrates',
+  'fiber',
+  'sugar',
+] as const;

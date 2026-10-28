@@ -471,34 +471,6 @@ export type AdminScalarRelationFilter = {
   isNot?: Prisma.AdminWhereInput
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type EnumLanguageEnumFieldUpdateOperationsInput = {
-  set?: $Enums.LanguageEnum
-}
-
-export type EnumRoleEnumFieldUpdateOperationsInput = {
-  set?: $Enums.RoleEnum
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type NullableEnumGenderEnumFieldUpdateOperationsInput = {
-  set?: $Enums.GenderEnum | null
-}
-
 export type AdminCreateNestedOneWithoutCredentialsInput = {
   create?: Prisma.XOR<Prisma.AdminCreateWithoutCredentialsInput, Prisma.AdminUncheckedCreateWithoutCredentialsInput>
   connectOrCreate?: Prisma.AdminCreateOrConnectWithoutCredentialsInput

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
+import { validationExceptionFactory } from '../errors/validation-exception.factory';
 
 @Injectable()
 export class GlobalValidationPipe extends ValidationPipe {
@@ -11,6 +12,7 @@ export class GlobalValidationPipe extends ValidationPipe {
       forbidNonWhitelisted: true, // Throw error if non-whitelisted properties are passed
       // transformOptions: { enableImplicitConversion: true }, // Enable implicit conversion for certain types
       // skipMissingProperties: false, // Skip validation for missing properties
+      exceptionFactory: validationExceptionFactory,
     });
   }
 }

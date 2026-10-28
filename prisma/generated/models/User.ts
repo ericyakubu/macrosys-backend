@@ -26,15 +26,17 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null
+  account_id: string | null
   name: string | null
   second_name: string | null
   lastname: string | null
-  email: string | null
   phone: string | null
   birthday: Date | null
-  role: $Enums.RoleEnum | null
   gender: $Enums.GenderEnum | null
+  activity_level: $Enums.ActivityLevelEnum | null
   language: $Enums.LanguageEnum | null
+  role: $Enums.RoleEnum | null
+  timezone: string | null
   disabled: boolean | null
   disabled_at: Date | null
   created_at: Date | null
@@ -43,15 +45,17 @@ export type UserMinAggregateOutputType = {
 
 export type UserMaxAggregateOutputType = {
   id: string | null
+  account_id: string | null
   name: string | null
   second_name: string | null
   lastname: string | null
-  email: string | null
   phone: string | null
   birthday: Date | null
-  role: $Enums.RoleEnum | null
   gender: $Enums.GenderEnum | null
+  activity_level: $Enums.ActivityLevelEnum | null
   language: $Enums.LanguageEnum | null
+  role: $Enums.RoleEnum | null
+  timezone: string | null
   disabled: boolean | null
   disabled_at: Date | null
   created_at: Date | null
@@ -60,15 +64,17 @@ export type UserMaxAggregateOutputType = {
 
 export type UserCountAggregateOutputType = {
   id: number
+  account_id: number
   name: number
   second_name: number
   lastname: number
-  email: number
   phone: number
   birthday: number
-  role: number
   gender: number
+  activity_level: number
   language: number
+  role: number
+  timezone: number
   disabled: number
   disabled_at: number
   created_at: number
@@ -79,15 +85,17 @@ export type UserCountAggregateOutputType = {
 
 export type UserMinAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
   birthday?: true
-  role?: true
   gender?: true
+  activity_level?: true
   language?: true
+  role?: true
+  timezone?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -96,15 +104,17 @@ export type UserMinAggregateInputType = {
 
 export type UserMaxAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
   birthday?: true
-  role?: true
   gender?: true
+  activity_level?: true
   language?: true
+  role?: true
+  timezone?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -113,15 +123,17 @@ export type UserMaxAggregateInputType = {
 
 export type UserCountAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
   birthday?: true
-  role?: true
   gender?: true
+  activity_level?: true
   language?: true
+  role?: true
+  timezone?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -203,15 +215,17 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: string
+  account_id: string
   name: string | null
   second_name: string | null
   lastname: string | null
-  email: string
   phone: string | null
   birthday: Date | null
-  role: $Enums.RoleEnum
   gender: $Enums.GenderEnum | null
+  activity_level: $Enums.ActivityLevelEnum | null
   language: $Enums.LanguageEnum
+  role: $Enums.RoleEnum
+  timezone: string | null
   disabled: boolean
   disabled_at: Date | null
   created_at: Date
@@ -241,59 +255,71 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
+  account_id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   second_name?: Prisma.StringNullableFilter<"User"> | string | null
   lastname?: Prisma.StringNullableFilter<"User"> | string | null
-  email?: Prisma.StringFilter<"User"> | string
   phone?: Prisma.StringNullableFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  role?: Prisma.EnumRoleEnumFilter<"User"> | $Enums.RoleEnum
   gender?: Prisma.EnumGenderEnumNullableFilter<"User"> | $Enums.GenderEnum | null
+  activity_level?: Prisma.EnumActivityLevelEnumNullableFilter<"User"> | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFilter<"User"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFilter<"User"> | $Enums.RoleEnum
+  timezone?: Prisma.StringNullableFilter<"User"> | string | null
   disabled?: Prisma.BoolFilter<"User"> | boolean
   disabled_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  credentials?: Prisma.XOR<Prisma.UserCredentialsNullableScalarRelationFilter, Prisma.UserCredentialsWhereInput> | null
-  subscription?: Prisma.XOR<Prisma.UserSubscriptionNullableScalarRelationFilter, Prisma.UserSubscriptionWhereInput> | null
-  goals?: Prisma.UserGoalListRelationFilter
-  diet_plan?: Prisma.XOR<Prisma.UserDietPlanNullableScalarRelationFilter, Prisma.UserDietPlanWhereInput> | null
-  recipes?: Prisma.UserRecipeListRelationFilter
-  products?: Prisma.UserProductListRelationFilter
-  measurements?: Prisma.UserMeasurementsListRelationFilter
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  subscriptions?: Prisma.UserSubscriptionListRelationFilter
+  products?: Prisma.ProductListRelationFilter
+  recipes?: Prisma.RecipeListRelationFilter
+  favorite_products?: Prisma.FavoriteProductListRelationFilter
+  favorite_recipes?: Prisma.FavoriteRecipeListRelationFilter
+  measurements?: Prisma.MeasurementListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
+  nutrition_targets?: Prisma.NutritionTargetListRelationFilter
+  food_log?: Prisma.FoodLogEntryListRelationFilter
+  water_log?: Prisma.WaterLogEntryListRelationFilter
   trainer_links?: Prisma.ClientAssignmentListRelationFilter
-  recipe_tags?: Prisma.UserRecipeTagListRelationFilter
+  meal_plans?: Prisma.MealPlanAssignmentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
   lastname?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   birthday?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  activity_level?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  credentials?: Prisma.UserCredentialsOrderByWithRelationInput
-  subscription?: Prisma.UserSubscriptionOrderByWithRelationInput
-  goals?: Prisma.UserGoalOrderByRelationAggregateInput
-  diet_plan?: Prisma.UserDietPlanOrderByWithRelationInput
-  recipes?: Prisma.UserRecipeOrderByRelationAggregateInput
-  products?: Prisma.UserProductOrderByRelationAggregateInput
-  measurements?: Prisma.UserMeasurementsOrderByRelationAggregateInput
+  account?: Prisma.AccountOrderByWithRelationInput
+  subscriptions?: Prisma.UserSubscriptionOrderByRelationAggregateInput
+  products?: Prisma.ProductOrderByRelationAggregateInput
+  recipes?: Prisma.RecipeOrderByRelationAggregateInput
+  favorite_products?: Prisma.FavoriteProductOrderByRelationAggregateInput
+  favorite_recipes?: Prisma.FavoriteRecipeOrderByRelationAggregateInput
+  measurements?: Prisma.MeasurementOrderByRelationAggregateInput
+  goals?: Prisma.GoalOrderByRelationAggregateInput
+  nutrition_targets?: Prisma.NutritionTargetOrderByRelationAggregateInput
+  food_log?: Prisma.FoodLogEntryOrderByRelationAggregateInput
+  water_log?: Prisma.WaterLogEntryOrderByRelationAggregateInput
   trainer_links?: Prisma.ClientAssignmentOrderByRelationAggregateInput
-  recipe_tags?: Prisma.UserRecipeTagOrderByRelationAggregateInput
+  meal_plans?: Prisma.MealPlanAssignmentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
+  account_id?: string
   phone?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
@@ -302,35 +328,43 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   second_name?: Prisma.StringNullableFilter<"User"> | string | null
   lastname?: Prisma.StringNullableFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  role?: Prisma.EnumRoleEnumFilter<"User"> | $Enums.RoleEnum
   gender?: Prisma.EnumGenderEnumNullableFilter<"User"> | $Enums.GenderEnum | null
+  activity_level?: Prisma.EnumActivityLevelEnumNullableFilter<"User"> | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFilter<"User"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFilter<"User"> | $Enums.RoleEnum
+  timezone?: Prisma.StringNullableFilter<"User"> | string | null
   disabled?: Prisma.BoolFilter<"User"> | boolean
   disabled_at?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"User"> | Date | string
-  credentials?: Prisma.XOR<Prisma.UserCredentialsNullableScalarRelationFilter, Prisma.UserCredentialsWhereInput> | null
-  subscription?: Prisma.XOR<Prisma.UserSubscriptionNullableScalarRelationFilter, Prisma.UserSubscriptionWhereInput> | null
-  goals?: Prisma.UserGoalListRelationFilter
-  diet_plan?: Prisma.XOR<Prisma.UserDietPlanNullableScalarRelationFilter, Prisma.UserDietPlanWhereInput> | null
-  recipes?: Prisma.UserRecipeListRelationFilter
-  products?: Prisma.UserProductListRelationFilter
-  measurements?: Prisma.UserMeasurementsListRelationFilter
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
+  subscriptions?: Prisma.UserSubscriptionListRelationFilter
+  products?: Prisma.ProductListRelationFilter
+  recipes?: Prisma.RecipeListRelationFilter
+  favorite_products?: Prisma.FavoriteProductListRelationFilter
+  favorite_recipes?: Prisma.FavoriteRecipeListRelationFilter
+  measurements?: Prisma.MeasurementListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
+  nutrition_targets?: Prisma.NutritionTargetListRelationFilter
+  food_log?: Prisma.FoodLogEntryListRelationFilter
+  water_log?: Prisma.WaterLogEntryListRelationFilter
   trainer_links?: Prisma.ClientAssignmentListRelationFilter
-  recipe_tags?: Prisma.UserRecipeTagListRelationFilter
-}, "id" | "email" | "phone">
+  meal_plans?: Prisma.MealPlanAssignmentListRelationFilter
+}, "id" | "account_id" | "phone">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
   lastname?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   birthday?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  activity_level?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -345,15 +379,17 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
+  account_id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   second_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   lastname?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  role?: Prisma.EnumRoleEnumWithAggregatesFilter<"User"> | $Enums.RoleEnum
   gender?: Prisma.EnumGenderEnumNullableWithAggregatesFilter<"User"> | $Enums.GenderEnum | null
+  activity_level?: Prisma.EnumActivityLevelEnumNullableWithAggregatesFilter<"User"> | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumWithAggregatesFilter<"User"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumWithAggregatesFilter<"User"> | $Enums.RoleEnum
+  timezone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   disabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   disabled_at?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -365,51 +401,61 @@ export type UserCreateInput = {
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -417,64 +463,76 @@ export type UserUpdateInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
@@ -486,12 +544,13 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -500,37 +559,41 @@ export type UserUpdateManyMutationInput = {
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  activity_level?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -539,15 +602,17 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  activity_level?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -556,19 +621,188 @@ export type UserMaxOrderByAggregateInput = {
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  activity_level?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
+export type UserCreateNestedOneWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccountInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUncheckedCreateNestedOneWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccountInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccountInput
+  upsert?: Prisma.UserUpsertWithoutAccountInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccountInput, Prisma.UserUpdateWithoutAccountInput>, Prisma.UserUncheckedUpdateWithoutAccountInput>
+}
+
+export type UserUncheckedUpdateOneWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAccountInput
+  upsert?: Prisma.UserUpsertWithoutAccountInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAccountInput, Prisma.UserUpdateWithoutAccountInput>, Prisma.UserUncheckedUpdateWithoutAccountInput>
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableEnumGenderEnumFieldUpdateOperationsInput = {
+  set?: $Enums.GenderEnum | null
+}
+
+export type NullableEnumActivityLevelEnumFieldUpdateOperationsInput = {
+  set?: $Enums.ActivityLevelEnum | null
+}
+
+export type EnumLanguageEnumFieldUpdateOperationsInput = {
+  set?: $Enums.LanguageEnum
+}
+
+export type EnumRoleEnumFieldUpdateOperationsInput = {
+  set?: $Enums.RoleEnum
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
+export type UserCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.UserUpsertWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.UserUpdateWithoutSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type UserCreateNestedOneWithoutProductsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProductsInput, Prisma.UserUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProductsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProductsInput, Prisma.UserUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProductsInput
+  upsert?: Prisma.UserUpsertWithoutProductsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProductsInput, Prisma.UserUpdateWithoutProductsInput>, Prisma.UserUncheckedUpdateWithoutProductsInput>
+}
+
+export type UserCreateNestedOneWithoutRecipesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipesInput, Prisma.UserUncheckedCreateWithoutRecipesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRecipesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipesInput, Prisma.UserUncheckedCreateWithoutRecipesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipesInput
+  upsert?: Prisma.UserUpsertWithoutRecipesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecipesInput, Prisma.UserUpdateWithoutRecipesInput>, Prisma.UserUncheckedUpdateWithoutRecipesInput>
+}
+
+export type UserCreateNestedOneWithoutFavorite_productsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavorite_productsInput, Prisma.UserUncheckedCreateWithoutFavorite_productsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavorite_productsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFavorite_productsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavorite_productsInput, Prisma.UserUncheckedCreateWithoutFavorite_productsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavorite_productsInput
+  upsert?: Prisma.UserUpsertWithoutFavorite_productsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFavorite_productsInput, Prisma.UserUpdateWithoutFavorite_productsInput>, Prisma.UserUncheckedUpdateWithoutFavorite_productsInput>
+}
+
+export type UserCreateNestedOneWithoutFavorite_recipesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavorite_recipesInput, Prisma.UserUncheckedCreateWithoutFavorite_recipesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavorite_recipesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFavorite_recipesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavorite_recipesInput, Prisma.UserUncheckedCreateWithoutFavorite_recipesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavorite_recipesInput
+  upsert?: Prisma.UserUpsertWithoutFavorite_recipesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFavorite_recipesInput, Prisma.UserUpdateWithoutFavorite_recipesInput>, Prisma.UserUncheckedUpdateWithoutFavorite_recipesInput>
+}
+
+export type UserCreateNestedOneWithoutFood_logInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFood_logInput, Prisma.UserUncheckedCreateWithoutFood_logInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFood_logInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFood_logNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFood_logInput, Prisma.UserUncheckedCreateWithoutFood_logInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFood_logInput
+  upsert?: Prisma.UserUpsertWithoutFood_logInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFood_logInput, Prisma.UserUpdateWithoutFood_logInput>, Prisma.UserUncheckedUpdateWithoutFood_logInput>
+}
+
+export type UserCreateNestedOneWithoutWater_logInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWater_logInput, Prisma.UserUncheckedCreateWithoutWater_logInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWater_logInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutWater_logNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWater_logInput, Prisma.UserUncheckedCreateWithoutWater_logInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWater_logInput
+  upsert?: Prisma.UserUpsertWithoutWater_logInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWater_logInput, Prisma.UserUpdateWithoutWater_logInput>, Prisma.UserUncheckedUpdateWithoutWater_logInput>
 }
 
 export type UserCreateNestedOneWithoutTrainer_linksInput = {
@@ -585,46 +819,18 @@ export type UserUpdateOneRequiredWithoutTrainer_linksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTrainer_linksInput, Prisma.UserUpdateWithoutTrainer_linksInput>, Prisma.UserUncheckedUpdateWithoutTrainer_linksInput>
 }
 
-export type UserCreateNestedOneWithoutCredentialsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCredentialsInput, Prisma.UserUncheckedCreateWithoutCredentialsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCredentialsInput
+export type UserCreateNestedOneWithoutMeal_plansInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMeal_plansInput, Prisma.UserUncheckedCreateWithoutMeal_plansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMeal_plansInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutCredentialsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCredentialsInput, Prisma.UserUncheckedCreateWithoutCredentialsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCredentialsInput
-  upsert?: Prisma.UserUpsertWithoutCredentialsInput
+export type UserUpdateOneRequiredWithoutMeal_plansNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMeal_plansInput, Prisma.UserUncheckedCreateWithoutMeal_plansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMeal_plansInput
+  upsert?: Prisma.UserUpsertWithoutMeal_plansInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCredentialsInput, Prisma.UserUpdateWithoutCredentialsInput>, Prisma.UserUncheckedUpdateWithoutCredentialsInput>
-}
-
-export type UserCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.UserUpsertWithoutSubscriptionInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.UserUpdateWithoutSubscriptionInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
-}
-
-export type UserCreateNestedOneWithoutDiet_planInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutDiet_planInput, Prisma.UserUncheckedCreateWithoutDiet_planInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiet_planInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutDiet_planNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutDiet_planInput, Prisma.UserUncheckedCreateWithoutDiet_planInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiet_planInput
-  upsert?: Prisma.UserUpsertWithoutDiet_planInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDiet_planInput, Prisma.UserUpdateWithoutDiet_planInput>, Prisma.UserUncheckedUpdateWithoutDiet_planInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMeal_plansInput, Prisma.UserUpdateWithoutMeal_plansInput>, Prisma.UserUncheckedUpdateWithoutMeal_plansInput>
 }
 
 export type UserCreateNestedOneWithoutMeasurementsInput = {
@@ -655,742 +861,290 @@ export type UserUpdateOneRequiredWithoutGoalsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoalsInput, Prisma.UserUpdateWithoutGoalsInput>, Prisma.UserUncheckedUpdateWithoutGoalsInput>
 }
 
-export type UserCreateNestedOneWithoutProductsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProductsInput, Prisma.UserUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProductsInput
+export type UserCreateNestedOneWithoutNutrition_targetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNutrition_targetsInput, Prisma.UserUncheckedCreateWithoutNutrition_targetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNutrition_targetsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProductsInput, Prisma.UserUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProductsInput
-  upsert?: Prisma.UserUpsertWithoutProductsInput
+export type UserUpdateOneRequiredWithoutNutrition_targetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNutrition_targetsInput, Prisma.UserUncheckedCreateWithoutNutrition_targetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNutrition_targetsInput
+  upsert?: Prisma.UserUpsertWithoutNutrition_targetsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProductsInput, Prisma.UserUpdateWithoutProductsInput>, Prisma.UserUncheckedUpdateWithoutProductsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNutrition_targetsInput, Prisma.UserUpdateWithoutNutrition_targetsInput>, Prisma.UserUncheckedUpdateWithoutNutrition_targetsInput>
 }
 
-export type UserCreateNestedOneWithoutRecipesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipesInput, Prisma.UserUncheckedCreateWithoutRecipesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutRecipesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipesInput, Prisma.UserUncheckedCreateWithoutRecipesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipesInput
-  upsert?: Prisma.UserUpsertWithoutRecipesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecipesInput, Prisma.UserUpdateWithoutRecipesInput>, Prisma.UserUncheckedUpdateWithoutRecipesInput>
-}
-
-export type UserCreateNestedOneWithoutRecipe_tagsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipe_tagsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutRecipe_tagsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecipe_tagsInput
-  upsert?: Prisma.UserUpsertWithoutRecipe_tagsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecipe_tagsInput, Prisma.UserUpdateWithoutRecipe_tagsInput>, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
-}
-
-export type UserCreateWithoutTrainer_linksInput = {
+export type UserCreateWithoutAccountInput = {
   id?: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTrainer_linksInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTrainer_linksInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTrainer_linksInput, Prisma.UserUncheckedCreateWithoutTrainer_linksInput>
-}
-
-export type UserUpsertWithoutTrainer_linksInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTrainer_linksInput, Prisma.UserUncheckedUpdateWithoutTrainer_linksInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTrainer_linksInput, Prisma.UserUncheckedCreateWithoutTrainer_linksInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTrainer_linksInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTrainer_linksInput, Prisma.UserUncheckedUpdateWithoutTrainer_linksInput>
-}
-
-export type UserUpdateWithoutTrainer_linksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTrainer_linksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutCredentialsInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCredentialsInput = {
+export type UserUncheckedCreateWithoutAccountInput = {
   id?: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCredentialsInput = {
+export type UserCreateOrConnectWithoutAccountInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCredentialsInput, Prisma.UserUncheckedCreateWithoutCredentialsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
 }
 
-export type UserUpsertWithoutCredentialsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCredentialsInput, Prisma.UserUncheckedUpdateWithoutCredentialsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCredentialsInput, Prisma.UserUncheckedCreateWithoutCredentialsInput>
+export type UserUpsertWithoutAccountInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAccountInput, Prisma.UserUncheckedUpdateWithoutAccountInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAccountInput, Prisma.UserUncheckedCreateWithoutAccountInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutCredentialsInput = {
+export type UserUpdateToOneWithWhereWithoutAccountInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCredentialsInput, Prisma.UserUncheckedUpdateWithoutCredentialsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAccountInput, Prisma.UserUncheckedUpdateWithoutAccountInput>
 }
 
-export type UserUpdateWithoutCredentialsInput = {
+export type UserUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCredentialsInput = {
+export type UserUncheckedUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutSubscriptionInput = {
+export type UserCreateWithoutSubscriptionsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutSubscriptionInput = {
+export type UserUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutSubscriptionInput = {
+export type UserCreateOrConnectWithoutSubscriptionsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
 }
 
-export type UserUpsertWithoutSubscriptionInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionInput, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionInput, Prisma.UserUncheckedCreateWithoutSubscriptionInput>
+export type UserUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutSubscriptionInput = {
+export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionInput, Prisma.UserUncheckedUpdateWithoutSubscriptionInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type UserUpdateWithoutSubscriptionInput = {
+export type UserUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutSubscriptionInput = {
+export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutDiet_planInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutDiet_planInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutDiet_planInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutDiet_planInput, Prisma.UserUncheckedCreateWithoutDiet_planInput>
-}
-
-export type UserUpsertWithoutDiet_planInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutDiet_planInput, Prisma.UserUncheckedUpdateWithoutDiet_planInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutDiet_planInput, Prisma.UserUncheckedCreateWithoutDiet_planInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutDiet_planInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutDiet_planInput, Prisma.UserUncheckedUpdateWithoutDiet_planInput>
-}
-
-export type UserUpdateWithoutDiet_planInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutDiet_planInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutMeasurementsInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutMeasurementsInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutMeasurementsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutMeasurementsInput, Prisma.UserUncheckedCreateWithoutMeasurementsInput>
-}
-
-export type UserUpsertWithoutMeasurementsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutMeasurementsInput, Prisma.UserUncheckedUpdateWithoutMeasurementsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutMeasurementsInput, Prisma.UserUncheckedCreateWithoutMeasurementsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutMeasurementsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutMeasurementsInput, Prisma.UserUncheckedUpdateWithoutMeasurementsInput>
-}
-
-export type UserUpdateWithoutMeasurementsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutMeasurementsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutGoalsInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutGoalsInput = {
-  id?: string
-  name?: string | null
-  second_name?: string | null
-  lastname?: string | null
-  email: string
-  phone?: string | null
-  birthday?: Date | string | null
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutGoalsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
-}
-
-export type UserUpsertWithoutGoalsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutGoalsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
-}
-
-export type UserUpdateWithoutGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
-  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProductsInput = {
@@ -1398,49 +1152,59 @@ export type UserCreateWithoutProductsInput = {
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProductsInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProductsInput = {
@@ -1464,49 +1228,59 @@ export type UserUpdateWithoutProductsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRecipesInput = {
@@ -1514,49 +1288,59 @@ export type UserCreateWithoutRecipesInput = {
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecipesInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecipesInput = {
@@ -1580,165 +1364,1283 @@ export type UserUpdateWithoutRecipesInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
-  recipe_tags?: Prisma.UserRecipeTagUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutRecipe_tagsInput = {
+export type UserCreateWithoutFavorite_productsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsCreateNestedManyWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFavorite_productsInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFavorite_productsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavorite_productsInput, Prisma.UserUncheckedCreateWithoutFavorite_productsInput>
+}
+
+export type UserUpsertWithoutFavorite_productsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFavorite_productsInput, Prisma.UserUncheckedUpdateWithoutFavorite_productsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavorite_productsInput, Prisma.UserUncheckedCreateWithoutFavorite_productsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFavorite_productsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFavorite_productsInput, Prisma.UserUncheckedUpdateWithoutFavorite_productsInput>
+}
+
+export type UserUpdateWithoutFavorite_productsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFavorite_productsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutFavorite_recipesInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFavorite_recipesInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFavorite_recipesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavorite_recipesInput, Prisma.UserUncheckedCreateWithoutFavorite_recipesInput>
+}
+
+export type UserUpsertWithoutFavorite_recipesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFavorite_recipesInput, Prisma.UserUncheckedUpdateWithoutFavorite_recipesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavorite_recipesInput, Prisma.UserUncheckedCreateWithoutFavorite_recipesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFavorite_recipesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFavorite_recipesInput, Prisma.UserUncheckedUpdateWithoutFavorite_recipesInput>
+}
+
+export type UserUpdateWithoutFavorite_recipesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFavorite_recipesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutFood_logInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutFood_logInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutFood_logInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFood_logInput, Prisma.UserUncheckedCreateWithoutFood_logInput>
+}
+
+export type UserUpsertWithoutFood_logInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFood_logInput, Prisma.UserUncheckedUpdateWithoutFood_logInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFood_logInput, Prisma.UserUncheckedCreateWithoutFood_logInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFood_logInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFood_logInput, Prisma.UserUncheckedUpdateWithoutFood_logInput>
+}
+
+export type UserUpdateWithoutFood_logInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFood_logInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutWater_logInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWater_logInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutWater_logInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWater_logInput, Prisma.UserUncheckedCreateWithoutWater_logInput>
+}
+
+export type UserUpsertWithoutWater_logInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWater_logInput, Prisma.UserUncheckedUpdateWithoutWater_logInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWater_logInput, Prisma.UserUncheckedCreateWithoutWater_logInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWater_logInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWater_logInput, Prisma.UserUncheckedUpdateWithoutWater_logInput>
+}
+
+export type UserUpdateWithoutWater_logInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWater_logInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTrainer_linksInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTrainer_linksInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTrainer_linksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainer_linksInput, Prisma.UserUncheckedCreateWithoutTrainer_linksInput>
+}
+
+export type UserUpsertWithoutTrainer_linksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTrainer_linksInput, Prisma.UserUncheckedUpdateWithoutTrainer_linksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainer_linksInput, Prisma.UserUncheckedCreateWithoutTrainer_linksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTrainer_linksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTrainer_linksInput, Prisma.UserUncheckedUpdateWithoutTrainer_linksInput>
+}
+
+export type UserUpdateWithoutTrainer_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTrainer_linksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMeal_plansInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutRecipe_tagsInput = {
+export type UserUncheckedCreateWithoutMeal_plansInput = {
   id?: string
+  account_id: string
   name?: string | null
   second_name?: string | null
   lastname?: string | null
-  email: string
   phone?: string | null
   birthday?: Date | string | null
-  role?: $Enums.RoleEnum
   gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  credentials?: Prisma.UserCredentialsUncheckedCreateNestedOneWithoutUserInput
-  subscription?: Prisma.UserSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
-  diet_plan?: Prisma.UserDietPlanUncheckedCreateNestedOneWithoutUserInput
-  recipes?: Prisma.UserRecipeUncheckedCreateNestedManyWithoutUserInput
-  products?: Prisma.UserProductUncheckedCreateNestedManyWithoutUserInput
-  measurements?: Prisma.UserMeasurementsUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
   trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutRecipe_tagsInput = {
+export type UserCreateOrConnectWithoutMeal_plansInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeal_plansInput, Prisma.UserUncheckedCreateWithoutMeal_plansInput>
 }
 
-export type UserUpsertWithoutRecipe_tagsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRecipe_tagsInput, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRecipe_tagsInput, Prisma.UserUncheckedCreateWithoutRecipe_tagsInput>
+export type UserUpsertWithoutMeal_plansInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMeal_plansInput, Prisma.UserUncheckedUpdateWithoutMeal_plansInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeal_plansInput, Prisma.UserUncheckedCreateWithoutMeal_plansInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutRecipe_tagsInput = {
+export type UserUpdateToOneWithWhereWithoutMeal_plansInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRecipe_tagsInput, Prisma.UserUncheckedUpdateWithoutRecipe_tagsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMeal_plansInput, Prisma.UserUncheckedUpdateWithoutMeal_plansInput>
 }
 
-export type UserUpdateWithoutRecipe_tagsInput = {
+export type UserUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUpdateManyWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutRecipe_tagsInput = {
+export type UserUncheckedUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.UserCredentialsUncheckedUpdateOneWithoutUserNestedInput
-  subscription?: Prisma.UserSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
-  diet_plan?: Prisma.UserDietPlanUncheckedUpdateOneWithoutUserNestedInput
-  recipes?: Prisma.UserRecipeUncheckedUpdateManyWithoutUserNestedInput
-  products?: Prisma.UserProductUncheckedUpdateManyWithoutUserNestedInput
-  measurements?: Prisma.UserMeasurementsUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
   trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMeasurementsInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMeasurementsInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMeasurementsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeasurementsInput, Prisma.UserUncheckedCreateWithoutMeasurementsInput>
+}
+
+export type UserUpsertWithoutMeasurementsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMeasurementsInput, Prisma.UserUncheckedUpdateWithoutMeasurementsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMeasurementsInput, Prisma.UserUncheckedCreateWithoutMeasurementsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMeasurementsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMeasurementsInput, Prisma.UserUncheckedUpdateWithoutMeasurementsInput>
+}
+
+export type UserUpdateWithoutMeasurementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMeasurementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutGoalsInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGoalsInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGoalsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+}
+
+export type UserUpsertWithoutGoalsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGoalsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
+export type UserUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  nutrition_targets?: Prisma.NutritionTargetUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNutrition_targetsInput = {
+  id?: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.UserSubscriptionCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutNutrition_targetsInput = {
+  id?: string
+  account_id: string
+  name?: string | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  activity_level?: $Enums.ActivityLevelEnum | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  timezone?: string | null
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedCreateNestedManyWithoutUserInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_userInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_userInput
+  favorite_products?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutUserInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedCreateNestedManyWithoutUserInput
+  measurements?: Prisma.MeasurementUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  food_log?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutUserInput
+  water_log?: Prisma.WaterLogEntryUncheckedCreateNestedManyWithoutUserInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutUserInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutNutrition_targetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNutrition_targetsInput, Prisma.UserUncheckedCreateWithoutNutrition_targetsInput>
+}
+
+export type UserUpsertWithoutNutrition_targetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNutrition_targetsInput, Prisma.UserUncheckedUpdateWithoutNutrition_targetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNutrition_targetsInput, Prisma.UserUncheckedCreateWithoutNutrition_targetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNutrition_targetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNutrition_targetsInput, Prisma.UserUncheckedUpdateWithoutNutrition_targetsInput>
+}
+
+export type UserUpdateWithoutNutrition_targetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutUserNestedInput
+  subscriptions?: Prisma.UserSubscriptionUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNutrition_targetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  activity_level?: Prisma.NullableEnumActivityLevelEnumFieldUpdateOperationsInput | $Enums.ActivityLevelEnum | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriptions?: Prisma.UserSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_userNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_userNestedInput
+  favorite_products?: Prisma.FavoriteProductUncheckedUpdateManyWithoutUserNestedInput
+  favorite_recipes?: Prisma.FavoriteRecipeUncheckedUpdateManyWithoutUserNestedInput
+  measurements?: Prisma.MeasurementUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  food_log?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  water_log?: Prisma.WaterLogEntryUncheckedUpdateManyWithoutUserNestedInput
+  trainer_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  meal_plans?: Prisma.MealPlanAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1747,21 +2649,33 @@ export type UserUncheckedUpdateWithoutRecipe_tagsInput = {
  */
 
 export type UserCountOutputType = {
-  goals: number
-  recipes: number
+  subscriptions: number
   products: number
+  recipes: number
+  favorite_products: number
+  favorite_recipes: number
   measurements: number
+  goals: number
+  nutrition_targets: number
+  food_log: number
+  water_log: number
   trainer_links: number
-  recipe_tags: number
+  meal_plans: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  goals?: boolean | UserCountOutputTypeCountGoalsArgs
-  recipes?: boolean | UserCountOutputTypeCountRecipesArgs
+  subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
   products?: boolean | UserCountOutputTypeCountProductsArgs
+  recipes?: boolean | UserCountOutputTypeCountRecipesArgs
+  favorite_products?: boolean | UserCountOutputTypeCountFavorite_productsArgs
+  favorite_recipes?: boolean | UserCountOutputTypeCountFavorite_recipesArgs
   measurements?: boolean | UserCountOutputTypeCountMeasurementsArgs
+  goals?: boolean | UserCountOutputTypeCountGoalsArgs
+  nutrition_targets?: boolean | UserCountOutputTypeCountNutrition_targetsArgs
+  food_log?: boolean | UserCountOutputTypeCountFood_logArgs
+  water_log?: boolean | UserCountOutputTypeCountWater_logArgs
   trainer_links?: boolean | UserCountOutputTypeCountTrainer_linksArgs
-  recipe_tags?: boolean | UserCountOutputTypeCountRecipe_tagsArgs
+  meal_plans?: boolean | UserCountOutputTypeCountMeal_plansArgs
 }
 
 /**
@@ -1777,29 +2691,71 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserGoalWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountRecipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRecipeWhereInput
+export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserSubscriptionWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
 export type UserCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserProductWhereInput
+  where?: Prisma.ProductWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecipeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFavorite_productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FavoriteProductWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFavorite_recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FavoriteRecipeWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
 export type UserCountOutputTypeCountMeasurementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserMeasurementsWhereInput
+  where?: Prisma.MeasurementWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoalWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNutrition_targetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NutritionTargetWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFood_logArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FoodLogEntryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWater_logArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WaterLogEntryWhereInput
 }
 
 /**
@@ -1812,129 +2768,157 @@ export type UserCountOutputTypeCountTrainer_linksArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRecipe_tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRecipeTagWhereInput
+export type UserCountOutputTypeCountMeal_plansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealPlanAssignmentWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
   birthday?: boolean
-  role?: boolean
   gender?: boolean
+  activity_level?: boolean
   language?: boolean
+  role?: boolean
+  timezone?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
-  credentials?: boolean | Prisma.User$credentialsArgs<ExtArgs>
-  subscription?: boolean | Prisma.User$subscriptionArgs<ExtArgs>
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  diet_plan?: boolean | Prisma.User$diet_planArgs<ExtArgs>
-  recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   products?: boolean | Prisma.User$productsArgs<ExtArgs>
+  recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
+  favorite_products?: boolean | Prisma.User$favorite_productsArgs<ExtArgs>
+  favorite_recipes?: boolean | Prisma.User$favorite_recipesArgs<ExtArgs>
   measurements?: boolean | Prisma.User$measurementsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
+  nutrition_targets?: boolean | Prisma.User$nutrition_targetsArgs<ExtArgs>
+  food_log?: boolean | Prisma.User$food_logArgs<ExtArgs>
+  water_log?: boolean | Prisma.User$water_logArgs<ExtArgs>
   trainer_links?: boolean | Prisma.User$trainer_linksArgs<ExtArgs>
-  recipe_tags?: boolean | Prisma.User$recipe_tagsArgs<ExtArgs>
+  meal_plans?: boolean | Prisma.User$meal_plansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
   birthday?: boolean
-  role?: boolean
   gender?: boolean
+  activity_level?: boolean
   language?: boolean
+  role?: boolean
+  timezone?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
   birthday?: boolean
-  role?: boolean
   gender?: boolean
+  activity_level?: boolean
   language?: boolean
+  role?: boolean
+  timezone?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
   birthday?: boolean
-  role?: boolean
   gender?: boolean
+  activity_level?: boolean
   language?: boolean
+  role?: boolean
+  timezone?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "second_name" | "lastname" | "email" | "phone" | "birthday" | "role" | "gender" | "language" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "lastname" | "phone" | "birthday" | "gender" | "activity_level" | "language" | "role" | "timezone" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  credentials?: boolean | Prisma.User$credentialsArgs<ExtArgs>
-  subscription?: boolean | Prisma.User$subscriptionArgs<ExtArgs>
-  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
-  diet_plan?: boolean | Prisma.User$diet_planArgs<ExtArgs>
-  recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   products?: boolean | Prisma.User$productsArgs<ExtArgs>
+  recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
+  favorite_products?: boolean | Prisma.User$favorite_productsArgs<ExtArgs>
+  favorite_recipes?: boolean | Prisma.User$favorite_recipesArgs<ExtArgs>
   measurements?: boolean | Prisma.User$measurementsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
+  nutrition_targets?: boolean | Prisma.User$nutrition_targetsArgs<ExtArgs>
+  food_log?: boolean | Prisma.User$food_logArgs<ExtArgs>
+  water_log?: boolean | Prisma.User$water_logArgs<ExtArgs>
   trainer_links?: boolean | Prisma.User$trainer_linksArgs<ExtArgs>
-  recipe_tags?: boolean | Prisma.User$recipe_tagsArgs<ExtArgs>
+  meal_plans?: boolean | Prisma.User$meal_plansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    credentials: Prisma.$UserCredentialsPayload<ExtArgs> | null
-    subscription: Prisma.$UserSubscriptionPayload<ExtArgs> | null
-    goals: Prisma.$UserGoalPayload<ExtArgs>[]
-    diet_plan: Prisma.$UserDietPlanPayload<ExtArgs> | null
-    recipes: Prisma.$UserRecipePayload<ExtArgs>[]
-    products: Prisma.$UserProductPayload<ExtArgs>[]
-    measurements: Prisma.$UserMeasurementsPayload<ExtArgs>[]
+    account: Prisma.$AccountPayload<ExtArgs>
+    subscriptions: Prisma.$UserSubscriptionPayload<ExtArgs>[]
+    products: Prisma.$ProductPayload<ExtArgs>[]
+    recipes: Prisma.$RecipePayload<ExtArgs>[]
+    favorite_products: Prisma.$FavoriteProductPayload<ExtArgs>[]
+    favorite_recipes: Prisma.$FavoriteRecipePayload<ExtArgs>[]
+    measurements: Prisma.$MeasurementPayload<ExtArgs>[]
+    goals: Prisma.$GoalPayload<ExtArgs>[]
+    nutrition_targets: Prisma.$NutritionTargetPayload<ExtArgs>[]
+    food_log: Prisma.$FoodLogEntryPayload<ExtArgs>[]
+    water_log: Prisma.$WaterLogEntryPayload<ExtArgs>[]
     trainer_links: Prisma.$ClientAssignmentPayload<ExtArgs>[]
-    recipe_tags: Prisma.$UserRecipeTagPayload<ExtArgs>[]
+    meal_plans: Prisma.$MealPlanAssignmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    account_id: string
     name: string | null
     second_name: string | null
     lastname: string | null
-    email: string
     phone: string | null
     birthday: Date | null
-    role: $Enums.RoleEnum
     gender: $Enums.GenderEnum | null
+    activity_level: $Enums.ActivityLevelEnum | null
     language: $Enums.LanguageEnum
+    role: $Enums.RoleEnum
+    timezone: string | null
     disabled: boolean
     disabled_at: Date | null
     created_at: Date
@@ -2333,15 +3317,19 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  credentials<T extends Prisma.User$credentialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$credentialsArgs<ExtArgs>>): Prisma.Prisma__UserCredentialsClient<runtime.Types.Result.GetResult<Prisma.$UserCredentialsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  subscription<T extends Prisma.User$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionArgs<ExtArgs>>): Prisma.Prisma__UserSubscriptionClient<runtime.Types.Result.GetResult<Prisma.$UserSubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserGoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  diet_plan<T extends Prisma.User$diet_planArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$diet_planArgs<ExtArgs>>): Prisma.Prisma__UserDietPlanClient<runtime.Types.Result.GetResult<Prisma.$UserDietPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  recipes<T extends Prisma.User$recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  products<T extends Prisma.User$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  measurements<T extends Prisma.User$measurementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$measurementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserMeasurementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  account<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  products<T extends Prisma.User$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recipes<T extends Prisma.User$recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favorite_products<T extends Prisma.User$favorite_productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$favorite_productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favorite_recipes<T extends Prisma.User$favorite_recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$favorite_recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  measurements<T extends Prisma.User$measurementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$measurementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MeasurementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nutrition_targets<T extends Prisma.User$nutrition_targetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$nutrition_targetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NutritionTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  food_log<T extends Prisma.User$food_logArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$food_logArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FoodLogEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  water_log<T extends Prisma.User$water_logArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$water_logArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WaterLogEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trainer_links<T extends Prisma.User$trainer_linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainer_linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  recipe_tags<T extends Prisma.User$recipe_tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recipe_tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipeTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meal_plans<T extends Prisma.User$meal_plansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$meal_plansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPlanAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2372,15 +3360,17 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
+  readonly account_id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly second_name: Prisma.FieldRef<"User", 'String'>
   readonly lastname: Prisma.FieldRef<"User", 'String'>
-  readonly email: Prisma.FieldRef<"User", 'String'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
   readonly birthday: Prisma.FieldRef<"User", 'DateTime'>
-  readonly role: Prisma.FieldRef<"User", 'RoleEnum'>
   readonly gender: Prisma.FieldRef<"User", 'GenderEnum'>
+  readonly activity_level: Prisma.FieldRef<"User", 'ActivityLevelEnum'>
   readonly language: Prisma.FieldRef<"User", 'LanguageEnum'>
+  readonly role: Prisma.FieldRef<"User", 'RoleEnum'>
+  readonly timezone: Prisma.FieldRef<"User", 'String'>
   readonly disabled: Prisma.FieldRef<"User", 'Boolean'>
   readonly disabled_at: Prisma.FieldRef<"User", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
@@ -2639,6 +3629,10 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2709,6 +3703,10 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2778,28 +3776,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.credentials
+ * User.subscriptions
  */
-export type User$credentialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserCredentials
-   */
-  select?: Prisma.UserCredentialsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserCredentials
-   */
-  omit?: Prisma.UserCredentialsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserCredentialsInclude<ExtArgs> | null
-  where?: Prisma.UserCredentialsWhereInput
-}
-
-/**
- * User.subscription
- */
-export type User$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the UserSubscription
    */
@@ -2813,73 +3792,11 @@ export type User$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.UserSubscriptionInclude<ExtArgs> | null
   where?: Prisma.UserSubscriptionWhereInput
-}
-
-/**
- * User.goals
- */
-export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserGoal
-   */
-  select?: Prisma.UserGoalSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserGoal
-   */
-  omit?: Prisma.UserGoalOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserGoalInclude<ExtArgs> | null
-  where?: Prisma.UserGoalWhereInput
-  orderBy?: Prisma.UserGoalOrderByWithRelationInput | Prisma.UserGoalOrderByWithRelationInput[]
-  cursor?: Prisma.UserGoalWhereUniqueInput
+  orderBy?: Prisma.UserSubscriptionOrderByWithRelationInput | Prisma.UserSubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.UserSubscriptionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserGoalScalarFieldEnum | Prisma.UserGoalScalarFieldEnum[]
-}
-
-/**
- * User.diet_plan
- */
-export type User$diet_planArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserDietPlan
-   */
-  select?: Prisma.UserDietPlanSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserDietPlan
-   */
-  omit?: Prisma.UserDietPlanOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserDietPlanInclude<ExtArgs> | null
-  where?: Prisma.UserDietPlanWhereInput
-}
-
-/**
- * User.recipes
- */
-export type User$recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserRecipe
-   */
-  select?: Prisma.UserRecipeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserRecipe
-   */
-  omit?: Prisma.UserRecipeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserRecipeInclude<ExtArgs> | null
-  where?: Prisma.UserRecipeWhereInput
-  orderBy?: Prisma.UserRecipeOrderByWithRelationInput | Prisma.UserRecipeOrderByWithRelationInput[]
-  cursor?: Prisma.UserRecipeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserRecipeScalarFieldEnum | Prisma.UserRecipeScalarFieldEnum[]
+  distinct?: Prisma.UserSubscriptionScalarFieldEnum | Prisma.UserSubscriptionScalarFieldEnum[]
 }
 
 /**
@@ -2887,23 +3804,95 @@ export type User$recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
  */
 export type User$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserProduct
+   * Select specific fields to fetch from the Product
    */
-  select?: Prisma.UserProductSelect<ExtArgs> | null
+  select?: Prisma.ProductSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserProduct
+   * Omit specific fields from the Product
    */
-  omit?: Prisma.UserProductOmit<ExtArgs> | null
+  omit?: Prisma.ProductOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserProductInclude<ExtArgs> | null
-  where?: Prisma.UserProductWhereInput
-  orderBy?: Prisma.UserProductOrderByWithRelationInput | Prisma.UserProductOrderByWithRelationInput[]
-  cursor?: Prisma.UserProductWhereUniqueInput
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserProductScalarFieldEnum | Prisma.UserProductScalarFieldEnum[]
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * User.recipes
+ */
+export type User$recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Recipe
+   */
+  select?: Prisma.RecipeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Recipe
+   */
+  omit?: Prisma.RecipeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecipeInclude<ExtArgs> | null
+  where?: Prisma.RecipeWhereInput
+  orderBy?: Prisma.RecipeOrderByWithRelationInput | Prisma.RecipeOrderByWithRelationInput[]
+  cursor?: Prisma.RecipeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecipeScalarFieldEnum | Prisma.RecipeScalarFieldEnum[]
+}
+
+/**
+ * User.favorite_products
+ */
+export type User$favorite_productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FavoriteProduct
+   */
+  select?: Prisma.FavoriteProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FavoriteProduct
+   */
+  omit?: Prisma.FavoriteProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FavoriteProductInclude<ExtArgs> | null
+  where?: Prisma.FavoriteProductWhereInput
+  orderBy?: Prisma.FavoriteProductOrderByWithRelationInput | Prisma.FavoriteProductOrderByWithRelationInput[]
+  cursor?: Prisma.FavoriteProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FavoriteProductScalarFieldEnum | Prisma.FavoriteProductScalarFieldEnum[]
+}
+
+/**
+ * User.favorite_recipes
+ */
+export type User$favorite_recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FavoriteRecipe
+   */
+  select?: Prisma.FavoriteRecipeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FavoriteRecipe
+   */
+  omit?: Prisma.FavoriteRecipeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FavoriteRecipeInclude<ExtArgs> | null
+  where?: Prisma.FavoriteRecipeWhereInput
+  orderBy?: Prisma.FavoriteRecipeOrderByWithRelationInput | Prisma.FavoriteRecipeOrderByWithRelationInput[]
+  cursor?: Prisma.FavoriteRecipeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FavoriteRecipeScalarFieldEnum | Prisma.FavoriteRecipeScalarFieldEnum[]
 }
 
 /**
@@ -2911,23 +3900,119 @@ export type User$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
  */
 export type User$measurementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserMeasurements
+   * Select specific fields to fetch from the Measurement
    */
-  select?: Prisma.UserMeasurementsSelect<ExtArgs> | null
+  select?: Prisma.MeasurementSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserMeasurements
+   * Omit specific fields from the Measurement
    */
-  omit?: Prisma.UserMeasurementsOmit<ExtArgs> | null
+  omit?: Prisma.MeasurementOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserMeasurementsInclude<ExtArgs> | null
-  where?: Prisma.UserMeasurementsWhereInput
-  orderBy?: Prisma.UserMeasurementsOrderByWithRelationInput | Prisma.UserMeasurementsOrderByWithRelationInput[]
-  cursor?: Prisma.UserMeasurementsWhereUniqueInput
+  include?: Prisma.MeasurementInclude<ExtArgs> | null
+  where?: Prisma.MeasurementWhereInput
+  orderBy?: Prisma.MeasurementOrderByWithRelationInput | Prisma.MeasurementOrderByWithRelationInput[]
+  cursor?: Prisma.MeasurementWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserMeasurementsScalarFieldEnum | Prisma.UserMeasurementsScalarFieldEnum[]
+  distinct?: Prisma.MeasurementScalarFieldEnum | Prisma.MeasurementScalarFieldEnum[]
+}
+
+/**
+ * User.goals
+ */
+export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Goal
+   */
+  select?: Prisma.GoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Goal
+   */
+  omit?: Prisma.GoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoalInclude<ExtArgs> | null
+  where?: Prisma.GoalWhereInput
+  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
+  cursor?: Prisma.GoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
+}
+
+/**
+ * User.nutrition_targets
+ */
+export type User$nutrition_targetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NutritionTarget
+   */
+  select?: Prisma.NutritionTargetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NutritionTarget
+   */
+  omit?: Prisma.NutritionTargetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NutritionTargetInclude<ExtArgs> | null
+  where?: Prisma.NutritionTargetWhereInput
+  orderBy?: Prisma.NutritionTargetOrderByWithRelationInput | Prisma.NutritionTargetOrderByWithRelationInput[]
+  cursor?: Prisma.NutritionTargetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NutritionTargetScalarFieldEnum | Prisma.NutritionTargetScalarFieldEnum[]
+}
+
+/**
+ * User.food_log
+ */
+export type User$food_logArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FoodLogEntry
+   */
+  select?: Prisma.FoodLogEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FoodLogEntry
+   */
+  omit?: Prisma.FoodLogEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FoodLogEntryInclude<ExtArgs> | null
+  where?: Prisma.FoodLogEntryWhereInput
+  orderBy?: Prisma.FoodLogEntryOrderByWithRelationInput | Prisma.FoodLogEntryOrderByWithRelationInput[]
+  cursor?: Prisma.FoodLogEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FoodLogEntryScalarFieldEnum | Prisma.FoodLogEntryScalarFieldEnum[]
+}
+
+/**
+ * User.water_log
+ */
+export type User$water_logArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WaterLogEntry
+   */
+  select?: Prisma.WaterLogEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WaterLogEntry
+   */
+  omit?: Prisma.WaterLogEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WaterLogEntryInclude<ExtArgs> | null
+  where?: Prisma.WaterLogEntryWhereInput
+  orderBy?: Prisma.WaterLogEntryOrderByWithRelationInput | Prisma.WaterLogEntryOrderByWithRelationInput[]
+  cursor?: Prisma.WaterLogEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WaterLogEntryScalarFieldEnum | Prisma.WaterLogEntryScalarFieldEnum[]
 }
 
 /**
@@ -2955,27 +4040,27 @@ export type User$trainer_linksArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.recipe_tags
+ * User.meal_plans
  */
-export type User$recipe_tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$meal_plansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserRecipeTag
+   * Select specific fields to fetch from the MealPlanAssignment
    */
-  select?: Prisma.UserRecipeTagSelect<ExtArgs> | null
+  select?: Prisma.MealPlanAssignmentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserRecipeTag
+   * Omit specific fields from the MealPlanAssignment
    */
-  omit?: Prisma.UserRecipeTagOmit<ExtArgs> | null
+  omit?: Prisma.MealPlanAssignmentOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserRecipeTagInclude<ExtArgs> | null
-  where?: Prisma.UserRecipeTagWhereInput
-  orderBy?: Prisma.UserRecipeTagOrderByWithRelationInput | Prisma.UserRecipeTagOrderByWithRelationInput[]
-  cursor?: Prisma.UserRecipeTagWhereUniqueInput
+  include?: Prisma.MealPlanAssignmentInclude<ExtArgs> | null
+  where?: Prisma.MealPlanAssignmentWhereInput
+  orderBy?: Prisma.MealPlanAssignmentOrderByWithRelationInput | Prisma.MealPlanAssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.MealPlanAssignmentWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserRecipeTagScalarFieldEnum | Prisma.UserRecipeTagScalarFieldEnum[]
+  distinct?: Prisma.MealPlanAssignmentScalarFieldEnum | Prisma.MealPlanAssignmentScalarFieldEnum[]
 }
 
 /**

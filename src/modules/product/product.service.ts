@@ -1,190 +1,195 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { Prisma } from '@/prisma/client';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { CreateProductReqDto } from './dto/create-product.dto';
 import { PrismaService } from '@/prisma.service';
-import type { UserFromRequest } from '@/shared/types';
-import { Formatters } from '@/shared/utils';
-import type { GetAllProductsDto } from './dto/get-product.dto';
-import type {
-  CreateProductReqDto,
-  CreateProductResDto,
-  ProductDto,
-  UpdateProductResDto,
-  UpdateProductReqDto,
-} from './dto/product.dto';
+import { StorageService } from '@/shared/storage/storage.service';
+import type { AuthUser } from '@/shared/types';
+import { PRODUCT_SELECT } from './product.selects';
+import { GetProductsResDto } from './dto/get-products.dto';
+import { RoleEnum, Prisma } from '@/prisma/client';
+import { UpdateProductReqDto } from './dto/update-product.dto';
+import { AppException } from '@/shared/errors/app.exception';
+import { ProductError } from './product.errors';
+import { recalculateRecipesUsing } from '@/shared/nutrition/recalculate-recipes';
+import { MACRO_FIELDS } from '@/shared/constants';
+import { ProductDto } from './dto/product.dto';
+
+// TODO: error handling, pagination, filtering, sorting
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly prismaService: PrismaService) {}
-  async getUserProduct(id: string, user: UserFromRequest): Promise<ProductDto> {
-    const product = await this.prismaService.userProduct.findUnique({
-      where: { id, user_id: user.id },
-      select: {
-        id: true,
-        barcode: true,
-        name: true,
-        description: true,
-        rating: true,
-        photo: true,
-        calories: true,
-        carbohydrates: true,
-        fat: true,
-        fiber: true,
-        protein: true,
-        sugar: true,
-        created_at: true,
-        diets: true,
-      },
-    });
+  constructor(
+    private prisma: PrismaService,
+    private readonly storage: StorageService,
+  ) {}
+  async create(
+    dto: CreateProductReqDto,
+    user: AuthUser,
+    photo?: Express.Multer.File,
+  ): Promise<ProductDto> {
+    const { diet_ids, ...data } = dto;
+    const photo_url = photo ? await this.storage.save(photo, 'products') : undefined;
 
-    if (!product) throw new NotFoundException('Product not found');
-
-    return {
-      ...product,
-      ...Formatters.macrosAndRating(product),
-      photo: product.photo?.url,
-      diets: product.diets.map((d) => ({
-        id: d.id,
-        name: d.name,
-      })),
-    };
-  }
-
-  async getAllUserProducts(
-    queries: GetAllProductsDto,
-    user: UserFromRequest,
-  ): Promise<ProductDto[]> {
-    const {
-      calories_gte,
-      calories_lte,
-      carbohydrates_gte,
-      carbohydrates_lte,
-      fat_gte,
-      fat_lte,
-      fiber_gte,
-      fiber_lte,
-      protein_gte,
-      protein_lte,
-      rating_gte,
-      rating_lte,
-      sugar_gte,
-      sugar_lte,
-      sort_by,
-      sort_order,
-      photo,
-    } = queries;
-    const where: Prisma.UserProductWhereInput = {};
-    const isSorting = sort_by && sort_order && sort_by !== 'created_at';
-
-    // if (queries.search) {
-    //   where.OR = [
-    //     { name: { contains: queries.search } },
-    //     { description: { contains: queries.search } },
-    //   ];
-    // }
-    this.handleQuery(where, calories_gte, calories_lte, 'calories');
-    this.handleQuery(where, carbohydrates_gte, carbohydrates_lte, 'carbohydrates');
-    this.handleQuery(where, fat_gte, fat_lte, 'fat');
-    this.handleQuery(where, fiber_gte, fiber_lte, 'fiber');
-    this.handleQuery(where, protein_gte, protein_lte, 'protein');
-    this.handleQuery(where, rating_gte, rating_lte, 'rating');
-    this.handleQuery(where, sugar_gte, sugar_lte, 'sugar');
-
-    const found = await this.prismaService.userProduct.findMany({
-      where: { user_id: user.id, ...where },
-      include: { diets: true, photo: photo ? { select: { url: true } } : undefined },
-      ...(isSorting && { orderBy: { [sort_by]: sort_order } }),
-      omit: {
-        updated_at: true,
-        user_id: true,
-      },
-    });
-
-    const products = found.map((product) => ({
-      ...product,
-      ...Formatters.macrosAndRating(product),
-      photo: product.photo?.url,
-      diets: product.diets.map((d) => ({
-        id: d.id,
-        name: d.name,
-      })),
-    }));
-
-    return products;
-  }
-
-  async createUserProduct(
-    body: CreateProductReqDto,
-    user: UserFromRequest,
-  ): Promise<CreateProductResDto> {
-    const dietIds = body.diets?.map((dietId: string) => ({ id: dietId }));
-    const rating = this.calculateRating(body);
     try {
-      const product = await this.prismaService.userProduct.create({
-        data: { ...body, rating, user: { connect: { id: user.id } }, diets: { connect: dietIds } },
-        include: { diets: true, photo: true },
-        omit: {
-          user_id: true,
+      return await this.prisma.product.create({
+        data: {
+          ...data,
+          photo_url,
+          diets: diet_ids ? { connect: diet_ids.map((id) => ({ id })) } : undefined,
+          ...(user.role === 'TRAINER' && { trainer: { connect: { id: user.id } } }),
+          ...(user.role === 'USER' && { user: { connect: { id: user.id } } }),
+        },
+        select: {
+          diets: { select: { id: true, name: true } },
+          ...(user.role === 'TRAINER' && { owner_trainer_id: true }),
+          ...(user.role === 'USER' && { owner_user_id: true }),
+          ...PRODUCT_SELECT,
         },
       });
-
-      return {
-        ...product,
-        ...Formatters.macrosAndRating(product),
-      };
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2025')
-        throw new BadRequestException('One or more diet IDs are invalid.');
-
-      throw e;
+    } catch (error) {
+      if (photo_url) await this.storage.remove(photo_url).catch(() => undefined); // don't leave an orphan file
+      throw error;
     }
   }
 
-  async updateUserProduct(
-    id: string,
-    body: UpdateProductReqDto,
-    user: UserFromRequest,
-  ): Promise<UpdateProductResDto> {
-    const dietIds = body.diets?.map((dietId: string) => ({ id: dietId }));
-    const product = await this.prismaService.userProduct.update({
-      where: { id, user_id: user.id },
-      data: { ...body, diets: { connect: dietIds } },
-      include: { diets: true, photo: true },
-      omit: {
-        user_id: true,
+  async findAll(user: AuthUser): Promise<GetProductsResDto> {
+    const where = this.ownerFilter(user);
+
+    const [products, total] = await this.prisma.$transaction([
+      this.prisma.product.findMany({
+        where,
+        select: {
+          diets: { select: { id: true, name: true } },
+          ...(user.role === 'TRAINER' && { owner_trainer_id: true }),
+          ...(user.role === 'USER' && { owner_user_id: true }),
+          ...PRODUCT_SELECT,
+        },
+        // skip, take, orderBy go here once you add pagination
+      }),
+      this.prisma.product.count({ where }),
+    ]);
+
+    return { products, total };
+  }
+
+  async findOne(user: AuthUser, id: string): Promise<ProductDto> {
+    return await this.prisma.product.findUniqueOrThrow({
+      where: { id },
+      select: {
+        diets: { select: { id: true, name: true } },
+        ...(user.role === 'TRAINER' && { owner_trainer_id: true }),
+        ...(user.role === 'USER' && { owner_user_id: true }),
+        ...PRODUCT_SELECT,
       },
     });
-
-    return {
-      ...product,
-      ...Formatters.macrosAndRating(product),
-    };
   }
 
-  private handleQuery(where, gte, lte, field) {
-    if (gte || lte) {
-      where[field] = {};
+  async update(id: string, body: UpdateProductReqDto, user: AuthUser): Promise<ProductDto> {
+    await this.assertCanEdit(id, user);
+    const macrosChanged = MACRO_FIELDS.some((field) => data[field] !== undefined);
 
-      if (gte !== undefined) {
-        where[field].gte = gte;
-      }
+    const { diet_ids, ...data } = body;
+    if (diet_ids) await this.assertDietsExist(diet_ids);
 
-      if (lte !== undefined) {
-        where[field].lte = lte;
+    try {
+      return await this.prisma.$transaction(async (tx) => {
+        const product = await tx.product.update({
+          where: { id },
+          data: {
+            ...data,
+            // `set` replaces the whole list, which is what "update diets" means
+            ...(diet_ids && { diets: { set: diet_ids.map((dietId) => ({ id: dietId })) } }),
+          },
+          select: {
+            diets: { select: { id: true, name: true } },
+            ...(user.role === 'TRAINER' && { owner_trainer_id: true }),
+            ...(user.role === 'USER' && { owner_user_id: true }),
+            ...PRODUCT_SELECT,
+          },
+        });
+        if (macrosChanged) await recalculateRecipesUsing(tx, id);
+        return product;
+      });
+    } catch (error) {
+      // the product was deleted between the check and the update
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+        throw new AppException(ProductError.NOT_FOUND, HttpStatus.NOT_FOUND);
       }
+      throw error; // unknown errors go to the filter: logged, answered as INTERNAL_ERROR
     }
   }
 
-  // TODO: заглушка для подсчёта рэйтинга
-  private calculateRating(product: CreateProductReqDto): number {
-    const protein = Number(product.protein ?? 0);
-    const calories = Number(product.calories ?? 0);
+  async remove(id: string, user: AuthUser) {
+    await this.assertCanEdit(id, user);
+    const [inRecipes, inPlans] = await Promise.all([
+      this.prisma.recipeIngredient.count({ where: { product_id: id } }),
+      this.prisma.mealPlanItem.count({ where: { product_id: id } }),
+    ]);
 
-    const density = calories === 0 ? protein : protein / calories;
+    if (inRecipes + inPlans === 0) {
+      try {
+        const product = await this.prisma.product.delete({
+          where: { id },
+          select: { photo_url: true },
+        });
+        if (product.photo_url) await this.storage.remove(product.photo_url).catch(() => undefined);
+        return { archived: false };
+      } catch (error) {
+        // someone added it to a recipe after our check, so fall through and archive
+        const inUse =
+          error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2003';
+        if (!inUse) throw error;
+      }
+    }
 
-    // normalize (tune this constant later)
-    const score01 = Math.min(density / 0.3, 1);
-    // 0.3 = “very good protein density”
+    await this.prisma.product.update({ where: { id }, data: { archived_at: new Date() } });
+    return { archived: true };
+  }
 
-    return Math.round(score01 * 10 * 10) / 10;
+  private ownerFilter(user: AuthUser): Prisma.ProductWhereInput {
+    switch (user.role) {
+      case RoleEnum.TRAINER:
+        return { owner_trainer_id: user.id };
+      case RoleEnum.USER:
+        return { owner_user_id: user.id };
+      default: // ADMIN, MODERATOR
+        return { owner_user_id: null, owner_trainer_id: null };
+    }
+  }
+
+  private async assertCanEdit(id: string, user: AuthUser): Promise<void> {
+    const product = await this.prisma.product.findUnique({
+      where: { id },
+      select: { owner_user_id: true, owner_trainer_id: true, archived_at: true },
+    });
+
+    if (!product || product.archived_at) {
+      throw new AppException(ProductError.NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
+
+    const isDefault = product.owner_user_id === null && product.owner_trainer_id === null;
+
+    if (isDefault) {
+      if (user.role !== RoleEnum.ADMIN) {
+        throw new AppException(ProductError.NOT_EDITABLE, HttpStatus.FORBIDDEN);
+      }
+      return;
+    }
+
+    const isOwner =
+      (user.role === RoleEnum.USER && product.owner_user_id === user.id) ||
+      (user.role === RoleEnum.TRAINER && product.owner_trainer_id === user.id);
+
+    if (!isOwner) {
+      throw new AppException(ProductError.NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
+  }
+
+  private async assertDietsExist(ids: string[]): Promise<void> {
+    const unique = [...new Set(ids)];
+    const found = await this.prisma.diet.count({ where: { id: { in: unique } } });
+
+    if (found !== unique.length) {
+      throw new AppException(ProductError.DIET_NOT_FOUND, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
   }
 }

@@ -29,8 +29,11 @@ export type ClientAssignmentMinAggregateOutputType = {
   trainer_id: string | null
   user_id: string | null
   status: $Enums.TrainerClientStatusEnum | null
+  initiated_by: $Enums.InitiatorEnum | null
   started_at: Date | null
   ended_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type ClientAssignmentMaxAggregateOutputType = {
@@ -38,8 +41,11 @@ export type ClientAssignmentMaxAggregateOutputType = {
   trainer_id: string | null
   user_id: string | null
   status: $Enums.TrainerClientStatusEnum | null
+  initiated_by: $Enums.InitiatorEnum | null
   started_at: Date | null
   ended_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type ClientAssignmentCountAggregateOutputType = {
@@ -47,8 +53,12 @@ export type ClientAssignmentCountAggregateOutputType = {
   trainer_id: number
   user_id: number
   status: number
+  initiated_by: number
+  shared_scopes: number
   started_at: number
   ended_at: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
@@ -58,8 +68,11 @@ export type ClientAssignmentMinAggregateInputType = {
   trainer_id?: true
   user_id?: true
   status?: true
+  initiated_by?: true
   started_at?: true
   ended_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type ClientAssignmentMaxAggregateInputType = {
@@ -67,8 +80,11 @@ export type ClientAssignmentMaxAggregateInputType = {
   trainer_id?: true
   user_id?: true
   status?: true
+  initiated_by?: true
   started_at?: true
   ended_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type ClientAssignmentCountAggregateInputType = {
@@ -76,8 +92,12 @@ export type ClientAssignmentCountAggregateInputType = {
   trainer_id?: true
   user_id?: true
   status?: true
+  initiated_by?: true
+  shared_scopes?: true
   started_at?: true
   ended_at?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -158,8 +178,12 @@ export type ClientAssignmentGroupByOutputType = {
   trainer_id: string
   user_id: string
   status: $Enums.TrainerClientStatusEnum
-  started_at: Date
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes: $Enums.ShareScopeEnum[]
+  started_at: Date | null
   ended_at: Date | null
+  created_at: Date
+  updated_at: Date
   _count: ClientAssignmentCountAggregateOutputType | null
   _min: ClientAssignmentMinAggregateOutputType | null
   _max: ClientAssignmentMaxAggregateOutputType | null
@@ -188,8 +212,12 @@ export type ClientAssignmentWhereInput = {
   trainer_id?: Prisma.StringFilter<"ClientAssignment"> | string
   user_id?: Prisma.StringFilter<"ClientAssignment"> | string
   status?: Prisma.EnumTrainerClientStatusEnumFilter<"ClientAssignment"> | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFilter<"ClientAssignment"> | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.EnumShareScopeEnumNullableListFilter<"ClientAssignment">
+  started_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
   trainer?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -199,8 +227,12 @@ export type ClientAssignmentOrderByWithRelationInput = {
   trainer_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  started_at?: Prisma.SortOrder
+  initiated_by?: Prisma.SortOrder
+  shared_scopes?: Prisma.SortOrder
+  started_at?: Prisma.SortOrderInput | Prisma.SortOrder
   ended_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   trainer?: Prisma.TrainerOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -214,8 +246,12 @@ export type ClientAssignmentWhereUniqueInput = Prisma.AtLeast<{
   trainer_id?: Prisma.StringFilter<"ClientAssignment"> | string
   user_id?: Prisma.StringFilter<"ClientAssignment"> | string
   status?: Prisma.EnumTrainerClientStatusEnumFilter<"ClientAssignment"> | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFilter<"ClientAssignment"> | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.EnumShareScopeEnumNullableListFilter<"ClientAssignment">
+  started_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
   trainer?: Prisma.XOR<Prisma.TrainerScalarRelationFilter, Prisma.TrainerWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "trainer_id_user_id">
@@ -225,8 +261,12 @@ export type ClientAssignmentOrderByWithAggregationInput = {
   trainer_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  started_at?: Prisma.SortOrder
+  initiated_by?: Prisma.SortOrder
+  shared_scopes?: Prisma.SortOrder
+  started_at?: Prisma.SortOrderInput | Prisma.SortOrder
   ended_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.ClientAssignmentCountOrderByAggregateInput
   _max?: Prisma.ClientAssignmentMaxOrderByAggregateInput
   _min?: Prisma.ClientAssignmentMinOrderByAggregateInput
@@ -240,15 +280,23 @@ export type ClientAssignmentScalarWhereWithAggregatesInput = {
   trainer_id?: Prisma.StringWithAggregatesFilter<"ClientAssignment"> | string
   user_id?: Prisma.StringWithAggregatesFilter<"ClientAssignment"> | string
   status?: Prisma.EnumTrainerClientStatusEnumWithAggregatesFilter<"ClientAssignment"> | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeWithAggregatesFilter<"ClientAssignment"> | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumWithAggregatesFilter<"ClientAssignment"> | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.EnumShareScopeEnumNullableListFilter<"ClientAssignment">
+  started_at?: Prisma.DateTimeNullableWithAggregatesFilter<"ClientAssignment"> | Date | string | null
   ended_at?: Prisma.DateTimeNullableWithAggregatesFilter<"ClientAssignment"> | Date | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"ClientAssignment"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"ClientAssignment"> | Date | string
 }
 
 export type ClientAssignmentCreateInput = {
   id?: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   trainer: Prisma.TrainerCreateNestedOneWithoutClient_linksInput
   user: Prisma.UserCreateNestedOneWithoutTrainer_linksInput
 }
@@ -258,15 +306,23 @@ export type ClientAssignmentUncheckedCreateInput = {
   trainer_id: string
   user_id: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type ClientAssignmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.TrainerUpdateOneRequiredWithoutClient_linksNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTrainer_linksNestedInput
 }
@@ -276,8 +332,12 @@ export type ClientAssignmentUncheckedUpdateInput = {
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClientAssignmentCreateManyInput = {
@@ -285,15 +345,23 @@ export type ClientAssignmentCreateManyInput = {
   trainer_id: string
   user_id: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type ClientAssignmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClientAssignmentUncheckedUpdateManyInput = {
@@ -301,8 +369,12 @@ export type ClientAssignmentUncheckedUpdateManyInput = {
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClientAssignmentListRelationFilter = {
@@ -315,6 +387,14 @@ export type ClientAssignmentOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EnumShareScopeEnumNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShareScopeEnum[] | Prisma.ListEnumShareScopeEnumFieldRefInput<$PrismaModel> | null
+  has?: $Enums.ShareScopeEnum | Prisma.EnumShareScopeEnumFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.ShareScopeEnum[] | Prisma.ListEnumShareScopeEnumFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.ShareScopeEnum[] | Prisma.ListEnumShareScopeEnumFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ClientAssignmentTrainer_idUser_idCompoundUniqueInput = {
   trainer_id: string
   user_id: string
@@ -325,8 +405,12 @@ export type ClientAssignmentCountOrderByAggregateInput = {
   trainer_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  initiated_by?: Prisma.SortOrder
+  shared_scopes?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type ClientAssignmentMaxOrderByAggregateInput = {
@@ -334,8 +418,11 @@ export type ClientAssignmentMaxOrderByAggregateInput = {
   trainer_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  initiated_by?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type ClientAssignmentMinOrderByAggregateInput = {
@@ -343,54 +430,11 @@ export type ClientAssignmentMinOrderByAggregateInput = {
   trainer_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  initiated_by?: Prisma.SortOrder
   started_at?: Prisma.SortOrder
   ended_at?: Prisma.SortOrder
-}
-
-export type ClientAssignmentCreateNestedManyWithoutTrainerInput = {
-  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
-  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
-  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
-  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-}
-
-export type ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput = {
-  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
-  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
-  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
-  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-}
-
-export type ClientAssignmentUpdateManyWithoutTrainerNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
-  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
-  upsert?: Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput[]
-  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
-  set?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  disconnect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  delete?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  update?: Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput[]
-  updateMany?: Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput | Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput[]
-  deleteMany?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
-}
-
-export type ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
-  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
-  upsert?: Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput[]
-  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
-  set?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  disconnect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  delete?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
-  update?: Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput[]
-  updateMany?: Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput | Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput[]
-  deleteMany?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
-}
-
-export type EnumTrainerClientStatusEnumFieldUpdateOperationsInput = {
-  set?: $Enums.TrainerClientStatusEnum
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type ClientAssignmentCreateNestedManyWithoutUserInput = {
@@ -435,65 +479,74 @@ export type ClientAssignmentUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
 }
 
-export type ClientAssignmentCreateWithoutTrainerInput = {
-  id?: string
-  status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
-  ended_at?: Date | string | null
-  user: Prisma.UserCreateNestedOneWithoutTrainer_linksInput
+export type ClientAssignmentCreateNestedManyWithoutTrainerInput = {
+  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
+  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
+  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
 }
 
-export type ClientAssignmentUncheckedCreateWithoutTrainerInput = {
-  id?: string
-  user_id: string
-  status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
-  ended_at?: Date | string | null
+export type ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput = {
+  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
+  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
+  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
 }
 
-export type ClientAssignmentCreateOrConnectWithoutTrainerInput = {
-  where: Prisma.ClientAssignmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput>
+export type ClientAssignmentUpdateManyWithoutTrainerNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
+  upsert?: Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput[]
+  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
+  set?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  disconnect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  delete?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  update?: Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput[]
+  updateMany?: Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput | Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput[]
+  deleteMany?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
 }
 
-export type ClientAssignmentCreateManyTrainerInputEnvelope = {
-  data: Prisma.ClientAssignmentCreateManyTrainerInput | Prisma.ClientAssignmentCreateManyTrainerInput[]
-  skipDuplicates?: boolean
+export type ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput> | Prisma.ClientAssignmentCreateWithoutTrainerInput[] | Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput[]
+  connectOrCreate?: Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput | Prisma.ClientAssignmentCreateOrConnectWithoutTrainerInput[]
+  upsert?: Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput[]
+  createMany?: Prisma.ClientAssignmentCreateManyTrainerInputEnvelope
+  set?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  disconnect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  delete?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  connect?: Prisma.ClientAssignmentWhereUniqueInput | Prisma.ClientAssignmentWhereUniqueInput[]
+  update?: Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput | Prisma.ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput[]
+  updateMany?: Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput | Prisma.ClientAssignmentUpdateManyWithWhereWithoutTrainerInput[]
+  deleteMany?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
 }
 
-export type ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput = {
-  where: Prisma.ClientAssignmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.ClientAssignmentUpdateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedUpdateWithoutTrainerInput>
-  create: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput>
+export type ClientAssignmentCreateshared_scopesInput = {
+  set: $Enums.ShareScopeEnum[]
 }
 
-export type ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput = {
-  where: Prisma.ClientAssignmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.ClientAssignmentUpdateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedUpdateWithoutTrainerInput>
+export type EnumTrainerClientStatusEnumFieldUpdateOperationsInput = {
+  set?: $Enums.TrainerClientStatusEnum
 }
 
-export type ClientAssignmentUpdateManyWithWhereWithoutTrainerInput = {
-  where: Prisma.ClientAssignmentScalarWhereInput
-  data: Prisma.XOR<Prisma.ClientAssignmentUpdateManyMutationInput, Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerInput>
+export type EnumInitiatorEnumFieldUpdateOperationsInput = {
+  set?: $Enums.InitiatorEnum
 }
 
-export type ClientAssignmentScalarWhereInput = {
-  AND?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
-  OR?: Prisma.ClientAssignmentScalarWhereInput[]
-  NOT?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
-  id?: Prisma.StringFilter<"ClientAssignment"> | string
-  trainer_id?: Prisma.StringFilter<"ClientAssignment"> | string
-  user_id?: Prisma.StringFilter<"ClientAssignment"> | string
-  status?: Prisma.EnumTrainerClientStatusEnumFilter<"ClientAssignment"> | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
-  ended_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
+export type ClientAssignmentUpdateshared_scopesInput = {
+  set?: $Enums.ShareScopeEnum[]
+  push?: $Enums.ShareScopeEnum | $Enums.ShareScopeEnum[]
 }
 
 export type ClientAssignmentCreateWithoutUserInput = {
   id?: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   trainer: Prisma.TrainerCreateNestedOneWithoutClient_linksInput
 }
 
@@ -501,8 +554,12 @@ export type ClientAssignmentUncheckedCreateWithoutUserInput = {
   id?: string
   trainer_id: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type ClientAssignmentCreateOrConnectWithoutUserInput = {
@@ -531,51 +588,93 @@ export type ClientAssignmentUpdateManyWithWhereWithoutUserInput = {
   data: Prisma.XOR<Prisma.ClientAssignmentUpdateManyMutationInput, Prisma.ClientAssignmentUncheckedUpdateManyWithoutUserInput>
 }
 
-export type ClientAssignmentCreateManyTrainerInput = {
+export type ClientAssignmentScalarWhereInput = {
+  AND?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
+  OR?: Prisma.ClientAssignmentScalarWhereInput[]
+  NOT?: Prisma.ClientAssignmentScalarWhereInput | Prisma.ClientAssignmentScalarWhereInput[]
+  id?: Prisma.StringFilter<"ClientAssignment"> | string
+  trainer_id?: Prisma.StringFilter<"ClientAssignment"> | string
+  user_id?: Prisma.StringFilter<"ClientAssignment"> | string
+  status?: Prisma.EnumTrainerClientStatusEnumFilter<"ClientAssignment"> | $Enums.TrainerClientStatusEnum
+  initiated_by?: Prisma.EnumInitiatorEnumFilter<"ClientAssignment"> | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.EnumShareScopeEnumNullableListFilter<"ClientAssignment">
+  started_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
+  ended_at?: Prisma.DateTimeNullableFilter<"ClientAssignment"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"ClientAssignment"> | Date | string
+}
+
+export type ClientAssignmentCreateWithoutTrainerInput = {
+  id?: string
+  status?: $Enums.TrainerClientStatusEnum
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
+  ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTrainer_linksInput
+}
+
+export type ClientAssignmentUncheckedCreateWithoutTrainerInput = {
   id?: string
   user_id: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
-export type ClientAssignmentUpdateWithoutTrainerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutTrainer_linksNestedInput
+export type ClientAssignmentCreateOrConnectWithoutTrainerInput = {
+  where: Prisma.ClientAssignmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput>
 }
 
-export type ClientAssignmentUncheckedUpdateWithoutTrainerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+export type ClientAssignmentCreateManyTrainerInputEnvelope = {
+  data: Prisma.ClientAssignmentCreateManyTrainerInput | Prisma.ClientAssignmentCreateManyTrainerInput[]
+  skipDuplicates?: boolean
 }
 
-export type ClientAssignmentUncheckedUpdateManyWithoutTrainerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+export type ClientAssignmentUpsertWithWhereUniqueWithoutTrainerInput = {
+  where: Prisma.ClientAssignmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.ClientAssignmentUpdateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedUpdateWithoutTrainerInput>
+  create: Prisma.XOR<Prisma.ClientAssignmentCreateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedCreateWithoutTrainerInput>
+}
+
+export type ClientAssignmentUpdateWithWhereUniqueWithoutTrainerInput = {
+  where: Prisma.ClientAssignmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.ClientAssignmentUpdateWithoutTrainerInput, Prisma.ClientAssignmentUncheckedUpdateWithoutTrainerInput>
+}
+
+export type ClientAssignmentUpdateManyWithWhereWithoutTrainerInput = {
+  where: Prisma.ClientAssignmentScalarWhereInput
+  data: Prisma.XOR<Prisma.ClientAssignmentUpdateManyMutationInput, Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerInput>
 }
 
 export type ClientAssignmentCreateManyUserInput = {
   id?: string
   trainer_id: string
   status?: $Enums.TrainerClientStatusEnum
-  started_at?: Date | string
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
   ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type ClientAssignmentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.TrainerUpdateOneRequiredWithoutClient_linksNestedInput
 }
 
@@ -583,16 +682,72 @@ export type ClientAssignmentUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ClientAssignmentUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   trainer_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
-  started_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ClientAssignmentCreateManyTrainerInput = {
+  id?: string
+  user_id: string
+  status?: $Enums.TrainerClientStatusEnum
+  initiated_by: $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentCreateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Date | string | null
+  ended_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type ClientAssignmentUpdateWithoutTrainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTrainer_linksNestedInput
+}
+
+export type ClientAssignmentUncheckedUpdateWithoutTrainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ClientAssignmentUncheckedUpdateManyWithoutTrainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTrainerClientStatusEnumFieldUpdateOperationsInput | $Enums.TrainerClientStatusEnum
+  initiated_by?: Prisma.EnumInitiatorEnumFieldUpdateOperationsInput | $Enums.InitiatorEnum
+  shared_scopes?: Prisma.ClientAssignmentUpdateshared_scopesInput | $Enums.ShareScopeEnum[]
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ended_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -602,8 +757,12 @@ export type ClientAssignmentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   trainer_id?: boolean
   user_id?: boolean
   status?: boolean
+  initiated_by?: boolean
+  shared_scopes?: boolean
   started_at?: boolean
   ended_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clientAssignment"]>
@@ -613,8 +772,12 @@ export type ClientAssignmentSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   trainer_id?: boolean
   user_id?: boolean
   status?: boolean
+  initiated_by?: boolean
+  shared_scopes?: boolean
   started_at?: boolean
   ended_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clientAssignment"]>
@@ -624,8 +787,12 @@ export type ClientAssignmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   trainer_id?: boolean
   user_id?: boolean
   status?: boolean
+  initiated_by?: boolean
+  shared_scopes?: boolean
   started_at?: boolean
   ended_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clientAssignment"]>
@@ -635,11 +802,15 @@ export type ClientAssignmentSelectScalar = {
   trainer_id?: boolean
   user_id?: boolean
   status?: boolean
+  initiated_by?: boolean
+  shared_scopes?: boolean
   started_at?: boolean
   ended_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type ClientAssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainer_id" | "user_id" | "status" | "started_at" | "ended_at", ExtArgs["result"]["clientAssignment"]>
+export type ClientAssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainer_id" | "user_id" | "status" | "initiated_by" | "shared_scopes" | "started_at" | "ended_at" | "created_at" | "updated_at", ExtArgs["result"]["clientAssignment"]>
 export type ClientAssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   trainer?: boolean | Prisma.TrainerDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -664,8 +835,12 @@ export type $ClientAssignmentPayload<ExtArgs extends runtime.Types.Extensions.In
     trainer_id: string
     user_id: string
     status: $Enums.TrainerClientStatusEnum
-    started_at: Date
+    initiated_by: $Enums.InitiatorEnum
+    shared_scopes: $Enums.ShareScopeEnum[]
+    started_at: Date | null
     ended_at: Date | null
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["clientAssignment"]>
   composites: {}
 }
@@ -1095,8 +1270,12 @@ export interface ClientAssignmentFieldRefs {
   readonly trainer_id: Prisma.FieldRef<"ClientAssignment", 'String'>
   readonly user_id: Prisma.FieldRef<"ClientAssignment", 'String'>
   readonly status: Prisma.FieldRef<"ClientAssignment", 'TrainerClientStatusEnum'>
+  readonly initiated_by: Prisma.FieldRef<"ClientAssignment", 'InitiatorEnum'>
+  readonly shared_scopes: Prisma.FieldRef<"ClientAssignment", 'ShareScopeEnum[]'>
   readonly started_at: Prisma.FieldRef<"ClientAssignment", 'DateTime'>
   readonly ended_at: Prisma.FieldRef<"ClientAssignment", 'DateTime'>
+  readonly created_at: Prisma.FieldRef<"ClientAssignment", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"ClientAssignment", 'DateTime'>
 }
     
 

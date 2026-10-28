@@ -1,17 +1,33 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { User } from '@/shared/decorators';
-import type { UserFromRequest } from '@/shared/types';
+import { Controller, Post, Body } from '@nestjs/common';
 import { DietService } from './diet.service';
-import type { CreateDietReqDto } from './dto/diet.dto';
+import { CreateDietDto } from './dto/create-diet.dto';
 
-@ApiTags('Diet')
 @Controller('diet')
 export class DietController {
   constructor(private readonly dietService: DietService) {}
 
   @Post()
-  create(@Body() createDietDto: CreateDietReqDto, @User() user: UserFromRequest) {
-    return this.dietService.adminCreateDiet(createDietDto, user);
+  create(@Body() createDietDto: CreateDietDto) {
+    return this.dietService.create(createDietDto);
   }
+
+  // @Get()
+  // findAll() {
+  //   return this.dietService.findAll();
+  // }
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.dietService.findOne(+id);
+  // }
+
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateDietDto: UpdateDietDto) {
+  //   return this.dietService.update(+id, updateDietDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.dietService.remove(+id);
+  // }
 }

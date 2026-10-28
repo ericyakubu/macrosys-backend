@@ -1,0 +1,135 @@
+model Diet {
+  id          String  @id @default(uuid())
+  slug        String  @unique
+  name        String
+  description String?
+
+  conflicts_with Diet[]     @relation("DietConflicts")
+  conflicted_by  Diet[]     @relation("DietConflicts")
+  products       Product[]
+  recipes        Recipe[]
+  meal_plans     MealPlan[]
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  owner_user_id    String? // set = private to that user
+  owner_trainer_id String? // set = private to that trainer
+  // both null = default (admin-managed)
+  name        String
+  barcode     String?
+  description String?
+  photo_url   String?
+
+  // per 100 g
+  calories      Decimal  @db.Decimal(8, 2)
+  protein       Decimal  @db.Decimal(6, 2)
+  fat           Decimal  @db.Decimal(6, 2)
+  carbohydrates Decimal  @db.Decimal(6, 2)
+  fiber         Decimal? @db.Decimal(6, 2)
+  sugar         Decimal? @db.Decimal(6, 2)
+
+  archived_at DateTime? // soft delete for default items
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  owner_user    User?    @relation(fields: [owner_user_id], references: [id], onDelete: Cascade)
+  owner_trainer Trainer? @relation(fields: [owner_trainer_id], references: [id], onDelete: Cascade)
+  diets           Diet[]
+  ingredients     RecipeIngredient[]
+  favorites       FavoriteProduct[]
+  log_entries     FoodLogEntry[]
+  meal_plan_items MealPlanItem[]
+  photo           ProductPhoto?
+
+  @@index([owner_user_id])
+  @@index([owner_trainer_id])
+  @@index([barcode])
+  @@index([name])
+}
+
+model ProductPhoto {
+  id         String @id @default(uuid())
+  product_id String @unique
+  url        String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  product Product @relation(fields: [product_id], references: [id])
+}
+
+model Recipe {
+  id           String  @id @default(uuid())
+  owner_user_id    String? // set = private to that user
+  owner_trainer_id String? // set = private to that trainer
+  // both null = default (admin-managed)
+  name         String
+  description  String?
+  instructions String? @db.Text
+  prep_time    Int?
+  cook_time    Int?
+  servings     Int     @default(1)
+  photo_url    String?
+
+  // cached totals for the whole recipe, recalculated by the service
+  calories      Decimal @default(0) @db.Decimal(8, 2)
+  protein       Decimal @default(0) @db.Decimal(6, 2)
+  fat           Decimal @default(0) @db.Decimal(6, 2)
+  carbohydrates Decimal @default(0) @db.Decimal(6, 2)
+  fiber         Decimal @default(0) @db.Decimal(6, 2)
+  sugar         Decimal @default(0) @db.Decimal(6, 2)
+
+  archived_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  owner_user    User?    @relation(fields: [owner_user_id], references: [id], onDelete: Cascade)
+  owner_trainer Trainer? @relation(fields: [owner_trainer_id], references: [id], onDelete: Cascade)
+  diets           Diet[]
+  ingredients     RecipeIngredient[]
+  favorites       FavoriteRecipe[]
+  log_entries     FoodLogEntry[]
+  meal_plan_items MealPlanItem[]
+
+  @@index([owner_user_id])
+  @@index([owner_trainer_id])
+  @@index([name])
+}
+
+model RecipeIngredient {
+  id         String  @id @default(uuid())
+  recipe_id  String
+  product_id String
+  grams      Decimal @db.Decimal(8, 2)
+
+  recipe  Recipe  @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [product_id], references: [id], onDelete: NoAction)
+
+  @@unique([recipe_id, product_id])
+  @@index([product_id])
+}
+
+model FavoriteProduct {
+  user_id    String
+  product_id String
+  created_at DateTime @default(now())
+
+  user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, product_id])
+  @@index([product_id])
+}
+
+model FavoriteRecipe {
+  user_id    String
+  recipe_id  String
+  created_at DateTime @default(now())
+
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, recipe_id])
+  @@index([recipe_id])
+}

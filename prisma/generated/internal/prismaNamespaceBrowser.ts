@@ -51,33 +51,31 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Account: 'Account',
+  User: 'User',
+  Trainer: 'Trainer',
+  Plan: 'Plan',
+  UserSubscription: 'UserSubscription',
+  TrainerSubscription: 'TrainerSubscription',
   Admin: 'Admin',
   AdminCredentials: 'AdminCredentials',
+  Diet: 'Diet',
   Product: 'Product',
   ProductPhoto: 'ProductPhoto',
   Recipe: 'Recipe',
-  RecipeProduct: 'RecipeProduct',
-  Diet: 'Diet',
-  UserPlan: 'UserPlan',
-  TrainerPlan: 'TrainerPlan',
-  Trainer: 'Trainer',
+  RecipeIngredient: 'RecipeIngredient',
+  FavoriteProduct: 'FavoriteProduct',
+  FavoriteRecipe: 'FavoriteRecipe',
+  FoodLogEntry: 'FoodLogEntry',
+  WaterLogEntry: 'WaterLogEntry',
   ClientAssignment: 'ClientAssignment',
-  TrainerCredentials: 'TrainerCredentials',
-  TrainerSubscription: 'TrainerSubscription',
-  User: 'User',
-  UserCredentials: 'UserCredentials',
-  UserSubscription: 'UserSubscription',
-  UserDietPlan: 'UserDietPlan',
-  UserMeasurements: 'UserMeasurements',
-  UserMeasurementsPhoto: 'UserMeasurementsPhoto',
-  UserGoal: 'UserGoal',
-  UserGoalInitialMeasurements: 'UserGoalInitialMeasurements',
-  UserProduct: 'UserProduct',
-  UserProductPhoto: 'UserProductPhoto',
-  UserRecipe: 'UserRecipe',
-  UserRecipePhoto: 'UserRecipePhoto',
-  UserRecipeProduct: 'UserRecipeProduct',
-  UserRecipeTag: 'UserRecipeTag'
+  MealPlan: 'MealPlan',
+  MealPlanItem: 'MealPlanItem',
+  MealPlanAssignment: 'MealPlanAssignment',
+  Measurement: 'Measurement',
+  MeasurementPhoto: 'MeasurementPhoto',
+  Goal: 'Goal',
+  NutritionTarget: 'NutritionTarget'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,6 +92,109 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const AccountScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  name: 'name',
+  second_name: 'second_name',
+  lastname: 'lastname',
+  phone: 'phone',
+  birthday: 'birthday',
+  gender: 'gender',
+  activity_level: 'activity_level',
+  language: 'language',
+  role: 'role',
+  timezone: 'timezone',
+  disabled: 'disabled',
+  disabled_at: 'disabled_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const TrainerScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  name: 'name',
+  second_name: 'second_name',
+  lastname: 'lastname',
+  phone: 'phone',
+  bio: 'bio',
+  language: 'language',
+  role: 'role',
+  birthday: 'birthday',
+  gender: 'gender',
+  timezone: 'timezone',
+  is_listed: 'is_listed',
+  accepting_clients: 'accepting_clients',
+  disabled: 'disabled',
+  disabled_at: 'disabled_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type TrainerScalarFieldEnum = (typeof TrainerScalarFieldEnum)[keyof typeof TrainerScalarFieldEnum]
+
+
+export const PlanScalarFieldEnum = {
+  id: 'id',
+  audience: 'audience',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  discount_price: 'discount_price',
+  sale_start: 'sale_start',
+  sale_end: 'sale_end',
+  available: 'available',
+  features: 'features',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
+
+
+export const UserSubscriptionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  plan_id: 'plan_id',
+  status: 'status',
+  starts_at: 'starts_at',
+  ends_at: 'ends_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type UserSubscriptionScalarFieldEnum = (typeof UserSubscriptionScalarFieldEnum)[keyof typeof UserSubscriptionScalarFieldEnum]
+
+
+export const TrainerSubscriptionScalarFieldEnum = {
+  id: 'id',
+  trainer_id: 'trainer_id',
+  plan_id: 'plan_id',
+  status: 'status',
+  starts_at: 'starts_at',
+  ends_at: 'ends_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type TrainerSubscriptionScalarFieldEnum = (typeof TrainerSubscriptionScalarFieldEnum)[keyof typeof TrainerSubscriptionScalarFieldEnum]
 
 
 export const AdminScalarFieldEnum = {
@@ -126,18 +227,31 @@ export const AdminCredentialsScalarFieldEnum = {
 export type AdminCredentialsScalarFieldEnum = (typeof AdminCredentialsScalarFieldEnum)[keyof typeof AdminCredentialsScalarFieldEnum]
 
 
+export const DietScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]
+
+
 export const ProductScalarFieldEnum = {
   id: 'id',
+  owner_user_id: 'owner_user_id',
+  owner_trainer_id: 'owner_trainer_id',
   name: 'name',
   barcode: 'barcode',
   description: 'description',
-  rating: 'rating',
+  photo_url: 'photo_url',
   calories: 'calories',
-  carbohydrates: 'carbohydrates',
-  fat: 'fat',
-  fiber: 'fiber',
   protein: 'protein',
+  fat: 'fat',
+  carbohydrates: 'carbohydrates',
+  fiber: 'fiber',
   sugar: 'sugar',
+  archived_at: 'archived_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -158,18 +272,22 @@ export type ProductPhotoScalarFieldEnum = (typeof ProductPhotoScalarFieldEnum)[k
 
 export const RecipeScalarFieldEnum = {
   id: 'id',
+  owner_user_id: 'owner_user_id',
+  owner_trainer_id: 'owner_trainer_id',
   name: 'name',
-  cook_time: 'cook_time',
   description: 'description',
   instructions: 'instructions',
   prep_time: 'prep_time',
+  cook_time: 'cook_time',
   servings: 'servings',
+  photo_url: 'photo_url',
   calories: 'calories',
-  carbohydrates: 'carbohydrates',
-  fat: 'fat',
-  fiber: 'fiber',
   protein: 'protein',
+  fat: 'fat',
+  carbohydrates: 'carbohydrates',
+  fiber: 'fiber',
   sugar: 'sugar',
+  archived_at: 'archived_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
@@ -177,89 +295,66 @@ export const RecipeScalarFieldEnum = {
 export type RecipeScalarFieldEnum = (typeof RecipeScalarFieldEnum)[keyof typeof RecipeScalarFieldEnum]
 
 
-export const RecipeProductScalarFieldEnum = {
+export const RecipeIngredientScalarFieldEnum = {
   id: 'id',
   recipe_id: 'recipe_id',
   product_id: 'product_id',
+  grams: 'grams'
+} as const
+
+export type RecipeIngredientScalarFieldEnum = (typeof RecipeIngredientScalarFieldEnum)[keyof typeof RecipeIngredientScalarFieldEnum]
+
+
+export const FavoriteProductScalarFieldEnum = {
+  user_id: 'user_id',
+  product_id: 'product_id',
+  created_at: 'created_at'
+} as const
+
+export type FavoriteProductScalarFieldEnum = (typeof FavoriteProductScalarFieldEnum)[keyof typeof FavoriteProductScalarFieldEnum]
+
+
+export const FavoriteRecipeScalarFieldEnum = {
+  user_id: 'user_id',
+  recipe_id: 'recipe_id',
+  created_at: 'created_at'
+} as const
+
+export type FavoriteRecipeScalarFieldEnum = (typeof FavoriteRecipeScalarFieldEnum)[keyof typeof FavoriteRecipeScalarFieldEnum]
+
+
+export const FoodLogEntryScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  eaten_at: 'eaten_at',
+  meal_type: 'meal_type',
+  product_id: 'product_id',
+  recipe_id: 'recipe_id',
   quantity: 'quantity',
+  unit: 'unit',
+  name: 'name',
+  calories: 'calories',
+  protein: 'protein',
+  fat: 'fat',
+  carbohydrates: 'carbohydrates',
+  fiber: 'fiber',
+  sugar: 'sugar',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
-export type RecipeProductScalarFieldEnum = (typeof RecipeProductScalarFieldEnum)[keyof typeof RecipeProductScalarFieldEnum]
+export type FoodLogEntryScalarFieldEnum = (typeof FoodLogEntryScalarFieldEnum)[keyof typeof FoodLogEntryScalarFieldEnum]
 
 
-export const DietScalarFieldEnum = {
+export const WaterLogEntryScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  description: 'description',
-  source: 'source',
-  trainer_id: 'trainer_id',
-  created_by: 'created_by',
-  is_active: 'is_active',
-  is_system: 'is_system',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  recipe_id: 'recipe_id'
+  user_id: 'user_id',
+  amount_ml: 'amount_ml',
+  drunk_at: 'drunk_at',
+  created_at: 'created_at'
 } as const
 
-export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]
-
-
-export const UserPlanScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  price: 'price',
-  discount_price: 'discount_price',
-  discount_percent: 'discount_percent',
-  sale_start: 'sale_start',
-  sale_end: 'sale_end',
-  available: 'available',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserPlanScalarFieldEnum = (typeof UserPlanScalarFieldEnum)[keyof typeof UserPlanScalarFieldEnum]
-
-
-export const TrainerPlanScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  price: 'price',
-  max_clients: 'max_clients',
-  advanced_reports: 'advanced_reports',
-  description: 'description',
-  discount_price: 'discount_price',
-  discount_percent: 'discount_percent',
-  sale_start: 'sale_start',
-  sale_end: 'sale_end',
-  available: 'available',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type TrainerPlanScalarFieldEnum = (typeof TrainerPlanScalarFieldEnum)[keyof typeof TrainerPlanScalarFieldEnum]
-
-
-export const TrainerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  second_name: 'second_name',
-  lastname: 'lastname',
-  email: 'email',
-  phone: 'phone',
-  birthday: 'birthday',
-  role: 'role',
-  gender: 'gender',
-  language: 'language',
-  disabled: 'disabled',
-  disabled_at: 'disabled_at',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type TrainerScalarFieldEnum = (typeof TrainerScalarFieldEnum)[keyof typeof TrainerScalarFieldEnum]
+export type WaterLogEntryScalarFieldEnum = (typeof WaterLogEntryScalarFieldEnum)[keyof typeof WaterLogEntryScalarFieldEnum]
 
 
 export const ClientAssignmentScalarFieldEnum = {
@@ -267,234 +362,113 @@ export const ClientAssignmentScalarFieldEnum = {
   trainer_id: 'trainer_id',
   user_id: 'user_id',
   status: 'status',
+  initiated_by: 'initiated_by',
+  shared_scopes: 'shared_scopes',
   started_at: 'started_at',
-  ended_at: 'ended_at'
+  ended_at: 'ended_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type ClientAssignmentScalarFieldEnum = (typeof ClientAssignmentScalarFieldEnum)[keyof typeof ClientAssignmentScalarFieldEnum]
 
 
-export const TrainerCredentialsScalarFieldEnum = {
+export const MealPlanScalarFieldEnum = {
   id: 'id',
   trainer_id: 'trainer_id',
-  email: 'email',
-  password: 'password',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type TrainerCredentialsScalarFieldEnum = (typeof TrainerCredentialsScalarFieldEnum)[keyof typeof TrainerCredentialsScalarFieldEnum]
-
-
-export const TrainerSubscriptionScalarFieldEnum = {
-  id: 'id',
-  trainer_id: 'trainer_id',
-  subscription_id: 'subscription_id',
-  start: 'start',
-  end: 'end'
-} as const
-
-export type TrainerSubscriptionScalarFieldEnum = (typeof TrainerSubscriptionScalarFieldEnum)[keyof typeof TrainerSubscriptionScalarFieldEnum]
-
-
-export const UserScalarFieldEnum = {
-  id: 'id',
   name: 'name',
-  second_name: 'second_name',
-  lastname: 'lastname',
-  email: 'email',
-  phone: 'phone',
-  birthday: 'birthday',
-  role: 'role',
-  gender: 'gender',
-  language: 'language',
-  disabled: 'disabled',
-  disabled_at: 'disabled_at',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const UserCredentialsScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  email: 'email',
-  password: 'password',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserCredentialsScalarFieldEnum = (typeof UserCredentialsScalarFieldEnum)[keyof typeof UserCredentialsScalarFieldEnum]
-
-
-export const UserSubscriptionScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  subscription_id: 'subscription_id',
-  start: 'start',
-  end: 'end',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserSubscriptionScalarFieldEnum = (typeof UserSubscriptionScalarFieldEnum)[keyof typeof UserSubscriptionScalarFieldEnum]
-
-
-export const UserDietPlanScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
+  description: 'description',
   target_calories: 'target_calories',
   target_protein: 'target_protein',
   target_fat: 'target_fat',
   target_carbs: 'target_carbs',
+  archived_at: 'archived_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
-export type UserDietPlanScalarFieldEnum = (typeof UserDietPlanScalarFieldEnum)[keyof typeof UserDietPlanScalarFieldEnum]
+export type MealPlanScalarFieldEnum = (typeof MealPlanScalarFieldEnum)[keyof typeof MealPlanScalarFieldEnum]
 
 
-export const UserMeasurementsScalarFieldEnum = {
+export const MealPlanItemScalarFieldEnum = {
   id: 'id',
+  meal_plan_id: 'meal_plan_id',
+  day: 'day',
+  meal_type: 'meal_type',
+  product_id: 'product_id',
+  recipe_id: 'recipe_id',
+  quantity: 'quantity',
+  unit: 'unit'
+} as const
+
+export type MealPlanItemScalarFieldEnum = (typeof MealPlanItemScalarFieldEnum)[keyof typeof MealPlanItemScalarFieldEnum]
+
+
+export const MealPlanAssignmentScalarFieldEnum = {
+  id: 'id',
+  meal_plan_id: 'meal_plan_id',
   user_id: 'user_id',
-  weight_kg: 'weight_kg',
-  body_fat: 'body_fat',
-  height_cm: 'height_cm',
-  bmi: 'bmi',
+  is_active: 'is_active',
   created_at: 'created_at'
 } as const
 
-export type UserMeasurementsScalarFieldEnum = (typeof UserMeasurementsScalarFieldEnum)[keyof typeof UserMeasurementsScalarFieldEnum]
+export type MealPlanAssignmentScalarFieldEnum = (typeof MealPlanAssignmentScalarFieldEnum)[keyof typeof MealPlanAssignmentScalarFieldEnum]
 
 
-export const UserMeasurementsPhotoScalarFieldEnum = {
+export const MeasurementScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  measured_at: 'measured_at',
+  weight_kg: 'weight_kg',
+  height_cm: 'height_cm',
+  body_fat: 'body_fat',
+  created_at: 'created_at'
+} as const
+
+export type MeasurementScalarFieldEnum = (typeof MeasurementScalarFieldEnum)[keyof typeof MeasurementScalarFieldEnum]
+
+
+export const MeasurementPhotoScalarFieldEnum = {
   id: 'id',
   measurement_id: 'measurement_id',
   url: 'url',
   created_at: 'created_at'
 } as const
 
-export type UserMeasurementsPhotoScalarFieldEnum = (typeof UserMeasurementsPhotoScalarFieldEnum)[keyof typeof UserMeasurementsPhotoScalarFieldEnum]
+export type MeasurementPhotoScalarFieldEnum = (typeof MeasurementPhotoScalarFieldEnum)[keyof typeof MeasurementPhotoScalarFieldEnum]
 
 
-export const UserGoalScalarFieldEnum = {
+export const GoalScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  target_weight_kg: 'target_weight_kg',
-  target_bmi: 'target_bmi',
-  target_body_fat: 'target_body_fat',
+  metric: 'metric',
+  target_value: 'target_value',
+  target_date: 'target_date',
+  status: 'status',
+  start_measurement_id: 'start_measurement_id',
+  started_at: 'started_at',
+  completed_at: 'completed_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
 } as const
 
-export type UserGoalScalarFieldEnum = (typeof UserGoalScalarFieldEnum)[keyof typeof UserGoalScalarFieldEnum]
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
 
 
-export const UserGoalInitialMeasurementsScalarFieldEnum = {
+export const NutritionTargetScalarFieldEnum = {
   id: 'id',
-  weight_kg: 'weight_kg',
-  height_cm: 'height_cm',
-  age: 'age',
-  body_fat: 'body_fat',
-  bmi: 'bmi',
+  user_id: 'user_id',
+  calories: 'calories',
+  protein_g: 'protein_g',
+  fat_g: 'fat_g',
+  carbs_g: 'carbs_g',
+  source: 'source',
   goal_id: 'goal_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  valid_from: 'valid_from',
+  valid_to: 'valid_to'
 } as const
 
-export type UserGoalInitialMeasurementsScalarFieldEnum = (typeof UserGoalInitialMeasurementsScalarFieldEnum)[keyof typeof UserGoalInitialMeasurementsScalarFieldEnum]
-
-
-export const UserProductScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  name: 'name',
-  barcode: 'barcode',
-  description: 'description',
-  rating: 'rating',
-  calories: 'calories',
-  carbohydrates: 'carbohydrates',
-  fat: 'fat',
-  fiber: 'fiber',
-  protein: 'protein',
-  sugar: 'sugar',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserProductScalarFieldEnum = (typeof UserProductScalarFieldEnum)[keyof typeof UserProductScalarFieldEnum]
-
-
-export const UserProductPhotoScalarFieldEnum = {
-  id: 'id',
-  user_product_id: 'user_product_id',
-  url: 'url',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserProductPhotoScalarFieldEnum = (typeof UserProductPhotoScalarFieldEnum)[keyof typeof UserProductPhotoScalarFieldEnum]
-
-
-export const UserRecipeScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  name: 'name',
-  cook_time: 'cook_time',
-  description: 'description',
-  instructions: 'instructions',
-  prep_time: 'prep_time',
-  servings: 'servings',
-  rating: 'rating',
-  calories: 'calories',
-  carbohydrates: 'carbohydrates',
-  fat: 'fat',
-  fiber: 'fiber',
-  protein: 'protein',
-  sugar: 'sugar',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserRecipeScalarFieldEnum = (typeof UserRecipeScalarFieldEnum)[keyof typeof UserRecipeScalarFieldEnum]
-
-
-export const UserRecipePhotoScalarFieldEnum = {
-  id: 'id',
-  user_recipe_id: 'user_recipe_id',
-  url: 'url',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserRecipePhotoScalarFieldEnum = (typeof UserRecipePhotoScalarFieldEnum)[keyof typeof UserRecipePhotoScalarFieldEnum]
-
-
-export const UserRecipeProductScalarFieldEnum = {
-  id: 'id',
-  recipe_id: 'recipe_id',
-  user_product_id: 'user_product_id',
-  product_id: 'product_id',
-  quantity: 'quantity',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserRecipeProductScalarFieldEnum = (typeof UserRecipeProductScalarFieldEnum)[keyof typeof UserRecipeProductScalarFieldEnum]
-
-
-export const UserRecipeTagScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  user_id: 'user_id',
-  description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type UserRecipeTagScalarFieldEnum = (typeof UserRecipeTagScalarFieldEnum)[keyof typeof UserRecipeTagScalarFieldEnum]
+export type NutritionTargetScalarFieldEnum = (typeof NutritionTargetScalarFieldEnum)[keyof typeof NutritionTargetScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -503,6 +477,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -519,4 +500,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

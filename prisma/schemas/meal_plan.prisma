@@ -1,0 +1,70 @@
+model ClientAssignment {
+  id            String                  @id @default(uuid())
+  trainer_id    String
+  user_id       String
+  status        TrainerClientStatusEnum @default(PENDING)
+  initiated_by  InitiatorEnum
+  shared_scopes ShareScopeEnum[]        @default([])
+  started_at    DateTime?
+  ended_at      DateTime?
+  created_at    DateTime                @default(now())
+  updated_at    DateTime                @updatedAt
+
+  trainer Trainer @relation(fields: [trainer_id], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([trainer_id, user_id])
+  @@index([user_id])
+}
+
+model MealPlan {
+  id              String    @id @default(uuid())
+  trainer_id      String
+  name            String
+  description     String?
+  target_calories Int?
+  target_protein  Int?
+  target_fat      Int?
+  target_carbs    Int?
+  archived_at     DateTime?
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @updatedAt
+
+  trainer     Trainer              @relation(fields: [trainer_id], references: [id], onDelete: Cascade)
+  diets       Diet[] // used for "this food doesn't fit your plan" warnings
+  items       MealPlanItem[]
+  assignments MealPlanAssignment[]
+
+  @@index([trainer_id])
+}
+
+model MealPlanItem {
+  id           String           @id @default(uuid())
+  meal_plan_id String
+  day          Int? // null = every day
+  meal_type    MealTypeEnum
+  product_id   String?
+  recipe_id    String?
+  quantity     Decimal          @db.Decimal(8, 2)
+  unit         QuantityUnitEnum
+
+  meal_plan MealPlan @relation(fields: [meal_plan_id], references: [id], onDelete: Cascade)
+  product   Product? @relation(fields: [product_id], references: [id], onDelete: NoAction)
+  recipe    Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: NoAction)
+
+  @@index([meal_plan_id])
+}
+
+model MealPlanAssignment {
+  id           String   @id @default(uuid())
+  meal_plan_id String
+  user_id      String
+  is_active    Boolean  @default(false) // the user's "main" plan
+  created_at   DateTime @default(now())
+
+  meal_plan MealPlan @relation(fields: [meal_plan_id], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([meal_plan_id, user_id])
+  @@index([user_id])
+}

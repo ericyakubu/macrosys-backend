@@ -1,0 +1,126 @@
+model Account {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user    User?
+  trainer Trainer?
+}
+
+model User {
+  id             String             @id @default(uuid())
+  account_id     String             @unique
+  name           String?
+  second_name    String?
+  lastname       String?
+  phone          String?            @unique
+  birthday       DateTime?          @db.Date
+  gender         GenderEnum?
+  activity_level ActivityLevelEnum?
+  language       LanguageEnum       @default(RU)
+  role           RoleEnum           @default(USER)
+  timezone       String?
+
+  disabled    Boolean   @default(false)
+  disabled_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  account           Account              @relation(fields: [account_id], references: [id], onDelete: Cascade)
+  subscriptions     UserSubscription[]
+  products          Product[]
+  recipes           Recipe[]
+  favorite_products FavoriteProduct[]
+  favorite_recipes  FavoriteRecipe[]
+  measurements      Measurement[]
+  goals             Goal[]
+  nutrition_targets NutritionTarget[]
+  food_log          FoodLogEntry[]
+  water_log         WaterLogEntry[]
+  trainer_links     ClientAssignment[]
+  meal_plans        MealPlanAssignment[]
+}
+
+model Trainer {
+  id          String       @id @default(uuid())
+  account_id  String       @unique
+  name        String
+  second_name String?
+  lastname    String?
+  phone       String?      @unique
+  bio         String?
+  language    LanguageEnum @default(RU)
+  role           RoleEnum           @default(TRAINER)
+  birthday    DateTime?          @db.Date
+  gender      GenderEnum?
+  timezone    String?
+
+  is_listed         Boolean @default(true)
+  accepting_clients Boolean @default(true)
+
+  disabled    Boolean   @default(false)
+  disabled_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  account       Account               @relation(fields: [account_id], references: [id], onDelete: Cascade)
+  client_links  ClientAssignment[]
+  meal_plans    MealPlan[]
+    recipes           Recipe[]
+  products Product[]
+  subscriptions TrainerSubscription[]
+}
+
+model Plan {
+  id             String           @id @default(uuid())
+  audience       PlanAudienceEnum
+  name           String
+  description    String?
+  price          Decimal          @db.Decimal(10, 2)
+  discount_price Decimal?         @db.Decimal(10, 2)
+  sale_start     DateTime?
+  sale_end       DateTime?
+  available      Boolean          @default(true)
+  features       Json             @default("{}") // { "max_clients": 10, "auto_macros": true }
+  created_at     DateTime         @default(now())
+  updated_at     DateTime         @updatedAt
+
+  user_subscriptions    UserSubscription[]
+  trainer_subscriptions TrainerSubscription[]
+}
+
+model UserSubscription {
+  id         String                 @id @default(uuid())
+  user_id    String
+  plan_id    String
+  status     SubscriptionStatusEnum @default(ACTIVE)
+  starts_at  DateTime
+  ends_at    DateTime
+  created_at DateTime               @default(now())
+  updated_at DateTime               @updatedAt
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  plan Plan @relation(fields: [plan_id], references: [id])
+
+  @@index([user_id, status])
+  @@index([plan_id])
+}
+
+model TrainerSubscription {
+  id         String                 @id @default(uuid())
+  trainer_id String
+  plan_id    String
+  status     SubscriptionStatusEnum @default(ACTIVE)
+  starts_at  DateTime
+  ends_at    DateTime
+  created_at DateTime               @default(now())
+  updated_at DateTime               @updatedAt
+
+  trainer Trainer @relation(fields: [trainer_id], references: [id], onDelete: Cascade)
+  plan    Plan    @relation(fields: [plan_id], references: [id])
+
+  @@index([trainer_id, status])
+  @@index([plan_id])
+}

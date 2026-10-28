@@ -1,14 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AdminDietController } from './controllers/admin-diet.controller';
-import { TrainerDietController } from './controllers/trainer-diet.controller';
 import { DietService } from './diet.service';
+import { DietController } from './diet.controller';
+import { DietResolverService } from './diet-resolver.service';
 
 @Module({
-  controllers: [
-    // DietController,
-    AdminDietController,
-    TrainerDietController,
-  ],
+  controllers: [DietController],
   providers: [DietService],
+  exports: [DietResolverService],
 })
 export class DietModule {}

@@ -18,6 +18,36 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model Trainer
+ * 
+ */
+export type Trainer = Prisma.TrainerModel
+/**
+ * Model Plan
+ * 
+ */
+export type Plan = Prisma.PlanModel
+/**
+ * Model UserSubscription
+ * 
+ */
+export type UserSubscription = Prisma.UserSubscriptionModel
+/**
+ * Model TrainerSubscription
+ * 
+ */
+export type TrainerSubscription = Prisma.TrainerSubscriptionModel
+/**
  * Model Admin
  * 
  */
@@ -27,6 +57,11 @@ export type Admin = Prisma.AdminModel
  * 
  */
 export type AdminCredentials = Prisma.AdminCredentialsModel
+/**
+ * Model Diet
+ * 
+ */
+export type Diet = Prisma.DietModel
 /**
  * Model Product
  * 
@@ -43,112 +78,67 @@ export type ProductPhoto = Prisma.ProductPhotoModel
  */
 export type Recipe = Prisma.RecipeModel
 /**
- * Model RecipeProduct
+ * Model RecipeIngredient
  * 
  */
-export type RecipeProduct = Prisma.RecipeProductModel
+export type RecipeIngredient = Prisma.RecipeIngredientModel
 /**
- * Model Diet
+ * Model FavoriteProduct
  * 
  */
-export type Diet = Prisma.DietModel
+export type FavoriteProduct = Prisma.FavoriteProductModel
 /**
- * Model UserPlan
+ * Model FavoriteRecipe
  * 
  */
-export type UserPlan = Prisma.UserPlanModel
+export type FavoriteRecipe = Prisma.FavoriteRecipeModel
 /**
- * Model TrainerPlan
+ * Model FoodLogEntry
  * 
  */
-export type TrainerPlan = Prisma.TrainerPlanModel
+export type FoodLogEntry = Prisma.FoodLogEntryModel
 /**
- * Model Trainer
+ * Model WaterLogEntry
  * 
  */
-export type Trainer = Prisma.TrainerModel
+export type WaterLogEntry = Prisma.WaterLogEntryModel
 /**
  * Model ClientAssignment
  * 
  */
 export type ClientAssignment = Prisma.ClientAssignmentModel
 /**
- * Model TrainerCredentials
+ * Model MealPlan
  * 
  */
-export type TrainerCredentials = Prisma.TrainerCredentialsModel
+export type MealPlan = Prisma.MealPlanModel
 /**
- * Model TrainerSubscription
+ * Model MealPlanItem
  * 
  */
-export type TrainerSubscription = Prisma.TrainerSubscriptionModel
+export type MealPlanItem = Prisma.MealPlanItemModel
 /**
- * Model User
+ * Model MealPlanAssignment
  * 
  */
-export type User = Prisma.UserModel
+export type MealPlanAssignment = Prisma.MealPlanAssignmentModel
 /**
- * Model UserCredentials
+ * Model Measurement
  * 
  */
-export type UserCredentials = Prisma.UserCredentialsModel
+export type Measurement = Prisma.MeasurementModel
 /**
- * Model UserSubscription
+ * Model MeasurementPhoto
  * 
  */
-export type UserSubscription = Prisma.UserSubscriptionModel
+export type MeasurementPhoto = Prisma.MeasurementPhotoModel
 /**
- * Model UserDietPlan
+ * Model Goal
  * 
  */
-export type UserDietPlan = Prisma.UserDietPlanModel
+export type Goal = Prisma.GoalModel
 /**
- * Model UserMeasurements
+ * Model NutritionTarget
  * 
  */
-export type UserMeasurements = Prisma.UserMeasurementsModel
-/**
- * Model UserMeasurementsPhoto
- * 
- */
-export type UserMeasurementsPhoto = Prisma.UserMeasurementsPhotoModel
-/**
- * Model UserGoal
- * 
- */
-export type UserGoal = Prisma.UserGoalModel
-/**
- * Model UserGoalInitialMeasurements
- * 
- */
-export type UserGoalInitialMeasurements = Prisma.UserGoalInitialMeasurementsModel
-/**
- * Model UserProduct
- * 
- */
-export type UserProduct = Prisma.UserProductModel
-/**
- * Model UserProductPhoto
- * 
- */
-export type UserProductPhoto = Prisma.UserProductPhotoModel
-/**
- * Model UserRecipe
- * 
- */
-export type UserRecipe = Prisma.UserRecipeModel
-/**
- * Model UserRecipePhoto
- * 
- */
-export type UserRecipePhoto = Prisma.UserRecipePhotoModel
-/**
- * Model UserRecipeProduct
- * 
- */
-export type UserRecipeProduct = Prisma.UserRecipeProductModel
-/**
- * Model UserRecipeTag
- * 
- */
-export type UserRecipeTag = Prisma.UserRecipeTagModel
+export type NutritionTarget = Prisma.NutritionTargetModel

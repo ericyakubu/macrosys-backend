@@ -1,107 +1,101 @@
-import {
-  Injectable,
-  ExecutionContext,
-  UnauthorizedException,
-  ForbiddenException,
-  BadRequestException,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, HttpStatus, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '@nestjs/passport';
 import { isString } from 'class-validator';
 import { RoleEnum, type LanguageEnum } from '@/prisma/client';
 import { PrismaService } from '@/prisma.service';
-import { AccessToken, AuthErrors } from '@/shared/constants';
-import type { ExtendedRequest, UserFromRequest } from '@/shared/types';
+import { AccessToken } from '@/shared/constants';
+import type { AuthUser, ExtendedRequest, JwtPayload } from '@/shared/types';
+import { AppException } from '@/shared/errors/app.exception';
+import { AuthError } from '@/modules/auth/auth.errors';
 import { JwtSecrets } from '../jwt/jwt.secrets';
 
+function assertActive<T extends { disabled: boolean }>(entity: T | null): asserts entity is T {
+  if (!entity) throw new AppException(AuthError.TOKEN_INVALID, HttpStatus.UNAUTHORIZED);
+  if (entity.disabled) throw new AppException(AuthError.PROFILE_DISABLED, HttpStatus.FORBIDDEN);
+}
+
 @Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {
+export class JwtAuthGuard implements CanActivate {
   constructor(
-    private prisma: PrismaService,
-    private reflector: Reflector,
-    private jwtService: JwtService,
-  ) {
-    super();
-  }
+    private readonly prisma: PrismaService,
+    private readonly reflector: Reflector,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const isAuthenticated = await super.canActivate(context);
-    if (!isAuthenticated) return false;
-
     const request: ExtendedRequest = context.switchToHttp().getRequest();
-    const authHeader = request.headers.authorization;
-    const acceptableLanguages = request.headers['accept-language'];
-    const cookieToken = request.cookies?.[AccessToken.name];
 
-    let userForAuth: UserFromRequest;
-    const secret = JwtSecrets.access;
+    const token = this.extractToken(request);
+    if (!token) throw new AppException(AuthError.TOKEN_INVALID, HttpStatus.UNAUTHORIZED);
 
-    try {
-      if (cookieToken) {
-        // Verify instead of just decoding
-        console.log('jwt-auth.guard ------------------  getting user from cookies');
-        userForAuth = await this.jwtService.verifyAsync(cookieToken, {
-          secret,
-        });
-      } else if (authHeader && authHeader.startsWith('Bearer ')) {
-        console.log('jwt-auth.guard ------------------  getting user from header');
-        const token = authHeader.split(' ')[1];
-        userForAuth = await this.jwtService.verifyAsync(token, {
-          secret,
-        });
-      } else {
-        console.log('Invalid or missing authorization token. No bearer token nor cookie found');
-        throw new UnauthorizedException(AuthErrors.accessDenied);
-      }
+    const payload = await this.verify(token);
+    const user = await this.loadAuthUser(payload);
 
-      if (!userForAuth?.id || !isString(userForAuth.id) || !userForAuth.role) {
-        console.log('Invalid JWT payload');
-        throw new UnauthorizedException(AuthErrors.accessDenied);
-      }
-    } catch {
-      console.log('jwt-auth.guard.ts error: error occurred while verifying JWT');
-      throw new UnauthorizedException(AuthErrors.accessDenied);
+    const roles = this.reflector.getAllAndOverride<RoleEnum[] | undefined>('roles', [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (roles && !roles.includes(user.role)) {
+      throw new AppException(AuthError.ACCESS_DENIED, HttpStatus.FORBIDDEN);
     }
-
-    let user: UserFromRequest | null;
-
-    if (userForAuth.role === RoleEnum.ADMIN) {
-      user = await this.prisma.admin.findUnique({
-        where: { id: userForAuth.id, disabled: false },
-        select: {
-          id: true,
-          // email: true,
-          role: true,
-        },
-      });
-    } else if (userForAuth.role === RoleEnum.USER) {
-      user = await this.prisma.user.findUnique({
-        where: { id: userForAuth.id, disabled: false },
-        select: {
-          id: true,
-          // email: true,
-          role: true,
-        },
-      });
-    } else {
-      throw new BadRequestException(AuthErrors.accessDenied);
-    }
-
-    const language = (): LanguageEnum => {
-      if (!acceptableLanguages) return 'RU';
-      const languages = acceptableLanguages.split(',');
-      if (languages.includes('RU')) return 'RU';
-      else return 'EN';
-    };
-
-    const roles = this.reflector.get<RoleEnum[]>('roles', context.getHandler());
-    if (!user) throw new UnauthorizedException(AuthErrors.userNotFound);
-    if (roles && !roles.includes(user.role)) throw new ForbiddenException(AuthErrors.accessDenied);
 
     request.user = user;
-    request.language = language();
-
+    request.language = this.detectLanguage(request.headers['accept-language']);
     return true;
+  }
+
+  private extractToken(request: ExtendedRequest): string | undefined {
+    const cookieToken = request.cookies?.[AccessToken.name];
+    if (cookieToken) return cookieToken;
+
+    const [scheme, token] = request.headers.authorization?.split(' ') ?? [];
+    return scheme === 'Bearer' ? token : undefined;
+  }
+
+  private async verify(token: string): Promise<JwtPayload> {
+    let payload: Partial<JwtPayload>;
+    try {
+      payload = await this.jwtService.verifyAsync(token, { secret: JwtSecrets.access });
+    } catch (error) {
+      const expired = error instanceof Error && error.name === 'TokenExpiredError';
+      throw new AppException(
+        expired ? AuthError.TOKEN_EXPIRED : AuthError.TOKEN_INVALID,
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    if (!isString(payload.id) || !payload.role || !Object.values(RoleEnum).includes(payload.role)) {
+      throw new AppException(AuthError.TOKEN_INVALID, HttpStatus.UNAUTHORIZED);
+    }
+    return { id: payload.id, role: payload.role };
+  }
+
+  private async loadAuthUser({ id, role }: JwtPayload): Promise<AuthUser> {
+    const select = { id: true, disabled: true, role: true } as const;
+    let entity: { id: string; disabled: boolean; role: RoleEnum } | null;
+
+    switch (role) {
+      case RoleEnum.USER:
+        entity = await this.prisma.user.findUnique({ where: { id }, select });
+        break;
+      case RoleEnum.TRAINER:
+        entity = await this.prisma.trainer.findUnique({ where: { id }, select });
+        break;
+      case RoleEnum.ADMIN:
+      case RoleEnum.MODERATOR:
+        entity = await this.prisma.admin.findUnique({ where: { id }, select });
+        break;
+      default:
+        throw new AppException(AuthError.TOKEN_INVALID, HttpStatus.UNAUTHORIZED);
+    }
+
+    assertActive(entity);
+    return { id: entity.id, role: entity.role };
+  }
+
+  private detectLanguage(header?: string): LanguageEnum {
+    if (!header) return 'RU';
+    return header.trim().toLowerCase().startsWith('ru') ? 'RU' : 'EN';
   }
 }

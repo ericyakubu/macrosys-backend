@@ -1,0 +1,64 @@
+model Measurement {
+  id          String   @id @default(uuid())
+  user_id     String
+  measured_at DateTime @default(now())
+  weight_kg   Float?
+  height_cm   Float?
+  body_fat    Float?
+  created_at  DateTime @default(now())
+
+  user          User               @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  photos        MeasurementPhoto[]
+  started_goals Goal[]
+
+  @@index([user_id, measured_at])
+}
+
+model MeasurementPhoto {
+  id             String   @id @default(uuid())
+  measurement_id String
+  url            String // better: storage key, build the URL when serving
+  created_at     DateTime @default(now())
+
+  measurement Measurement @relation(fields: [measurement_id], references: [id], onDelete: Cascade)
+
+  @@index([measurement_id])
+}
+
+model Goal {
+  id                   String         @id @default(uuid())
+  user_id              String
+  metric               GoalMetricEnum
+  target_value         Float
+  target_date          DateTime       @db.Date
+  status               GoalStatus     @default(ACTIVE)
+  start_measurement_id String
+  started_at           DateTime       @default(now())
+  completed_at         DateTime?
+  created_at           DateTime       @default(now())
+  updated_at           DateTime       @updatedAt
+
+  user              User              @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  start_measurement Measurement       @relation(fields: [start_measurement_id], references: [id], onDelete: NoAction)
+  nutrition_targets NutritionTarget[]
+
+  @@index([user_id, status])
+}
+
+model NutritionTarget {
+  id         String                    @id @default(uuid())
+  user_id    String
+  calories   Int
+  protein_g  Int
+  fat_g      Int
+  carbs_g    Int
+  source     NutritionTargetSourceEnum
+  goal_id    String?
+  valid_from DateTime                  @default(now())
+  valid_to   DateTime? // null = current
+
+  user User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  goal Goal? @relation(fields: [goal_id], references: [id], onDelete: SetNull)
+
+  @@index([user_id, valid_to])
+}

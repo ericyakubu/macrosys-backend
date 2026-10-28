@@ -26,15 +26,19 @@ export type AggregateTrainer = {
 
 export type TrainerMinAggregateOutputType = {
   id: string | null
+  account_id: string | null
   name: string | null
   second_name: string | null
   lastname: string | null
-  email: string | null
   phone: string | null
-  birthday: Date | null
-  role: $Enums.RoleEnum | null
-  gender: $Enums.GenderEnum | null
+  bio: string | null
   language: $Enums.LanguageEnum | null
+  role: $Enums.RoleEnum | null
+  birthday: Date | null
+  gender: $Enums.GenderEnum | null
+  timezone: string | null
+  is_listed: boolean | null
+  accepting_clients: boolean | null
   disabled: boolean | null
   disabled_at: Date | null
   created_at: Date | null
@@ -43,15 +47,19 @@ export type TrainerMinAggregateOutputType = {
 
 export type TrainerMaxAggregateOutputType = {
   id: string | null
+  account_id: string | null
   name: string | null
   second_name: string | null
   lastname: string | null
-  email: string | null
   phone: string | null
-  birthday: Date | null
-  role: $Enums.RoleEnum | null
-  gender: $Enums.GenderEnum | null
+  bio: string | null
   language: $Enums.LanguageEnum | null
+  role: $Enums.RoleEnum | null
+  birthday: Date | null
+  gender: $Enums.GenderEnum | null
+  timezone: string | null
+  is_listed: boolean | null
+  accepting_clients: boolean | null
   disabled: boolean | null
   disabled_at: Date | null
   created_at: Date | null
@@ -60,15 +68,19 @@ export type TrainerMaxAggregateOutputType = {
 
 export type TrainerCountAggregateOutputType = {
   id: number
+  account_id: number
   name: number
   second_name: number
   lastname: number
-  email: number
   phone: number
-  birthday: number
-  role: number
-  gender: number
+  bio: number
   language: number
+  role: number
+  birthday: number
+  gender: number
+  timezone: number
+  is_listed: number
+  accepting_clients: number
   disabled: number
   disabled_at: number
   created_at: number
@@ -79,15 +91,19 @@ export type TrainerCountAggregateOutputType = {
 
 export type TrainerMinAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
-  birthday?: true
-  role?: true
-  gender?: true
+  bio?: true
   language?: true
+  role?: true
+  birthday?: true
+  gender?: true
+  timezone?: true
+  is_listed?: true
+  accepting_clients?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -96,15 +112,19 @@ export type TrainerMinAggregateInputType = {
 
 export type TrainerMaxAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
-  birthday?: true
-  role?: true
-  gender?: true
+  bio?: true
   language?: true
+  role?: true
+  birthday?: true
+  gender?: true
+  timezone?: true
+  is_listed?: true
+  accepting_clients?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -113,15 +133,19 @@ export type TrainerMaxAggregateInputType = {
 
 export type TrainerCountAggregateInputType = {
   id?: true
+  account_id?: true
   name?: true
   second_name?: true
   lastname?: true
-  email?: true
   phone?: true
-  birthday?: true
-  role?: true
-  gender?: true
+  bio?: true
   language?: true
+  role?: true
+  birthday?: true
+  gender?: true
+  timezone?: true
+  is_listed?: true
+  accepting_clients?: true
   disabled?: true
   disabled_at?: true
   created_at?: true
@@ -203,15 +227,19 @@ export type TrainerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type TrainerGroupByOutputType = {
   id: string
+  account_id: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date
-  role: $Enums.RoleEnum
-  gender: $Enums.GenderEnum | null
+  second_name: string | null
+  lastname: string | null
+  phone: string | null
+  bio: string | null
   language: $Enums.LanguageEnum
+  role: $Enums.RoleEnum
+  birthday: Date | null
+  gender: $Enums.GenderEnum | null
+  timezone: string | null
+  is_listed: boolean
+  accepting_clients: boolean
   disabled: boolean
   disabled_at: Date | null
   created_at: Date
@@ -241,81 +269,103 @@ export type TrainerWhereInput = {
   OR?: Prisma.TrainerWhereInput[]
   NOT?: Prisma.TrainerWhereInput | Prisma.TrainerWhereInput[]
   id?: Prisma.StringFilter<"Trainer"> | string
+  account_id?: Prisma.StringFilter<"Trainer"> | string
   name?: Prisma.StringFilter<"Trainer"> | string
-  second_name?: Prisma.StringFilter<"Trainer"> | string
-  lastname?: Prisma.StringFilter<"Trainer"> | string
-  email?: Prisma.StringFilter<"Trainer"> | string
-  phone?: Prisma.StringFilter<"Trainer"> | string
-  birthday?: Prisma.DateTimeFilter<"Trainer"> | Date | string
-  role?: Prisma.EnumRoleEnumFilter<"Trainer"> | $Enums.RoleEnum
-  gender?: Prisma.EnumGenderEnumNullableFilter<"Trainer"> | $Enums.GenderEnum | null
+  second_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  lastname?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  phone?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  bio?: Prisma.StringNullableFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumFilter<"Trainer"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFilter<"Trainer"> | $Enums.RoleEnum
+  birthday?: Prisma.DateTimeNullableFilter<"Trainer"> | Date | string | null
+  gender?: Prisma.EnumGenderEnumNullableFilter<"Trainer"> | $Enums.GenderEnum | null
+  timezone?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  is_listed?: Prisma.BoolFilter<"Trainer"> | boolean
+  accepting_clients?: Prisma.BoolFilter<"Trainer"> | boolean
   disabled?: Prisma.BoolFilter<"Trainer"> | boolean
   disabled_at?: Prisma.DateTimeNullableFilter<"Trainer"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"Trainer"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Trainer"> | Date | string
-  subscription?: Prisma.XOR<Prisma.TrainerSubscriptionNullableScalarRelationFilter, Prisma.TrainerSubscriptionWhereInput> | null
-  credentials?: Prisma.XOR<Prisma.TrainerCredentialsNullableScalarRelationFilter, Prisma.TrainerCredentialsWhereInput> | null
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   client_links?: Prisma.ClientAssignmentListRelationFilter
-  diets?: Prisma.DietListRelationFilter
+  meal_plans?: Prisma.MealPlanListRelationFilter
+  recipes?: Prisma.RecipeListRelationFilter
+  products?: Prisma.ProductListRelationFilter
+  subscriptions?: Prisma.TrainerSubscriptionListRelationFilter
 }
 
 export type TrainerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  second_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  birthday?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_listed?: Prisma.SortOrder
+  accepting_clients?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  subscription?: Prisma.TrainerSubscriptionOrderByWithRelationInput
-  credentials?: Prisma.TrainerCredentialsOrderByWithRelationInput
+  account?: Prisma.AccountOrderByWithRelationInput
   client_links?: Prisma.ClientAssignmentOrderByRelationAggregateInput
-  diets?: Prisma.DietOrderByRelationAggregateInput
+  meal_plans?: Prisma.MealPlanOrderByRelationAggregateInput
+  recipes?: Prisma.RecipeOrderByRelationAggregateInput
+  products?: Prisma.ProductOrderByRelationAggregateInput
+  subscriptions?: Prisma.TrainerSubscriptionOrderByRelationAggregateInput
 }
 
 export type TrainerWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  email?: string
+  account_id?: string
   phone?: string
   AND?: Prisma.TrainerWhereInput | Prisma.TrainerWhereInput[]
   OR?: Prisma.TrainerWhereInput[]
   NOT?: Prisma.TrainerWhereInput | Prisma.TrainerWhereInput[]
   name?: Prisma.StringFilter<"Trainer"> | string
-  second_name?: Prisma.StringFilter<"Trainer"> | string
-  lastname?: Prisma.StringFilter<"Trainer"> | string
-  birthday?: Prisma.DateTimeFilter<"Trainer"> | Date | string
-  role?: Prisma.EnumRoleEnumFilter<"Trainer"> | $Enums.RoleEnum
-  gender?: Prisma.EnumGenderEnumNullableFilter<"Trainer"> | $Enums.GenderEnum | null
+  second_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  lastname?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  bio?: Prisma.StringNullableFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumFilter<"Trainer"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFilter<"Trainer"> | $Enums.RoleEnum
+  birthday?: Prisma.DateTimeNullableFilter<"Trainer"> | Date | string | null
+  gender?: Prisma.EnumGenderEnumNullableFilter<"Trainer"> | $Enums.GenderEnum | null
+  timezone?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  is_listed?: Prisma.BoolFilter<"Trainer"> | boolean
+  accepting_clients?: Prisma.BoolFilter<"Trainer"> | boolean
   disabled?: Prisma.BoolFilter<"Trainer"> | boolean
   disabled_at?: Prisma.DateTimeNullableFilter<"Trainer"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"Trainer"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Trainer"> | Date | string
-  subscription?: Prisma.XOR<Prisma.TrainerSubscriptionNullableScalarRelationFilter, Prisma.TrainerSubscriptionWhereInput> | null
-  credentials?: Prisma.XOR<Prisma.TrainerCredentialsNullableScalarRelationFilter, Prisma.TrainerCredentialsWhereInput> | null
+  account?: Prisma.XOR<Prisma.AccountScalarRelationFilter, Prisma.AccountWhereInput>
   client_links?: Prisma.ClientAssignmentListRelationFilter
-  diets?: Prisma.DietListRelationFilter
-}, "id" | "email" | "phone">
+  meal_plans?: Prisma.MealPlanListRelationFilter
+  recipes?: Prisma.RecipeListRelationFilter
+  products?: Prisma.ProductListRelationFilter
+  subscriptions?: Prisma.TrainerSubscriptionListRelationFilter
+}, "id" | "account_id" | "phone">
 
 export type TrainerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  second_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  birthday?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_listed?: Prisma.SortOrder
+  accepting_clients?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -330,15 +380,19 @@ export type TrainerScalarWhereWithAggregatesInput = {
   OR?: Prisma.TrainerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TrainerScalarWhereWithAggregatesInput | Prisma.TrainerScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
+  account_id?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
   name?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
-  second_name?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
-  lastname?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
-  email?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
-  phone?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
-  birthday?: Prisma.DateTimeWithAggregatesFilter<"Trainer"> | Date | string
-  role?: Prisma.EnumRoleEnumWithAggregatesFilter<"Trainer"> | $Enums.RoleEnum
-  gender?: Prisma.EnumGenderEnumNullableWithAggregatesFilter<"Trainer"> | $Enums.GenderEnum | null
+  second_name?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
+  lastname?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumWithAggregatesFilter<"Trainer"> | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumWithAggregatesFilter<"Trainer"> | $Enums.RoleEnum
+  birthday?: Prisma.DateTimeNullableWithAggregatesFilter<"Trainer"> | Date | string | null
+  gender?: Prisma.EnumGenderEnumNullableWithAggregatesFilter<"Trainer"> | $Enums.GenderEnum | null
+  timezone?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
+  is_listed?: Prisma.BoolWithAggregatesFilter<"Trainer"> | boolean
+  accepting_clients?: Prisma.BoolWithAggregatesFilter<"Trainer"> | boolean
   disabled?: Prisma.BoolWithAggregatesFilter<"Trainer"> | boolean
   disabled_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Trainer"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Trainer"> | Date | string
@@ -348,98 +402,122 @@ export type TrainerScalarWhereWithAggregatesInput = {
 export type TrainerCreateInput = {
   id?: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
   client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
 }
 
 export type TrainerUncheckedCreateInput = {
   id?: string
+  account_id: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
   client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
 }
 
 export type TrainerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
 }
 
 export type TrainerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
 export type TrainerCreateManyInput = {
   id?: string
+  account_id: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
@@ -449,14 +527,17 @@ export type TrainerCreateManyInput = {
 export type TrainerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -465,15 +546,19 @@ export type TrainerUpdateManyMutationInput = {
 
 export type TrainerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -487,15 +572,19 @@ export type TrainerNullableScalarRelationFilter = {
 
 export type TrainerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  birthday?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  is_listed?: Prisma.SortOrder
+  accepting_clients?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -504,15 +593,19 @@ export type TrainerCountOrderByAggregateInput = {
 
 export type TrainerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  birthday?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  is_listed?: Prisma.SortOrder
+  accepting_clients?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -521,15 +614,19 @@ export type TrainerMaxOrderByAggregateInput = {
 
 export type TrainerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
   lastname?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  birthday?: Prisma.SortOrder
-  role?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  birthday?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
+  is_listed?: Prisma.SortOrder
+  accepting_clients?: Prisma.SortOrder
   disabled?: Prisma.SortOrder
   disabled_at?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -541,20 +638,82 @@ export type TrainerScalarRelationFilter = {
   isNot?: Prisma.TrainerWhereInput
 }
 
-export type TrainerCreateNestedOneWithoutDietsInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
+export type TrainerCreateNestedOneWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutAccountInput
   connect?: Prisma.TrainerWhereUniqueInput
 }
 
-export type TrainerUpdateOneWithoutDietsNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutDietsInput
-  upsert?: Prisma.TrainerUpsertWithoutDietsInput
+export type TrainerUncheckedCreateNestedOneWithoutAccountInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutAccountInput
+  connect?: Prisma.TrainerWhereUniqueInput
+}
+
+export type TrainerUpdateOneWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutAccountInput
+  upsert?: Prisma.TrainerUpsertWithoutAccountInput
   disconnect?: Prisma.TrainerWhereInput | boolean
   delete?: Prisma.TrainerWhereInput | boolean
   connect?: Prisma.TrainerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutDietsInput, Prisma.TrainerUpdateWithoutDietsInput>, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutAccountInput, Prisma.TrainerUpdateWithoutAccountInput>, Prisma.TrainerUncheckedUpdateWithoutAccountInput>
+}
+
+export type TrainerUncheckedUpdateOneWithoutAccountNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutAccountInput
+  upsert?: Prisma.TrainerUpsertWithoutAccountInput
+  disconnect?: Prisma.TrainerWhereInput | boolean
+  delete?: Prisma.TrainerWhereInput | boolean
+  connect?: Prisma.TrainerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutAccountInput, Prisma.TrainerUpdateWithoutAccountInput>, Prisma.TrainerUncheckedUpdateWithoutAccountInput>
+}
+
+export type TrainerCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionsInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutSubscriptionsInput
+  connect?: Prisma.TrainerWhereUniqueInput
+}
+
+export type TrainerUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionsInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.TrainerUpsertWithoutSubscriptionsInput
+  connect?: Prisma.TrainerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.TrainerUpdateWithoutSubscriptionsInput>, Prisma.TrainerUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type TrainerCreateNestedOneWithoutProductsInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutProductsInput, Prisma.TrainerUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutProductsInput
+  connect?: Prisma.TrainerWhereUniqueInput
+}
+
+export type TrainerUpdateOneWithoutProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutProductsInput, Prisma.TrainerUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutProductsInput
+  upsert?: Prisma.TrainerUpsertWithoutProductsInput
+  disconnect?: Prisma.TrainerWhereInput | boolean
+  delete?: Prisma.TrainerWhereInput | boolean
+  connect?: Prisma.TrainerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutProductsInput, Prisma.TrainerUpdateWithoutProductsInput>, Prisma.TrainerUncheckedUpdateWithoutProductsInput>
+}
+
+export type TrainerCreateNestedOneWithoutRecipesInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutRecipesInput, Prisma.TrainerUncheckedCreateWithoutRecipesInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutRecipesInput
+  connect?: Prisma.TrainerWhereUniqueInput
+}
+
+export type TrainerUpdateOneWithoutRecipesNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutRecipesInput, Prisma.TrainerUncheckedCreateWithoutRecipesInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutRecipesInput
+  upsert?: Prisma.TrainerUpsertWithoutRecipesInput
+  disconnect?: Prisma.TrainerWhereInput | boolean
+  delete?: Prisma.TrainerWhereInput | boolean
+  connect?: Prisma.TrainerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutRecipesInput, Prisma.TrainerUpdateWithoutRecipesInput>, Prisma.TrainerUncheckedUpdateWithoutRecipesInput>
 }
 
 export type TrainerCreateNestedOneWithoutClient_linksInput = {
@@ -571,168 +730,532 @@ export type TrainerUpdateOneRequiredWithoutClient_linksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutClient_linksInput, Prisma.TrainerUpdateWithoutClient_linksInput>, Prisma.TrainerUncheckedUpdateWithoutClient_linksInput>
 }
 
-export type TrainerCreateNestedOneWithoutCredentialsInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutCredentialsInput, Prisma.TrainerUncheckedCreateWithoutCredentialsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutCredentialsInput
+export type TrainerCreateNestedOneWithoutMeal_plansInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutMeal_plansInput, Prisma.TrainerUncheckedCreateWithoutMeal_plansInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutMeal_plansInput
   connect?: Prisma.TrainerWhereUniqueInput
 }
 
-export type TrainerUpdateOneRequiredWithoutCredentialsNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutCredentialsInput, Prisma.TrainerUncheckedCreateWithoutCredentialsInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutCredentialsInput
-  upsert?: Prisma.TrainerUpsertWithoutCredentialsInput
+export type TrainerUpdateOneRequiredWithoutMeal_plansNestedInput = {
+  create?: Prisma.XOR<Prisma.TrainerCreateWithoutMeal_plansInput, Prisma.TrainerUncheckedCreateWithoutMeal_plansInput>
+  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutMeal_plansInput
+  upsert?: Prisma.TrainerUpsertWithoutMeal_plansInput
   connect?: Prisma.TrainerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutCredentialsInput, Prisma.TrainerUpdateWithoutCredentialsInput>, Prisma.TrainerUncheckedUpdateWithoutCredentialsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutMeal_plansInput, Prisma.TrainerUpdateWithoutMeal_plansInput>, Prisma.TrainerUncheckedUpdateWithoutMeal_plansInput>
 }
 
-export type TrainerCreateNestedOneWithoutSubscriptionInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutSubscriptionInput
-  connect?: Prisma.TrainerWhereUniqueInput
-}
-
-export type TrainerUpdateOneRequiredWithoutSubscriptionNestedInput = {
-  create?: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionInput>
-  connectOrCreate?: Prisma.TrainerCreateOrConnectWithoutSubscriptionInput
-  upsert?: Prisma.TrainerUpsertWithoutSubscriptionInput
-  connect?: Prisma.TrainerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TrainerUpdateToOneWithWhereWithoutSubscriptionInput, Prisma.TrainerUpdateWithoutSubscriptionInput>, Prisma.TrainerUncheckedUpdateWithoutSubscriptionInput>
-}
-
-export type TrainerCreateWithoutDietsInput = {
+export type TrainerCreateWithoutAccountInput = {
   id?: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
   client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
 }
 
-export type TrainerUncheckedCreateWithoutDietsInput = {
+export type TrainerUncheckedCreateWithoutAccountInput = {
   id?: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
   client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
 }
 
-export type TrainerCreateOrConnectWithoutDietsInput = {
+export type TrainerCreateOrConnectWithoutAccountInput = {
   where: Prisma.TrainerWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
 }
 
-export type TrainerUpsertWithoutDietsInput = {
-  update: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutDietsInput, Prisma.TrainerUncheckedCreateWithoutDietsInput>
+export type TrainerUpsertWithoutAccountInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutAccountInput, Prisma.TrainerUncheckedUpdateWithoutAccountInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutAccountInput, Prisma.TrainerUncheckedCreateWithoutAccountInput>
   where?: Prisma.TrainerWhereInput
 }
 
-export type TrainerUpdateToOneWithWhereWithoutDietsInput = {
+export type TrainerUpdateToOneWithWhereWithoutAccountInput = {
   where?: Prisma.TrainerWhereInput
-  data: Prisma.XOR<Prisma.TrainerUpdateWithoutDietsInput, Prisma.TrainerUncheckedUpdateWithoutDietsInput>
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutAccountInput, Prisma.TrainerUncheckedUpdateWithoutAccountInput>
 }
 
-export type TrainerUpdateWithoutDietsInput = {
+export type TrainerUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
 }
 
-export type TrainerUncheckedUpdateWithoutDietsInput = {
+export type TrainerUncheckedUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
+}
+
+export type TrainerCreateWithoutSubscriptionsInput = {
+  id?: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
+  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+}
+
+export type TrainerUncheckedCreateWithoutSubscriptionsInput = {
+  id?: string
+  account_id: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+}
+
+export type TrainerCreateOrConnectWithoutSubscriptionsInput = {
+  where: Prisma.TrainerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionsInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionsInput>
+}
+
+export type TrainerUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutSubscriptionsInput, Prisma.TrainerUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionsInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionsInput>
+  where?: Prisma.TrainerWhereInput
+}
+
+export type TrainerUpdateToOneWithWhereWithoutSubscriptionsInput = {
+  where?: Prisma.TrainerWhereInput
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutSubscriptionsInput, Prisma.TrainerUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type TrainerUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
+  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+}
+
+export type TrainerUncheckedUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+}
+
+export type TrainerCreateWithoutProductsInput = {
+  id?: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
+  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
+}
+
+export type TrainerUncheckedCreateWithoutProductsInput = {
+  id?: string
+  account_id: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
+}
+
+export type TrainerCreateOrConnectWithoutProductsInput = {
+  where: Prisma.TrainerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutProductsInput, Prisma.TrainerUncheckedCreateWithoutProductsInput>
+}
+
+export type TrainerUpsertWithoutProductsInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutProductsInput, Prisma.TrainerUncheckedUpdateWithoutProductsInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutProductsInput, Prisma.TrainerUncheckedCreateWithoutProductsInput>
+  where?: Prisma.TrainerWhereInput
+}
+
+export type TrainerUpdateToOneWithWhereWithoutProductsInput = {
+  where?: Prisma.TrainerWhereInput
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutProductsInput, Prisma.TrainerUncheckedUpdateWithoutProductsInput>
+}
+
+export type TrainerUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
+  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
+}
+
+export type TrainerUncheckedUpdateWithoutProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
+}
+
+export type TrainerCreateWithoutRecipesInput = {
+  id?: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
+  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
+}
+
+export type TrainerUncheckedCreateWithoutRecipesInput = {
+  id?: string
+  account_id: string
+  name: string
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
+  language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
+  disabled?: boolean
+  disabled_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
+}
+
+export type TrainerCreateOrConnectWithoutRecipesInput = {
+  where: Prisma.TrainerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutRecipesInput, Prisma.TrainerUncheckedCreateWithoutRecipesInput>
+}
+
+export type TrainerUpsertWithoutRecipesInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutRecipesInput, Prisma.TrainerUncheckedUpdateWithoutRecipesInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutRecipesInput, Prisma.TrainerUncheckedCreateWithoutRecipesInput>
+  where?: Prisma.TrainerWhereInput
+}
+
+export type TrainerUpdateToOneWithWhereWithoutRecipesInput = {
+  where?: Prisma.TrainerWhereInput
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutRecipesInput, Prisma.TrainerUncheckedUpdateWithoutRecipesInput>
+}
+
+export type TrainerUpdateWithoutRecipesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
+  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
+}
+
+export type TrainerUncheckedUpdateWithoutRecipesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
 export type TrainerCreateWithoutClient_linksInput = {
   id?: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
-  diets?: Prisma.DietCreateNestedManyWithoutTrainerInput
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
 }
 
 export type TrainerUncheckedCreateWithoutClient_linksInput = {
   id?: string
+  account_id: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
-  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
-  diets?: Prisma.DietUncheckedCreateNestedManyWithoutTrainerInput
+  meal_plans?: Prisma.MealPlanUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
 }
 
 export type TrainerCreateOrConnectWithoutClient_linksInput = {
@@ -754,233 +1277,167 @@ export type TrainerUpdateToOneWithWhereWithoutClient_linksInput = {
 export type TrainerUpdateWithoutClient_linksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
-  diets?: Prisma.DietUpdateManyWithoutTrainerNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
 }
 
 export type TrainerUncheckedUpdateWithoutClient_linksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutTrainerNestedInput
+  meal_plans?: Prisma.MealPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
-export type TrainerCreateWithoutCredentialsInput = {
+export type TrainerCreateWithoutMeal_plansInput = {
   id?: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionCreateNestedOneWithoutUserInput
+  account: Prisma.AccountCreateNestedOneWithoutTrainerInput
   client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionCreateNestedManyWithoutTrainerInput
 }
 
-export type TrainerUncheckedCreateWithoutCredentialsInput = {
+export type TrainerUncheckedCreateWithoutMeal_plansInput = {
   id?: string
+  account_id: string
   name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
+  second_name?: string | null
+  lastname?: string | null
+  phone?: string | null
+  bio?: string | null
   language?: $Enums.LanguageEnum
+  role?: $Enums.RoleEnum
+  birthday?: Date | string | null
+  gender?: $Enums.GenderEnum | null
+  timezone?: string | null
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedCreateNestedOneWithoutUserInput
   client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietUncheckedCreateNestedManyWithoutTrainerInput
+  recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutOwner_trainerInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOwner_trainerInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedCreateNestedManyWithoutTrainerInput
 }
 
-export type TrainerCreateOrConnectWithoutCredentialsInput = {
+export type TrainerCreateOrConnectWithoutMeal_plansInput = {
   where: Prisma.TrainerWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutCredentialsInput, Prisma.TrainerUncheckedCreateWithoutCredentialsInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutMeal_plansInput, Prisma.TrainerUncheckedCreateWithoutMeal_plansInput>
 }
 
-export type TrainerUpsertWithoutCredentialsInput = {
-  update: Prisma.XOR<Prisma.TrainerUpdateWithoutCredentialsInput, Prisma.TrainerUncheckedUpdateWithoutCredentialsInput>
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutCredentialsInput, Prisma.TrainerUncheckedCreateWithoutCredentialsInput>
+export type TrainerUpsertWithoutMeal_plansInput = {
+  update: Prisma.XOR<Prisma.TrainerUpdateWithoutMeal_plansInput, Prisma.TrainerUncheckedUpdateWithoutMeal_plansInput>
+  create: Prisma.XOR<Prisma.TrainerCreateWithoutMeal_plansInput, Prisma.TrainerUncheckedCreateWithoutMeal_plansInput>
   where?: Prisma.TrainerWhereInput
 }
 
-export type TrainerUpdateToOneWithWhereWithoutCredentialsInput = {
+export type TrainerUpdateToOneWithWhereWithoutMeal_plansInput = {
   where?: Prisma.TrainerWhereInput
-  data: Prisma.XOR<Prisma.TrainerUpdateWithoutCredentialsInput, Prisma.TrainerUncheckedUpdateWithoutCredentialsInput>
+  data: Prisma.XOR<Prisma.TrainerUpdateWithoutMeal_plansInput, Prisma.TrainerUncheckedUpdateWithoutMeal_plansInput>
 }
 
-export type TrainerUpdateWithoutCredentialsInput = {
+export type TrainerUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUpdateOneWithoutUserNestedInput
+  account?: Prisma.AccountUpdateOneRequiredWithoutTrainerNestedInput
   client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUpdateManyWithoutTrainerNestedInput
 }
 
-export type TrainerUncheckedUpdateWithoutCredentialsInput = {
+export type TrainerUncheckedUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
+  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
+  birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  is_listed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  accepting_clients?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscription?: Prisma.TrainerSubscriptionUncheckedUpdateOneWithoutUserNestedInput
   client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutTrainerNestedInput
-}
-
-export type TrainerCreateWithoutSubscriptionInput = {
-  id?: string
-  name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.TrainerCredentialsCreateNestedOneWithoutTrainerInput
-  client_links?: Prisma.ClientAssignmentCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietCreateNestedManyWithoutTrainerInput
-}
-
-export type TrainerUncheckedCreateWithoutSubscriptionInput = {
-  id?: string
-  name: string
-  second_name: string
-  lastname: string
-  email: string
-  phone: string
-  birthday: Date | string
-  role?: $Enums.RoleEnum
-  gender?: $Enums.GenderEnum | null
-  language?: $Enums.LanguageEnum
-  disabled?: boolean
-  disabled_at?: Date | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  credentials?: Prisma.TrainerCredentialsUncheckedCreateNestedOneWithoutTrainerInput
-  client_links?: Prisma.ClientAssignmentUncheckedCreateNestedManyWithoutTrainerInput
-  diets?: Prisma.DietUncheckedCreateNestedManyWithoutTrainerInput
-}
-
-export type TrainerCreateOrConnectWithoutSubscriptionInput = {
-  where: Prisma.TrainerWhereUniqueInput
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionInput>
-}
-
-export type TrainerUpsertWithoutSubscriptionInput = {
-  update: Prisma.XOR<Prisma.TrainerUpdateWithoutSubscriptionInput, Prisma.TrainerUncheckedUpdateWithoutSubscriptionInput>
-  create: Prisma.XOR<Prisma.TrainerCreateWithoutSubscriptionInput, Prisma.TrainerUncheckedCreateWithoutSubscriptionInput>
-  where?: Prisma.TrainerWhereInput
-}
-
-export type TrainerUpdateToOneWithWhereWithoutSubscriptionInput = {
-  where?: Prisma.TrainerWhereInput
-  data: Prisma.XOR<Prisma.TrainerUpdateWithoutSubscriptionInput, Prisma.TrainerUncheckedUpdateWithoutSubscriptionInput>
-}
-
-export type TrainerUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.TrainerCredentialsUpdateOneWithoutTrainerNestedInput
-  client_links?: Prisma.ClientAssignmentUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUpdateManyWithoutTrainerNestedInput
-}
-
-export type TrainerUncheckedUpdateWithoutSubscriptionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  second_name?: Prisma.StringFieldUpdateOperationsInput | string
-  lastname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  birthday?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.EnumRoleEnumFieldUpdateOperationsInput | $Enums.RoleEnum
-  gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
-  language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
-  disabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  disabled_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  credentials?: Prisma.TrainerCredentialsUncheckedUpdateOneWithoutTrainerNestedInput
-  client_links?: Prisma.ClientAssignmentUncheckedUpdateManyWithoutTrainerNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutTrainerNestedInput
+  recipes?: Prisma.RecipeUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput
+  subscriptions?: Prisma.TrainerSubscriptionUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
 
@@ -990,12 +1447,18 @@ export type TrainerUncheckedUpdateWithoutSubscriptionInput = {
 
 export type TrainerCountOutputType = {
   client_links: number
-  diets: number
+  meal_plans: number
+  recipes: number
+  products: number
+  subscriptions: number
 }
 
 export type TrainerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client_links?: boolean | TrainerCountOutputTypeCountClient_linksArgs
-  diets?: boolean | TrainerCountOutputTypeCountDietsArgs
+  meal_plans?: boolean | TrainerCountOutputTypeCountMeal_plansArgs
+  recipes?: boolean | TrainerCountOutputTypeCountRecipesArgs
+  products?: boolean | TrainerCountOutputTypeCountProductsArgs
+  subscriptions?: boolean | TrainerCountOutputTypeCountSubscriptionsArgs
 }
 
 /**
@@ -1018,114 +1481,167 @@ export type TrainerCountOutputTypeCountClient_linksArgs<ExtArgs extends runtime.
 /**
  * TrainerCountOutputType without action
  */
-export type TrainerCountOutputTypeCountDietsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DietWhereInput
+export type TrainerCountOutputTypeCountMeal_plansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealPlanWhereInput
+}
+
+/**
+ * TrainerCountOutputType without action
+ */
+export type TrainerCountOutputTypeCountRecipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecipeWhereInput
+}
+
+/**
+ * TrainerCountOutputType without action
+ */
+export type TrainerCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
+/**
+ * TrainerCountOutputType without action
+ */
+export type TrainerCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrainerSubscriptionWhereInput
 }
 
 
 export type TrainerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
-  birthday?: boolean
-  role?: boolean
-  gender?: boolean
+  bio?: boolean
   language?: boolean
+  role?: boolean
+  birthday?: boolean
+  gender?: boolean
+  timezone?: boolean
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
-  subscription?: boolean | Prisma.Trainer$subscriptionArgs<ExtArgs>
-  credentials?: boolean | Prisma.Trainer$credentialsArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   client_links?: boolean | Prisma.Trainer$client_linksArgs<ExtArgs>
-  diets?: boolean | Prisma.Trainer$dietsArgs<ExtArgs>
+  meal_plans?: boolean | Prisma.Trainer$meal_plansArgs<ExtArgs>
+  recipes?: boolean | Prisma.Trainer$recipesArgs<ExtArgs>
+  products?: boolean | Prisma.Trainer$productsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Trainer$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.TrainerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainer"]>
 
 export type TrainerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
-  birthday?: boolean
-  role?: boolean
-  gender?: boolean
+  bio?: boolean
   language?: boolean
+  role?: boolean
+  birthday?: boolean
+  gender?: boolean
+  timezone?: boolean
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainer"]>
 
 export type TrainerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
-  birthday?: boolean
-  role?: boolean
-  gender?: boolean
+  bio?: boolean
   language?: boolean
+  role?: boolean
+  birthday?: boolean
+  gender?: boolean
+  timezone?: boolean
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["trainer"]>
 
 export type TrainerSelectScalar = {
   id?: boolean
+  account_id?: boolean
   name?: boolean
   second_name?: boolean
   lastname?: boolean
-  email?: boolean
   phone?: boolean
-  birthday?: boolean
-  role?: boolean
-  gender?: boolean
+  bio?: boolean
   language?: boolean
+  role?: boolean
+  birthday?: boolean
+  gender?: boolean
+  timezone?: boolean
+  is_listed?: boolean
+  accepting_clients?: boolean
   disabled?: boolean
   disabled_at?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type TrainerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "second_name" | "lastname" | "email" | "phone" | "birthday" | "role" | "gender" | "language" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["trainer"]>
+export type TrainerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "lastname" | "phone" | "bio" | "language" | "role" | "birthday" | "gender" | "timezone" | "is_listed" | "accepting_clients" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["trainer"]>
 export type TrainerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscription?: boolean | Prisma.Trainer$subscriptionArgs<ExtArgs>
-  credentials?: boolean | Prisma.Trainer$credentialsArgs<ExtArgs>
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   client_links?: boolean | Prisma.Trainer$client_linksArgs<ExtArgs>
-  diets?: boolean | Prisma.Trainer$dietsArgs<ExtArgs>
+  meal_plans?: boolean | Prisma.Trainer$meal_plansArgs<ExtArgs>
+  recipes?: boolean | Prisma.Trainer$recipesArgs<ExtArgs>
+  products?: boolean | Prisma.Trainer$productsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Trainer$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.TrainerCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type TrainerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type TrainerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TrainerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
+export type TrainerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
+}
 
 export type $TrainerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Trainer"
   objects: {
-    subscription: Prisma.$TrainerSubscriptionPayload<ExtArgs> | null
-    credentials: Prisma.$TrainerCredentialsPayload<ExtArgs> | null
+    account: Prisma.$AccountPayload<ExtArgs>
     client_links: Prisma.$ClientAssignmentPayload<ExtArgs>[]
-    diets: Prisma.$DietPayload<ExtArgs>[]
+    meal_plans: Prisma.$MealPlanPayload<ExtArgs>[]
+    recipes: Prisma.$RecipePayload<ExtArgs>[]
+    products: Prisma.$ProductPayload<ExtArgs>[]
+    subscriptions: Prisma.$TrainerSubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    account_id: string
     name: string
-    second_name: string
-    lastname: string
-    email: string
-    phone: string
-    birthday: Date
-    role: $Enums.RoleEnum
-    gender: $Enums.GenderEnum | null
+    second_name: string | null
+    lastname: string | null
+    phone: string | null
+    bio: string | null
     language: $Enums.LanguageEnum
+    role: $Enums.RoleEnum
+    birthday: Date | null
+    gender: $Enums.GenderEnum | null
+    timezone: string | null
+    is_listed: boolean
+    accepting_clients: boolean
     disabled: boolean
     disabled_at: Date | null
     created_at: Date
@@ -1524,10 +2040,12 @@ readonly fields: TrainerFieldRefs;
  */
 export interface Prisma__TrainerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  subscription<T extends Prisma.Trainer$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$subscriptionArgs<ExtArgs>>): Prisma.Prisma__TrainerSubscriptionClient<runtime.Types.Result.GetResult<Prisma.$TrainerSubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  credentials<T extends Prisma.Trainer$credentialsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$credentialsArgs<ExtArgs>>): Prisma.Prisma__TrainerCredentialsClient<runtime.Types.Result.GetResult<Prisma.$TrainerCredentialsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  account<T extends Prisma.AccountDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccountDefaultArgs<ExtArgs>>): Prisma.Prisma__AccountClient<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   client_links<T extends Prisma.Trainer$client_linksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$client_linksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  diets<T extends Prisma.Trainer$dietsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$dietsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meal_plans<T extends Prisma.Trainer$meal_plansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$meal_plansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recipes<T extends Prisma.Trainer$recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  products<T extends Prisma.Trainer$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.Trainer$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Trainer$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrainerSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1558,15 +2076,19 @@ export interface Prisma__TrainerClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface TrainerFieldRefs {
   readonly id: Prisma.FieldRef<"Trainer", 'String'>
+  readonly account_id: Prisma.FieldRef<"Trainer", 'String'>
   readonly name: Prisma.FieldRef<"Trainer", 'String'>
   readonly second_name: Prisma.FieldRef<"Trainer", 'String'>
   readonly lastname: Prisma.FieldRef<"Trainer", 'String'>
-  readonly email: Prisma.FieldRef<"Trainer", 'String'>
   readonly phone: Prisma.FieldRef<"Trainer", 'String'>
-  readonly birthday: Prisma.FieldRef<"Trainer", 'DateTime'>
-  readonly role: Prisma.FieldRef<"Trainer", 'RoleEnum'>
-  readonly gender: Prisma.FieldRef<"Trainer", 'GenderEnum'>
+  readonly bio: Prisma.FieldRef<"Trainer", 'String'>
   readonly language: Prisma.FieldRef<"Trainer", 'LanguageEnum'>
+  readonly role: Prisma.FieldRef<"Trainer", 'RoleEnum'>
+  readonly birthday: Prisma.FieldRef<"Trainer", 'DateTime'>
+  readonly gender: Prisma.FieldRef<"Trainer", 'GenderEnum'>
+  readonly timezone: Prisma.FieldRef<"Trainer", 'String'>
+  readonly is_listed: Prisma.FieldRef<"Trainer", 'Boolean'>
+  readonly accepting_clients: Prisma.FieldRef<"Trainer", 'Boolean'>
   readonly disabled: Prisma.FieldRef<"Trainer", 'Boolean'>
   readonly disabled_at: Prisma.FieldRef<"Trainer", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"Trainer", 'DateTime'>
@@ -1825,6 +2347,10 @@ export type TrainerCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.TrainerCreateManyInput | Prisma.TrainerCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrainerIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1895,6 +2421,10 @@ export type TrainerUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Trainers to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrainerIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1964,44 +2494,6 @@ export type TrainerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Trainer.subscription
- */
-export type Trainer$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TrainerSubscription
-   */
-  select?: Prisma.TrainerSubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TrainerSubscription
-   */
-  omit?: Prisma.TrainerSubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TrainerSubscriptionInclude<ExtArgs> | null
-  where?: Prisma.TrainerSubscriptionWhereInput
-}
-
-/**
- * Trainer.credentials
- */
-export type Trainer$credentialsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TrainerCredentials
-   */
-  select?: Prisma.TrainerCredentialsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TrainerCredentials
-   */
-  omit?: Prisma.TrainerCredentialsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TrainerCredentialsInclude<ExtArgs> | null
-  where?: Prisma.TrainerCredentialsWhereInput
-}
-
-/**
  * Trainer.client_links
  */
 export type Trainer$client_linksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2026,27 +2518,99 @@ export type Trainer$client_linksArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * Trainer.diets
+ * Trainer.meal_plans
  */
-export type Trainer$dietsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Trainer$meal_plansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Diet
+   * Select specific fields to fetch from the MealPlan
    */
-  select?: Prisma.DietSelect<ExtArgs> | null
+  select?: Prisma.MealPlanSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Diet
+   * Omit specific fields from the MealPlan
    */
-  omit?: Prisma.DietOmit<ExtArgs> | null
+  omit?: Prisma.MealPlanOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DietInclude<ExtArgs> | null
-  where?: Prisma.DietWhereInput
-  orderBy?: Prisma.DietOrderByWithRelationInput | Prisma.DietOrderByWithRelationInput[]
-  cursor?: Prisma.DietWhereUniqueInput
+  include?: Prisma.MealPlanInclude<ExtArgs> | null
+  where?: Prisma.MealPlanWhereInput
+  orderBy?: Prisma.MealPlanOrderByWithRelationInput | Prisma.MealPlanOrderByWithRelationInput[]
+  cursor?: Prisma.MealPlanWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DietScalarFieldEnum | Prisma.DietScalarFieldEnum[]
+  distinct?: Prisma.MealPlanScalarFieldEnum | Prisma.MealPlanScalarFieldEnum[]
+}
+
+/**
+ * Trainer.recipes
+ */
+export type Trainer$recipesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Recipe
+   */
+  select?: Prisma.RecipeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Recipe
+   */
+  omit?: Prisma.RecipeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecipeInclude<ExtArgs> | null
+  where?: Prisma.RecipeWhereInput
+  orderBy?: Prisma.RecipeOrderByWithRelationInput | Prisma.RecipeOrderByWithRelationInput[]
+  cursor?: Prisma.RecipeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecipeScalarFieldEnum | Prisma.RecipeScalarFieldEnum[]
+}
+
+/**
+ * Trainer.products
+ */
+export type Trainer$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * Trainer.subscriptions
+ */
+export type Trainer$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TrainerSubscription
+   */
+  select?: Prisma.TrainerSubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TrainerSubscription
+   */
+  omit?: Prisma.TrainerSubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrainerSubscriptionInclude<ExtArgs> | null
+  where?: Prisma.TrainerSubscriptionWhereInput
+  orderBy?: Prisma.TrainerSubscriptionOrderByWithRelationInput | Prisma.TrainerSubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.TrainerSubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrainerSubscriptionScalarFieldEnum | Prisma.TrainerSubscriptionScalarFieldEnum[]
 }
 
 /**

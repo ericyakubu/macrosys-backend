@@ -11,12 +11,95 @@
 
 export const RoleEnum = {
   USER: 'USER',
-  ADMIN: 'ADMIN',
+  TRAINER: 'TRAINER',
   MODERATOR: 'MODERATOR',
-  TRAINER: 'TRAINER'
+  ADMIN: 'ADMIN'
 } as const
 
 export type RoleEnum = (typeof RoleEnum)[keyof typeof RoleEnum]
+
+
+export const ActivityLevelEnum = {
+  SEDENTARY: 'SEDENTARY',
+  LIGHT: 'LIGHT',
+  MODERATE: 'MODERATE',
+  ACTIVE: 'ACTIVE',
+  VERY_ACTIVE: 'VERY_ACTIVE'
+} as const
+
+export type ActivityLevelEnum = (typeof ActivityLevelEnum)[keyof typeof ActivityLevelEnum]
+
+
+export const MealTypeEnum = {
+  BREAKFAST: 'BREAKFAST',
+  LUNCH: 'LUNCH',
+  DINNER: 'DINNER',
+  SNACK: 'SNACK'
+} as const
+
+export type MealTypeEnum = (typeof MealTypeEnum)[keyof typeof MealTypeEnum]
+
+
+export const QuantityUnitEnum = {
+  GRAM: 'GRAM',
+  SERVING: 'SERVING'
+} as const
+
+export type QuantityUnitEnum = (typeof QuantityUnitEnum)[keyof typeof QuantityUnitEnum]
+
+
+export const GoalMetricEnum = {
+  WEIGHT: 'WEIGHT',
+  BMI: 'BMI',
+  BODY_FAT: 'BODY_FAT'
+} as const
+
+export type GoalMetricEnum = (typeof GoalMetricEnum)[keyof typeof GoalMetricEnum]
+
+
+export const NutritionTargetSourceEnum = {
+  GOAL: 'GOAL',
+  TRAINER: 'TRAINER',
+  MANUAL: 'MANUAL'
+} as const
+
+export type NutritionTargetSourceEnum = (typeof NutritionTargetSourceEnum)[keyof typeof NutritionTargetSourceEnum]
+
+
+export const ShareScopeEnum = {
+  MEASUREMENTS: 'MEASUREMENTS',
+  PROGRESS_PHOTOS: 'PROGRESS_PHOTOS',
+  FOOD_LOG: 'FOOD_LOG',
+  WATER_LOG: 'WATER_LOG',
+  GOALS: 'GOALS'
+} as const
+
+export type ShareScopeEnum = (typeof ShareScopeEnum)[keyof typeof ShareScopeEnum]
+
+
+export const InitiatorEnum = {
+  USER: 'USER',
+  TRAINER: 'TRAINER'
+} as const
+
+export type InitiatorEnum = (typeof InitiatorEnum)[keyof typeof InitiatorEnum]
+
+
+export const PlanAudienceEnum = {
+  USER: 'USER',
+  TRAINER: 'TRAINER'
+} as const
+
+export type PlanAudienceEnum = (typeof PlanAudienceEnum)[keyof typeof PlanAudienceEnum]
+
+
+export const SubscriptionStatusEnum = {
+  ACTIVE: 'ACTIVE',
+  CANCELED: 'CANCELED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type SubscriptionStatusEnum = (typeof SubscriptionStatusEnum)[keyof typeof SubscriptionStatusEnum]
 
 
 export const GenderEnum = {

@@ -1,0 +1,40 @@
+model FoodLogEntry {
+  id         String           @id @default(uuid())
+  user_id    String
+  eaten_at   DateTime
+  meal_type  MealTypeEnum
+  product_id String?
+  recipe_id  String?
+  quantity   Decimal          @db.Decimal(8, 2)
+  unit       QuantityUnitEnum
+
+  // snapshot at log time
+  name          String
+  calories      Decimal  @db.Decimal(8, 2)
+  protein       Decimal  @db.Decimal(6, 2)
+  fat           Decimal  @db.Decimal(6, 2)
+  carbohydrates Decimal  @db.Decimal(6, 2)
+  fiber         Decimal? @db.Decimal(6, 2)
+  sugar         Decimal? @db.Decimal(6, 2)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user    User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [product_id], references: [id], onDelete: SetNull)
+  recipe  Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: SetNull)
+
+  @@index([user_id, eaten_at])
+}
+
+model WaterLogEntry {
+  id         String   @id @default(uuid())
+  user_id    String
+  amount_ml  Int
+  drunk_at   DateTime @default(now())
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, drunk_at])
+}

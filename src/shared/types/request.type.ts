@@ -2,15 +2,18 @@ import type { Request } from 'express';
 import type { LanguageEnum, RoleEnum } from '@/prisma/client';
 import type { AccessToken, RefreshToken } from '@/shared/constants';
 
-// import { AccessToken, RefreshToken } from '../common/constants';
+export interface JwtPayload {
+  id: string;
+  role: RoleEnum;
+}
 
-export interface UserFromRequest {
+export interface AuthUser {
   id: string;
   role: RoleEnum;
 }
 
 export interface ExtendedRequest extends Request {
-  user?: UserFromRequest;
+  user?: AuthUser;
   headers: {
     authorization?: string;
     'accept-language'?: string;

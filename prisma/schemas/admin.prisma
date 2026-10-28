@@ -3,7 +3,7 @@ model Admin {
   name        String
   second_name String?
   lastname    String?
-  email       String? @unique
+  email       String?           @unique
   phone       String?
   disabled    Boolean           @default(false)
   language    LanguageEnum      @default(RU)

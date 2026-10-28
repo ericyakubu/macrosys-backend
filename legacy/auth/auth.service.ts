@@ -1,0 +1,170 @@
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import bcrypt from 'bcrypt';
+import { Prisma, type Admin } from '@/prisma/client';
+import { PrismaService } from '@/prisma.service';
+import { AccessToken, AuthErrors, BCRYPT_SALT_ROUNDS, RefreshToken } from '@/shared/constants';
+import type { UserDto } from '@/shared/dto';
+import type { AdminDto } from '@/shared/dto/admin.dto';
+import { JwtSecrets } from '@/shared/jwt/jwt.secrets';
+import type { ReturnWithTokens } from '@/shared/types';
+import type { LoginAdminReqDto, SignupAdminReqDto } from './dto/auth-admin.dto';
+import type { LoginUserReqDto, SignupUserReqDto } from './dto/auth-user.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  async loginUser(body: LoginUserReqDto): Promise<ReturnWithTokens<UserDto>> {
+    const { email, password } = body;
+
+    const credentials = await this.prisma.userCredentials.findUnique({
+      where: {
+        email,
+      },
+
+      select: {
+        password: true,
+        user: {
+          omit: {
+            created_at: true,
+            disabled_at: true,
+            updated_at: true,
+            disabled: true,
+          },
+        },
+      },
+    });
+
+    if (!credentials) throw new NotFoundException(AuthErrors.userNotFound);
+
+    const isPasswordValid = await bcrypt.compare(password, credentials.password);
+    if (!isPasswordValid) throw new BadRequestException(AuthErrors.invalidCredentials);
+
+    const { user } = credentials;
+
+    return this.returnTokens(user);
+  }
+
+  async loginAdmin(body: LoginAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
+    const { login, password } = body;
+
+    const credentials = await this.prisma.adminCredentials.findUnique({
+      where: {
+        login,
+      },
+
+      include: {
+        admin: true,
+      },
+    });
+
+    if (!credentials) throw new NotFoundException(AuthErrors.userNotFound);
+
+    const isPasswordValid = await bcrypt.compare(password, credentials.password);
+    if (!isPasswordValid) throw new BadRequestException(AuthErrors.invalidCredentials);
+
+    const { admin } = credentials;
+
+    return this.returnTokens(admin);
+  }
+
+  async signupUser(body: SignupUserReqDto): Promise<ReturnWithTokens<UserDto>> {
+    const { password, email, ...data } = body;
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
+
+    try {
+      const user = await this.prisma.user.create({
+        data: {
+          email,
+          ...data,
+          credentials: {
+            create: {
+              email,
+              password: hashedPassword,
+            },
+          },
+        },
+        omit: {
+          created_at: true,
+          disabled_at: true,
+          updated_at: true,
+          disabled: true,
+        },
+      });
+
+      return this.returnTokens(user);
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+        throw new ConflictException('User with this email already exists');
+      }
+
+      throw new InternalServerErrorException('Failed to create user');
+    }
+  }
+
+  async signupAdmin(body: SignupAdminReqDto): Promise<ReturnWithTokens<AdminDto>> {
+    const hashedPassword = await bcrypt.hash(body.password, BCRYPT_SALT_ROUNDS);
+
+    const admin = await this.prisma.admin
+      .create({
+        data: {
+          email: body.email,
+          name: body.name,
+          lastname: body.lastname,
+
+          credentials: {
+            create: {
+              login: body.login,
+              password: hashedPassword,
+            },
+          },
+        },
+      })
+      .catch((error) => {
+        if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+          const target = error.meta?.target;
+
+          console.log(error);
+
+          if (Array.isArray(target)) {
+            if (target.includes('email')) {
+              throw new ConflictException('Admin with this email already exists');
+            }
+
+            if (target.includes('login')) {
+              throw new ConflictException('Admin with this login already exists');
+            }
+          }
+
+          throw new ConflictException('Unique field already exists');
+        }
+      });
+
+    if (admin) return this.returnTokens(admin);
+  }
+
+  private returnTokens<T extends UserDto | Admin>(user: T): ReturnWithTokens<T> {
+    const tokenPayload = { id: user.id, role: user.role };
+    const accessToken = this.jwtService.sign(tokenPayload, {
+      expiresIn: AccessToken.expiresIn,
+      secret: JwtSecrets.access,
+    });
+    const refreshToken = this.jwtService.sign(tokenPayload, {
+      expiresIn: RefreshToken.expiresIn,
+      secret: JwtSecrets.refresh,
+    });
+    const transformed = { ...user };
+
+    return { user: transformed, accessToken, refreshToken };
+  }
+}

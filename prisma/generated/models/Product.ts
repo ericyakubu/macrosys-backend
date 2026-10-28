@@ -27,69 +27,76 @@ export type AggregateProduct = {
 }
 
 export type ProductAvgAggregateOutputType = {
-  rating: number | null
   calories: runtime.Decimal | null
-  carbohydrates: runtime.Decimal | null
-  fat: runtime.Decimal | null
-  fiber: runtime.Decimal | null
   protein: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fiber: runtime.Decimal | null
   sugar: runtime.Decimal | null
 }
 
 export type ProductSumAggregateOutputType = {
-  rating: number | null
   calories: runtime.Decimal | null
-  carbohydrates: runtime.Decimal | null
-  fat: runtime.Decimal | null
-  fiber: runtime.Decimal | null
   protein: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fiber: runtime.Decimal | null
   sugar: runtime.Decimal | null
 }
 
 export type ProductMinAggregateOutputType = {
   id: string | null
+  owner_user_id: string | null
+  owner_trainer_id: string | null
   name: string | null
   barcode: string | null
   description: string | null
-  rating: number | null
+  photo_url: string | null
   calories: runtime.Decimal | null
-  carbohydrates: runtime.Decimal | null
-  fat: runtime.Decimal | null
-  fiber: runtime.Decimal | null
   protein: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fiber: runtime.Decimal | null
   sugar: runtime.Decimal | null
+  archived_at: Date | null
   created_at: Date | null
   updated_at: Date | null
 }
 
 export type ProductMaxAggregateOutputType = {
   id: string | null
+  owner_user_id: string | null
+  owner_trainer_id: string | null
   name: string | null
   barcode: string | null
   description: string | null
-  rating: number | null
+  photo_url: string | null
   calories: runtime.Decimal | null
-  carbohydrates: runtime.Decimal | null
-  fat: runtime.Decimal | null
-  fiber: runtime.Decimal | null
   protein: runtime.Decimal | null
+  fat: runtime.Decimal | null
+  carbohydrates: runtime.Decimal | null
+  fiber: runtime.Decimal | null
   sugar: runtime.Decimal | null
+  archived_at: Date | null
   created_at: Date | null
   updated_at: Date | null
 }
 
 export type ProductCountAggregateOutputType = {
   id: number
+  owner_user_id: number
+  owner_trainer_id: number
   name: number
   barcode: number
   description: number
-  rating: number
+  photo_url: number
   calories: number
-  carbohydrates: number
-  fat: number
-  fiber: number
   protein: number
+  fat: number
+  carbohydrates: number
+  fiber: number
   sugar: number
+  archived_at: number
   created_at: number
   updated_at: number
   _all: number
@@ -97,69 +104,76 @@ export type ProductCountAggregateOutputType = {
 
 
 export type ProductAvgAggregateInputType = {
-  rating?: true
   calories?: true
-  carbohydrates?: true
-  fat?: true
-  fiber?: true
   protein?: true
+  fat?: true
+  carbohydrates?: true
+  fiber?: true
   sugar?: true
 }
 
 export type ProductSumAggregateInputType = {
-  rating?: true
   calories?: true
-  carbohydrates?: true
-  fat?: true
-  fiber?: true
   protein?: true
+  fat?: true
+  carbohydrates?: true
+  fiber?: true
   sugar?: true
 }
 
 export type ProductMinAggregateInputType = {
   id?: true
+  owner_user_id?: true
+  owner_trainer_id?: true
   name?: true
   barcode?: true
   description?: true
-  rating?: true
+  photo_url?: true
   calories?: true
-  carbohydrates?: true
-  fat?: true
-  fiber?: true
   protein?: true
+  fat?: true
+  carbohydrates?: true
+  fiber?: true
   sugar?: true
+  archived_at?: true
   created_at?: true
   updated_at?: true
 }
 
 export type ProductMaxAggregateInputType = {
   id?: true
+  owner_user_id?: true
+  owner_trainer_id?: true
   name?: true
   barcode?: true
   description?: true
-  rating?: true
+  photo_url?: true
   calories?: true
-  carbohydrates?: true
-  fat?: true
-  fiber?: true
   protein?: true
+  fat?: true
+  carbohydrates?: true
+  fiber?: true
   sugar?: true
+  archived_at?: true
   created_at?: true
   updated_at?: true
 }
 
 export type ProductCountAggregateInputType = {
   id?: true
+  owner_user_id?: true
+  owner_trainer_id?: true
   name?: true
   barcode?: true
   description?: true
-  rating?: true
+  photo_url?: true
   calories?: true
-  carbohydrates?: true
-  fat?: true
-  fiber?: true
   protein?: true
+  fat?: true
+  carbohydrates?: true
+  fiber?: true
   sugar?: true
+  archived_at?: true
   created_at?: true
   updated_at?: true
   _all?: true
@@ -253,16 +267,19 @@ export type ProductGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProductGroupByOutputType = {
   id: string
+  owner_user_id: string | null
+  owner_trainer_id: string | null
   name: string
   barcode: string | null
   description: string | null
-  rating: number | null
-  calories: runtime.Decimal | null
-  carbohydrates: runtime.Decimal | null
-  fat: runtime.Decimal | null
+  photo_url: string | null
+  calories: runtime.Decimal
+  protein: runtime.Decimal
+  fat: runtime.Decimal
+  carbohydrates: runtime.Decimal
   fiber: runtime.Decimal | null
-  protein: runtime.Decimal | null
   sugar: runtime.Decimal | null
+  archived_at: Date | null
   created_at: Date
   updated_at: Date
   _count: ProductCountAggregateOutputType | null
@@ -292,42 +309,56 @@ export type ProductWhereInput = {
   OR?: Prisma.ProductWhereInput[]
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   id?: Prisma.StringFilter<"Product"> | string
+  owner_user_id?: Prisma.StringNullableFilter<"Product"> | string | null
+  owner_trainer_id?: Prisma.StringNullableFilter<"Product"> | string | null
   name?: Prisma.StringFilter<"Product"> | string
   barcode?: Prisma.StringNullableFilter<"Product"> | string | null
   description?: Prisma.StringNullableFilter<"Product"> | string | null
-  rating?: Prisma.FloatNullableFilter<"Product"> | number | null
-  calories?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.StringNullableFilter<"Product"> | string | null
+  calories?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"Product"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Product"> | Date | string
-  recipe_product?: Prisma.RecipeProductListRelationFilter
-  user_recipe_product?: Prisma.UserRecipeProductListRelationFilter
-  photo?: Prisma.XOR<Prisma.ProductPhotoNullableScalarRelationFilter, Prisma.ProductPhotoWhereInput> | null
+  owner_user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  owner_trainer?: Prisma.XOR<Prisma.TrainerNullableScalarRelationFilter, Prisma.TrainerWhereInput> | null
   diets?: Prisma.DietListRelationFilter
+  ingredients?: Prisma.RecipeIngredientListRelationFilter
+  favorites?: Prisma.FavoriteProductListRelationFilter
+  log_entries?: Prisma.FoodLogEntryListRelationFilter
+  meal_plan_items?: Prisma.MealPlanItemListRelationFilter
+  photo?: Prisma.XOR<Prisma.ProductPhotoNullableScalarRelationFilter, Prisma.ProductPhotoWhereInput> | null
 }
 
 export type ProductOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  owner_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  owner_trainer_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   barcode?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  rating?: Prisma.SortOrderInput | Prisma.SortOrder
-  calories?: Prisma.SortOrderInput | Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
-  fat?: Prisma.SortOrderInput | Prisma.SortOrder
+  photo_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
   fiber?: Prisma.SortOrderInput | Prisma.SortOrder
-  protein?: Prisma.SortOrderInput | Prisma.SortOrder
   sugar?: Prisma.SortOrderInput | Prisma.SortOrder
+  archived_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  recipe_product?: Prisma.RecipeProductOrderByRelationAggregateInput
-  user_recipe_product?: Prisma.UserRecipeProductOrderByRelationAggregateInput
-  photo?: Prisma.ProductPhotoOrderByWithRelationInput
+  owner_user?: Prisma.UserOrderByWithRelationInput
+  owner_trainer?: Prisma.TrainerOrderByWithRelationInput
   diets?: Prisma.DietOrderByRelationAggregateInput
+  ingredients?: Prisma.RecipeIngredientOrderByRelationAggregateInput
+  favorites?: Prisma.FavoriteProductOrderByRelationAggregateInput
+  log_entries?: Prisma.FoodLogEntryOrderByRelationAggregateInput
+  meal_plan_items?: Prisma.MealPlanItemOrderByRelationAggregateInput
+  photo?: Prisma.ProductPhotoOrderByWithRelationInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -335,36 +366,46 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   OR?: Prisma.ProductWhereInput[]
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
+  owner_user_id?: Prisma.StringNullableFilter<"Product"> | string | null
+  owner_trainer_id?: Prisma.StringNullableFilter<"Product"> | string | null
   name?: Prisma.StringFilter<"Product"> | string
   barcode?: Prisma.StringNullableFilter<"Product"> | string | null
   description?: Prisma.StringNullableFilter<"Product"> | string | null
-  rating?: Prisma.FloatNullableFilter<"Product"> | number | null
-  calories?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.StringNullableFilter<"Product"> | string | null
+  calories?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"Product"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Product"> | Date | string
-  recipe_product?: Prisma.RecipeProductListRelationFilter
-  user_recipe_product?: Prisma.UserRecipeProductListRelationFilter
-  photo?: Prisma.XOR<Prisma.ProductPhotoNullableScalarRelationFilter, Prisma.ProductPhotoWhereInput> | null
+  owner_user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  owner_trainer?: Prisma.XOR<Prisma.TrainerNullableScalarRelationFilter, Prisma.TrainerWhereInput> | null
   diets?: Prisma.DietListRelationFilter
+  ingredients?: Prisma.RecipeIngredientListRelationFilter
+  favorites?: Prisma.FavoriteProductListRelationFilter
+  log_entries?: Prisma.FoodLogEntryListRelationFilter
+  meal_plan_items?: Prisma.MealPlanItemListRelationFilter
+  photo?: Prisma.XOR<Prisma.ProductPhotoNullableScalarRelationFilter, Prisma.ProductPhotoWhereInput> | null
 }, "id">
 
 export type ProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  owner_user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  owner_trainer_id?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   barcode?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  rating?: Prisma.SortOrderInput | Prisma.SortOrder
-  calories?: Prisma.SortOrderInput | Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrderInput | Prisma.SortOrder
-  fat?: Prisma.SortOrderInput | Prisma.SortOrder
+  photo_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
   fiber?: Prisma.SortOrderInput | Prisma.SortOrder
-  protein?: Prisma.SortOrderInput | Prisma.SortOrder
   sugar?: Prisma.SortOrderInput | Prisma.SortOrder
+  archived_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
@@ -379,16 +420,19 @@ export type ProductScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProductScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProductScalarWhereWithAggregatesInput | Prisma.ProductScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  owner_user_id?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  owner_trainer_id?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Product"> | string
   barcode?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
-  rating?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
-  calories?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
+  calories?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.DecimalNullableWithAggregatesFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
 }
@@ -398,39 +442,49 @@ export type ProductCreateInput = {
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutProductInput
-  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
   diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
   id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutProductInput
-  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
   diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -438,53 +492,66 @@ export type ProductUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
   diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
   diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
   id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
 }
@@ -494,104 +561,35 @@ export type ProductUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProductUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ProductCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  barcode?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  calories?: Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrder
-  fat?: Prisma.SortOrder
-  fiber?: Prisma.SortOrder
-  protein?: Prisma.SortOrder
-  sugar?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-}
-
-export type ProductAvgOrderByAggregateInput = {
-  rating?: Prisma.SortOrder
-  calories?: Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrder
-  fat?: Prisma.SortOrder
-  fiber?: Prisma.SortOrder
-  protein?: Prisma.SortOrder
-  sugar?: Prisma.SortOrder
-}
-
-export type ProductMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  barcode?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  calories?: Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrder
-  fat?: Prisma.SortOrder
-  fiber?: Prisma.SortOrder
-  protein?: Prisma.SortOrder
-  sugar?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-}
-
-export type ProductMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  barcode?: Prisma.SortOrder
-  description?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  calories?: Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrder
-  fat?: Prisma.SortOrder
-  fiber?: Prisma.SortOrder
-  protein?: Prisma.SortOrder
-  sugar?: Prisma.SortOrder
-  created_at?: Prisma.SortOrder
-  updated_at?: Prisma.SortOrder
-}
-
-export type ProductSumOrderByAggregateInput = {
-  rating?: Prisma.SortOrder
-  calories?: Prisma.SortOrder
-  carbohydrates?: Prisma.SortOrder
-  fat?: Prisma.SortOrder
-  fiber?: Prisma.SortOrder
-  protein?: Prisma.SortOrder
-  sugar?: Prisma.SortOrder
-}
-
-export type ProductScalarRelationFilter = {
-  is?: Prisma.ProductWhereInput
-  isNot?: Prisma.ProductWhereInput
 }
 
 export type ProductListRelationFilter = {
@@ -604,53 +602,173 @@ export type ProductOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ProductCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  owner_user_id?: Prisma.SortOrder
+  owner_trainer_id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  barcode?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  photo_url?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+}
+
+export type ProductAvgOrderByAggregateInput = {
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
+}
+
+export type ProductMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  owner_user_id?: Prisma.SortOrder
+  owner_trainer_id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  barcode?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  photo_url?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+}
+
+export type ProductMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  owner_user_id?: Prisma.SortOrder
+  owner_trainer_id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  barcode?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  photo_url?: Prisma.SortOrder
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+}
+
+export type ProductSumOrderByAggregateInput = {
+  calories?: Prisma.SortOrder
+  protein?: Prisma.SortOrder
+  fat?: Prisma.SortOrder
+  carbohydrates?: Prisma.SortOrder
+  fiber?: Prisma.SortOrder
+  sugar?: Prisma.SortOrder
+}
+
+export type ProductScalarRelationFilter = {
+  is?: Prisma.ProductWhereInput
+  isNot?: Prisma.ProductWhereInput
+}
+
 export type ProductNullableScalarRelationFilter = {
   is?: Prisma.ProductWhereInput | null
   isNot?: Prisma.ProductWhereInput | null
 }
 
-export type NullableFloatFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type ProductCreateNestedManyWithoutOwner_userInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput> | Prisma.ProductCreateWithoutOwner_userInput[] | Prisma.ProductUncheckedCreateWithoutOwner_userInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_userInput | Prisma.ProductCreateOrConnectWithoutOwner_userInput[]
+  createMany?: Prisma.ProductCreateManyOwner_userInputEnvelope
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
 }
 
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+export type ProductUncheckedCreateNestedManyWithoutOwner_userInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput> | Prisma.ProductCreateWithoutOwner_userInput[] | Prisma.ProductUncheckedCreateWithoutOwner_userInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_userInput | Prisma.ProductCreateOrConnectWithoutOwner_userInput[]
+  createMany?: Prisma.ProductCreateManyOwner_userInputEnvelope
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
 }
 
-export type ProductCreateNestedOneWithoutPhotoInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPhotoInput
-  connect?: Prisma.ProductWhereUniqueInput
+export type ProductUpdateManyWithoutOwner_userNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput> | Prisma.ProductCreateWithoutOwner_userInput[] | Prisma.ProductUncheckedCreateWithoutOwner_userInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_userInput | Prisma.ProductCreateOrConnectWithoutOwner_userInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutOwner_userInput | Prisma.ProductUpsertWithWhereUniqueWithoutOwner_userInput[]
+  createMany?: Prisma.ProductCreateManyOwner_userInputEnvelope
+  set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutOwner_userInput | Prisma.ProductUpdateWithWhereUniqueWithoutOwner_userInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutOwner_userInput | Prisma.ProductUpdateManyWithWhereWithoutOwner_userInput[]
+  deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type ProductUpdateOneRequiredWithoutPhotoNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPhotoInput
-  upsert?: Prisma.ProductUpsertWithoutPhotoInput
-  connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutPhotoInput, Prisma.ProductUpdateWithoutPhotoInput>, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
+export type ProductUncheckedUpdateManyWithoutOwner_userNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput> | Prisma.ProductCreateWithoutOwner_userInput[] | Prisma.ProductUncheckedCreateWithoutOwner_userInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_userInput | Prisma.ProductCreateOrConnectWithoutOwner_userInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutOwner_userInput | Prisma.ProductUpsertWithWhereUniqueWithoutOwner_userInput[]
+  createMany?: Prisma.ProductCreateManyOwner_userInputEnvelope
+  set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutOwner_userInput | Prisma.ProductUpdateWithWhereUniqueWithoutOwner_userInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutOwner_userInput | Prisma.ProductUpdateManyWithWhereWithoutOwner_userInput[]
+  deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type ProductCreateNestedOneWithoutRecipe_productInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutRecipe_productInput, Prisma.ProductUncheckedCreateWithoutRecipe_productInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutRecipe_productInput
-  connect?: Prisma.ProductWhereUniqueInput
+export type ProductCreateNestedManyWithoutOwner_trainerInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput> | Prisma.ProductCreateWithoutOwner_trainerInput[] | Prisma.ProductUncheckedCreateWithoutOwner_trainerInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_trainerInput | Prisma.ProductCreateOrConnectWithoutOwner_trainerInput[]
+  createMany?: Prisma.ProductCreateManyOwner_trainerInputEnvelope
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
 }
 
-export type ProductUpdateOneRequiredWithoutRecipe_productNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutRecipe_productInput, Prisma.ProductUncheckedCreateWithoutRecipe_productInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutRecipe_productInput
-  upsert?: Prisma.ProductUpsertWithoutRecipe_productInput
-  connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutRecipe_productInput, Prisma.ProductUpdateWithoutRecipe_productInput>, Prisma.ProductUncheckedUpdateWithoutRecipe_productInput>
+export type ProductUncheckedCreateNestedManyWithoutOwner_trainerInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput> | Prisma.ProductCreateWithoutOwner_trainerInput[] | Prisma.ProductUncheckedCreateWithoutOwner_trainerInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_trainerInput | Prisma.ProductCreateOrConnectWithoutOwner_trainerInput[]
+  createMany?: Prisma.ProductCreateManyOwner_trainerInputEnvelope
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+}
+
+export type ProductUpdateManyWithoutOwner_trainerNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput> | Prisma.ProductCreateWithoutOwner_trainerInput[] | Prisma.ProductUncheckedCreateWithoutOwner_trainerInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_trainerInput | Prisma.ProductCreateOrConnectWithoutOwner_trainerInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutOwner_trainerInput | Prisma.ProductUpsertWithWhereUniqueWithoutOwner_trainerInput[]
+  createMany?: Prisma.ProductCreateManyOwner_trainerInputEnvelope
+  set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutOwner_trainerInput | Prisma.ProductUpdateWithWhereUniqueWithoutOwner_trainerInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutOwner_trainerInput | Prisma.ProductUpdateManyWithWhereWithoutOwner_trainerInput[]
+  deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
+}
+
+export type ProductUncheckedUpdateManyWithoutOwner_trainerNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput> | Prisma.ProductCreateWithoutOwner_trainerInput[] | Prisma.ProductUncheckedCreateWithoutOwner_trainerInput[]
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOwner_trainerInput | Prisma.ProductCreateOrConnectWithoutOwner_trainerInput[]
+  upsert?: Prisma.ProductUpsertWithWhereUniqueWithoutOwner_trainerInput | Prisma.ProductUpsertWithWhereUniqueWithoutOwner_trainerInput[]
+  createMany?: Prisma.ProductCreateManyOwner_trainerInputEnvelope
+  set?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  disconnect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  delete?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  connect?: Prisma.ProductWhereUniqueInput | Prisma.ProductWhereUniqueInput[]
+  update?: Prisma.ProductUpdateWithWhereUniqueWithoutOwner_trainerInput | Prisma.ProductUpdateWithWhereUniqueWithoutOwner_trainerInput[]
+  updateMany?: Prisma.ProductUpdateManyWithWhereWithoutOwner_trainerInput | Prisma.ProductUpdateManyWithWhereWithoutOwner_trainerInput[]
+  deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
 export type ProductCreateNestedManyWithoutDietsInput = {
@@ -691,204 +809,248 @@ export type ProductUncheckedUpdateManyWithoutDietsNestedInput = {
   deleteMany?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
 }
 
-export type ProductCreateNestedOneWithoutUser_recipe_productInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutUser_recipe_productInput, Prisma.ProductUncheckedCreateWithoutUser_recipe_productInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutUser_recipe_productInput
+export type ProductCreateNestedOneWithoutPhotoInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPhotoInput
   connect?: Prisma.ProductWhereUniqueInput
 }
 
-export type ProductUpdateOneWithoutUser_recipe_productNestedInput = {
-  create?: Prisma.XOR<Prisma.ProductCreateWithoutUser_recipe_productInput, Prisma.ProductUncheckedCreateWithoutUser_recipe_productInput>
-  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutUser_recipe_productInput
-  upsert?: Prisma.ProductUpsertWithoutUser_recipe_productInput
+export type ProductUpdateOneRequiredWithoutPhotoNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPhotoInput
+  upsert?: Prisma.ProductUpsertWithoutPhotoInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutPhotoInput, Prisma.ProductUpdateWithoutPhotoInput>, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
+}
+
+export type ProductCreateNestedOneWithoutIngredientsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutIngredientsInput, Prisma.ProductUncheckedCreateWithoutIngredientsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutIngredientsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutIngredientsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutIngredientsInput, Prisma.ProductUncheckedCreateWithoutIngredientsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutIngredientsInput
+  upsert?: Prisma.ProductUpsertWithoutIngredientsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutIngredientsInput, Prisma.ProductUpdateWithoutIngredientsInput>, Prisma.ProductUncheckedUpdateWithoutIngredientsInput>
+}
+
+export type ProductCreateNestedOneWithoutFavoritesInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoritesInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutFavoritesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutFavoritesInput
+  upsert?: Prisma.ProductUpsertWithoutFavoritesInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutFavoritesInput, Prisma.ProductUpdateWithoutFavoritesInput>, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
+}
+
+export type ProductCreateNestedOneWithoutLog_entriesInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutLog_entriesInput, Prisma.ProductUncheckedCreateWithoutLog_entriesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLog_entriesInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneWithoutLog_entriesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutLog_entriesInput, Prisma.ProductUncheckedCreateWithoutLog_entriesInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutLog_entriesInput
+  upsert?: Prisma.ProductUpsertWithoutLog_entriesInput
   disconnect?: Prisma.ProductWhereInput | boolean
   delete?: Prisma.ProductWhereInput | boolean
   connect?: Prisma.ProductWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutUser_recipe_productInput, Prisma.ProductUpdateWithoutUser_recipe_productInput>, Prisma.ProductUncheckedUpdateWithoutUser_recipe_productInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutLog_entriesInput, Prisma.ProductUpdateWithoutLog_entriesInput>, Prisma.ProductUncheckedUpdateWithoutLog_entriesInput>
 }
 
-export type ProductCreateWithoutPhotoInput = {
+export type ProductCreateNestedOneWithoutMeal_plan_itemsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedCreateWithoutMeal_plan_itemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutMeal_plan_itemsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneWithoutMeal_plan_itemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedCreateWithoutMeal_plan_itemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutMeal_plan_itemsInput
+  upsert?: Prisma.ProductUpsertWithoutMeal_plan_itemsInput
+  disconnect?: Prisma.ProductWhereInput | boolean
+  delete?: Prisma.ProductWhereInput | boolean
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutMeal_plan_itemsInput, Prisma.ProductUpdateWithoutMeal_plan_itemsInput>, Prisma.ProductUncheckedUpdateWithoutMeal_plan_itemsInput>
+}
+
+export type ProductCreateWithoutOwner_userInput = {
   id?: string
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutProductInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
   diets?: Prisma.DietCreateNestedManyWithoutProductsInput
-}
-
-export type ProductUncheckedCreateWithoutPhotoInput = {
-  id?: string
-  name: string
-  barcode?: string | null
-  description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutProductInput
-  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
-}
-
-export type ProductCreateOrConnectWithoutPhotoInput = {
-  where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
-}
-
-export type ProductUpsertWithoutPhotoInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutPhotoInput, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
-  where?: Prisma.ProductWhereInput
-}
-
-export type ProductUpdateToOneWithWhereWithoutPhotoInput = {
-  where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutPhotoInput, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
-}
-
-export type ProductUpdateWithoutPhotoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutProductNestedInput
-  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
-}
-
-export type ProductUncheckedUpdateWithoutPhotoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
-}
-
-export type ProductCreateWithoutRecipe_productInput = {
-  id?: string
-  name: string
-  barcode?: string | null
-  description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutProductInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
   photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
-  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
 }
 
-export type ProductUncheckedCreateWithoutRecipe_productInput = {
+export type ProductUncheckedCreateWithoutOwner_userInput = {
+  id?: string
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutOwner_userInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput>
+}
+
+export type ProductCreateManyOwner_userInputEnvelope = {
+  data: Prisma.ProductCreateManyOwner_userInput | Prisma.ProductCreateManyOwner_userInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProductUpsertWithWhereUniqueWithoutOwner_userInput = {
+  where: Prisma.ProductWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutOwner_userInput, Prisma.ProductUncheckedUpdateWithoutOwner_userInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOwner_userInput, Prisma.ProductUncheckedCreateWithoutOwner_userInput>
+}
+
+export type ProductUpdateWithWhereUniqueWithoutOwner_userInput = {
+  where: Prisma.ProductWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutOwner_userInput, Prisma.ProductUncheckedUpdateWithoutOwner_userInput>
+}
+
+export type ProductUpdateManyWithWhereWithoutOwner_userInput = {
+  where: Prisma.ProductScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutOwner_userInput>
+}
+
+export type ProductScalarWhereInput = {
+  AND?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
+  OR?: Prisma.ProductScalarWhereInput[]
+  NOT?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
+  id?: Prisma.StringFilter<"Product"> | string
+  owner_user_id?: Prisma.StringNullableFilter<"Product"> | string | null
+  owner_trainer_id?: Prisma.StringNullableFilter<"Product"> | string | null
+  name?: Prisma.StringFilter<"Product"> | string
+  barcode?: Prisma.StringNullableFilter<"Product"> | string | null
+  description?: Prisma.StringNullableFilter<"Product"> | string | null
+  photo_url?: Prisma.StringNullableFilter<"Product"> | string | null
+  calories?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Product"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"Product"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"Product"> | Date | string
+}
+
+export type ProductCreateWithoutOwner_trainerInput = {
   id?: string
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutProductInput
-  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutOwner_trainerInput = {
+  id?: string
+  owner_user_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutRecipe_productInput = {
+export type ProductCreateOrConnectWithoutOwner_trainerInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutRecipe_productInput, Prisma.ProductUncheckedCreateWithoutRecipe_productInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput>
 }
 
-export type ProductUpsertWithoutRecipe_productInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutRecipe_productInput, Prisma.ProductUncheckedUpdateWithoutRecipe_productInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutRecipe_productInput, Prisma.ProductUncheckedCreateWithoutRecipe_productInput>
-  where?: Prisma.ProductWhereInput
+export type ProductCreateManyOwner_trainerInputEnvelope = {
+  data: Prisma.ProductCreateManyOwner_trainerInput | Prisma.ProductCreateManyOwner_trainerInput[]
+  skipDuplicates?: boolean
 }
 
-export type ProductUpdateToOneWithWhereWithoutRecipe_productInput = {
-  where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutRecipe_productInput, Prisma.ProductUncheckedUpdateWithoutRecipe_productInput>
+export type ProductUpsertWithWhereUniqueWithoutOwner_trainerInput = {
+  where: Prisma.ProductWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutOwner_trainerInput, Prisma.ProductUncheckedUpdateWithoutOwner_trainerInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutOwner_trainerInput, Prisma.ProductUncheckedCreateWithoutOwner_trainerInput>
 }
 
-export type ProductUpdateWithoutRecipe_productInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
-  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+export type ProductUpdateWithWhereUniqueWithoutOwner_trainerInput = {
+  where: Prisma.ProductWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutOwner_trainerInput, Prisma.ProductUncheckedUpdateWithoutOwner_trainerInput>
 }
 
-export type ProductUncheckedUpdateWithoutRecipe_productInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
-  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+export type ProductUpdateManyWithWhereWithoutOwner_trainerInput = {
+  where: Prisma.ProductScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutOwner_trainerInput>
 }
 
 export type ProductCreateWithoutDietsInput = {
@@ -896,36 +1058,46 @@ export type ProductCreateWithoutDietsInput = {
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductCreateNestedManyWithoutProductInput
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
   photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutDietsInput = {
   id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedCreateNestedManyWithoutProductInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedCreateNestedManyWithoutProductInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
   photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
 }
 
@@ -950,115 +1122,732 @@ export type ProductUpdateManyWithWhereWithoutDietsInput = {
   data: Prisma.XOR<Prisma.ProductUpdateManyMutationInput, Prisma.ProductUncheckedUpdateManyWithoutDietsInput>
 }
 
-export type ProductScalarWhereInput = {
-  AND?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
-  OR?: Prisma.ProductScalarWhereInput[]
-  NOT?: Prisma.ProductScalarWhereInput | Prisma.ProductScalarWhereInput[]
-  id?: Prisma.StringFilter<"Product"> | string
-  name?: Prisma.StringFilter<"Product"> | string
-  barcode?: Prisma.StringNullableFilter<"Product"> | string | null
-  description?: Prisma.StringNullableFilter<"Product"> | string | null
-  rating?: Prisma.FloatNullableFilter<"Product"> | number | null
-  calories?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fiber?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  sugar?: Prisma.DecimalNullableFilter<"Product"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  created_at?: Prisma.DateTimeFilter<"Product"> | Date | string
-  updated_at?: Prisma.DateTimeFilter<"Product"> | Date | string
-}
-
-export type ProductCreateWithoutUser_recipe_productInput = {
+export type ProductCreateWithoutPhotoInput = {
   id?: string
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductCreateNestedManyWithoutProductInput
-  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
   diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
 }
 
-export type ProductUncheckedCreateWithoutUser_recipe_productInput = {
+export type ProductUncheckedCreateWithoutPhotoInput = {
+  id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutPhotoInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
+}
+
+export type ProductUpsertWithoutPhotoInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutPhotoInput, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutPhotoInput, Prisma.ProductUncheckedCreateWithoutPhotoInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutPhotoInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutPhotoInput, Prisma.ProductUncheckedUpdateWithoutPhotoInput>
+}
+
+export type ProductUpdateWithoutPhotoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutPhotoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutIngredientsInput = {
   id?: string
   name: string
   barcode?: string | null
   description?: string | null
-  rating?: number | null
-  calories?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedCreateNestedManyWithoutProductInput
-  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
+  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutIngredientsInput = {
+  id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
 }
 
-export type ProductCreateOrConnectWithoutUser_recipe_productInput = {
+export type ProductCreateOrConnectWithoutIngredientsInput = {
   where: Prisma.ProductWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProductCreateWithoutUser_recipe_productInput, Prisma.ProductUncheckedCreateWithoutUser_recipe_productInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutIngredientsInput, Prisma.ProductUncheckedCreateWithoutIngredientsInput>
 }
 
-export type ProductUpsertWithoutUser_recipe_productInput = {
-  update: Prisma.XOR<Prisma.ProductUpdateWithoutUser_recipe_productInput, Prisma.ProductUncheckedUpdateWithoutUser_recipe_productInput>
-  create: Prisma.XOR<Prisma.ProductCreateWithoutUser_recipe_productInput, Prisma.ProductUncheckedCreateWithoutUser_recipe_productInput>
+export type ProductUpsertWithoutIngredientsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutIngredientsInput, Prisma.ProductUncheckedUpdateWithoutIngredientsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutIngredientsInput, Prisma.ProductUncheckedCreateWithoutIngredientsInput>
   where?: Prisma.ProductWhereInput
 }
 
-export type ProductUpdateToOneWithWhereWithoutUser_recipe_productInput = {
+export type ProductUpdateToOneWithWhereWithoutIngredientsInput = {
   where?: Prisma.ProductWhereInput
-  data: Prisma.XOR<Prisma.ProductUpdateWithoutUser_recipe_productInput, Prisma.ProductUncheckedUpdateWithoutUser_recipe_productInput>
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutIngredientsInput, Prisma.ProductUncheckedUpdateWithoutIngredientsInput>
 }
 
-export type ProductUpdateWithoutUser_recipe_productInput = {
+export type ProductUpdateWithoutIngredientsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
   diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutUser_recipe_productInput = {
+export type ProductUncheckedUpdateWithoutIngredientsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutFavoritesInput = {
+  id?: string
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
+  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutFavoritesInput = {
+  id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutFavoritesInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+}
+
+export type ProductUpsertWithoutFavoritesInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutFavoritesInput, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutFavoritesInput, Prisma.ProductUncheckedCreateWithoutFavoritesInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutFavoritesInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutFavoritesInput, Prisma.ProductUncheckedUpdateWithoutFavoritesInput>
+}
+
+export type ProductUpdateWithoutFavoritesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutFavoritesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutLog_entriesInput = {
+  id?: string
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
+  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutLog_entriesInput = {
+  id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutLog_entriesInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutLog_entriesInput, Prisma.ProductUncheckedCreateWithoutLog_entriesInput>
+}
+
+export type ProductUpsertWithoutLog_entriesInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutLog_entriesInput, Prisma.ProductUncheckedUpdateWithoutLog_entriesInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutLog_entriesInput, Prisma.ProductUncheckedCreateWithoutLog_entriesInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutLog_entriesInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutLog_entriesInput, Prisma.ProductUncheckedUpdateWithoutLog_entriesInput>
+}
+
+export type ProductUpdateWithoutLog_entriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutLog_entriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutMeal_plan_itemsInput = {
+  id?: string
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  owner_user?: Prisma.UserCreateNestedOneWithoutProductsInput
+  owner_trainer?: Prisma.TrainerCreateNestedOneWithoutProductsInput
+  diets?: Prisma.DietCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoCreateNestedOneWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutMeal_plan_itemsInput = {
+  id?: string
+  owner_user_id?: string | null
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  diets?: Prisma.DietUncheckedCreateNestedManyWithoutProductsInput
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutProductInput
+  favorites?: Prisma.FavoriteProductUncheckedCreateNestedManyWithoutProductInput
+  log_entries?: Prisma.FoodLogEntryUncheckedCreateNestedManyWithoutProductInput
+  photo?: Prisma.ProductPhotoUncheckedCreateNestedOneWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutMeal_plan_itemsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedCreateWithoutMeal_plan_itemsInput>
+}
+
+export type ProductUpsertWithoutMeal_plan_itemsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedUpdateWithoutMeal_plan_itemsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedCreateWithoutMeal_plan_itemsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutMeal_plan_itemsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutMeal_plan_itemsInput, Prisma.ProductUncheckedUpdateWithoutMeal_plan_itemsInput>
+}
+
+export type ProductUpdateWithoutMeal_plan_itemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutMeal_plan_itemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductCreateManyOwner_userInput = {
+  id?: string
+  owner_trainer_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type ProductUpdateWithoutOwner_userInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutOwner_userInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateManyWithoutOwner_userInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProductCreateManyOwner_trainerInput = {
+  id?: string
+  owner_user_id?: string | null
+  name: string
+  barcode?: string | null
+  description?: string | null
+  photo_url?: string | null
+  calories: runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat: runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates: runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type ProductUpdateWithoutOwner_trainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  diets?: Prisma.DietUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutOwner_trainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  diets?: Prisma.DietUncheckedUpdateManyWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
+  photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateManyWithoutOwner_trainerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProductUpdateWithoutDietsInput = {
@@ -1066,51 +1855,64 @@ export type ProductUpdateWithoutDietsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUpdateManyWithoutProductNestedInput
+  owner_user?: Prisma.UserUpdateOneWithoutProductsNestedInput
+  owner_trainer?: Prisma.TrainerUpdateOneWithoutProductsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUpdateManyWithoutProductNestedInput
   photo?: Prisma.ProductPhotoUpdateOneWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutDietsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recipe_product?: Prisma.RecipeProductUncheckedUpdateManyWithoutProductNestedInput
-  user_recipe_product?: Prisma.UserRecipeProductUncheckedUpdateManyWithoutProductNestedInput
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutProductNestedInput
+  favorites?: Prisma.FavoriteProductUncheckedUpdateManyWithoutProductNestedInput
+  log_entries?: Prisma.FoodLogEntryUncheckedUpdateManyWithoutProductNestedInput
+  meal_plan_items?: Prisma.MealPlanItemUncheckedUpdateManyWithoutProductNestedInput
   photo?: Prisma.ProductPhotoUncheckedUpdateOneWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutDietsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  owner_user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner_trainer_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   barcode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  calories?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  carbohydrates?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  fat?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calories?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  protein?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  fat?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  carbohydrates?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   fiber?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  protein?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   sugar?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1121,15 +1923,19 @@ export type ProductUncheckedUpdateManyWithoutDietsInput = {
  */
 
 export type ProductCountOutputType = {
-  recipe_product: number
-  user_recipe_product: number
   diets: number
+  ingredients: number
+  favorites: number
+  log_entries: number
+  meal_plan_items: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recipe_product?: boolean | ProductCountOutputTypeCountRecipe_productArgs
-  user_recipe_product?: boolean | ProductCountOutputTypeCountUser_recipe_productArgs
   diets?: boolean | ProductCountOutputTypeCountDietsArgs
+  ingredients?: boolean | ProductCountOutputTypeCountIngredientsArgs
+  favorites?: boolean | ProductCountOutputTypeCountFavoritesArgs
+  log_entries?: boolean | ProductCountOutputTypeCountLog_entriesArgs
+  meal_plan_items?: boolean | ProductCountOutputTypeCountMeal_plan_itemsArgs
 }
 
 /**
@@ -1145,125 +1951,176 @@ export type ProductCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * ProductCountOutputType without action
  */
-export type ProductCountOutputTypeCountRecipe_productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RecipeProductWhereInput
-}
-
-/**
- * ProductCountOutputType without action
- */
-export type ProductCountOutputTypeCountUser_recipe_productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRecipeProductWhereInput
-}
-
-/**
- * ProductCountOutputType without action
- */
 export type ProductCountOutputTypeCountDietsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DietWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountIngredientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecipeIngredientWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FavoriteProductWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountLog_entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FoodLogEntryWhereInput
+}
+
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountMeal_plan_itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealPlanItemWhereInput
 }
 
 
 export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  owner_user_id?: boolean
+  owner_trainer_id?: boolean
   name?: boolean
   barcode?: boolean
   description?: boolean
-  rating?: boolean
+  photo_url?: boolean
   calories?: boolean
-  carbohydrates?: boolean
-  fat?: boolean
-  fiber?: boolean
   protein?: boolean
+  fat?: boolean
+  carbohydrates?: boolean
+  fiber?: boolean
   sugar?: boolean
+  archived_at?: boolean
   created_at?: boolean
   updated_at?: boolean
-  recipe_product?: boolean | Prisma.Product$recipe_productArgs<ExtArgs>
-  user_recipe_product?: boolean | Prisma.Product$user_recipe_productArgs<ExtArgs>
-  photo?: boolean | Prisma.Product$photoArgs<ExtArgs>
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
   diets?: boolean | Prisma.Product$dietsArgs<ExtArgs>
+  ingredients?: boolean | Prisma.Product$ingredientsArgs<ExtArgs>
+  favorites?: boolean | Prisma.Product$favoritesArgs<ExtArgs>
+  log_entries?: boolean | Prisma.Product$log_entriesArgs<ExtArgs>
+  meal_plan_items?: boolean | Prisma.Product$meal_plan_itemsArgs<ExtArgs>
+  photo?: boolean | Prisma.Product$photoArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  owner_user_id?: boolean
+  owner_trainer_id?: boolean
   name?: boolean
   barcode?: boolean
   description?: boolean
-  rating?: boolean
+  photo_url?: boolean
   calories?: boolean
-  carbohydrates?: boolean
-  fat?: boolean
-  fiber?: boolean
   protein?: boolean
+  fat?: boolean
+  carbohydrates?: boolean
+  fiber?: boolean
   sugar?: boolean
+  archived_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  owner_user_id?: boolean
+  owner_trainer_id?: boolean
   name?: boolean
   barcode?: boolean
   description?: boolean
-  rating?: boolean
+  photo_url?: boolean
   calories?: boolean
-  carbohydrates?: boolean
-  fat?: boolean
-  fiber?: boolean
   protein?: boolean
+  fat?: boolean
+  carbohydrates?: boolean
+  fiber?: boolean
   sugar?: boolean
+  archived_at?: boolean
   created_at?: boolean
   updated_at?: boolean
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
 export type ProductSelectScalar = {
   id?: boolean
+  owner_user_id?: boolean
+  owner_trainer_id?: boolean
   name?: boolean
   barcode?: boolean
   description?: boolean
-  rating?: boolean
+  photo_url?: boolean
   calories?: boolean
-  carbohydrates?: boolean
-  fat?: boolean
-  fiber?: boolean
   protein?: boolean
+  fat?: boolean
+  carbohydrates?: boolean
+  fiber?: boolean
   sugar?: boolean
+  archived_at?: boolean
   created_at?: boolean
   updated_at?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "barcode" | "description" | "rating" | "calories" | "carbohydrates" | "fat" | "fiber" | "protein" | "sugar" | "created_at" | "updated_at", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "owner_user_id" | "owner_trainer_id" | "name" | "barcode" | "description" | "photo_url" | "calories" | "protein" | "fat" | "carbohydrates" | "fiber" | "sugar" | "archived_at" | "created_at" | "updated_at", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  recipe_product?: boolean | Prisma.Product$recipe_productArgs<ExtArgs>
-  user_recipe_product?: boolean | Prisma.Product$user_recipe_productArgs<ExtArgs>
-  photo?: boolean | Prisma.Product$photoArgs<ExtArgs>
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
   diets?: boolean | Prisma.Product$dietsArgs<ExtArgs>
+  ingredients?: boolean | Prisma.Product$ingredientsArgs<ExtArgs>
+  favorites?: boolean | Prisma.Product$favoritesArgs<ExtArgs>
+  log_entries?: boolean | Prisma.Product$log_entriesArgs<ExtArgs>
+  meal_plan_items?: boolean | Prisma.Product$meal_plan_itemsArgs<ExtArgs>
+  photo?: boolean | Prisma.Product$photoArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
+}
+export type ProductIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner_user?: boolean | Prisma.Product$owner_userArgs<ExtArgs>
+  owner_trainer?: boolean | Prisma.Product$owner_trainerArgs<ExtArgs>
+}
 
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
   objects: {
-    recipe_product: Prisma.$RecipeProductPayload<ExtArgs>[]
-    user_recipe_product: Prisma.$UserRecipeProductPayload<ExtArgs>[]
-    photo: Prisma.$ProductPhotoPayload<ExtArgs> | null
+    owner_user: Prisma.$UserPayload<ExtArgs> | null
+    owner_trainer: Prisma.$TrainerPayload<ExtArgs> | null
     diets: Prisma.$DietPayload<ExtArgs>[]
+    ingredients: Prisma.$RecipeIngredientPayload<ExtArgs>[]
+    favorites: Prisma.$FavoriteProductPayload<ExtArgs>[]
+    log_entries: Prisma.$FoodLogEntryPayload<ExtArgs>[]
+    meal_plan_items: Prisma.$MealPlanItemPayload<ExtArgs>[]
+    photo: Prisma.$ProductPhotoPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    owner_user_id: string | null
+    owner_trainer_id: string | null
     name: string
     barcode: string | null
     description: string | null
-    rating: number | null
-    calories: runtime.Decimal | null
-    carbohydrates: runtime.Decimal | null
-    fat: runtime.Decimal | null
+    photo_url: string | null
+    calories: runtime.Decimal
+    protein: runtime.Decimal
+    fat: runtime.Decimal
+    carbohydrates: runtime.Decimal
     fiber: runtime.Decimal | null
-    protein: runtime.Decimal | null
     sugar: runtime.Decimal | null
+    archived_at: Date | null
     created_at: Date
     updated_at: Date
   }, ExtArgs["result"]["product"]>
@@ -1660,10 +2517,14 @@ readonly fields: ProductFieldRefs;
  */
 export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  recipe_product<T extends Prisma.Product$recipe_productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$recipe_productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipeProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user_recipe_product<T extends Prisma.Product$user_recipe_productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$user_recipe_productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRecipeProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  photo<T extends Prisma.Product$photoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$photoArgs<ExtArgs>>): Prisma.Prisma__ProductPhotoClient<runtime.Types.Result.GetResult<Prisma.$ProductPhotoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  owner_user<T extends Prisma.Product$owner_userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$owner_userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  owner_trainer<T extends Prisma.Product$owner_trainerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$owner_trainerArgs<ExtArgs>>): Prisma.Prisma__TrainerClient<runtime.Types.Result.GetResult<Prisma.$TrainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   diets<T extends Prisma.Product$dietsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$dietsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ingredients<T extends Prisma.Product$ingredientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$ingredientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipeIngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favorites<T extends Prisma.Product$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoriteProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  log_entries<T extends Prisma.Product$log_entriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$log_entriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FoodLogEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  meal_plan_items<T extends Prisma.Product$meal_plan_itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$meal_plan_itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPlanItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  photo<T extends Prisma.Product$photoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$photoArgs<ExtArgs>>): Prisma.Prisma__ProductPhotoClient<runtime.Types.Result.GetResult<Prisma.$ProductPhotoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1694,16 +2555,19 @@ export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ProductFieldRefs {
   readonly id: Prisma.FieldRef<"Product", 'String'>
+  readonly owner_user_id: Prisma.FieldRef<"Product", 'String'>
+  readonly owner_trainer_id: Prisma.FieldRef<"Product", 'String'>
   readonly name: Prisma.FieldRef<"Product", 'String'>
   readonly barcode: Prisma.FieldRef<"Product", 'String'>
   readonly description: Prisma.FieldRef<"Product", 'String'>
-  readonly rating: Prisma.FieldRef<"Product", 'Float'>
+  readonly photo_url: Prisma.FieldRef<"Product", 'String'>
   readonly calories: Prisma.FieldRef<"Product", 'Decimal'>
-  readonly carbohydrates: Prisma.FieldRef<"Product", 'Decimal'>
-  readonly fat: Prisma.FieldRef<"Product", 'Decimal'>
-  readonly fiber: Prisma.FieldRef<"Product", 'Decimal'>
   readonly protein: Prisma.FieldRef<"Product", 'Decimal'>
+  readonly fat: Prisma.FieldRef<"Product", 'Decimal'>
+  readonly carbohydrates: Prisma.FieldRef<"Product", 'Decimal'>
+  readonly fiber: Prisma.FieldRef<"Product", 'Decimal'>
   readonly sugar: Prisma.FieldRef<"Product", 'Decimal'>
+  readonly archived_at: Prisma.FieldRef<"Product", 'DateTime'>
   readonly created_at: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Product", 'DateTime'>
 }
@@ -1960,6 +2824,10 @@ export type ProductCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    */
   data: Prisma.ProductCreateManyInput | Prisma.ProductCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2030,6 +2898,10 @@ export type ProductUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many Products to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2099,70 +2971,41 @@ export type ProductDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Product.recipe_product
+ * Product.owner_user
  */
-export type Product$recipe_productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$owner_userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the RecipeProduct
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.RecipeProductSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the RecipeProduct
+   * Omit specific fields from the User
    */
-  omit?: Prisma.RecipeProductOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RecipeProductInclude<ExtArgs> | null
-  where?: Prisma.RecipeProductWhereInput
-  orderBy?: Prisma.RecipeProductOrderByWithRelationInput | Prisma.RecipeProductOrderByWithRelationInput[]
-  cursor?: Prisma.RecipeProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RecipeProductScalarFieldEnum | Prisma.RecipeProductScalarFieldEnum[]
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
- * Product.user_recipe_product
+ * Product.owner_trainer
  */
-export type Product$user_recipe_productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Product$owner_trainerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserRecipeProduct
+   * Select specific fields to fetch from the Trainer
    */
-  select?: Prisma.UserRecipeProductSelect<ExtArgs> | null
+  select?: Prisma.TrainerSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserRecipeProduct
+   * Omit specific fields from the Trainer
    */
-  omit?: Prisma.UserRecipeProductOmit<ExtArgs> | null
+  omit?: Prisma.TrainerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserRecipeProductInclude<ExtArgs> | null
-  where?: Prisma.UserRecipeProductWhereInput
-  orderBy?: Prisma.UserRecipeProductOrderByWithRelationInput | Prisma.UserRecipeProductOrderByWithRelationInput[]
-  cursor?: Prisma.UserRecipeProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserRecipeProductScalarFieldEnum | Prisma.UserRecipeProductScalarFieldEnum[]
-}
-
-/**
- * Product.photo
- */
-export type Product$photoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ProductPhoto
-   */
-  select?: Prisma.ProductPhotoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ProductPhoto
-   */
-  omit?: Prisma.ProductPhotoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProductPhotoInclude<ExtArgs> | null
-  where?: Prisma.ProductPhotoWhereInput
+  include?: Prisma.TrainerInclude<ExtArgs> | null
+  where?: Prisma.TrainerWhereInput
 }
 
 /**
@@ -2187,6 +3030,121 @@ export type Product$dietsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.DietScalarFieldEnum | Prisma.DietScalarFieldEnum[]
+}
+
+/**
+ * Product.ingredients
+ */
+export type Product$ingredientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RecipeIngredient
+   */
+  select?: Prisma.RecipeIngredientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RecipeIngredient
+   */
+  omit?: Prisma.RecipeIngredientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecipeIngredientInclude<ExtArgs> | null
+  where?: Prisma.RecipeIngredientWhereInput
+  orderBy?: Prisma.RecipeIngredientOrderByWithRelationInput | Prisma.RecipeIngredientOrderByWithRelationInput[]
+  cursor?: Prisma.RecipeIngredientWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecipeIngredientScalarFieldEnum | Prisma.RecipeIngredientScalarFieldEnum[]
+}
+
+/**
+ * Product.favorites
+ */
+export type Product$favoritesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FavoriteProduct
+   */
+  select?: Prisma.FavoriteProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FavoriteProduct
+   */
+  omit?: Prisma.FavoriteProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FavoriteProductInclude<ExtArgs> | null
+  where?: Prisma.FavoriteProductWhereInput
+  orderBy?: Prisma.FavoriteProductOrderByWithRelationInput | Prisma.FavoriteProductOrderByWithRelationInput[]
+  cursor?: Prisma.FavoriteProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FavoriteProductScalarFieldEnum | Prisma.FavoriteProductScalarFieldEnum[]
+}
+
+/**
+ * Product.log_entries
+ */
+export type Product$log_entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FoodLogEntry
+   */
+  select?: Prisma.FoodLogEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FoodLogEntry
+   */
+  omit?: Prisma.FoodLogEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FoodLogEntryInclude<ExtArgs> | null
+  where?: Prisma.FoodLogEntryWhereInput
+  orderBy?: Prisma.FoodLogEntryOrderByWithRelationInput | Prisma.FoodLogEntryOrderByWithRelationInput[]
+  cursor?: Prisma.FoodLogEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FoodLogEntryScalarFieldEnum | Prisma.FoodLogEntryScalarFieldEnum[]
+}
+
+/**
+ * Product.meal_plan_items
+ */
+export type Product$meal_plan_itemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealPlanItem
+   */
+  select?: Prisma.MealPlanItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealPlanItem
+   */
+  omit?: Prisma.MealPlanItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealPlanItemInclude<ExtArgs> | null
+  where?: Prisma.MealPlanItemWhereInput
+  orderBy?: Prisma.MealPlanItemOrderByWithRelationInput | Prisma.MealPlanItemOrderByWithRelationInput[]
+  cursor?: Prisma.MealPlanItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealPlanItemScalarFieldEnum | Prisma.MealPlanItemScalarFieldEnum[]
+}
+
+/**
+ * Product.photo
+ */
+export type Product$photoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProductPhoto
+   */
+  select?: Prisma.ProductPhotoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProductPhoto
+   */
+  omit?: Prisma.ProductPhotoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductPhotoInclude<ExtArgs> | null
+  where?: Prisma.ProductPhotoWhereInput
 }
 
 /**
