@@ -5,7 +5,6 @@ import { DietResolverService } from './diet-resolver.service';
 
 @Module({
   controllers: [DietController],
-  providers: [DietService],
-  exports: [DietResolverService],
+  providers: [DietService, DietResolverService],
 })
 export class DietModule {}
