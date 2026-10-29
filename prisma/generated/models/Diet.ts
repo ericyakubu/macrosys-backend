@@ -26,46 +26,58 @@ export type AggregateDiet = {
 
 export type DietMinAggregateOutputType = {
   id: string | null
-  slug: string | null
   name: string | null
   description: string | null
+  archived_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type DietMaxAggregateOutputType = {
   id: string | null
-  slug: string | null
   name: string | null
   description: string | null
+  archived_at: Date | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type DietCountAggregateOutputType = {
   id: number
-  slug: number
   name: number
   description: number
+  archived_at: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
 
 export type DietMinAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
   description?: true
+  archived_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type DietMaxAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
   description?: true
+  archived_at?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type DietCountAggregateInputType = {
   id?: true
-  slug?: true
   name?: true
   description?: true
+  archived_at?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -143,9 +155,11 @@ export type DietGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type DietGroupByOutputType = {
   id: string
-  slug: string
   name: string
   description: string | null
+  archived_at: Date | null
+  created_at: Date
+  updated_at: Date
   _count: DietCountAggregateOutputType | null
   _min: DietMinAggregateOutputType | null
   _max: DietMaxAggregateOutputType | null
@@ -171,9 +185,11 @@ export type DietWhereInput = {
   OR?: Prisma.DietWhereInput[]
   NOT?: Prisma.DietWhereInput | Prisma.DietWhereInput[]
   id?: Prisma.StringFilter<"Diet"> | string
-  slug?: Prisma.StringFilter<"Diet"> | string
   name?: Prisma.StringFilter<"Diet"> | string
   description?: Prisma.StringNullableFilter<"Diet"> | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Diet"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
   conflicts_with?: Prisma.DietListRelationFilter
   conflicted_by?: Prisma.DietListRelationFilter
   products?: Prisma.ProductListRelationFilter
@@ -183,9 +199,11 @@ export type DietWhereInput = {
 
 export type DietOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  archived_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   conflicts_with?: Prisma.DietOrderByRelationAggregateInput
   conflicted_by?: Prisma.DietOrderByRelationAggregateInput
   products?: Prisma.ProductOrderByRelationAggregateInput
@@ -195,24 +213,28 @@ export type DietOrderByWithRelationInput = {
 
 export type DietWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  slug?: string
+  name?: string
   AND?: Prisma.DietWhereInput | Prisma.DietWhereInput[]
   OR?: Prisma.DietWhereInput[]
   NOT?: Prisma.DietWhereInput | Prisma.DietWhereInput[]
-  name?: Prisma.StringFilter<"Diet"> | string
   description?: Prisma.StringNullableFilter<"Diet"> | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Diet"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
   conflicts_with?: Prisma.DietListRelationFilter
   conflicted_by?: Prisma.DietListRelationFilter
   products?: Prisma.ProductListRelationFilter
   recipes?: Prisma.RecipeListRelationFilter
   meal_plans?: Prisma.MealPlanListRelationFilter
-}, "id" | "slug">
+}, "id" | "name">
 
 export type DietOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  archived_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.DietCountOrderByAggregateInput
   _max?: Prisma.DietMaxOrderByAggregateInput
   _min?: Prisma.DietMinOrderByAggregateInput
@@ -223,16 +245,20 @@ export type DietScalarWhereWithAggregatesInput = {
   OR?: Prisma.DietScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DietScalarWhereWithAggregatesInput | Prisma.DietScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Diet"> | string
-  slug?: Prisma.StringWithAggregatesFilter<"Diet"> | string
   name?: Prisma.StringWithAggregatesFilter<"Diet"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Diet"> | string | null
+  archived_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Diet"> | Date | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"Diet"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"Diet"> | Date | string
 }
 
 export type DietCreateInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductCreateNestedManyWithoutDietsInput
@@ -242,9 +268,11 @@ export type DietCreateInput = {
 
 export type DietUncheckedCreateInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietUncheckedCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietUncheckedCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietsInput
@@ -254,9 +282,11 @@ export type DietUncheckedCreateInput = {
 
 export type DietUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUpdateManyWithoutDietsNestedInput
@@ -266,9 +296,11 @@ export type DietUpdateInput = {
 
 export type DietUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUncheckedUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUncheckedUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutDietsNestedInput
@@ -278,23 +310,29 @@ export type DietUncheckedUpdateInput = {
 
 export type DietCreateManyInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type DietUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietListRelationFilter = {
@@ -309,23 +347,29 @@ export type DietOrderByRelationAggregateInput = {
 
 export type DietCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type DietMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type DietMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  archived_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type DietCreateNestedManyWithoutConflicted_byInput = {
@@ -520,9 +564,11 @@ export type DietUncheckedUpdateManyWithoutMeal_plansNestedInput = {
 
 export type DietCreateWithoutConflicted_byInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietCreateNestedManyWithoutConflicted_byInput
   products?: Prisma.ProductCreateNestedManyWithoutDietsInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutDietsInput
@@ -531,9 +577,11 @@ export type DietCreateWithoutConflicted_byInput = {
 
 export type DietUncheckedCreateWithoutConflicted_byInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietUncheckedCreateNestedManyWithoutConflicted_byInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietsInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutDietsInput
@@ -547,9 +595,11 @@ export type DietCreateOrConnectWithoutConflicted_byInput = {
 
 export type DietCreateWithoutConflicts_withInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicted_by?: Prisma.DietCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductCreateNestedManyWithoutDietsInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutDietsInput
@@ -558,9 +608,11 @@ export type DietCreateWithoutConflicts_withInput = {
 
 export type DietUncheckedCreateWithoutConflicts_withInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicted_by?: Prisma.DietUncheckedCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietsInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutDietsInput
@@ -593,9 +645,11 @@ export type DietScalarWhereInput = {
   OR?: Prisma.DietScalarWhereInput[]
   NOT?: Prisma.DietScalarWhereInput | Prisma.DietScalarWhereInput[]
   id?: Prisma.StringFilter<"Diet"> | string
-  slug?: Prisma.StringFilter<"Diet"> | string
   name?: Prisma.StringFilter<"Diet"> | string
   description?: Prisma.StringNullableFilter<"Diet"> | string | null
+  archived_at?: Prisma.DateTimeNullableFilter<"Diet"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"Diet"> | Date | string
 }
 
 export type DietUpsertWithWhereUniqueWithoutConflicts_withInput = {
@@ -616,9 +670,11 @@ export type DietUpdateManyWithWhereWithoutConflicts_withInput = {
 
 export type DietCreateWithoutProductsInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietCreateNestedManyWithoutConflicts_withInput
   recipes?: Prisma.RecipeCreateNestedManyWithoutDietsInput
@@ -627,9 +683,11 @@ export type DietCreateWithoutProductsInput = {
 
 export type DietUncheckedCreateWithoutProductsInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietUncheckedCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietUncheckedCreateNestedManyWithoutConflicts_withInput
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutDietsInput
@@ -659,9 +717,11 @@ export type DietUpdateManyWithWhereWithoutProductsInput = {
 
 export type DietCreateWithoutRecipesInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductCreateNestedManyWithoutDietsInput
@@ -670,9 +730,11 @@ export type DietCreateWithoutRecipesInput = {
 
 export type DietUncheckedCreateWithoutRecipesInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietUncheckedCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietUncheckedCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietsInput
@@ -702,9 +764,11 @@ export type DietUpdateManyWithWhereWithoutRecipesInput = {
 
 export type DietCreateWithoutMeal_plansInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductCreateNestedManyWithoutDietsInput
@@ -713,9 +777,11 @@ export type DietCreateWithoutMeal_plansInput = {
 
 export type DietUncheckedCreateWithoutMeal_plansInput = {
   id?: string
-  slug: string
   name: string
   description?: string | null
+  archived_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
   conflicts_with?: Prisma.DietUncheckedCreateNestedManyWithoutConflicted_byInput
   conflicted_by?: Prisma.DietUncheckedCreateNestedManyWithoutConflicts_withInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutDietsInput
@@ -745,9 +811,11 @@ export type DietUpdateManyWithWhereWithoutMeal_plansInput = {
 
 export type DietUpdateWithoutConflicted_byInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUpdateManyWithoutConflicted_byNestedInput
   products?: Prisma.ProductUpdateManyWithoutDietsNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutDietsNestedInput
@@ -756,9 +824,11 @@ export type DietUpdateWithoutConflicted_byInput = {
 
 export type DietUncheckedUpdateWithoutConflicted_byInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUncheckedUpdateManyWithoutConflicted_byNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutDietsNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutDietsNestedInput
@@ -767,16 +837,20 @@ export type DietUncheckedUpdateWithoutConflicted_byInput = {
 
 export type DietUncheckedUpdateManyWithoutConflicted_byInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietUpdateWithoutConflicts_withInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicted_by?: Prisma.DietUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUpdateManyWithoutDietsNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutDietsNestedInput
@@ -785,9 +859,11 @@ export type DietUpdateWithoutConflicts_withInput = {
 
 export type DietUncheckedUpdateWithoutConflicts_withInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicted_by?: Prisma.DietUncheckedUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutDietsNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutDietsNestedInput
@@ -796,16 +872,20 @@ export type DietUncheckedUpdateWithoutConflicts_withInput = {
 
 export type DietUncheckedUpdateManyWithoutConflicts_withInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUpdateManyWithoutConflicts_withNestedInput
   recipes?: Prisma.RecipeUpdateManyWithoutDietsNestedInput
@@ -814,9 +894,11 @@ export type DietUpdateWithoutProductsInput = {
 
 export type DietUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUncheckedUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUncheckedUpdateManyWithoutConflicts_withNestedInput
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutDietsNestedInput
@@ -825,16 +907,20 @@ export type DietUncheckedUpdateWithoutProductsInput = {
 
 export type DietUncheckedUpdateManyWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUpdateManyWithoutDietsNestedInput
@@ -843,9 +929,11 @@ export type DietUpdateWithoutRecipesInput = {
 
 export type DietUncheckedUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUncheckedUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUncheckedUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutDietsNestedInput
@@ -854,16 +942,20 @@ export type DietUncheckedUpdateWithoutRecipesInput = {
 
 export type DietUncheckedUpdateManyWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type DietUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUpdateManyWithoutDietsNestedInput
@@ -872,9 +964,11 @@ export type DietUpdateWithoutMeal_plansInput = {
 
 export type DietUncheckedUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conflicts_with?: Prisma.DietUncheckedUpdateManyWithoutConflicted_byNestedInput
   conflicted_by?: Prisma.DietUncheckedUpdateManyWithoutConflicts_withNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutDietsNestedInput
@@ -883,9 +977,11 @@ export type DietUncheckedUpdateWithoutMeal_plansInput = {
 
 export type DietUncheckedUpdateManyWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  archived_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -957,9 +1053,11 @@ export type DietCountOutputTypeCountMeal_plansArgs<ExtArgs extends runtime.Types
 
 export type DietSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
   description?: boolean
+  archived_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   conflicts_with?: boolean | Prisma.Diet$conflicts_withArgs<ExtArgs>
   conflicted_by?: boolean | Prisma.Diet$conflicted_byArgs<ExtArgs>
   products?: boolean | Prisma.Diet$productsArgs<ExtArgs>
@@ -970,26 +1068,32 @@ export type DietSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type DietSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
   description?: boolean
+  archived_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }, ExtArgs["result"]["diet"]>
 
 export type DietSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  slug?: boolean
   name?: boolean
   description?: boolean
+  archived_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }, ExtArgs["result"]["diet"]>
 
 export type DietSelectScalar = {
   id?: boolean
-  slug?: boolean
   name?: boolean
   description?: boolean
+  archived_at?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type DietOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "name" | "description", ExtArgs["result"]["diet"]>
+export type DietOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "archived_at" | "created_at" | "updated_at", ExtArgs["result"]["diet"]>
 export type DietInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   conflicts_with?: boolean | Prisma.Diet$conflicts_withArgs<ExtArgs>
   conflicted_by?: boolean | Prisma.Diet$conflicted_byArgs<ExtArgs>
@@ -1012,9 +1116,11 @@ export type $DietPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    slug: string
     name: string
     description: string | null
+    archived_at: Date | null
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["diet"]>
   composites: {}
 }
@@ -1444,9 +1550,11 @@ export interface Prisma__DietClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface DietFieldRefs {
   readonly id: Prisma.FieldRef<"Diet", 'String'>
-  readonly slug: Prisma.FieldRef<"Diet", 'String'>
   readonly name: Prisma.FieldRef<"Diet", 'String'>
   readonly description: Prisma.FieldRef<"Diet", 'String'>
+  readonly archived_at: Prisma.FieldRef<"Diet", 'DateTime'>
+  readonly created_at: Prisma.FieldRef<"Diet", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"Diet", 'DateTime'>
 }
     
 

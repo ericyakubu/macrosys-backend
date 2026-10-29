@@ -120,26 +120,6 @@ export const GoalStatus = {
 export type GoalStatus = (typeof GoalStatus)[keyof typeof GoalStatus]
 
 
-export const DietEnum = {
-  vegan: 'vegan',
-  vegetarian: 'vegetarian',
-  mediterranean: 'mediterranean',
-  ketogenic: 'ketogenic',
-  intermittent_fasting: 'intermittent_fasting',
-  carnivore: 'carnivore',
-  volumetrics: 'volumetrics',
-  slim_fast: 'slim_fast',
-  dash: 'dash',
-  flexitarian: 'flexitarian',
-  mind: 'mind',
-  atkins: 'atkins',
-  paleo: 'paleo',
-  omad: 'omad'
-} as const
-
-export type DietEnum = (typeof DietEnum)[keyof typeof DietEnum]
-
-
 export const LanguageEnum = {
   EN: 'EN',
   ZH: 'ZH',

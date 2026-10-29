@@ -229,9 +229,11 @@ export type AdminCredentialsScalarFieldEnum = (typeof AdminCredentialsScalarFiel
 
 export const DietScalarFieldEnum = {
   id: 'id',
-  slug: 'slug',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  archived_at: 'archived_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type DietScalarFieldEnum = (typeof DietScalarFieldEnum)[keyof typeof DietScalarFieldEnum]

@@ -1,4 +1,4 @@
-import { DietDto } from '@/shared/dto';
+import { ShortDietDto } from '@/shared/dto';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import type { Decimal } from '@prisma/client/runtime/client';
 
@@ -38,8 +38,8 @@ export class ProductDto {
   @ApiProperty({ type: Date })
   created_at: Date;
 
-  @ApiProperty({ type: [DietDto] })
-  diets: DietDto[];
+  @ApiProperty({ type: [ShortDietDto] })
+  diets: ShortDietDto[];
 
   @ApiPropertyOptional({ type: String, nullable: true })
   owner_user_id: string | null;

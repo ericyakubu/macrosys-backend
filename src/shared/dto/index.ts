@@ -7,7 +7,7 @@ export * from './user.dto';
 export * from './product.dto';
 export * from './macros.dto';
 
-export class DietDto {
+export class ShortDietDto {
   @ApiProperty()
   id: string;
   @ApiProperty()

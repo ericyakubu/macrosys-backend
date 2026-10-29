@@ -1,14 +1,19 @@
 model Diet {
   id          String  @id @default(uuid())
-  slug        String  @unique
   name        String
   description String?
+
+  archived_at DateTime?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
 
   conflicts_with Diet[]     @relation("DietConflicts")
   conflicted_by  Diet[]     @relation("DietConflicts")
   products       Product[]
   recipes        Recipe[]
   meal_plans     MealPlan[]
+
+  @@unique([name])
 }
 
 model Product {

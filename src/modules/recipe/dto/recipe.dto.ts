@@ -1,4 +1,4 @@
-import { DietDto } from '@/shared/dto';
+import { ShortDietDto } from '@/shared/dto';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class IngredientDto {
@@ -47,8 +47,8 @@ export class RecipeDto {
   @ApiProperty({ type: Date })
   created_at: Date;
 
-  @ApiProperty({ type: [DietDto] })
-  diets: DietDto[];
+  @ApiProperty({ type: [ShortDietDto] })
+  diets: ShortDietDto[];
 
   @ApiProperty({ type: [IngredientDto] })
   ingredients: IngredientDto[];
