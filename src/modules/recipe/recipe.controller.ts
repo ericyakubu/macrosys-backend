@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Query, Param, Patch } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, Param, Patch, Delete } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { CreateRecipeReqDto } from './dto/create-recipe.dto';
 import { ApiBody, ApiExtraModels, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -31,6 +31,7 @@ export class RecipeController {
   }
 
   @Get(':id')
+  @Auth(...[RoleEnum.ADMIN, RoleEnum.TRAINER, RoleEnum.USER])
   @ApiParam({ name: 'id', type: String })
   findOne(@Param('id') id: string, @User() user: AuthUser) {
     return this.recipeService.findOne(id, user);
@@ -41,8 +42,10 @@ export class RecipeController {
     return await this.recipeService.update(id, body, user);
   }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.recipeService.remove(+id);
-  // }
+  @Delete(':id')
+  @Auth(...[RoleEnum.ADMIN, RoleEnum.TRAINER, RoleEnum.USER])
+  @ApiParam({ name: 'id', type: String })
+  async remove(@Param('id') id: string, @User() user: AuthUser) {
+    return await this.recipeService.remove(id, user);
+  }
 }

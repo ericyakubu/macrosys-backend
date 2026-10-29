@@ -7,7 +7,7 @@ import { AppException } from '@/shared/errors/app.exception';
 import { RecipeError } from './recipe.errors';
 import type { FoundProduct } from './recipe.types';
 import type { UpdateRecipeReqDto } from './dto/update-product.dto';
-import type { DietResolverService } from '../diet/diet-resolver.service';
+import { DietResolverService } from '../diet/diet-resolver.service';
 import type { GetRecipeReqDto } from './dto/get-recipe.dto';
 import type { RecipeDto } from './dto/recipe.dto';
 import { toRange } from '@/shared/utils/range';
@@ -124,6 +124,12 @@ export class RecipeService {
       }
       throw error; // остальное уйдёт в фильтр: залогируется и вернётся как INTERNAL_ERROR
     }
+  }
+
+  async remove(id: string, user: AuthUser) {
+    await this.assertCanEdit(id, user);
+    await this.prisma.recipe.update({ where: { id }, data: { archived_at: new Date() } });
+    return { archived: true };
   }
 
   private canUse(
