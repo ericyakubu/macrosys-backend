@@ -3,7 +3,7 @@ import type { Prisma } from '@/prisma/client';
 export const USER_SELECT = {
   id: true,
   name: true,
-  lastname: true,
+  last_name: true,
   second_name: true,
   birthday: true,
   gender: true,
@@ -17,7 +17,7 @@ export const USER_SELECT = {
 export const TRAINER_SELECT = {
   id: true,
   name: true,
-  lastname: true,
+  last_name: true,
   second_name: true,
   birthday: true,
   gender: true,

@@ -29,7 +29,7 @@ export type TrainerMinAggregateOutputType = {
   account_id: string | null
   name: string | null
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   bio: string | null
   language: $Enums.LanguageEnum | null
@@ -50,7 +50,7 @@ export type TrainerMaxAggregateOutputType = {
   account_id: string | null
   name: string | null
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   bio: string | null
   language: $Enums.LanguageEnum | null
@@ -71,7 +71,7 @@ export type TrainerCountAggregateOutputType = {
   account_id: number
   name: number
   second_name: number
-  lastname: number
+  last_name: number
   phone: number
   bio: number
   language: number
@@ -94,7 +94,7 @@ export type TrainerMinAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   bio?: true
   language?: true
@@ -115,7 +115,7 @@ export type TrainerMaxAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   bio?: true
   language?: true
@@ -136,7 +136,7 @@ export type TrainerCountAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   bio?: true
   language?: true
@@ -230,7 +230,7 @@ export type TrainerGroupByOutputType = {
   account_id: string
   name: string
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   bio: string | null
   language: $Enums.LanguageEnum
@@ -272,7 +272,7 @@ export type TrainerWhereInput = {
   account_id?: Prisma.StringFilter<"Trainer"> | string
   name?: Prisma.StringFilter<"Trainer"> | string
   second_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
-  lastname?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  last_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
   phone?: Prisma.StringNullableFilter<"Trainer"> | string | null
   bio?: Prisma.StringNullableFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumFilter<"Trainer"> | $Enums.LanguageEnum
@@ -299,7 +299,7 @@ export type TrainerOrderByWithRelationInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -330,7 +330,7 @@ export type TrainerWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TrainerWhereInput | Prisma.TrainerWhereInput[]
   name?: Prisma.StringFilter<"Trainer"> | string
   second_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
-  lastname?: Prisma.StringNullableFilter<"Trainer"> | string | null
+  last_name?: Prisma.StringNullableFilter<"Trainer"> | string | null
   bio?: Prisma.StringNullableFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumFilter<"Trainer"> | $Enums.LanguageEnum
   role?: Prisma.EnumRoleEnumFilter<"Trainer"> | $Enums.RoleEnum
@@ -356,7 +356,7 @@ export type TrainerOrderByWithAggregationInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   bio?: Prisma.SortOrderInput | Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -383,7 +383,7 @@ export type TrainerScalarWhereWithAggregatesInput = {
   account_id?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
   name?: Prisma.StringWithAggregatesFilter<"Trainer"> | string
   second_name?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
-  lastname?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
+  last_name?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
   bio?: Prisma.StringNullableWithAggregatesFilter<"Trainer"> | string | null
   language?: Prisma.EnumLanguageEnumWithAggregatesFilter<"Trainer"> | $Enums.LanguageEnum
@@ -403,7 +403,7 @@ export type TrainerCreateInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -430,7 +430,7 @@ export type TrainerUncheckedCreateInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -455,7 +455,7 @@ export type TrainerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -482,7 +482,7 @@ export type TrainerUncheckedUpdateInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -508,7 +508,7 @@ export type TrainerCreateManyInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -528,7 +528,7 @@ export type TrainerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -549,7 +549,7 @@ export type TrainerUncheckedUpdateManyInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -575,7 +575,7 @@ export type TrainerCountOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -596,7 +596,7 @@ export type TrainerMaxOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -617,7 +617,7 @@ export type TrainerMinOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   bio?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -748,7 +748,7 @@ export type TrainerCreateWithoutAccountInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -773,7 +773,7 @@ export type TrainerUncheckedCreateWithoutAccountInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -814,7 +814,7 @@ export type TrainerUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -839,7 +839,7 @@ export type TrainerUncheckedUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -864,7 +864,7 @@ export type TrainerCreateWithoutSubscriptionsInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -890,7 +890,7 @@ export type TrainerUncheckedCreateWithoutSubscriptionsInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -930,7 +930,7 @@ export type TrainerUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -956,7 +956,7 @@ export type TrainerUncheckedUpdateWithoutSubscriptionsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -980,7 +980,7 @@ export type TrainerCreateWithoutProductsInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1006,7 +1006,7 @@ export type TrainerUncheckedCreateWithoutProductsInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1046,7 +1046,7 @@ export type TrainerUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1072,7 +1072,7 @@ export type TrainerUncheckedUpdateWithoutProductsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1096,7 +1096,7 @@ export type TrainerCreateWithoutRecipesInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1122,7 +1122,7 @@ export type TrainerUncheckedCreateWithoutRecipesInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1162,7 +1162,7 @@ export type TrainerUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1188,7 +1188,7 @@ export type TrainerUncheckedUpdateWithoutRecipesInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1212,7 +1212,7 @@ export type TrainerCreateWithoutClient_linksInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1238,7 +1238,7 @@ export type TrainerUncheckedCreateWithoutClient_linksInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1278,7 +1278,7 @@ export type TrainerUpdateWithoutClient_linksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1304,7 +1304,7 @@ export type TrainerUncheckedUpdateWithoutClient_linksInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1328,7 +1328,7 @@ export type TrainerCreateWithoutMeal_plansInput = {
   id?: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1354,7 +1354,7 @@ export type TrainerUncheckedCreateWithoutMeal_plansInput = {
   account_id: string
   name: string
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   bio?: string | null
   language?: $Enums.LanguageEnum
@@ -1394,7 +1394,7 @@ export type TrainerUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1420,7 +1420,7 @@ export type TrainerUncheckedUpdateWithoutMeal_plansInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   language?: Prisma.EnumLanguageEnumFieldUpdateOperationsInput | $Enums.LanguageEnum
@@ -1512,7 +1512,7 @@ export type TrainerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   bio?: boolean
   language?: boolean
@@ -1540,7 +1540,7 @@ export type TrainerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   bio?: boolean
   language?: boolean
@@ -1562,7 +1562,7 @@ export type TrainerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   bio?: boolean
   language?: boolean
@@ -1584,7 +1584,7 @@ export type TrainerSelectScalar = {
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   bio?: boolean
   language?: boolean
@@ -1600,7 +1600,7 @@ export type TrainerSelectScalar = {
   updated_at?: boolean
 }
 
-export type TrainerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "lastname" | "phone" | "bio" | "language" | "role" | "birthday" | "gender" | "timezone" | "is_listed" | "accepting_clients" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["trainer"]>
+export type TrainerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "last_name" | "phone" | "bio" | "language" | "role" | "birthday" | "gender" | "timezone" | "is_listed" | "accepting_clients" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["trainer"]>
 export type TrainerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   client_links?: boolean | Prisma.Trainer$client_linksArgs<ExtArgs>
@@ -1632,7 +1632,7 @@ export type $TrainerPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     account_id: string
     name: string
     second_name: string | null
-    lastname: string | null
+    last_name: string | null
     phone: string | null
     bio: string | null
     language: $Enums.LanguageEnum
@@ -2079,7 +2079,7 @@ export interface TrainerFieldRefs {
   readonly account_id: Prisma.FieldRef<"Trainer", 'String'>
   readonly name: Prisma.FieldRef<"Trainer", 'String'>
   readonly second_name: Prisma.FieldRef<"Trainer", 'String'>
-  readonly lastname: Prisma.FieldRef<"Trainer", 'String'>
+  readonly last_name: Prisma.FieldRef<"Trainer", 'String'>
   readonly phone: Prisma.FieldRef<"Trainer", 'String'>
   readonly bio: Prisma.FieldRef<"Trainer", 'String'>
   readonly language: Prisma.FieldRef<"Trainer", 'LanguageEnum'>

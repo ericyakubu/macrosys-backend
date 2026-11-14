@@ -9,7 +9,7 @@ export class AdminDto implements Partial<Admin> {
   name: string;
 
   @ApiProperty({ type: String, nullable: true, example: 'Smith' })
-  lastname: string | null;
+  last_name: string | null;
 
   @ApiProperty({
     type: String,

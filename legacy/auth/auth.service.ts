@@ -120,7 +120,7 @@ export class AuthService {
         data: {
           email: body.email,
           name: body.name,
-          lastname: body.lastname,
+          last_name: body.last_name,
 
           credentials: {
             create: {

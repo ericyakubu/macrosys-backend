@@ -34,7 +34,7 @@ export class UpdateUserReqDto implements Partial<User> {
   @IsOptional()
   @ApiProperty({ type: String, nullable: true })
   @IsString()
-  lastname?: string;
+  last_name?: string;
 
   @IsOptional()
   @ApiProperty({ type: String, nullable: true })

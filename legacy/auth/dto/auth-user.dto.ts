@@ -47,7 +47,7 @@ export class SignupUserReqDto implements Partial<UserCredentials> {
     maxLength: 255,
     minLength: 3,
   })
-  lastname?: string;
+  last_name?: string;
 
   @OptionalDate({ description: 'User birthday', example: '2000-01-01' })
   birthday?: Date;

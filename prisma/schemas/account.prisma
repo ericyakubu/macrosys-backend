@@ -14,7 +14,7 @@ model User {
   account_id     String             @unique
   name           String?
   second_name    String?
-  lastname       String?
+  last_name       String?
   phone          String?            @unique
   birthday       DateTime?          @db.Date
   gender         GenderEnum?
@@ -48,7 +48,7 @@ model Trainer {
   account_id  String       @unique
   name        String
   second_name String?
-  lastname    String?
+  last_name    String?
   phone       String?      @unique
   bio         String?
   language    LanguageEnum @default(RU)

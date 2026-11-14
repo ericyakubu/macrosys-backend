@@ -13,7 +13,7 @@ export class UserDto implements Partial<User> {
   second_name?: string;
 
   @ApiProperty({ type: String, nullable: true, example: 'Smith' })
-  lastname?: string;
+  last_name?: string;
   //
 
   @ApiProperty({ type: Date, nullable: true, example: '2000-01-01' })

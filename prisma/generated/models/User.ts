@@ -29,7 +29,7 @@ export type UserMinAggregateOutputType = {
   account_id: string | null
   name: string | null
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   birthday: Date | null
   gender: $Enums.GenderEnum | null
@@ -48,7 +48,7 @@ export type UserMaxAggregateOutputType = {
   account_id: string | null
   name: string | null
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   birthday: Date | null
   gender: $Enums.GenderEnum | null
@@ -67,7 +67,7 @@ export type UserCountAggregateOutputType = {
   account_id: number
   name: number
   second_name: number
-  lastname: number
+  last_name: number
   phone: number
   birthday: number
   gender: number
@@ -88,7 +88,7 @@ export type UserMinAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   birthday?: true
   gender?: true
@@ -107,7 +107,7 @@ export type UserMaxAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   birthday?: true
   gender?: true
@@ -126,7 +126,7 @@ export type UserCountAggregateInputType = {
   account_id?: true
   name?: true
   second_name?: true
-  lastname?: true
+  last_name?: true
   phone?: true
   birthday?: true
   gender?: true
@@ -218,7 +218,7 @@ export type UserGroupByOutputType = {
   account_id: string
   name: string | null
   second_name: string | null
-  lastname: string | null
+  last_name: string | null
   phone: string | null
   birthday: Date | null
   gender: $Enums.GenderEnum | null
@@ -258,7 +258,7 @@ export type UserWhereInput = {
   account_id?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   second_name?: Prisma.StringNullableFilter<"User"> | string | null
-  lastname?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableFilter<"User"> | string | null
   phone?: Prisma.StringNullableFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   gender?: Prisma.EnumGenderEnumNullableFilter<"User"> | $Enums.GenderEnum | null
@@ -290,7 +290,7 @@ export type UserOrderByWithRelationInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   birthday?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -326,7 +326,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringNullableFilter<"User"> | string | null
   second_name?: Prisma.StringNullableFilter<"User"> | string | null
-  lastname?: Prisma.StringNullableFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   gender?: Prisma.EnumGenderEnumNullableFilter<"User"> | $Enums.GenderEnum | null
   activity_level?: Prisma.EnumActivityLevelEnumNullableFilter<"User"> | $Enums.ActivityLevelEnum | null
@@ -357,7 +357,7 @@ export type UserOrderByWithAggregationInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   second_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  lastname?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   birthday?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -382,7 +382,7 @@ export type UserScalarWhereWithAggregatesInput = {
   account_id?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   second_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  lastname?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  last_name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   birthday?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   gender?: Prisma.EnumGenderEnumNullableWithAggregatesFilter<"User"> | $Enums.GenderEnum | null
@@ -400,7 +400,7 @@ export type UserCreateInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -432,7 +432,7 @@ export type UserUncheckedCreateInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -462,7 +462,7 @@ export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -494,7 +494,7 @@ export type UserUncheckedUpdateInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -525,7 +525,7 @@ export type UserCreateManyInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -543,7 +543,7 @@ export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -562,7 +562,7 @@ export type UserUncheckedUpdateManyInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -586,7 +586,7 @@ export type UserCountOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -605,7 +605,7 @@ export type UserMaxOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -624,7 +624,7 @@ export type UserMinOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   second_name?: Prisma.SortOrder
-  lastname?: Prisma.SortOrder
+  last_name?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   birthday?: Prisma.SortOrder
   gender?: Prisma.SortOrder
@@ -879,7 +879,7 @@ export type UserCreateWithoutAccountInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -909,7 +909,7 @@ export type UserUncheckedCreateWithoutAccountInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -955,7 +955,7 @@ export type UserUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -985,7 +985,7 @@ export type UserUncheckedUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1015,7 +1015,7 @@ export type UserCreateWithoutSubscriptionsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1046,7 +1046,7 @@ export type UserUncheckedCreateWithoutSubscriptionsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1091,7 +1091,7 @@ export type UserUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1122,7 +1122,7 @@ export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1151,7 +1151,7 @@ export type UserCreateWithoutProductsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1182,7 +1182,7 @@ export type UserUncheckedCreateWithoutProductsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1227,7 +1227,7 @@ export type UserUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1258,7 +1258,7 @@ export type UserUncheckedUpdateWithoutProductsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1287,7 +1287,7 @@ export type UserCreateWithoutRecipesInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1318,7 +1318,7 @@ export type UserUncheckedCreateWithoutRecipesInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1363,7 +1363,7 @@ export type UserUpdateWithoutRecipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1394,7 +1394,7 @@ export type UserUncheckedUpdateWithoutRecipesInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1423,7 +1423,7 @@ export type UserCreateWithoutFavorite_productsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1454,7 +1454,7 @@ export type UserUncheckedCreateWithoutFavorite_productsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1499,7 +1499,7 @@ export type UserUpdateWithoutFavorite_productsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1530,7 +1530,7 @@ export type UserUncheckedUpdateWithoutFavorite_productsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1559,7 +1559,7 @@ export type UserCreateWithoutFavorite_recipesInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1590,7 +1590,7 @@ export type UserUncheckedCreateWithoutFavorite_recipesInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1635,7 +1635,7 @@ export type UserUpdateWithoutFavorite_recipesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1666,7 +1666,7 @@ export type UserUncheckedUpdateWithoutFavorite_recipesInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1695,7 +1695,7 @@ export type UserCreateWithoutFood_logInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1726,7 +1726,7 @@ export type UserUncheckedCreateWithoutFood_logInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1771,7 +1771,7 @@ export type UserUpdateWithoutFood_logInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1802,7 +1802,7 @@ export type UserUncheckedUpdateWithoutFood_logInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1831,7 +1831,7 @@ export type UserCreateWithoutWater_logInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1862,7 +1862,7 @@ export type UserUncheckedCreateWithoutWater_logInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1907,7 +1907,7 @@ export type UserUpdateWithoutWater_logInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1938,7 +1938,7 @@ export type UserUncheckedUpdateWithoutWater_logInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -1967,7 +1967,7 @@ export type UserCreateWithoutTrainer_linksInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -1998,7 +1998,7 @@ export type UserUncheckedCreateWithoutTrainer_linksInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2043,7 +2043,7 @@ export type UserUpdateWithoutTrainer_linksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2074,7 +2074,7 @@ export type UserUncheckedUpdateWithoutTrainer_linksInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2103,7 +2103,7 @@ export type UserCreateWithoutMeal_plansInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2134,7 +2134,7 @@ export type UserUncheckedCreateWithoutMeal_plansInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2179,7 +2179,7 @@ export type UserUpdateWithoutMeal_plansInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2210,7 +2210,7 @@ export type UserUncheckedUpdateWithoutMeal_plansInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2239,7 +2239,7 @@ export type UserCreateWithoutMeasurementsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2270,7 +2270,7 @@ export type UserUncheckedCreateWithoutMeasurementsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2315,7 +2315,7 @@ export type UserUpdateWithoutMeasurementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2346,7 +2346,7 @@ export type UserUncheckedUpdateWithoutMeasurementsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2375,7 +2375,7 @@ export type UserCreateWithoutGoalsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2406,7 +2406,7 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2451,7 +2451,7 @@ export type UserUpdateWithoutGoalsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2482,7 +2482,7 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2511,7 +2511,7 @@ export type UserCreateWithoutNutrition_targetsInput = {
   id?: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2542,7 +2542,7 @@ export type UserUncheckedCreateWithoutNutrition_targetsInput = {
   account_id: string
   name?: string | null
   second_name?: string | null
-  lastname?: string | null
+  last_name?: string | null
   phone?: string | null
   birthday?: Date | string | null
   gender?: $Enums.GenderEnum | null
@@ -2587,7 +2587,7 @@ export type UserUpdateWithoutNutrition_targetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2618,7 +2618,7 @@ export type UserUncheckedUpdateWithoutNutrition_targetsInput = {
   account_id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   second_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastname?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birthday?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   gender?: Prisma.NullableEnumGenderEnumFieldUpdateOperationsInput | $Enums.GenderEnum | null
@@ -2778,7 +2778,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   birthday?: boolean
   gender?: boolean
@@ -2811,7 +2811,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   birthday?: boolean
   gender?: boolean
@@ -2831,7 +2831,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   birthday?: boolean
   gender?: boolean
@@ -2851,7 +2851,7 @@ export type UserSelectScalar = {
   account_id?: boolean
   name?: boolean
   second_name?: boolean
-  lastname?: boolean
+  last_name?: boolean
   phone?: boolean
   birthday?: boolean
   gender?: boolean
@@ -2865,7 +2865,7 @@ export type UserSelectScalar = {
   updated_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "lastname" | "phone" | "birthday" | "gender" | "activity_level" | "language" | "role" | "timezone" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "name" | "second_name" | "last_name" | "phone" | "birthday" | "gender" | "activity_level" | "language" | "role" | "timezone" | "disabled" | "disabled_at" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   account?: boolean | Prisma.AccountDefaultArgs<ExtArgs>
   subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
@@ -2911,7 +2911,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     account_id: string
     name: string | null
     second_name: string | null
-    lastname: string | null
+    last_name: string | null
     phone: string | null
     birthday: Date | null
     gender: $Enums.GenderEnum | null
@@ -3363,7 +3363,7 @@ export interface UserFieldRefs {
   readonly account_id: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly second_name: Prisma.FieldRef<"User", 'String'>
-  readonly lastname: Prisma.FieldRef<"User", 'String'>
+  readonly last_name: Prisma.FieldRef<"User", 'String'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
   readonly birthday: Prisma.FieldRef<"User", 'DateTime'>
   readonly gender: Prisma.FieldRef<"User", 'GenderEnum'>
