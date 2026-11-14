@@ -8,7 +8,7 @@ import { RecipeError } from './recipe.errors';
 import type { FoundProduct } from './recipe.types';
 import type { UpdateRecipeReqDto } from './dto/update-product.dto';
 import { DietResolverService } from '../diet/diet-resolver.service';
-import type { GetRecipeReqDto } from './dto/get-recipe.dto';
+import type { GetRecipesReqDto, GetRecipesResDto } from './dto/get-recipe.dto';
 import type { RecipeDto } from './dto/recipe.dto';
 import { toRange } from '@/shared/utils/range';
 import { RECIPE_SELECT, toRecipeDto } from './recipe.selects';
@@ -50,28 +50,39 @@ export class RecipeService {
     return toRecipeDto(recipe);
   }
 
-  async findAll(queries: GetRecipeReqDto, user: AuthUser): Promise<RecipeDto[]> {
-    const recipes = await this.prisma.recipe.findMany({
-      where: {
-        ...this.visibilityFilter(user),
-        archived_at: null,
-        prep_time: toRange(queries.prep_time),
-        cook_time: toRange(queries.cook_time),
-        servings: toRange(queries.servings),
-        calories: toRange(queries.calories),
-        protein: toRange(queries.protein),
-        ...(queries.diets?.length
-          ? { AND: queries.diets.map((id) => ({ diets: { some: { id } } })) }
-          : {}),
-      },
-      ...(queries.limit && { take: queries.limit }),
-      ...(queries.offset && { skip: queries.offset }),
-      ...(queries.sort_by &&
-        queries.sort_order && { orderBy: { [queries.sort_by]: queries.sort_order } }),
-      select: RECIPE_SELECT,
-    });
+  async findAll(queries: GetRecipesReqDto, user: AuthUser): Promise<GetRecipesResDto> {
+    const where: Prisma.RecipeWhereInput = {
+      ...this.visibilityFilter(user),
+      archived_at: null,
+      calories: toRange(queries, 'calories'),
+      carbohydrates: toRange(queries, 'carbohydrates'),
+      cook_time: toRange(queries, 'cook_time'),
+      prep_time: toRange(queries, 'prep_time'),
+      protein: toRange(queries, 'protein'),
+      servings: toRange(queries, 'servings'),
+      sugar: toRange(queries, 'sugar'),
 
-    return recipes.map(toRecipeDto);
+      ...(queries.diets?.length
+        ? { AND: queries.diets.map((id) => ({ diets: { some: { id } } })) }
+        : {}),
+    };
+
+    const [recipes, total] = await this.prisma.$transaction([
+      this.prisma.recipe.findMany({
+        where,
+        ...(queries.limit && { take: queries.limit }),
+        ...(queries.offset && { skip: queries.offset }),
+        ...(queries.sort_by &&
+          queries.sort_order && { orderBy: { [queries.sort_by]: queries.sort_order } }),
+        select: RECIPE_SELECT,
+      }),
+      this.prisma.recipe.count({ where }),
+    ]);
+
+    return {
+      recipes: recipes.map(toRecipeDto),
+      total,
+    };
   }
 
   async findOne(id: string, user: AuthUser): Promise<RecipeDto> {

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { OptionalNumber } from '../decorators';
+import { RangeQueryMixin } from './range-query.mixin';
 
 export class MacrosReqDto {
   @OptionalNumber({ description: 'Calories per 100g', example: 59.5 })
@@ -72,3 +73,12 @@ export class MacrosFilterReqDto {
   @OptionalNumber({ description: 'sugar higher than', example: 25 })
   sugar_gte?: number;
 }
+
+export class MacrosRangeDto extends RangeQueryMixin(
+  'calories',
+  'carbohydrates',
+  'fat',
+  'fiber',
+  'protein',
+  'sugar',
+) {}

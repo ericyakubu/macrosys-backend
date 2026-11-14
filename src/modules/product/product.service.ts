@@ -4,7 +4,7 @@ import { PrismaService } from '@/prisma.service';
 import { StorageService } from '@/shared/storage/storage.service';
 import type { AuthUser } from '@/shared/types';
 import { PRODUCT_SELECT } from './product.selects';
-import { GetProductsResDto } from './dto/get-products.dto';
+import { GetProductsResDto, type GetProductsReqDto } from './dto/get-products.dto';
 import { RoleEnum, Prisma } from '@/prisma/client';
 import { UpdateProductReqDto } from './dto/update-product.dto';
 import { AppException } from '@/shared/errors/app.exception';
@@ -12,6 +12,7 @@ import { ProductError } from './product.errors';
 import { recalculateRecipesUsing } from '@/shared/nutrition/recalculate-recipes';
 import { MACRO_FIELDS } from '@/shared/constants';
 import { ProductDto } from './dto/product.dto';
+import { toRange } from '@/shared/utils/range';
 
 // TODO: error handling, pagination, filtering, sorting
 
@@ -51,8 +52,21 @@ export class ProductService {
     }
   }
 
-  async findAll(user: AuthUser): Promise<GetProductsResDto> {
-    const where = this.ownerFilter(user);
+  async findAll(queries: GetProductsReqDto, user: AuthUser): Promise<GetProductsResDto> {
+    const where: Prisma.ProductWhereInput = {
+      ...this.visibilityFilter(user),
+      archived_at: null,
+      calories: toRange(queries, 'calories'),
+      carbohydrates: toRange(queries, 'carbohydrates'),
+      fat: toRange(queries, 'fat'),
+      fiber: toRange(queries, 'fiber'),
+      protein: toRange(queries, 'protein'),
+      sugar: toRange(queries, 'sugar'),
+
+      ...(queries.diets?.length
+        ? { AND: queries.diets.map((id) => ({ diets: { some: { id } } })) }
+        : {}),
+    };
 
     const [products, total] = await this.prisma.$transaction([
       this.prisma.product.findMany({
@@ -145,14 +159,16 @@ export class ProductService {
     return { archived: true };
   }
 
-  private ownerFilter(user: AuthUser): Prisma.ProductWhereInput {
+  private visibilityFilter(user: AuthUser): Prisma.ProductWhereInput {
+    const isDefault = { owner_user_id: null, owner_trainer_id: null };
+
     switch (user.role) {
-      case RoleEnum.TRAINER:
-        return { owner_trainer_id: user.id };
       case RoleEnum.USER:
-        return { owner_user_id: user.id };
+        return { OR: [isDefault, { owner_user_id: user.id }] };
+      case RoleEnum.TRAINER:
+        return { OR: [isDefault, { owner_trainer_id: user.id }] };
       default: // ADMIN, MODERATOR
-        return { owner_user_id: null, owner_trainer_id: null };
+        return isDefault;
     }
   }
 

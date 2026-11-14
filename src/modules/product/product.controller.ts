@@ -12,18 +12,26 @@ import {
   HttpStatus,
   Patch,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductReqDto } from './dto/create-product.dto';
 import { Auth, User } from '@/shared/decorators';
 import { RoleEnum } from '@/prisma/client';
-import { ApiBody, ApiConsumes, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiExtraModels,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MAX_PHOTO_SIZE } from '@/shared/constants';
 import { AppException } from '@/shared/errors/app.exception';
 import { ProductError } from './product.errors';
 import type { AuthUser } from '@/shared/types';
-import { GetProductsResDto } from './dto/get-products.dto';
+import { GetProductsReqDto, GetProductsResDto } from './dto/get-products.dto';
 import { UpdateProductReqDto } from './dto/update-product.dto';
 import { ProductDto } from './dto/product.dto';
 
@@ -60,8 +68,9 @@ export class ProductController {
   @Get()
   @Auth(...[RoleEnum.ADMIN, RoleEnum.TRAINER, RoleEnum.USER])
   @ApiResponse({ type: GetProductsResDto })
-  async findAll(@User() user: AuthUser) {
-    return await this.productService.findAll(user);
+  @ApiExtraModels(GetProductsReqDto)
+  async findAll(@User() user: AuthUser, @Query() queries: GetProductsReqDto) {
+    return await this.productService.findAll(queries, user);
   }
 
   @Get(':id')

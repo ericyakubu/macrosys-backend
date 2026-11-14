@@ -1,11 +1,18 @@
 import { Controller, Post, Body, Get, Query, Param, Patch, Delete } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { CreateRecipeReqDto } from './dto/create-recipe.dto';
-import { ApiBody, ApiExtraModels, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiExtraModels,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { RoleEnum } from '@/prisma/client';
 import { Auth, User } from '@/shared/decorators';
 import type { AuthUser } from '@/shared/types';
-import { GetRecipeReqDto } from './dto/get-recipe.dto';
+import { GetRecipesReqDto } from './dto/get-recipe.dto';
 import type { UpdateRecipeReqDto } from './dto/update-product.dto';
 import { RecipeDto } from './dto/recipe.dto';
 
@@ -24,9 +31,12 @@ export class RecipeController {
 
   @Get()
   @Auth(...[RoleEnum.ADMIN, RoleEnum.TRAINER, RoleEnum.USER])
-  @ApiExtraModels(GetRecipeReqDto)
+  @ApiExtraModels(GetRecipesReqDto)
   @ApiResponse({ type: [RecipeDto] })
-  async findAll(@User() user: AuthUser, @Query() queries: GetRecipeReqDto) {
+  @ApiOperation({
+    description: '<b><i>prep_time</i></b> and <b><i>cook_time</i></b> in minutes',
+  })
+  async findAll(@User() user: AuthUser, @Query() queries: GetRecipesReqDto) {
     return await this.recipeService.findAll(queries, user);
   }
 

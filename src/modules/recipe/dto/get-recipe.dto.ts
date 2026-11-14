@@ -1,6 +1,7 @@
-import { RangeDto } from '@/shared/dto';
+// import { RangeDto } from '@/shared/dto';
+import { RangeQueryMixin } from '@/shared/dto/range-query.mixin';
 import { SortOrderEnum } from '@/shared/types';
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsArray,
@@ -10,8 +11,9 @@ import {
   IsUUID,
   Max,
   Min,
-  ValidateNested,
+  // ValidateNested,
 } from 'class-validator';
+import { RecipeDto } from './recipe.dto';
 
 export enum RecipeSortBy {
   PREP_TIME = 'prep_time',
@@ -26,7 +28,18 @@ export enum RecipeSortBy {
   CREATED_AT = 'created_at',
 }
 
-export class GetRecipeReqDto {
+export class GetRecipesReqDto extends RangeQueryMixin(
+  'calories',
+  'carbohydrates',
+  'fat',
+  'fiber',
+  'protein',
+  'sugar',
+
+  'cook_time',
+  'prep_time',
+  'servings',
+) {
   @ApiPropertyOptional({ type: [String] })
   @IsOptional()
   // один diets=... приходит строкой, два и больше массивом
@@ -34,60 +47,6 @@ export class GetRecipeReqDto {
   @IsArray()
   @IsUUID('all', { each: true })
   diets?: string[];
-
-  @ApiPropertyOptional({ type: RangeDto, description: 'Prep time in minutes' })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  prep_time?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto, description: 'Cook time in minutes' })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  cook_time?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  servings?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  calories?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  protein?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  fat?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  carbohydrates?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  fiber?: RangeDto;
-
-  @ApiPropertyOptional({ type: RangeDto })
-  @IsOptional()
-  @ValidateNested()
-  @Type(() => RangeDto)
-  sugar?: RangeDto;
 
   @ApiPropertyOptional({ type: Number })
   @IsOptional()
@@ -112,5 +71,12 @@ export class GetRecipeReqDto {
   @ApiPropertyOptional({ enum: SortOrderEnum, default: SortOrderEnum.ASC })
   @IsOptional()
   @IsEnum(SortOrderEnum)
-  sort_order?: SortOrderEnum = SortOrderEnum.ASC;
+  sort_order?: SortOrderEnum;
+}
+
+export class GetRecipesResDto {
+  @ApiProperty({ type: [RecipeDto] })
+  recipes: RecipeDto[];
+  @ApiProperty({ type: Number })
+  total: number;
 }
