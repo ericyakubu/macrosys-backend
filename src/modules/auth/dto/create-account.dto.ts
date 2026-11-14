@@ -8,7 +8,7 @@ import {
   User,
 } from '@/prisma/client';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsDate,
   IsEmail,
@@ -25,7 +25,7 @@ interface CreatedAccount {
   id: string;
   name: string;
   second_name: string;
-  lastname: string;
+  last_name: string;
   phone: string;
   birthday: Date;
   gender: GenderEnum;
@@ -52,7 +52,7 @@ export class CreateAccountResDto {
   second_name?: string;
 
   @ApiProperty({ type: String, nullable: true })
-  lastname?: string;
+  last_name?: string;
 
   @ApiProperty({ type: String, nullable: true })
   phone?: string;
@@ -76,24 +76,24 @@ export class CreateAccountResDto {
 // User ===============================================================================================================
 
 class CreateUserReqDto implements Partial<User> {
-  @ApiProperty()
+  @ApiProperty({ type: String, required: true, example: 'Julia' })
   @IsString()
   @MaxLength(100)
   name: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String, required: false, example: 'Ann' })
   @IsOptional()
   @IsString()
   @MaxLength(100)
   second_name?: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String, required: false, example: 'Smith' })
   @IsOptional()
   @IsString()
   @MaxLength(100)
-  lastname?: string;
+  last_name?: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ type: String, required: false, example: '+16474647997' })
   @IsOptional()
   @IsPhoneNumber()
   phone?: string;
@@ -105,6 +105,7 @@ class CreateUserReqDto implements Partial<User> {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @Type(() => Date)
   @IsDate()
   birthday?: Date;
 }
@@ -149,7 +150,7 @@ class CreateTrainerReqDto implements Partial<Trainer> {
   @ApiProperty()
   @IsString()
   @MaxLength(100)
-  lastname: string;
+  last_name: string;
 
   @ApiProperty()
   @IsPhoneNumber()
@@ -162,6 +163,7 @@ class CreateTrainerReqDto implements Partial<Trainer> {
 
   @ApiProperty()
   @IsDate()
+  @Type(() => Date)
   birthday: Date;
 }
 

@@ -26,7 +26,7 @@ export class AuthController {
   @ApiBody({ type: CreateUserAccountReqDto })
   @ApiResponse({ type: CreateUserAccountResDto })
   @ApiOperation({
-    summary: 'User login',
+    summary: 'User registration',
     description:
       'Authenticates a user using email and password and returns user information. Access and refresh tokens are set as HTTP-only cookies.',
   })
@@ -46,7 +46,7 @@ export class AuthController {
   @ApiBody({ type: CreateTrainerAccountReqDto })
   @ApiResponse({ type: CreateTrainerAccountResDto })
   @ApiOperation({
-    summary: 'User login',
+    summary: 'Trainer registration',
     description:
       'Authenticates a user using email and password and returns user information. Access and refresh tokens are set as HTTP-only cookies.',
   })
@@ -65,7 +65,7 @@ export class AuthController {
   @Unauthenticated()
   @ApiBody({ type: LoginReqDto })
   @ApiResponse({ type: LoginResDto })
-  @ApiOperation({})
+  @ApiOperation({ summary: 'User Login' })
   async loginUser(@Body() body: LoginReqDto, @Res() res: Response) {
     const { accessToken, refreshToken, user } = await this.authService.loginUser(body);
 
@@ -81,7 +81,7 @@ export class AuthController {
   @Unauthenticated()
   @ApiBody({ type: LoginReqDto })
   @ApiResponse({ type: LoginResDto })
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Trainer Login' })
   async loginTrainer(@Body() body: LoginReqDto, @Res() res: Response) {
     const { accessToken, refreshToken, user } = await this.authService.loginTrainer(body);
 
@@ -95,7 +95,7 @@ export class AuthController {
 
   @Post('logout')
   @Authenticated()
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Logout for everyone' })
   async logout(@Res() res: Response) {
     Cookies.removeCookies([
       { name: AccessToken.name, res },
@@ -107,7 +107,7 @@ export class AuthController {
 
   @Post('update-tokens')
   @Authenticated()
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Update tokens (for everyone)' })
   async updateTokens(@User() user: AuthUser, @Res() res: Response) {
     const { accessToken, refreshToken } = await this.authService.updateTokens(user);
 
