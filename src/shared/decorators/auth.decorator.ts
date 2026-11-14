@@ -1,30 +1,29 @@
 import { SetMetadata, UseGuards, applyDecorators } from '@nestjs/common';
-import { RoleEnum } from '@/prisma/client';
+import type { RoleEnum } from '@/prisma/client';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
-
-// const Roles = (...roles: StaffRoleEnum[]) => SetMetadata('roles', roles);
+import { GuestOnlyGuard } from '../guards/guest-only.guard';
 
 export const Roles = (...roles: RoleEnum[]) => SetMetadata('roles', roles);
 
 export function AdminOnly() {
-  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.ADMIN));
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles('ADMIN'));
 }
 export function TrainerOnly() {
-  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.TRAINER));
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles('TRAINER'));
 }
 export function ModeratorOnly() {
-  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.MODERATOR));
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles('MODERATOR'));
 }
 export function UserOnly() {
-  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.USER));
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles('USER'));
 }
 
 export function Unauthenticated() {
-  return applyDecorators(UseGuards(JwtAuthGuard), SetMetadata('authenticated', false));
+  return applyDecorators(UseGuards(GuestOnlyGuard));
 }
 
 export function Authenticated() {
-  return applyDecorators(UseGuards(JwtAuthGuard), Roles(RoleEnum.ADMIN, RoleEnum.MODERATOR));
+  return applyDecorators(UseGuards(JwtAuthGuard), Roles('ADMIN', 'MODERATOR', 'TRAINER', 'USER'));
 }
 
 export function Auth(...roles: RoleEnum[]) {
